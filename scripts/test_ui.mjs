@@ -116,18 +116,29 @@ if (homeCheck.tipOpacity !== '1' || !homeCheck.tipText.includes('459 matchs/3m (
 }
 await screenshot('01_home_prorata.png', true);
 
-// 2. Classement: default mode = Par division + green top-3 & red bottom-3 on s14 ONLY
+// 2. Classement: default mode = Par division + green top-3 & red bottom-3 (slots 8-10) + Place Vacante
 await evalJs(`switchTab('standings')`);
 await new Promise(r => setTimeout(r, 200));
-const stCur = await evalJs(`(() => ({
-  mode: state.standingsMode,
-  season: state.standingsSeason,
-  divBlocks: document.querySelectorAll('#standings-body .div-block').length,
-  promoRows: document.querySelectorAll('#standings-body tr.row-promo').length,
-  relegRows: document.querySelectorAll('#standings-body tr.row-releg').length
-}))()`);
-console.log('2a. STANDINGS DEFAULT (s14 Par division + promo/releg):', stCur);
-if (stCur.mode !== 'division' || stCur.divBlocks !== 13 || stCur.promoRows !== 39 || stCur.relegRows !== 39) {
+const stCur = await evalJs(`(() => {
+  const etoileRows = [...document.querySelectorAll('#standings-body .div-block:first-child tbody tr')];
+  const vacantRows = [...document.querySelectorAll('#standings-body tr.row-vacant')];
+  const vacantClickable = vacantRows.some(tr => tr.querySelector('button, a'));
+  return {
+    mode: state.standingsMode,
+    season: state.standingsSeason,
+    divBlocks: document.querySelectorAll('#standings-body .div-block').length,
+    etoileRowCount: etoileRows.length,
+    etoilePos7Class: etoileRows[6]?.className || '',
+    etoilePos8Class: etoileRows[7]?.className || '',
+    etoilePos10Text: etoileRows[9]?.innerText.replace(/\\s+/g, ' ').trim(),
+    vacantCount: vacantRows.length,
+    vacantClickable,
+    promoRows: document.querySelectorAll('#standings-body tr.row-promo').length,
+    relegRows: document.querySelectorAll('#standings-body tr.row-releg').length
+  };
+})()`);
+console.log('2a. STANDINGS DEFAULT (s14 Par division + promo/releg + Place Vacante):', stCur);
+if (stCur.mode !== 'division' || stCur.divBlocks !== 13 || stCur.etoileRowCount !== 10 || stCur.etoilePos7Class.includes('row-releg') || !stCur.etoilePos8Class.includes('row-releg') || stCur.vacantCount !== 3 || stCur.vacantClickable || stCur.promoRows !== 39 || stCur.relegRows !== 39) {
   throw new Error('Standings current season check failed: ' + JSON.stringify(stCur));
 }
 await screenshot('02_standings_promo_releg.png', false);

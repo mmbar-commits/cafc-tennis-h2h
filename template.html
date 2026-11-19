@@ -4102,14 +4102,17 @@
 
       const allRows = getSeasonStandings(sid);
       const divSizes = new Map();
+      let lastDivName = '';
       for (const r of allRows) {
         divSizes.set(r.div, (divSizes.get(r.div) || 0) + 1);
+        lastDivName = r.div;
       }
-      const rowZoneClass = r => {
+      const rowZoneClass = (divName, rk) => {
         if (!season.inProgress) return '';
-        const sz = divSizes.get(r.div) || 0;
-        if (r.rk <= 3) return 'row-promo';
-        if (sz >= 6 && r.rk > sz - 3) return 'row-releg';
+        const sz = divSizes.get(divName) || 0;
+        const effectiveSz = Math.max(10, sz);
+        if (rk <= 3) return 'row-promo';
+        if (rk > effectiveSz - 3) return 'row-releg';
         return '';
       };
 
@@ -4173,7 +4176,7 @@
               </thead>
               <tbody>
                 ${rows.map(r => `
-                  <tr class="${rowZoneClass(r)}">
+                  <tr class="${rowZoneClass(r.div, r.rk)}">
                     <td>${rankBadgeHtml(r.generalRank)}</td>
                     <td style="white-space:nowrap; font-weight:600;">${esc(r.div)}</td>
                     <td class="td-c">${rankBadgeHtml(r.rk)}</td>
@@ -4206,6 +4209,23 @@
         body.innerHTML = `<div class="stack-md">
           ${[...groups.entries()].map(([divName, grp]) => {
             const leader = grp[0];
+            const isLastDiv = divName === lastDivName;
+            let vacantRowsHtml = '';
+            if (season.inProgress && !q && !qDigits && !isLastDiv && grp.length < 10) {
+              for (let slotRk = grp.length + 1; slotRk <= 10; slotRk++) {
+                vacantRowsHtml += `
+                  <tr class="${rowZoneClass(divName, slotRk)} row-vacant">
+                    <td>${rankBadgeHtml(slotRk)}</td>
+                    <td><span style="color:var(--muted-foreground); font-style:italic;">Place Vacante</span></td>
+                    <td class="td-r" style="color:var(--muted-foreground);">—</td>
+                    <td class="td-r" style="color:var(--muted-foreground);">—</td>
+                    <td class="td-r" style="color:var(--muted-foreground);">—</td>
+                    <td class="td-r" style="color:var(--muted-foreground);">—</td>
+                    <td class="td-r" style="color:var(--muted-foreground);">—</td>
+                    <td class="td-r" style="color:var(--muted-foreground);">—</td>
+                  </tr>`;
+              }
+            }
             return `
               <div class="div-block">
                 <div class="div-block-hdr">
@@ -4230,7 +4250,7 @@
                     </thead>
                     <tbody>
                       ${grp.map(r => `
-                        <tr class="${rowZoneClass(r)}">
+                        <tr class="${rowZoneClass(r.div, r.rk)}">
                           <td>${rankBadgeHtml(r.rk)}</td>
                           <td>
                             <div style="display:flex; align-items:center; gap:6px; flex-wrap:wrap;">
@@ -4249,6 +4269,7 @@
                           </td>
                         </tr>
                       `).join('')}
+                      ${vacantRowsHtml}
                     </tbody>
                   </table>
                 </div>
