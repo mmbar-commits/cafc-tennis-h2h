@@ -10,14 +10,15 @@ PLACEHOLDER = "__CAFC_COMPACT_JSON__"
 
 
 def build_compact_json(d):
-    seasons = d["seasons"]
+    seasons = [s for s in d["seasons"] if s.get("type", "ligue") == "ligue"]
     sid_idx = {s["id"]: i for i, s in enumerate(seasons)}
+    matches = [m for m in d["matches"] if m.get("st", "ligue") == "ligue"]
     divs = sorted(
-        {m["div"] for m in d["matches"]}
+        {m["div"] for m in matches}
         | {h["div"] for p in d["players"] for h in p["history"]}
     )
     div_idx = {dv: i for i, dv in enumerate(divs)}
-    rounds = sorted({m["rd"] for m in d["matches"]})
+    rounds = sorted({m["rd"] for m in matches})
     rd_idx = {r: i for i, r in enumerate(rounds)}
 
     c_players = []
@@ -31,7 +32,6 @@ def build_compact_json(d):
             st["tb_w"], st["tb_l"],
             st["s3_w"], st["s3_l"],
             st["bagels_w"], st["bagels_l"],
-            st["tournoi_m"], st["tournoi_w"],
         ]
         h_arr = [
             [sid_idx[h["sid"]], div_idx[h["div"]], h["dr"], h["rk"], h["j"], h["ds"], h["dg"], h["pts"]]
@@ -47,20 +47,18 @@ def build_compact_json(d):
             p["best_div_rank"],
             div_idx.get(p["last_div"], -1),
             p["aliases"],
-            p["alt_phones"],
-            p["family_phone"],
             st_arr,
             h_arr,
         ])
 
     c_matches = []
-    for m in d["matches"]:
+    for m in matches:
         fm = (
             (1 if "stb" in m["f"] else 0)
             | (2 if "wo" in m["f"] else 0)
             | (4 if "ret" in m["f"] else 0)
         )
-        c_matches.append([
+        row = [
             sid_idx[m["sid"]],
             div_idx[m["div"]],
             rd_idx[m["rd"]],
@@ -70,12 +68,15 @@ def build_compact_json(d):
             m["s"],
             m["sw"],
             fm,
-        ])
+        ]
+        if m.get("stb"):
+            row.append(m["stb"])
+        c_matches.append(row)
 
     compact = {
         "meta": d["meta"],
         "seasons": [
-            [s["id"], s["order"], s["label"], 0 if s["type"] == "ligue" else 1, s["matches"]]
+            [s["id"], s["order"], s["label"], s["matches"]]
             for s in seasons
         ],
         "divs": divs,

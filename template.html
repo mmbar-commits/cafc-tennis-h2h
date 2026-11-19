@@ -3,10 +3,20 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CAFC Tennis — Head 2 Head Historique (2023–2026)</title>
-  <meta name="description" content="Outil interactif de Head 2 Head complet de la Ligue CAFC Tennis (2023–2026) avec séparation des homonymes par numéro de téléphone, statistiques avancées, trajectoires de divisions et adversaires communs." />
-  <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
+  <title>Ligue CAFC Tennis Simple — Head 2 Head (2023–2026)</title>
+  <meta name="description" content="Outil interactif de Head 2 Head de la Ligue CAFC Tennis en simple (2023–2026) : confrontations directes, statistiques avancées, scores exacts des Super Tie-Breaks, trajectoires de divisions et adversaires communs." />
   <style>
+    :root {
+      --background: #f6f5f2;
+      --card: #ffffff;
+      --card-hover: #f3f1ec;
+      --border: #e2dfd8;
+      --foreground: #18181b;
+      --muted-foreground: #66635b;
+      --primary: #c85a32;
+      color-scheme: light;
+    }
+
     *, *::before, *::after { box-sizing: border-box; }
 
     body {
@@ -30,7 +40,7 @@
     .truncate { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
     .min-w-0 { min-width: 0; }
 
-    /* Signature CAFC Tennis Accents (Clay & Court Emerald — high contrast in light & dark) */
+    /* Signature CAFC Tennis Accents (Clay & Court Emerald — high contrast) */
     .clay-text { color: #c85a32; }
     .clay-bg { background-color: #c85a32; color: #ffffff; }
     .clay-soft, .btn.clay-soft {
@@ -49,7 +59,7 @@
     .btn.emerald-soft:hover { background-color: rgba(31, 138, 101, 0.22); border-color: #1f8a65; }
     .homonym-badge {
       background-color: rgba(217, 119, 6, 0.14);
-      color: #d97706;
+      color: #b45309;
       border: 1px solid rgba(217, 119, 6, 0.38);
     }
 
@@ -63,7 +73,7 @@
       position: sticky;
       top: 0;
       z-index: 30;
-      background-color: var(--background);
+      background-color: var(--card);
       border-bottom: 1px solid var(--border);
     }
     .container {
@@ -216,6 +226,10 @@
     }
 
     /* Player Picker Grid */
+    .picker-card {
+      position: relative;
+      z-index: 25;
+    }
     .picker-grid {
       display: grid;
       grid-template-columns: 1fr auto 1fr;
@@ -225,7 +239,8 @@
     @media (max-width: 860px) {
       .picker-grid { grid-template-columns: 1fr; }
     }
-    .picker-wrap { position: relative; }
+    .picker-wrap { position: relative; z-index: 1; }
+    .picker-wrap.is-open { z-index: 40; }
     .picker-label {
       display: flex;
       align-items: center;
@@ -266,8 +281,8 @@
       transition: border-color 0.15s, box-shadow 0.15s;
     }
     .text-input::placeholder { color: var(--muted-foreground); font-weight: 400; }
-    .text-input-a:focus { border-color: #c85a32; box-shadow: 0 0 0 3px rgba(200, 90, 50, 0.18); }
-    .text-input-b:focus { border-color: #1f8a65; box-shadow: 0 0 0 3px rgba(31, 138, 101, 0.18); }
+    .text-input-a:focus { border-color: #c85a32; box-shadow: 0 0 0 3px rgba(200, 90, 50, 0.18); background-color: var(--card); }
+    .text-input-b:focus { border-color: #1f8a65; box-shadow: 0 0 0 3px rgba(31, 138, 101, 0.18); background-color: var(--card); }
 
     .input-icon-btn {
       position: absolute;
@@ -322,31 +337,32 @@
       top: calc(100% + 6px);
       max-height: 340px;
       overflow-y: auto;
+      overscroll-behavior: contain;
       border-radius: 12px;
-      background-color: var(--card);
-      border: 1px solid var(--border);
-      box-shadow: 0 16px 40px -8px rgba(0, 0, 0, 0.24), 0 4px 12px -2px rgba(0, 0, 0, 0.12);
-      z-index: 50;
+      background-color: var(--card, #ffffff);
+      border: 1px solid var(--border, #e2dfd8);
+      box-shadow: 0 18px 42px -8px rgba(15, 23, 42, 0.24), 0 6px 16px -4px rgba(15, 23, 42, 0.12);
+      z-index: 60;
     }
     .combo-group-hdr {
       position: sticky;
       top: 0;
-      padding: 6px 12px;
+      padding: 7px 12px;
       font-size: 11px;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.05em;
       color: var(--muted-foreground);
-      background-color: var(--background);
+      background-color: var(--background, #f6f5f2);
       border-bottom: 1px solid var(--border);
-      z-index: 1;
+      z-index: 2;
     }
     .combo-row {
       width: 100%;
       padding: 9px 12px;
       border: none;
       border-bottom: 1px solid var(--border);
-      background: transparent;
+      background-color: var(--card, #ffffff);
       text-align: left;
       display: flex;
       align-items: center;
@@ -356,7 +372,7 @@
       transition: background-color 0.1s;
     }
     .combo-row:last-child { border-bottom: none; }
-    .combo-row.is-hi, .combo-row:hover { background-color: var(--background); }
+    .combo-row.is-hi, .combo-row:hover { background-color: var(--card-hover, #f3f1ec); }
     .combo-name-line { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
     .combo-name { font-size: 13px; font-weight: 650; color: var(--foreground); }
     .combo-sub {
@@ -731,6 +747,22 @@
 
     /* Tables */
     .table-wrap { overflow-x: auto; }
+    .dir-table-scroll {
+      max-height: min(62vh, 560px);
+      overflow-y: auto;
+      overflow-x: auto;
+      overscroll-behavior: contain;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background-color: var(--card);
+    }
+    .dir-table-scroll .data-table thead th {
+      position: sticky;
+      top: 0;
+      z-index: 2;
+      background-color: var(--background);
+      box-shadow: inset 0 -1px 0 var(--border);
+    }
     .data-table {
       width: 100%;
       border-collapse: collapse;
@@ -901,7 +933,7 @@
           </div>
           <div class="min-w-0">
             <div class="brand-title-row">
-              <h1 class="brand-title">CAFC Tennis · Head 2 Head</h1>
+              <h1 class="brand-title">Ligue CAFC Tennis Simple · Head 2 Head</h1>
               <span class="meta-pill tabular-nums">2023–2026</span>
             </div>
             <p class="brand-subtitle" id="header-subtitle">Chargement des données historiques…</p>
@@ -926,7 +958,7 @@
     <section id="view-h2h" class="stack-lg">
 
       <!-- PLAYER SELECTOR & FILTERS -->
-      <div class="card">
+      <div class="card picker-card">
         <div class="picker-grid">
           <!-- Player A -->
           <div class="picker-wrap" id="picker-a-wrap">
@@ -990,11 +1022,6 @@
           </div>
 
           <div class="controls-row">
-            <div class="segmented" role="group" aria-label="Filtre compétition">
-              <button type="button" class="seg-btn" data-comp="all" data-active="true" onclick="setCompFilter('all')">Tout</button>
-              <button type="button" class="seg-btn" data-comp="ligue" data-active="false" onclick="setCompFilter('ligue')">Ligue</button>
-              <button type="button" class="seg-btn" data-comp="tournoi" data-active="false" onclick="setCompFilter('tournoi')">Tournoi 02.24</button>
-            </div>
             <select id="season-filter" class="select-input" onchange="setSeasonFilter(this.value)" aria-label="Période">
               <option value="all">Toutes saisons (2023–2026)</option>
               <option value="2024">Depuis 2024</option>
@@ -1056,7 +1083,7 @@
               Historique Complet des Confrontations
               <span id="matches-count-pill" class="meta-pill tabular-nums">0</span>
             </h2>
-            <p class="card-desc">Scores officiels Winner Pro · STB = Super Tie-Break (comptabilisé 1–0 au 3e set selon le règlement Ligue CAFC)</p>
+            <p class="card-desc">Scores officiels Ligue CAFC · STB = Super Tie-Break (scores exacts reconstitués, comptabilisés 1–0 au classement)</p>
           </div>
           <button id="sort-matches-btn" type="button" class="btn btn-sm" onclick="toggleMatchSort()">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m3 16 4 4 4-4"/><path d="M7 20V4"/><path d="m21 8-4-4-4 4"/><path d="M17 4v16"/></svg>
@@ -1092,7 +1119,7 @@
       <div class="card">
         <div class="card-header">
           <div>
-            <h2 class="card-title">Grandes Rivalités de la Ligue CAFC</h2>
+            <h2 class="card-title">Grandes Rivalités de la Ligue CAFC (Simple)</h2>
             <p class="card-desc">Toutes les affiches disputées au moins 2 fois depuis Hiver 2023</p>
           </div>
           <div class="controls-row">
@@ -1119,11 +1146,11 @@
         <div class="card-header" style="margin-bottom:0;">
           <div>
             <h2 class="card-title">
-              Gestion des Homonymes &amp; Audit des Identités
+              Gestion des Homonymes
               <span class="tag tag-pill homonym-badge">100% vérifié · 0 écart</span>
             </h2>
             <p class="card-desc">
-              Chaque joueur est identifié par son couple <strong>(Nom, Numéro de téléphone)</strong>. Les homonymes sont strictement séparés, les téléphones familiaux partagés sont distingués, et les 8 mises à jour de numéro d’un même adhérent ont été validées contre le registre CAFC.
+              Chaque joueur est identifié par son couple <strong>(Nom, Numéro de téléphone actif partiellement masqué)</strong> afin de séparer strictement les homonymes.
             </p>
           </div>
         </div>
@@ -1134,11 +1161,6 @@
           </div>
           <div id="homonym-cards" class="two-col-grid"></div>
         </div>
-
-        <details class="audit-details">
-          <summary>Voir le journal complet de réconciliation (8 mises à jour de téléphone · 6 variantes orthographiques · 13 téléphones familiaux distingués)</summary>
-          <div id="audit-log-content" class="audit-grid"></div>
-        </details>
       </div>
 
       <div class="card">
@@ -1159,15 +1181,17 @@
               <option value="matches">Trier par matchs joués</option>
               <option value="winpct">Trier par % victoires</option>
               <option value="bestdiv">Trier par meilleure division</option>
+              <option value="firstseason">Trier par première saison</option>
               <option value="name">Trier par ordre alphabétique</option>
             </select>
           </div>
         </div>
-        <div class="table-wrap thin-scroll">
+        <div class="dir-table-scroll thin-scroll">
           <table class="data-table">
             <thead>
               <tr>
                 <th>Joueur &amp; Téléphone</th>
+                <th>Première saison</th>
                 <th>Meilleure Div.</th>
                 <th class="th-r">Saisons</th>
                 <th class="th-r">Matchs</th>
@@ -1187,7 +1211,7 @@
   <footer class="site-footer">
     <div class="container">
       <div class="footer-inner">
-        <span>Source : Google Drive « 02 - CAFC Tennis / 05 - Résultats Ligue CAFC Tennis » (154 PDF Matchs + 154 Classifications) &amp; Tournoi 02.2024.</span>
+        <span>Source : Archives Mehdi Barouti</span>
         <span>Audit croisé : 1 614 lignes de classements vérifiées · 0 écart.</span>
       </div>
     </div>
@@ -1201,9 +1225,9 @@
     const RAW = JSON.parse(document.getElementById('cafc-data').textContent);
 
     const SEASONS = RAW.seasons.map(s => ({
-      id: s[0], order: s[1], label: s[2], type: s[3] === 0 ? 'ligue' : 'tournoi', matches: s[4]
+      id: s[0], order: s[1], label: s[2], matches: s[3]
     }));
-    const LIGUE_SEASONS = SEASONS.filter(s => s.type === 'ligue');
+    const LIGUE_SEASONS = SEASONS;
     const DIVS = RAW.divs;
     const ROUNDS = RAW.rounds;
     const META = RAW.meta;
@@ -1224,8 +1248,8 @@
     }
 
     const PLAYERS = RAW.players.map(p => {
-      const st = p[10];
-      const hist = p[11].map(h => ({
+      const st = p[8];
+      const hist = p[9].map(h => ({
         sidIdx: h[0],
         sid: SEASONS[h[0]].id,
         ord: SEASONS[h[0]].order,
@@ -1238,8 +1262,9 @@
         dg: h[6],
         pts: h[7]
       }));
-      const firstSeason = hist.length ? hist[0].lbl : 'Tournoi 02.2024';
-      const lastSeason = hist.length ? hist[hist.length - 1].lbl : 'Tournoi 02.2024';
+      const firstSeason = hist.length ? hist[0].lbl : '—';
+      const firstSeasonOrd = hist.length ? hist[0].ord : 999;
+      const lastSeason = hist.length ? hist[hist.length - 1].lbl : '—';
       return {
         id: p[0],
         name: p[1],
@@ -1247,13 +1272,12 @@
         phone: p[2],
         phoneDigits: digitsOnly(p[2]),
         homonym: p[3] === 1,
-        bestDiv: p[4] >= 0 ? DIVS[p[4]] : 'Tournoi',
+        bestDiv: p[4] >= 0 ? DIVS[p[4]] : '—',
         bestDivRank: p[5],
-        lastDiv: p[6] >= 0 ? DIVS[p[6]] : 'Tournoi',
+        lastDiv: p[6] >= 0 ? DIVS[p[6]] : '—',
         aliases: p[7],
-        altPhones: p[8],
-        familyPhone: p[9],
         firstSeason,
+        firstSeasonOrd,
         lastSeason,
         seasonsCount: hist.length,
         history: hist,
@@ -1264,8 +1288,7 @@
           stbW: st[7], stbL: st[8],
           tbW: st[9], tbL: st[10],
           s3W: st[11], s3L: st[12],
-          bagelsW: st[13], bagelsL: st[14],
-          tM: st[15], tW: st[16]
+          bagelsW: st[13], bagelsL: st[14]
         }
       };
     });
@@ -1281,7 +1304,6 @@
         sid: s.id,
         ord: s.order,
         sl: s.label,
-        st: s.type,
         div: DIVS[m[1]],
         rd: ROUNDS[m[2]],
         p1: m[3],
@@ -1291,7 +1313,8 @@
         sw: m[7],
         isStb: (fm & 1) !== 0,
         isWo: (fm & 2) !== 0,
-        isRet: (fm & 4) !== 0
+        isRet: (fm & 4) !== 0,
+        stb: m[9] || null
       };
     });
 
@@ -1307,7 +1330,6 @@
       tab: 'h2h',
       playerA: null,
       playerB: null,
-      compFilter: 'all',
       seasonFilter: 'all',
       statsMode: 'h2h',
       userPickedStats: false,
@@ -1315,7 +1337,6 @@
     };
 
     function matchPassesFilter(m) {
-      if (state.compFilter !== 'all' && m.st !== state.compFilter) return false;
       if (state.seasonFilter === '2024' && m.ord < 5) return false;
       if (state.seasonFilter === '2025' && m.ord < 9) return false;
       if (state.seasonFilter === '2026' && m.ord < 12) return false;
@@ -1405,7 +1426,14 @@
       return m.sets.map(([g1, g2], idx) => {
         const a = isP1 ? g1 : g2;
         const b = isP1 ? g2 : g1;
-        if (idx === 2 && m.isStb) return `STB ${a}-${b}`;
+        if (idx === 2 && m.isStb) {
+          if (m.stb) {
+            const sa = isP1 ? m.stb[0] : m.stb[1];
+            const sb = isP1 ? m.stb[1] : m.stb[0];
+            return `STB ${sa}-${sb}`;
+          }
+          return 'STB';
+        }
         return `${a}-${b}`;
       });
     }
@@ -1440,7 +1468,6 @@
         if (q && normStr(p.bestDiv).includes(q)) return true;
         if (q && p.aliases.some(al => normStr(al).includes(q))) return true;
         if (qDigits && p.phoneDigits.includes(qDigits)) return true;
-        if (qDigits && p.altPhones.some(ap => digitsOnly(ap).includes(qDigits))) return true;
         return false;
       };
 
@@ -1468,7 +1495,11 @@
     }
 
     function renderDropdown(side, query = '') {
+      const otherSide = side === 'a' ? 'b' : 'a';
+      if (comboState[otherSide].open) closeDropdown(otherSide);
+
       const dd = document.getElementById(`dropdown-${side}`);
+      const wrap = document.getElementById(`picker-${side}-wrap`);
       const { direct, others } = getPickerCandidates(side, query);
       const flat = [];
       let html = '';
@@ -1501,6 +1532,7 @@
       comboState[side].open = true;
       dd.innerHTML = html;
       dd.classList.remove('hidden');
+      if (wrap) wrap.classList.add('is-open');
       highlightRow(side);
     }
 
@@ -1542,6 +1574,7 @@
     function closeDropdown(side) {
       comboState[side].open = false;
       document.getElementById(`dropdown-${side}`).classList.add('hidden');
+      document.getElementById(`picker-${side}-wrap`)?.classList.remove('is-open');
       syncInputLabel(side);
     }
 
@@ -1639,14 +1672,6 @@
       setPair(pick.p1, pick.p2);
     }
 
-    function setCompFilter(val) {
-      state.compFilter = val;
-      document.querySelectorAll('.seg-btn[data-comp]').forEach(btn => {
-        btn.setAttribute('data-active', btn.dataset.comp === val ? 'true' : 'false');
-      });
-      renderH2H();
-    }
-
     function setSeasonFilter(val) {
       state.seasonFilter = val;
       renderH2H();
@@ -1672,42 +1697,6 @@
       });
       if (tab === 'rivalries') renderRivalries();
       if (tab === 'directory') renderDirectory();
-    }
-
-    function copyWhatsAppSummary() {
-      const pA = PLAYER_BY_ID.get(state.playerA);
-      const pB = PLAYER_BY_ID.get(state.playerB);
-      const matches = getFilteredMatchesForPair(pA.id, pB.id);
-      const sA = computeStatsFromMatches(pA.id, matches);
-      const sB = computeStatsFromMatches(pB.id, matches);
-      const nA = pA.homonym ? `${pA.name} (${pA.phone})` : pA.name;
-      const nB = pB.homonym ? `${pB.name} (${pB.phone})` : pB.name;
-
-      const lines = [
-        `🎾 *CAFC Tennis · Head 2 Head*`,
-        `*${nA}* ${sA.w} – ${sB.w} *${nB}* (${matches.length} match${matches.length > 1 ? 's' : ''})`,
-        `Sets : ${sA.sw}–${sB.sw} · Jeux : ${sA.gw}–${sB.gw}`
-      ];
-      if (matches.length > 0) {
-        const recent = [...matches].reverse().slice(0, 5);
-        lines.push('', 'Dernières confrontations :');
-        for (const m of recent) {
-          const w = PLAYER_BY_ID.get(m.w);
-          const sc = formatScoreForWinner(m, m.w).join(' ');
-          lines.push(`• ${m.sl} (${m.div}) : *${w.name}* ${sc}`);
-        }
-      }
-      const txt = lines.join('\n');
-      const btn = document.getElementById('copy-wa-btn');
-      if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(txt).then(() => {
-          if (btn) {
-            const orig = btn.innerHTML;
-            btn.textContent = '✓ Résumé copié !';
-            setTimeout(() => { btn.innerHTML = orig; }, 1800);
-          }
-        }).catch(() => {});
-      }
     }
 
     // ==================== H2H RENDERING ====================
@@ -1743,11 +1732,6 @@
         ? `<span class="tag tag-pill tag-xs homonym-badge tabular-nums">Homonyme · ${esc(p.phone)}</span>`
         : `<span class="tabular-nums" style="font-size:12px; color:var(--muted-foreground);">${esc(p.phone)}</span>`;
 
-      const notes = [];
-      if (p.altPhones.length) notes.push(`Ancien n° fusionné : ${p.altPhones.join(', ')}`);
-      if (p.aliases.length) notes.push(`Variante : ${p.aliases.join(', ')}`);
-      if (p.familyPhone.length) notes.push(`Tél. familial partagé avec : ${p.familyPhone.join(', ')}`);
-
       return `
         <div class="player-side ${alignRight ? 'player-side-right' : ''}">
           <div class="player-head ${alignRight ? 'player-head-right' : ''}">
@@ -1767,8 +1751,6 @@
           <div class="tabular-nums" style="font-size:12px; color:var(--muted-foreground);">
             Bilan global : <strong style="color:var(--foreground);">${careerFiltered.w}V – ${careerFiltered.l}D</strong> (${winRate}% sur ${careerFiltered.m} matchs)
           </div>
-
-          ${notes.length ? `<div style="font-size:11px; color:var(--muted-foreground); opacity:0.9;">${esc(notes.join(' · '))}</div>` : ''}
         </div>`;
     }
 
@@ -1827,10 +1809,6 @@
 
           <div class="hero-footer">
             ${statusHtml}
-            <button id="copy-wa-btn" type="button" class="btn btn-sm" onclick="copyWhatsAppSummary()" title="Copier un résumé formaté pour WhatsApp">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
-              <span>Copier résumé WhatsApp</span>
-            </button>
           </div>
         </div>`;
     }
@@ -1880,7 +1858,7 @@
         { label: 'Jeux gagnés', a: sA.gw, b: sB.gw, fmtA: `${sA.gw} (${gpA}%)`, fmtB: `${sB.gw} (${gpB}%)` },
         { label: 'Victoires en 2 sets secs', a: sA.straightW, b: sB.straightW, fmtA: `${sA.straightW}`, fmtB: `${sB.straightW}` },
         { label: 'Matchs en 3 sets / décisifs', a: sA.s3W, b: sB.s3W, fmtA: `${sA.s3W}`, fmtB: `${sB.s3W}` },
-        { label: 'Super Tie-Breaks (1–0)', a: sA.stbW, b: sB.stbW, fmtA: `${sA.stbW}`, fmtB: `${sB.stbW}` },
+        { label: 'Super Tie-Breaks', a: sA.stbW, b: sB.stbW, fmtA: `${sA.stbW}`, fmtB: `${sB.stbW}` },
         { label: 'Tie-Breaks (7–6)', a: sA.tbW, b: sB.tbW, fmtA: `${sA.tbW}`, fmtB: `${sB.tbW}` },
         { label: 'Sets 6–0 (bulles)', a: sA.bagelsW, b: sB.bagelsW, fmtA: `${sA.bagelsW}`, fmtB: `${sB.bagelsW}` },
         { label: 'Plus longue série H2H', a: sA.maxStreak, b: sB.maxStreak, fmtA: `${sA.maxStreak}V`, fmtB: `${sB.maxStreak}V` }
@@ -1893,7 +1871,7 @@
           fmtA: `${sA.m ? ((sA.gw - sA.gl) / sA.m >= 0 ? '+' : '') + ((sA.gw - sA.gl) / sA.m).toFixed(1) : '0'}`,
           fmtB: `${sB.m ? ((sB.gw - sB.gl) / sB.m >= 0 ? '+' : '') + ((sB.gw - sB.gl) / sB.m).toFixed(1) : '0'}`, isSigned: true },
         { label: 'Bilan en 3 sets', a: pct(sA.s3W, sA.s3L), b: pct(sB.s3W, sB.s3L), fmtA: `${sA.s3W}–${sA.s3L} (${pct(sA.s3W, sA.s3L)}%)`, fmtB: `${sB.s3W}–${sB.s3L} (${pct(sB.s3W, sB.s3L)}%)` },
-        { label: 'Super Tie-Breaks (1–0)', a: pct(sA.stbW, sA.stbL), b: pct(sB.stbW, sB.stbL), fmtA: `${sA.stbW}–${sA.stbL} (${pct(sA.stbW, sA.stbL)}%)`, fmtB: `${sB.stbW}–${sB.stbL} (${pct(sB.stbW, sB.stbL)}%)` },
+        { label: 'Super Tie-Breaks', a: pct(sA.stbW, sA.stbL), b: pct(sB.stbW, sB.stbL), fmtA: `${sA.stbW}–${sA.stbL} (${pct(sA.stbW, sA.stbL)}%)`, fmtB: `${sB.stbW}–${sB.stbL} (${pct(sB.stbW, sB.stbL)}%)` },
         { label: 'Tie-Breaks (7–6)', a: pct(sA.tbW, sA.tbL), b: pct(sB.tbW, sB.tbL), fmtA: `${sA.tbW}–${sA.tbL}`, fmtB: `${sB.tbW}–${sB.tbL}` },
         { label: 'Sets 6–0 infligés', a: sA.bagelsW, b: sB.bagelsW, fmtA: `${sA.bagelsW}`, fmtB: `${sB.bagelsW}` }
       ];
@@ -1985,7 +1963,6 @@
           .replace('Automne ', 'Au ')
           .replace('Hiver ', 'Hi ')
           .replace('Été ', 'Ét ')
-          .replace('Tournoi 02.', 'T.')
           .replace('20', '');
         return `<text x="${sx(i + 1).toFixed(1)}" y="${H - 8}" text-anchor="middle" font-size="10" fill="currentColor" opacity="0.6">#${i + 1} · ${esc(shortLbl)}</text>`;
       }).join('');
@@ -2181,17 +2158,21 @@
           const lg = isWinnerP1 ? g2 : g1;
           const isStbSet = sIdx === 2 && m.isStb;
           const wonSet = wg > lg;
-          return `<span class="set-pill tabular-nums ${isStbSet ? 'homonym-badge' : (wonSet ? '' : 'set-pill-lost')}"
-            ${isStbSet ? 'title="Super Tie-Break (comptabilisé 1-0 en Ligue CAFC)"' : ''}>
-            ${isStbSet ? `STB ${wg}–${lg}` : `${wg}–${lg}`}
-          </span>`;
+          if (isStbSet) {
+            if (m.stb) {
+              const wstb = isWinnerP1 ? m.stb[0] : m.stb[1];
+              const lstb = isWinnerP1 ? m.stb[1] : m.stb[0];
+              return `<span class="set-pill tabular-nums homonym-badge" title="Super Tie-Break (score exact : ${wstb}–${lstb} ; comptabilisé 1–0 au classement Ligue)">STB ${wstb}–${lstb}</span>`;
+            }
+            return `<span class="set-pill tabular-nums homonym-badge" title="Super Tie-Break (score détaillé non renseigné ; comptabilisé 1–0 au classement Ligue)">STB</span>`;
+          }
+          return `<span class="set-pill tabular-nums ${wonSet ? '' : 'set-pill-lost'}">${wg}–${lg}</span>`;
         }).join('');
 
         const flags = [];
         if (m.isStb) flags.push(`<span class="tag tag-xs homonym-badge">Super TB</span>`);
         if (m.isWo) flags.push(`<span class="tag tag-xs tag-muted">1–0 / Forf.</span>`);
         else if (m.isRet) flags.push(`<span class="tag tag-xs tag-muted">Ab. / Inc.</span>`);
-        if (m.st === 'tournoi') flags.push(`<span class="tag tag-xs" style="background:var(--foreground); color:var(--background);">Tournoi</span>`);
 
         return `
           <div class="match-row">
@@ -2419,33 +2400,6 @@
           </div>
         </div>
       `).join('');
-
-      const familyGroups = new Map();
-      PLAYERS.forEach(p => {
-        if (p.familyPhone.length) {
-          const list = familyGroups.get(p.phone) || [];
-          list.push(p.name);
-          familyGroups.set(p.phone, list);
-        }
-      });
-
-      document.getElementById('audit-log-content').innerHTML = `
-        <div>
-          <strong style="display:block; margin-bottom:4px;">Mises à jour de téléphone fusionnées (même adhérent vérifié)</strong>
-          <ul class="audit-list tabular-nums">
-            ${META.merged_phone_updates.map(u => `<li><strong style="color:var(--foreground);">${esc(u.name)}</strong> : ${esc(u.old_phone)} → ${esc(u.new_phone)}</li>`).join('')}
-          </ul>
-          <strong style="display:block; margin:12px 0 4px;">Variantes orthographiques fusionnées (même téléphone)</strong>
-          <ul class="audit-list tabular-nums">
-            ${META.merged_name_variants.map(v => `<li>${esc(v.old_name)} → <strong style="color:var(--foreground);">${esc(v.canonical_name)}</strong> (${esc(v.phone)})</li>`).join('')}
-          </ul>
-        </div>
-        <div>
-          <strong style="display:block; margin-bottom:4px;">Numéros familiaux partagés (conservés strictement distincts)</strong>
-          <ul class="audit-list tabular-nums">
-            ${[...familyGroups.entries()].sort().map(([ph, names]) => `<li><strong style="color:var(--foreground);">${esc(ph)}</strong> : ${esc(names.join(', '))}</li>`).join('')}
-          </ul>
-        </div>`;
     }
 
     function renderDirectory() {
@@ -2460,7 +2414,7 @@
         if (filt === 'top' && p.bestDivRank > 2) return false;
         if (filt === 'active50' && p.stats.m < 50) return false;
         if (q || qDigits) {
-          const okName = q && (p.searchName.includes(q) || normStr(p.bestDiv).includes(q));
+          const okName = q && (p.searchName.includes(q) || normStr(p.bestDiv).includes(q) || normStr(p.firstSeason).includes(q));
           const okPhone = qDigits && p.phoneDigits.includes(qDigits);
           if (!okName && !okPhone) return false;
         }
@@ -2470,6 +2424,7 @@
       list.sort((a, b) => {
         if (sortBy === 'name') return a.name.localeCompare(b.name);
         if (sortBy === 'bestdiv') return a.bestDivRank - b.bestDivRank || b.stats.m - a.stats.m;
+        if (sortBy === 'firstseason') return a.firstSeasonOrd - b.firstSeasonOrd || b.stats.m - a.stats.m || a.name.localeCompare(b.name);
         if (sortBy === 'winpct') return pct(b.stats.w, b.stats.l) - pct(a.stats.w, a.stats.l) || b.stats.m - a.stats.m;
         return b.stats.m - a.stats.m || a.name.localeCompare(b.name);
       });
@@ -2488,7 +2443,8 @@
               </div>
               <div class="tabular-nums" style="font-size:12px; color:var(--muted-foreground); margin-top:1px;">${esc(p.phone)}</div>
             </td>
-            <td style="font-weight:500;">${esc(p.bestDiv)}</td>
+            <td style="white-space:nowrap; color:var(--muted-foreground);">${esc(p.firstSeason)}</td>
+            <td style="font-weight:500; white-space:nowrap;">${esc(p.bestDiv)}</td>
             <td class="td-r tabular-nums" style="color:var(--muted-foreground);">${p.seasonsCount}</td>
             <td class="td-r tabular-nums" style="font-weight:700;">${p.stats.m}</td>
             <td class="td-r tabular-nums">${p.stats.w}V–${p.stats.l}D</td>
@@ -2504,19 +2460,19 @@
     // ==================== INITIALIZATION ====================
     function init() {
       document.getElementById('header-subtitle').textContent =
-        `${META.total_players} joueurs · ${META.total_matches.toLocaleString('fr-FR')} matchs · ${META.seasons_count} saisons Ligue + Tournoi 02.2024`;
+        `${META.total_players} joueurs · ${META.total_matches.toLocaleString('fr-FR')} matchs · ${META.seasons_count} saisons (Simple)`;
       document.getElementById('homonym-count-badge').textContent = META.homonym_groups.length;
 
       setupPicker('a');
       setupPicker('b');
 
       const featuredSpecs = [
-        { a: ['Hakim Chaoui'], b: ['Majid Slimani'], label: 'Chaoui vs Slimani (8)' },
-        { a: ['Aboubakr Jeddioui'], b: ['Jalil Skali'], label: 'Jeddioui vs Skali (9)' },
-        { a: ['Mehdi Barouti'], b: ['Omar Rahmouni'], label: 'Barouti vs Rahmouni (7)' },
-        { a: ['Amine Sebti'], b: ['Zouhair Kazmane'], label: 'Sebti vs Kazmane (6)' },
-        { a: ['Saad Bennani', '4647'], b: ['Taoufik Darraz'], label: 'S. Bennani (Étoile) vs Darraz (6)' },
-        { a: ['Simo Zizi', '8803'], b: ['Hassan Errafi'], label: 'S. Zizi (Div. 1) vs Errafi (4)' }
+        { a: ['Hakim Chaoui'], b: ['Majid Slimani'], label: 'Chaoui vs Slimani' },
+        { a: ['Aboubakr Jeddioui'], b: ['Jalil Skali'], label: 'Jeddioui vs Skali' },
+        { a: ['Mehdi Barouti'], b: ['Omar Rahmouni'], label: 'Barouti vs Rahmouni' },
+        { a: ['Amine Sebti'], b: ['Zouhair Kazmane'], label: 'Sebti vs Kazmane' },
+        { a: ['Saad Bennani', '4647'], b: ['Taoufik Darraz'], label: 'S. Bennani (Étoile) vs Darraz' },
+        { a: ['Simo Zizi', '8803'], b: ['Hassan Errafi'], label: 'S. Zizi (Div. 1) vs Errafi' }
       ];
 
       const qpWrap = document.getElementById('quick-picks');
@@ -2524,7 +2480,10 @@
       for (const spec of featuredSpecs) {
         const pA = findPlayerByNamePhone(spec.a[0], spec.a[1]);
         const pB = findPlayerByNamePhone(spec.b[0], spec.b[1]);
-        if (pA && pB) resolvedFeatured.push({ pA, pB, label: spec.label });
+        if (pA && pB) {
+          const cnt = getFilteredMatchesForPair(pA.id, pB.id).length;
+          resolvedFeatured.push({ pA, pB, label: `${spec.label} (${cnt})` });
+        }
       }
 
       qpWrap.innerHTML = resolvedFeatured.map(f => `

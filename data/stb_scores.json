@@ -1,0 +1,3079 @@
+{
+  "description": "Exact Super Tie-Break scores and confirmed 1-1 retirement classifications extracted from CAFC Tennis Ligue archives",
+  "stb_exact": {
+    "s02|Accès 1|Journée 15|Othman Mdidech|+212 6 •• •• 96 81|Ismail Skalli|+212 6 •• •• 89 42": [
+      6,
+      10
+    ],
+    "s02|Accès 1|Journée 18|Abdenasser Zahiri|+212 6 •• •• 90 39|Karim Azeriah|+212 6 •• •• 61 14": [
+      10,
+      8
+    ],
+    "s02|Accès 1|Journée 21|Ismaël Mechatte|+212 6 •• •• 06 79|Othman Mdidech|+212 6 •• •• 96 81": [
+      6,
+      10
+    ],
+    "s02|Accès 1|Journée 22|Kamil Cherkaoui|+212 6 •• •• 39 00|Ismaël Mechatte|+212 6 •• •• 06 79": [
+      10,
+      8
+    ],
+    "s02|Accès 1|Journée 7|Othman Mdidech|+212 6 •• •• 96 81|Kamil Cherkaoui|+212 6 •• •• 39 00": [
+      13,
+      15
+    ],
+    "s02|Accès 1|Journée 8|Tom Hill|+212 6 •• •• 24 61|Othman Mdidech|+212 6 •• •• 96 81": [
+      6,
+      10
+    ],
+    "s02|Accès 1|Journée 9|Hakim Honegger|+212 6 •• •• 26 48|Ismaël Mechatte|+212 6 •• •• 06 79": [
+      5,
+      10
+    ],
+    "s02|Division 1|Journée 5|Othmane Laraqui|+212 6 •• •• 23 10|Mekki El Kettani|+212 6 •• •• 11 24": [
+      8,
+      10
+    ],
+    "s02|Division 3|Journée 3|Attef Lazrak|+212 6 •• •• 82 07|Mohamed Chennaoui|+212 6 •• •• 24 71": [
+      10,
+      5
+    ],
+    "s02|Division 3|Journée 9|Youssef Diroussi|+212 6 •• •• 19 96|Jalil Skali|+212 6 •• •• 67 68": [
+      9,
+      11
+    ],
+    "s02|Division 4|Journée 4|Mehdi Alami|+212 6 •• •• 01 15|Mamoun Ibnoussina|+212 6 •• •• 95 37": [
+      10,
+      8
+    ],
+    "s02|Division 4|Journée 5|Youssef Lakhiry|+212 6 •• •• 23 40|Mehdi Alami|+212 6 •• •• 01 15": [
+      6,
+      10
+    ],
+    "s02|Division 4|Journée 7|Amine Idrissi Kaitouni|+212 6 •• •• 40 46|Youssef Lakhiry|+212 6 •• •• 23 40": [
+      5,
+      10
+    ],
+    "s02|Division 4|Journée 7|Mourad Skiti|+33 6 •• •• 71 35|Youssef Tazi|+212 6 •• •• 09 09": [
+      10,
+      8
+    ],
+    "s02|Division 5|Journée 8|Catherine Yans|+212 6 •• •• 23 50|Mehdi Smires|+212 6 •• •• 98 43": [
+      10,
+      3
+    ],
+    "s02|Division 5|Journée 8|Karine Chambrelan|+212 6 •• •• 26 25|Otmane Kemmou|+212 6 •• •• 91 60": [
+      10,
+      6
+    ],
+    "s02|Division 5|Journée 9|Mehdi Smires|+212 6 •• •• 98 43|Karine Chambrelan|+212 6 •• •• 26 25": [
+      6,
+      10
+    ],
+    "s02|Division 6|Journée 3|Omar Rahmouni|+212 7 •• •• 82 12|Ismail Benkirane|+212 6 •• •• 80 30": [
+      12,
+      10
+    ],
+    "s02|Division 6|Journée 4|Ali Jaouher|+212 6 •• •• 51 22|Noureddine Rais|+212 6 •• •• 05 01": [
+      10,
+      7
+    ],
+    "s02|Division 6|Journée 8|Noureddine Rais|+212 6 •• •• 05 01|Mamoun Berrissoul|+212 7 •• •• 18 95": [
+      10,
+      6
+    ],
+    "s02|Division 6|Journée 8|Omar Rahmouni|+212 7 •• •• 82 12|Hamza El Garti|+212 6 •• •• 65 86": [
+      10,
+      8
+    ],
+    "s03|Division 1|Journée 3|Hicham Bennis|+212 6 •• •• 54 26|Othmane Laraqui|+212 6 •• •• 23 10": [
+      11,
+      9
+    ],
+    "s03|Division 1|Journée 4|Tarik Jbel|+212 7 •• •• 81 86|Hicham Bennis|+212 6 •• •• 54 26": [
+      10,
+      7
+    ],
+    "s03|Division 1|Journée 6|Abdou Iraqi|+212 6 •• •• 72 20|Pascal Giusto|+212 6 •• •• 24 94": [
+      6,
+      10
+    ],
+    "s03|Division 2|Journée 2|Xavier Rocamora|+212 6 •• •• 85 15|Hassan Errafi|+212 6 •• •• 55 88": [
+      10,
+      8
+    ],
+    "s03|Division 2|Journée 6|Khalil Tala|+212 6 •• •• 77 28|Saad Bennani|+212 6 •• •• 46 47": [
+      3,
+      7
+    ],
+    "s03|Division 2|Journée 8|Hassan Errafi|+212 6 •• •• 55 88|Mamoun Bengelloun|+212 6 •• •• 91 06": [
+      10,
+      7
+    ],
+    "s03|Division 3|Journée 1|Aziz Daya|+212 6 •• •• 85 39|Fahd Benkirane|+212 6 •• •• 72 45": [
+      10,
+      3
+    ],
+    "s03|Division 3|Journée 4|Aziz Daya|+212 6 •• •• 85 39|Youssef Diroussi|+212 6 •• •• 19 96": [
+      10,
+      4
+    ],
+    "s03|Division 3|Journée 4|Fahd Benkirane|+212 6 •• •• 72 45|Youssef Lakhiry|+212 6 •• •• 23 40": [
+      10,
+      5
+    ],
+    "s03|Division 3|Journée 7|Fahd Benkirane|+212 6 •• •• 72 45|Youssef Diroussi|+212 6 •• •• 19 96": [
+      10,
+      7
+    ],
+    "s03|Division 4|Journée 2|Mehdi Smires|+212 6 •• •• 98 43|Saïd Benzekri|+212 6 •• •• 82 17": [
+      5,
+      10
+    ],
+    "s03|Division 5|Journée 1|Rayan Darraz|+212 6 •• •• 59 00|Mehdi Barouti|+44 75 •••• 8481": [
+      10,
+      3
+    ],
+    "s03|Division 5|Journée 7|Omar Rahmouni|+212 7 •• •• 82 12|Ali Akesbi|+212 6 •• •• 16 13": [
+      13,
+      15
+    ],
+    "s03|Division 5|Journée 9|Ismail Skalli|+212 6 •• •• 89 42|Karine Chambrelan|+212 6 •• •• 26 25": [
+      4,
+      10
+    ],
+    "s03|Division 6|Journée 2|Mourad Benkirane|+212 6 •• •• 10 29|Abderrahim Ben El Attar|+212 6 •• •• 00 54": [
+      10,
+      4
+    ],
+    "s03|Division 6|Journée 2|Othman Mdidech|+212 6 •• •• 96 81|Mamoun Berrissoul|+212 7 •• •• 18 95": [
+      6,
+      10
+    ],
+    "s03|Division 6|Journée 4|Ali Jaouher|+212 6 •• •• 51 22|Anas Kabbaj|+212 6 •• •• 42 18": [
+      6,
+      10
+    ],
+    "s03|Division 6|Journée 6|Noureddine Rais|+212 6 •• •• 05 01|Mourad Benkirane|+212 6 •• •• 10 29": [
+      10,
+      4
+    ],
+    "s03|Division 6|Journée 7|Abdenasser Zahiri|+212 6 •• •• 90 39|Abderrahim Ben El Attar|+212 6 •• •• 00 54": [
+      10,
+      8
+    ],
+    "s03|Division 6|Journée 9|Anas Kabbaj|+212 6 •• •• 42 18|Réda Mseffer|+212 6 •• •• 85 91": [
+      10,
+      6
+    ],
+    "s03|Division 6|Journée 9|Mourad Benkirane|+212 6 •• •• 10 29|Ali Jaouher|+212 6 •• •• 51 22": [
+      9,
+      11
+    ],
+    "s03|Division 7|Journée 1|Hamza Lahlou|+212 6 •• •• 56 46|Kamil Cherkaoui|+212 6 •• •• 39 00": [
+      10,
+      5
+    ],
+    "s03|Division 7|Journée 8|Mamoun Chlyah|+212 6 •• •• 14 02|Hamza Lahlou|+212 6 •• •• 56 46": [
+      10,
+      4
+    ],
+    "s04|Division 1|Journée 1|Hicham Bennis|+212 6 •• •• 54 26|Hassan Errafi|+212 6 •• •• 55 88": [
+      9,
+      11
+    ],
+    "s04|Division 1|Journée 4|Othmane Laraqui|+212 6 •• •• 23 10|Hassan Errafi|+212 6 •• •• 55 88": [
+      2,
+      10
+    ],
+    "s04|Division 1|Journée 5|Hicham Bennis|+212 6 •• •• 54 26|Saad Bennani|+212 6 •• •• 46 47": [
+      6,
+      10
+    ],
+    "s04|Division 1|Journée 6|Jonathan Le Henry|+212 6 •• •• 25 07|Mamoun Bengelloun|+212 6 •• •• 91 06": [
+      8,
+      10
+    ],
+    "s04|Division 1|Journée 7|Hicham Bennis|+212 6 •• •• 54 26|Othmane Laraqui|+212 6 •• •• 23 10": [
+      10,
+      7
+    ],
+    "s04|Division 1|Journée 7|Mamoun Bengelloun|+212 6 •• •• 91 06|Hassan Errafi|+212 6 •• •• 55 88": [
+      10,
+      5
+    ],
+    "s04|Division 1|Journée 7|Pascal Giusto|+212 6 •• •• 24 94|Boubker Sefraoui|+212 6 •• •• 05 50": [
+      10,
+      7
+    ],
+    "s04|Division 2|Journée 2|Attef Lazrak|+212 6 •• •• 82 07|Youssef Tazi|+212 6 •• •• 09 09": [
+      9,
+      11
+    ],
+    "s04|Division 2|Journée 5|Saad Bennis|+212 6 •• •• 31 44|Grégoire Chaste|+212 6 •• •• 99 18": [
+      3,
+      10
+    ],
+    "s04|Division 2|Journée 6|Youssef Tazi|+212 6 •• •• 09 09|Khalil Tala|+212 6 •• •• 77 28": [
+      10,
+      8
+    ],
+    "s04|Division 2|Journée 7|Khalil Tala|+212 6 •• •• 77 28|Saad Bennis|+212 6 •• •• 31 44": [
+      10,
+      8
+    ],
+    "s04|Division 2|Journée 9|Anass Belmehdi|+212 6 •• •• 83 61|Attef Lazrak|+212 6 •• •• 82 07": [
+      10,
+      4
+    ],
+    "s04|Division 2|Journée 9|Grégoire Chaste|+212 6 •• •• 99 18|Samir Bennani|+212 6 •• •• 84 58": [
+      10,
+      3
+    ],
+    "s04|Division 3|Journée 8|Othmane Fjer|+212 6 •• •• 54 43|Mohamed Chennaoui|+212 6 •• •• 24 71": [
+      10,
+      3
+    ],
+    "s04|Division 3|Journée 9|Mehdi Diouri|+212 6 •• •• 24 68|Philippe Montant|+212 6 •• •• 08 47": [
+      10,
+      8
+    ],
+    "s04|Division 4|Journée 3|Catherine Yans|+212 6 •• •• 23 50|Mehdi Smires|+212 6 •• •• 98 43": [
+      8,
+      10
+    ],
+    "s04|Division 5|Journée 1|Saïd Benzekri|+212 6 •• •• 82 17|Aimane Sami|+212 6 •• •• 43 80": [
+      2,
+      10
+    ],
+    "s04|Division 5|Journée 2|Othman Mdidech|+212 6 •• •• 96 81|Saïd Benzekri|+212 6 •• •• 82 17": [
+      11,
+      9
+    ],
+    "s04|Division 5|Journée 4|Mamoun Berrissoul|+212 7 •• •• 18 95|Aimane Sami|+212 6 •• •• 43 80": [
+      11,
+      9
+    ],
+    "s04|Division 5|Journée 6|Karine Chambrelan|+212 6 •• •• 26 25|Othman Mdidech|+212 6 •• •• 96 81": [
+      10,
+      8
+    ],
+    "s04|Division 5|Journée 7|Mamoun Berrissoul|+212 7 •• •• 18 95|Karine Chambrelan|+212 6 •• •• 26 25": [
+      14,
+      12
+    ],
+    "s04|Division 5|Journée 9|Karine Chambrelan|+212 6 •• •• 26 25|Abdenasser Zahiri|+212 6 •• •• 90 39": [
+      10,
+      5
+    ],
+    "s04|Division 6|Journée 1|Omar Rahmouni|+212 7 •• •• 82 12|Noureddine Rais|+212 6 •• •• 05 01": [
+      10,
+      7
+    ],
+    "s04|Division 6|Journée 1|Youssef Bouazza|+212 6 •• •• 06 29|Ali Jaouher|+212 6 •• •• 51 22": [
+      3,
+      10
+    ],
+    "s04|Division 6|Journée 2|Anas Kabbaj|+212 6 •• •• 42 18|Omar Chlyah|+212 6 •• •• 14 02": [
+      8,
+      10
+    ],
+    "s04|Division 6|Journée 3|Noureddine Rais|+212 6 •• •• 05 01|Mehdi Barouti|+44 75 •••• 8481": [
+      10,
+      4
+    ],
+    "s04|Division 6|Journée 3|Youssef Bouazza|+212 6 •• •• 06 29|Omar Chlyah|+212 6 •• •• 14 02": [
+      10,
+      3
+    ],
+    "s04|Division 6|Journée 4|Anas Kabbaj|+212 6 •• •• 42 18|Noureddine Rais|+212 6 •• •• 05 01": [
+      7,
+      10
+    ],
+    "s04|Division 6|Journée 4|Omar Chlyah|+212 6 •• •• 14 02|Mamoun Chlyah|+212 6 •• •• 14 02": [
+      7,
+      10
+    ],
+    "s04|Division 6|Journée 4|Youssef Bouazza|+212 6 •• •• 06 29|Omar Rahmouni|+212 7 •• •• 82 12": [
+      10,
+      7
+    ],
+    "s04|Division 6|Journée 5|Mamoun Chlyah|+212 6 •• •• 14 02|Omar Rahmouni|+212 7 •• •• 82 12": [
+      10,
+      4
+    ],
+    "s04|Division 6|Journée 6|Omar Rahmouni|+212 7 •• •• 82 12|Ali Jaouher|+212 6 •• •• 51 22": [
+      4,
+      10
+    ],
+    "s04|Division 6|Journée 7|Mehdi Barouti|+44 75 •••• 8481|Mamoun Chlyah|+212 6 •• •• 14 02": [
+      5,
+      10
+    ],
+    "s04|Division 6|Journée 8|Mamoun Chlyah|+212 6 •• •• 14 02|Anas Kabbaj|+212 6 •• •• 42 18": [
+      10,
+      5
+    ],
+    "s04|Division 6|Journée 8|Youssef Bouazza|+212 6 •• •• 06 29|Ismail Skalli|+212 6 •• •• 89 42": [
+      9,
+      11
+    ],
+    "s04|Division 6|Journée 9|Youssef Bouazza|+212 6 •• •• 06 29|Mamoun Chlyah|+212 6 •• •• 14 02": [
+      12,
+      10
+    ],
+    "s04|Division 7|Journée 6|Mourad Benkirane|+212 6 •• •• 10 29|Abderrahim Ben El Attar|+212 6 •• •• 00 54": [
+      10,
+      8
+    ],
+    "s04|Division 7|Journée 9|Karim Azeriah|+212 6 •• •• 61 14|Tarik Derdeb|+212 6 •• •• 25 13": [
+      6,
+      8
+    ],
+    "s04|Division 9 (Accès)|Journée 7|Mohamed Slaoui|+212 6 •• •• 74 79|Mehdi Scally|+212 6 •• •• 29 74": [
+      9,
+      7
+    ],
+    "s05|Division 1|Journée 1|Boubker Sefraoui|+212 6 •• •• 05 50|Grégoire Chaste|+212 6 •• •• 99 18": [
+      6,
+      10
+    ],
+    "s05|Division 1|Journée 2|Amine Sebti|+212 6 •• •• 18 24|Hakim Chaoui|+212 6 •• •• 02 95": [
+      10,
+      8
+    ],
+    "s05|Division 1|Journée 2|Omar Zizi|+212 6 •• •• 70 27|Jonathan Le Henry|+212 6 •• •• 25 07": [
+      8,
+      10
+    ],
+    "s05|Division 1|Journée 4|Boubker Sefraoui|+212 6 •• •• 05 50|Saad Bennis|+212 6 •• •• 31 44": [
+      10,
+      5
+    ],
+    "s05|Division 1|Journée 4|Omar Zizi|+212 6 •• •• 70 27|Amine Sebti|+212 6 •• •• 18 24": [
+      11,
+      9
+    ],
+    "s05|Division 1|Journée 6|Omar Zizi|+212 6 •• •• 70 27|Hakim Chaoui|+212 6 •• •• 02 95": [
+      10,
+      5
+    ],
+    "s05|Division 1|Journée 7|Hakim Chaoui|+212 6 •• •• 02 95|Jonathan Le Henry|+212 6 •• •• 25 07": [
+      10,
+      3
+    ],
+    "s05|Division 2|Journée 3|Mehdi Diouri|+212 6 •• •• 24 68|Hicham Cherkaoui|+212 6 •• •• 39 00": [
+      10,
+      5
+    ],
+    "s05|Division 2|Journée 5|Mehdi Diouri|+212 6 •• •• 24 68|Xavier Rocamora|+212 6 •• •• 85 15": [
+      6,
+      10
+    ],
+    "s05|Division 2|Journée 5|Youssef Tazi|+212 6 •• •• 09 09|Anass Belmehdi|+212 6 •• •• 83 61": [
+      2,
+      10
+    ],
+    "s05|Division 2|Journée 6|Anas Iraqui|+212 6 •• •• 76 67|Youssef Tazi|+212 6 •• •• 09 09": [
+      10,
+      5
+    ],
+    "s05|Division 2|Journée 6|Attef Lazrak|+212 6 •• •• 82 07|Mehdi Diouri|+212 6 •• •• 24 68": [
+      8,
+      10
+    ],
+    "s05|Division 2|Journée 8|Xavier Rocamora|+212 6 •• •• 85 15|Youssef Tazi|+212 6 •• •• 09 09": [
+      3,
+      10
+    ],
+    "s05|Division 2|Journée 9|Anas Iraqui|+212 6 •• •• 76 67|Khalil Tala|+212 6 •• •• 77 28": [
+      5,
+      10
+    ],
+    "s05|Division 3|Journée 5|Hani Guennioui|+212 6 •• •• 40 09|Philippe Montant|+212 6 •• •• 08 47": [
+      7,
+      2
+    ],
+    "s05|Division 3|Journée 6|Philippe Montant|+212 6 •• •• 08 47|Khalil Boutejdir|+212 6 •• •• 32 75": [
+      5,
+      10
+    ],
+    "s05|Division 3|Journée 7|Amine Idrissi Kaitouni|+212 6 •• •• 40 46|Hamza Lahlou|+212 6 •• •• 56 46": [
+      10,
+      8
+    ],
+    "s05|Division 3|Journée 7|Reda Benkirane|+212 6 •• •• 08 46|Neil Sebti|+212 6 •• •• 47 60": [
+      11,
+      13
+    ],
+    "s05|Division 3|Journée 8|Neil Sebti|+212 6 •• •• 47 60|Hamza Lahlou|+212 6 •• •• 56 46": [
+      2,
+      10
+    ],
+    "s05|Division 4|Journée 5|Karine Chambrelan|+212 6 •• •• 26 25|Youssef Diroussi|+212 6 •• •• 19 96": [
+      6,
+      10
+    ],
+    "s05|Division 4|Journée 5|Mouhssine Abouyoub|+212 6 •• •• 35 34|Fahd Benkirane|+212 6 •• •• 72 45": [
+      8,
+      10
+    ],
+    "s05|Division 5|Journée 4|Aimane Sami|+212 6 •• •• 43 80|Ali Akesbi|+212 6 •• •• 16 13": [
+      10,
+      8
+    ],
+    "s05|Division 5|Journée 4|Othman Mdidech|+212 6 •• •• 96 81|Mehdi Smires|+212 6 •• •• 98 43": [
+      9,
+      11
+    ],
+    "s05|Division 6|Journée 1|Kamil Cherkaoui|+212 6 •• •• 39 00|Ali Jaouher|+212 6 •• •• 51 22": [
+      8,
+      10
+    ],
+    "s05|Division 6|Journée 5|Anas Kabbaj|+212 6 •• •• 42 18|Mamoun Chlyah|+212 6 •• •• 14 02": [
+      8,
+      10
+    ],
+    "s05|Division 6|Journée 6|Kamil Cherkaoui|+212 6 •• •• 39 00|Youssef Bouazza|+212 6 •• •• 06 29": [
+      7,
+      10
+    ],
+    "s05|Division 7|Journée 3|Karim Azeriah|+212 6 •• •• 61 14|Mehdi Barouti|+44 75 •••• 8481": [
+      11,
+      9
+    ],
+    "s05|Division 7|Journée 4|Karim Azeriah|+212 6 •• •• 61 14|Omar Rahmouni|+212 7 •• •• 82 12": [
+      10,
+      7
+    ],
+    "s05|Division 8|Journée 1|Ismaïl Bennani|+212 6 •• •• 02 56|Amine Louali|+212 6 •• •• 31 28": [
+      10,
+      6
+    ],
+    "s05|Division 8|Journée 7|Ismaël Mechatte|+212 6 •• •• 06 79|Amine Louali|+212 6 •• •• 31 28": [
+      10,
+      3
+    ],
+    "s05|Division 8|Journée 8|Reda Bezzari|+212 6 •• •• 66 09|Ismaïl Bennani|+212 6 •• •• 02 56": [
+      6,
+      10
+    ],
+    "s05|Division 9|Journée 1|Mohamed Slaoui|+212 6 •• •• 74 79|Simo Ouazzani|+212 6 •• •• 23 52": [
+      7,
+      10
+    ],
+    "s05|Division 9|Journée 8|Suleiman Berberović|+212 6 •• •• 11 18|Simo Ouazzani|+212 6 •• •• 23 52": [
+      3,
+      10
+    ],
+    "s05|Division Étoile|Journée 10|Pascal Giusto|+212 6 •• •• 24 94|Mamoun Bengelloun|+212 6 •• •• 91 06": [
+      7,
+      10
+    ],
+    "s05|Division Étoile|Journée 11|Hassan Errafi|+212 6 •• •• 55 88|Mekki El Kettani|+212 6 •• •• 11 24": [
+      12,
+      10
+    ],
+    "s05|Division Étoile|Journée 11|Mamoun Bengelloun|+212 6 •• •• 91 06|Hicham Bennis|+212 6 •• •• 54 26": [
+      8,
+      10
+    ],
+    "s05|Division Étoile|Journée 12|Mamoun Bengelloun|+212 6 •• •• 91 06|Salim Chaoui|+212 6 •• •• 25 58": [
+      10,
+      4
+    ],
+    "s05|Division Étoile|Journée 12|Saad Bennani|+212 6 •• •• 46 47|Abdou Iraqi|+212 6 •• •• 72 20": [
+      10,
+      6
+    ],
+    "s05|Division Étoile|Journée 13|Hassan Errafi|+212 6 •• •• 55 88|Hicham Bennis|+212 6 •• •• 54 26": [
+      11,
+      9
+    ],
+    "s05|Division Étoile|Journée 1|Kamal Sebti|+212 6 •• •• 47 60|Saad Bennani|+212 6 •• •• 46 47": [
+      6,
+      10
+    ],
+    "s05|Division Étoile|Journée 2|Saad Bennani|+212 6 •• •• 46 47|Stéphane Heuzé|+212 6 •• •• 44 60": [
+      10,
+      4
+    ],
+    "s05|Division Étoile|Journée 3|Kamal Sebti|+212 6 •• •• 47 60|Majid Slimani|+212 6 •• •• 85 17": [
+      10,
+      2
+    ],
+    "s05|Division Étoile|Journée 4|Hassan Errafi|+212 6 •• •• 55 88|Kamal Sebti|+212 6 •• •• 47 60": [
+      3,
+      10
+    ],
+    "s06|Division 11 (Accès)|Journée 12|Ismail Marrakchi|+212 6 •• •• 33 37|Kamil Bengelloun|+212 6 •• •• 91 06": [
+      8,
+      10
+    ],
+    "s06|Division 11 (Accès)|Journée 2|Kamil Bengelloun|+212 6 •• •• 91 06|Dalil Darraz|+212 6 •• •• 67 46": [
+      11,
+      9
+    ],
+    "s06|Division 1|Journée 3|Khalil Tala|+212 6 •• •• 77 28|Hicham Cherkaoui|+212 6 •• •• 39 00": [
+      10,
+      8
+    ],
+    "s06|Division 1|Journée 4|Anass Belmehdi|+212 6 •• •• 83 61|Youssef Tazi|+212 6 •• •• 09 09": [
+      10,
+      3
+    ],
+    "s06|Division 1|Journée 4|Hicham Cherkaoui|+212 6 •• •• 39 00|Ali Lazraq|+212 6 •• •• 55 40": [
+      11,
+      9
+    ],
+    "s06|Division 1|Journée 4|Xavier Rocamora|+212 6 •• •• 85 15|Khalil Tala|+212 6 •• •• 77 28": [
+      7,
+      10
+    ],
+    "s06|Division 1|Journée 5|Boubker Sefraoui|+212 6 •• •• 05 50|Hicham Cherkaoui|+212 6 •• •• 39 00": [
+      11,
+      9
+    ],
+    "s06|Division 1|Journée 6|Ahmed Cherradi|+212 6 •• •• 02 60|Anass Belmehdi|+212 6 •• •• 83 61": [
+      5,
+      10
+    ],
+    "s06|Division 1|Journée 7|Boubker Sefraoui|+212 6 •• •• 05 50|Anas Iraqui|+212 6 •• •• 76 67": [
+      5,
+      10
+    ],
+    "s06|Division 1|Journée 7|Youssef Tazi|+212 6 •• •• 09 09|Ali Lazraq|+212 6 •• •• 55 40": [
+      5,
+      10
+    ],
+    "s06|Division 1|Journée 8|Ali Lazraq|+212 6 •• •• 55 40|Anass Belmehdi|+212 6 •• •• 83 61": [
+      10,
+      8
+    ],
+    "s06|Division 1|Journée 8|Anas Iraqui|+212 6 •• •• 76 67|Hicham Cherkaoui|+212 6 •• •• 39 00": [
+      10,
+      6
+    ],
+    "s06|Division 1|Journée 8|Youssef Tazi|+212 6 •• •• 09 09|Boubker Sefraoui|+212 6 •• •• 05 50": [
+      8,
+      10
+    ],
+    "s06|Division 1|Journée 9|Anass Belmehdi|+212 6 •• •• 83 61|Boubker Sefraoui|+212 6 •• •• 05 50": [
+      8,
+      10
+    ],
+    "s06|Division 2|Journée 3|Attef Lazrak|+212 6 •• •• 82 07|Khalil Boutejdir|+212 6 •• •• 32 75": [
+      9,
+      11
+    ],
+    "s06|Division 3|Journée 1|Ismail Benkirane|+212 6 •• •• 80 30|Mohamed Chennaoui|+212 6 •• •• 24 71": [
+      10,
+      6
+    ],
+    "s06|Division 3|Journée 3|Fahd Benkirane|+212 6 •• •• 72 45|Abdenasser Zahiri|+212 6 •• •• 90 39": [
+      3,
+      10
+    ],
+    "s06|Division 3|Journée 4|Hani Guennioui|+212 6 •• •• 40 09|Abdenasser Zahiri|+212 6 •• •• 90 39": [
+      7,
+      10
+    ],
+    "s06|Division 3|Journée 5|Mohamed Chennaoui|+212 6 •• •• 24 71|Hassan Ibenmansour|+33 6 •• •• 85 60": [
+      10,
+      6
+    ],
+    "s06|Division 3|Journée 7|Hani Guennioui|+212 6 •• •• 40 09|Amine Idrissi Kaitouni|+212 6 •• •• 40 46": [
+      10,
+      1
+    ],
+    "s06|Division 3|Journée 9|Ghali Akesbi|+212 6 •• •• 84 77|Mehdi Berrada|+212 6 •• •• 41 03": [
+      7,
+      10
+    ],
+    "s06|Division 3|Journée 9|Hani Guennioui|+212 6 •• •• 40 09|Mohamed Chennaoui|+212 6 •• •• 24 71": [
+      10,
+      7
+    ],
+    "s06|Division 4|Journée 1|Hamza Lahlou|+212 6 •• •• 56 46|Omar Chlyah|+212 6 •• •• 14 02": [
+      7,
+      10
+    ],
+    "s06|Division 4|Journée 2|Cédric Nalté|+212 6 •• •• 59 66|Ismail Skalli|+212 6 •• •• 89 42": [
+      10,
+      8
+    ],
+    "s06|Division 4|Journée 3|Youssef Diroussi|+212 6 •• •• 19 96|Mamoun Berrissoul|+212 7 •• •• 18 95": [
+      10,
+      3
+    ],
+    "s06|Division 4|Journée 6|Hamza Lahlou|+212 6 •• •• 56 46|Karine Chambrelan|+212 6 •• •• 26 25": [
+      6,
+      10
+    ],
+    "s06|Division 4|Journée 8|Omar Chlyah|+212 6 •• •• 14 02|Mamoun Berrissoul|+212 7 •• •• 18 95": [
+      10,
+      5
+    ],
+    "s06|Division 4|Journée 9|Cédric Nalté|+212 6 •• •• 59 66|Karine Chambrelan|+212 6 •• •• 26 25": [
+      10,
+      5
+    ],
+    "s06|Division 5|Journée 4|Mehdi Alami|+212 6 •• •• 01 15|Kamil Cherkaoui|+212 6 •• •• 39 00": [
+      10,
+      4
+    ],
+    "s06|Division 5|Journée 7|Jalil Skali|+212 6 •• •• 67 68|Ali Akesbi|+212 6 •• •• 16 13": [
+      10,
+      6
+    ],
+    "s06|Division 5|Journée 7|Mehdi Smires|+212 6 •• •• 98 43|Aboubakr Jeddioui|+212 6 •• •• 09 67": [
+      7,
+      10
+    ],
+    "s06|Division 6|Journée 2|Othman Mdidech|+212 6 •• •• 96 81|Karim Azeriah|+212 6 •• •• 61 14": [
+      9,
+      11
+    ],
+    "s06|Division 6|Journée 3|Mehdi Barouti|+44 75 •••• 8481|Othman Mdidech|+212 6 •• •• 96 81": [
+      10,
+      7
+    ],
+    "s06|Division 6|Journée 5|Ali Zizi|+212 6 •• •• 35 94|Ismail Benjelloun|+33 6 •• •• 22 15": [
+      6,
+      10
+    ],
+    "s06|Division 6|Journée 5|Catherine Yans|+212 6 •• •• 23 50|Karim Azeriah|+212 6 •• •• 61 14": [
+      10,
+      7
+    ],
+    "s06|Division 6|Journée 8|Mehdi Barouti|+44 75 •••• 8481|Ismail Benjelloun|+33 6 •• •• 22 15": [
+      6,
+      10
+    ],
+    "s06|Division 6|Journée 9|Anas Kabbaj|+212 6 •• •• 42 18|Catherine Yans|+212 6 •• •• 23 50": [
+      22,
+      20
+    ],
+    "s06|Division 6|Journée 9|Othman Mdidech|+212 6 •• •• 96 81|Ali Zizi|+212 6 •• •• 35 94": [
+      8,
+      10
+    ],
+    "s06|Division 7|Journée 1|Reda Bezzari|+212 6 •• •• 66 09|Noureddine Rais|+212 6 •• •• 05 01": [
+      10,
+      0
+    ],
+    "s06|Division 7|Journée 2|Tarik Boueddine|+212 6 •• •• 87 47|Moncef Alaoui|+212 6 •• •• 79 46": [
+      13,
+      11
+    ],
+    "s06|Division 7|Journée 5|Tarik Boueddine|+212 6 •• •• 87 47|Ismaïl Bennani|+212 6 •• •• 02 56": [
+      10,
+      1
+    ],
+    "s06|Division 8|Journée 2|Mehdi Baumel|+212 6 •• •• 86 24|Omar Rahmouni|+212 7 •• •• 82 12": [
+      2,
+      10
+    ],
+    "s06|Division 8|Journée 4|Alia Ezzaim|+212 6 •• •• 73 65|Ismaël Mechatte|+212 6 •• •• 06 79": [
+      4,
+      10
+    ],
+    "s06|Division 8|Journée 7|Mehdi Baumel|+212 6 •• •• 86 24|Alia Ezzaim|+212 6 •• •• 73 65": [
+      8,
+      10
+    ],
+    "s06|Division 9|Journée 4|Selim Berberović|+212 6 •• •• 74 29|Mohamed Cherradi|+212 6 •• •• 90 28": [
+      10,
+      6
+    ],
+    "s06|Division 9|Journée 7|Mohamed Slaoui|+212 6 •• •• 74 79|Anis Bouftass|+212 6 •• •• 08 96": [
+      5,
+      10
+    ],
+    "s06|Division Étoile B|Journée 1|Abdou Iraqi|+212 6 •• •• 72 20|Grégoire Chaste|+212 6 •• •• 99 18": [
+      6,
+      10
+    ],
+    "s06|Division Étoile B|Journée 2|Pascal Giusto|+212 6 •• •• 24 94|Abdou Iraqi|+212 6 •• •• 72 20": [
+      10,
+      6
+    ],
+    "s06|Division Étoile B|Journée 3|Saad Bennis|+212 6 •• •• 31 44|Salim Chaoui|+212 6 •• •• 25 58": [
+      5,
+      10
+    ],
+    "s06|Division Étoile B|Journée 4|Hassan Errafi|+212 6 •• •• 55 88|Abdou Iraqi|+212 6 •• •• 72 20": [
+      4,
+      10
+    ],
+    "s06|Division Étoile B|Journée 8|Hicham Bennis|+212 6 •• •• 54 26|Hassan Errafi|+212 6 •• •• 55 88": [
+      4,
+      10
+    ],
+    "s06|Division Étoile|Journée 3|Amine Sebti|+212 6 •• •• 18 24|Omar Zizi|+212 6 •• •• 70 27": [
+      10,
+      1
+    ],
+    "s06|Division Étoile|Journée 3|Saad Bennani|+212 6 •• •• 46 47|Kamal Sebti|+212 6 •• •• 47 60": [
+      10,
+      7
+    ],
+    "s06|Division Étoile|Journée 7|Mamoun Bengelloun|+212 6 •• •• 91 06|Hakim Chaoui|+212 6 •• •• 02 95": [
+      6,
+      10
+    ],
+    "s06|Division Étoile|Journée 9|Taoufik Darraz|+212 6 •• •• 04 43|Stéphane Heuzé|+212 6 •• •• 44 60": [
+      7,
+      10
+    ],
+    "s07|Division 10 (Accès)|Journée 10|Brahim Laroui|+212 6 •• •• 91 44|Thomas Gilanton|+212 6 •• •• 82 15": [
+      10,
+      7
+    ],
+    "s07|Division 10 (Accès)|Journée 11|Ratiba Zemmama|+212 6 •• •• 66 93|Kamil Benelhadj|+212 6 •• •• 38 11": [
+      10,
+      7
+    ],
+    "s07|Division 10 (Accès)|Journée 13|Kamil Bengelloun|+212 6 •• •• 91 06|Mehdi Khir|+212 6 •• •• 88 97": [
+      11,
+      9
+    ],
+    "s07|Division 10 (Accès)|Journée 13|Ratiba Zemmama|+212 6 •• •• 66 93|Abdessamad Zouitini|+33 6 •• •• 68 46": [
+      3,
+      10
+    ],
+    "s07|Division 10 (Accès)|Journée 17|Rayane Tazi|+212 7 •• •• 63 16|Rajaa Benbadri|+212 6 •• •• 28 66": [
+      9,
+      11
+    ],
+    "s07|Division 10 (Accès)|Journée 18|Kamil Farssi|+212 6 •• •• 29 38|Rayane Tazi|+212 7 •• •• 63 16": [
+      8,
+      10
+    ],
+    "s07|Division 10 (Accès)|Journée 1|Naoufel Ghafir|+212 6 •• •• 68 44|Ratiba Zemmama|+212 6 •• •• 66 93": [
+      8,
+      10
+    ],
+    "s07|Division 10 (Accès)|Journée 3|Rayane Tazi|+212 7 •• •• 63 16|Kamil Benelhadj|+212 6 •• •• 38 11": [
+      10,
+      4
+    ],
+    "s07|Division 10 (Accès)|Journée 8|Rayane Tazi|+212 7 •• •• 63 16|Mehdi Scally|+212 6 •• •• 29 74": [
+      11,
+      9
+    ],
+    "s07|Division 1|Journée 2|Hicham Bennis|+212 6 •• •• 54 26|Anass Belmehdi|+212 6 •• •• 83 61": [
+      8,
+      10
+    ],
+    "s07|Division 1|Journée 4|Saad Bennis|+212 6 •• •• 31 44|Anass Belmehdi|+212 6 •• •• 83 61": [
+      6,
+      10
+    ],
+    "s07|Division 1|Journée 6|Ali Lazraq|+212 6 •• •• 55 40|Badr Aman|+212 6 •• •• 89 46": [
+      5,
+      10
+    ],
+    "s07|Division 1|Journée 6|Saad Bennis|+212 6 •• •• 31 44|Hicham Bennis|+212 6 •• •• 54 26": [
+      7,
+      10
+    ],
+    "s07|Division 1|Journée 8|Abdou Iraqi|+212 6 •• •• 72 20|Hicham Bennis|+212 6 •• •• 54 26": [
+      10,
+      6
+    ],
+    "s07|Division 2|Journée 1|Reda Benkirane|+212 6 •• •• 08 46|Hicham Cherkaoui|+212 6 •• •• 39 00": [
+      10,
+      1
+    ],
+    "s07|Division 2|Journée 2|Hicham Cherkaoui|+212 6 •• •• 39 00|Aziz Daya|+212 6 •• •• 85 39": [
+      6,
+      10
+    ],
+    "s07|Division 2|Journée 2|Khalil Tala|+212 6 •• •• 77 28|Youssef Tazi|+212 6 •• •• 09 09": [
+      10,
+      6
+    ],
+    "s07|Division 2|Journée 3|Ahmed Cherradi|+212 6 •• •• 02 60|Khalil Tala|+212 6 •• •• 77 28": [
+      11,
+      9
+    ],
+    "s07|Division 2|Journée 4|Hicham Cherkaoui|+212 6 •• •• 39 00|Anas Iraqui|+212 6 •• •• 76 67": [
+      10,
+      2
+    ],
+    "s07|Division 3|Journée 10|Othmane Fjer|+212 6 •• •• 54 43|Khalil Boutejdir|+212 6 •• •• 32 75": [
+      10,
+      8
+    ],
+    "s07|Division 3|Journée 11|Khalil Boutejdir|+212 6 •• •• 32 75|Mehdi Diouri|+212 6 •• •• 24 68": [
+      10,
+      3
+    ],
+    "s07|Division 3|Journée 11|Mohamed Chennaoui|+212 6 •• •• 24 71|Othmane Fjer|+212 6 •• •• 54 43": [
+      10,
+      6
+    ],
+    "s07|Division 3|Journée 12|Othmane Fjer|+212 6 •• •• 54 43|Driss Belbacha|+212 6 •• •• 74 77": [
+      10,
+      12
+    ],
+    "s07|Division 3|Journée 13|Driss Belbacha|+212 6 •• •• 74 77|Mehdi Diouri|+212 6 •• •• 24 68": [
+      10,
+      5
+    ],
+    "s07|Division 3|Journée 13|Ismail Benkirane|+212 6 •• •• 80 30|Othmane Fjer|+212 6 •• •• 54 43": [
+      10,
+      6
+    ],
+    "s07|Division 3|Journée 2|Youssef Lakhiry|+212 6 •• •• 23 40|Driss Belbacha|+212 6 •• •• 74 77": [
+      5,
+      10
+    ],
+    "s07|Division 3|Journée 5|Hani Guennioui|+212 6 •• •• 40 09|Mohamed Chennaoui|+212 6 •• •• 24 71": [
+      10,
+      6
+    ],
+    "s07|Division 4|Journée 10|Amine Idrissi Kaitouni|+212 6 •• •• 40 46|Jawad Marouane|+212 6 •• •• 69 68": [
+      6,
+      10
+    ],
+    "s07|Division 4|Journée 3|Hamid El Kouchi|+212 6 •• •• 42 93|Julien Broussard|+212 6 •• •• 32 03": [
+      10,
+      7
+    ],
+    "s07|Division 4|Journée 3|Ismail Skalli|+212 6 •• •• 89 42|Neil Sebti|+212 6 •• •• 47 60": [
+      4,
+      10
+    ],
+    "s07|Division 4|Journée 6|Omar Chlyah|+212 6 •• •• 14 02|Amine Idrissi Kaitouni|+212 6 •• •• 40 46": [
+      8,
+      10
+    ],
+    "s07|Division 5|Journée 11|Jalil Skali|+212 6 •• •• 67 68|Kamil Cherkaoui|+212 6 •• •• 39 00": [
+      8,
+      10
+    ],
+    "s07|Division 5|Journée 11|Youssef Diroussi|+212 6 •• •• 19 96|Ali Akesbi|+212 6 •• •• 16 13": [
+      10,
+      4
+    ],
+    "s07|Division 5|Journée 12|Mamoun Berrissoul|+212 7 •• •• 18 95|Youssef Diroussi|+212 6 •• •• 19 96": [
+      10,
+      8
+    ],
+    "s07|Division 5|Journée 13|Youssef Diroussi|+212 6 •• •• 19 96|Mamoun Chlyah|+212 6 •• •• 14 02": [
+      8,
+      10
+    ],
+    "s07|Division 5|Journée 5|Mehdi Bouragba|+212 6 •• •• 86 79|Karine Chambrelan|+212 6 •• •• 26 25": [
+      4,
+      10
+    ],
+    "s07|Division 5|Journée 6|Jalil Skali|+212 6 •• •• 67 68|Mamoun Chlyah|+212 6 •• •• 14 02": [
+      10,
+      2
+    ],
+    "s07|Division 5|Journée 8|Ali Akesbi|+212 6 •• •• 16 13|Aboubakr Jeddioui|+212 6 •• •• 09 67": [
+      12,
+      10
+    ],
+    "s07|Division 5|Journée 9|Zahra Bennani|+212 6 •• •• 46 47|Kamil Cherkaoui|+212 6 •• •• 39 00": [
+      10,
+      3
+    ],
+    "s07|Division 6|Journée 4|Mehdi Barouti|+44 75 •••• 8481|Anas Kabbaj|+212 6 •• •• 42 18": [
+      10,
+      4
+    ],
+    "s07|Division 6|Journée 9|Ali Squalli|+212 6 •• •• 12 18|Ismail Benjelloun|+33 6 •• •• 22 15": [
+      10,
+      12
+    ],
+    "s07|Division 7|Journée 10|Aimane Sami|+212 6 •• •• 43 80|Ali Jaouher|+212 6 •• •• 51 22": [
+      12,
+      10
+    ],
+    "s07|Division 7|Journée 10|Tarik Derdeb|+212 6 •• •• 25 13|Catherine Yans|+212 6 •• •• 23 50": [
+      3,
+      10
+    ],
+    "s07|Division 7|Journée 11|Reda Bezzari|+212 6 •• •• 66 09|Tarik Derdeb|+212 6 •• •• 25 13": [
+      10,
+      8
+    ],
+    "s07|Division 7|Journée 12|Aimane Sami|+212 6 •• •• 43 80|Reda Bezzari|+212 6 •• •• 66 09": [
+      6,
+      10
+    ],
+    "s07|Division 7|Journée 13|Reda Bezzari|+212 6 •• •• 66 09|Tarik Boueddine|+212 6 •• •• 87 47": [
+      8,
+      10
+    ],
+    "s07|Division 7|Journée 1|Tarik Derdeb|+212 6 •• •• 25 13|Tarik Boueddine|+212 6 •• •• 87 47": [
+      5,
+      10
+    ],
+    "s07|Division 7|Journée 2|Tarik Boueddine|+212 6 •• •• 87 47|Aimane Sami|+212 6 •• •• 43 80": [
+      10,
+      6
+    ],
+    "s07|Division 7|Journée 3|Noureddine Rais|+212 6 •• •• 05 01|Saïd Benzekri|+212 6 •• •• 82 17": [
+      6,
+      10
+    ],
+    "s07|Division 7|Journée 7|Aimane Sami|+212 6 •• •• 43 80|Abdelfattah Gourja|+212 6 •• •• 53 75": [
+      10,
+      7
+    ],
+    "s07|Division 7|Journée 9|Catherine Yans|+212 6 •• •• 23 50|Reda Bezzari|+212 6 •• •• 66 09": [
+      10,
+      2
+    ],
+    "s07|Division 7|Journée 9|Tarik Boueddine|+212 6 •• •• 87 47|Noureddine Rais|+212 6 •• •• 05 01": [
+      10,
+      8
+    ],
+    "s07|Division 8|Journée 10|Mourad Benkirane|+212 6 •• •• 10 29|Youssef Essabban|+212 6 •• •• 16 81": [
+      2,
+      10
+    ],
+    "s07|Division 8|Journée 13|Ismaïl Bennani|+212 6 •• •• 02 56|Amine Louali|+212 6 •• •• 31 28": [
+      10,
+      8
+    ],
+    "s07|Division 8|Journée 2|Alia Ezzaim|+212 6 •• •• 73 65|Mehdi Baumel|+212 6 •• •• 86 24": [
+      10,
+      6
+    ],
+    "s07|Division 8|Journée 6|Mourad Benkirane|+212 6 •• •• 10 29|Mehdi Baumel|+212 6 •• •• 86 24": [
+      10,
+      6
+    ],
+    "s07|Division 8|Journée 7|Amine Louali|+212 6 •• •• 31 28|Youssef Essabban|+212 6 •• •• 16 81": [
+      7,
+      10
+    ],
+    "s07|Division 8|Journée 7|Moncef Alaoui|+212 6 •• •• 79 46|Mourad Benkirane|+212 6 •• •• 10 29": [
+      10,
+      5
+    ],
+    "s07|Division 8|Journée 8|Sébastien Chasseray|+212 6 •• •• 36 58|Amine Louali|+212 6 •• •• 31 28": [
+      10,
+      4
+    ],
+    "s07|Division 9|Journée 13|Soufiane Benabderrazik|+212 7 •• •• 09 50|Selim Berberović|+212 6 •• •• 74 29": [
+      8,
+      10
+    ],
+    "s07|Division 9|Journée 1|Abderrahim Ben El Attar|+212 6 •• •• 00 54|Mahmoud Tabbara|+212 6 •• •• 43 64": [
+      5,
+      10
+    ],
+    "s07|Division 9|Journée 2|Ali Belbacha|+212 6 •• •• 74 77|Soufiane Benabderrazik|+212 7 •• •• 09 50": [
+      2,
+      10
+    ],
+    "s07|Division 9|Journée 7|Selim Berberović|+212 6 •• •• 74 29|Abderrahim Ben El Attar|+212 6 •• •• 00 54": [
+      10,
+      4
+    ],
+    "s07|Division Étoile|Journée 11|Grégoire Chaste|+212 6 •• •• 99 18|Kamal Sebti|+212 6 •• •• 47 60": [
+      10,
+      7
+    ],
+    "s07|Division Étoile|Journée 11|Stéphane Heuzé|+212 6 •• •• 44 60|Saad Bennani|+212 6 •• •• 46 47": [
+      3,
+      10
+    ],
+    "s07|Division Étoile|Journée 12|Saad Bennani|+212 6 •• •• 46 47|Grégoire Chaste|+212 6 •• •• 99 18": [
+      8,
+      10
+    ],
+    "s07|Division Étoile|Journée 13|Amine Sebti|+212 6 •• •• 18 24|Pascal Giusto|+212 6 •• •• 24 94": [
+      5,
+      10
+    ],
+    "s07|Division Étoile|Journée 13|Grégoire Chaste|+212 6 •• •• 99 18|Hakim Chaoui|+212 6 •• •• 02 95": [
+      8,
+      10
+    ],
+    "s07|Division Étoile|Journée 13|Taoufik Darraz|+212 6 •• •• 04 43|Stéphane Heuzé|+212 6 •• •• 44 60": [
+      5,
+      10
+    ],
+    "s07|Division Étoile|Journée 8|Amine Sebti|+212 6 •• •• 18 24|Hakim Chaoui|+212 6 •• •• 02 95": [
+      10,
+      5
+    ],
+    "s07|Division Étoile|Journée 8|Kamal Sebti|+212 6 •• •• 47 60|Pascal Giusto|+212 6 •• •• 24 94": [
+      7,
+      10
+    ],
+    "s07|Division Étoile|Journée 8|Mamoun Bengelloun|+212 6 •• •• 91 06|Saad Bennani|+212 6 •• •• 46 47": [
+      10,
+      8
+    ],
+    "s07|Division Étoile|Journée 9|Grégoire Chaste|+212 6 •• •• 99 18|Majid Slimani|+212 6 •• •• 85 17": [
+      11,
+      13
+    ],
+    "s07|Division Étoile|Journée 9|Saad Bennani|+212 6 •• •• 46 47|Pascal Giusto|+212 6 •• •• 24 94": [
+      11,
+      9
+    ],
+    "s07|Division Étoile|Journée 9|Taoufik Darraz|+212 6 •• •• 04 43|Amine Sebti|+212 6 •• •• 18 24": [
+      10,
+      12
+    ],
+    "s08|Division 10|Journée 12|Adnane Zerhouni|+212 6 •• •• 17 37|Dalil Darraz|+212 6 •• •• 67 46": [
+      10,
+      3
+    ],
+    "s08|Division 10|Journée 1|Naoufel Ghafir|+212 6 •• •• 68 44|Jad Benkirane|+212 6 •• •• 72 45": [
+      11,
+      9
+    ],
+    "s08|Division 10|Journée 3|Abla Bennani|+212 6 •• •• 46 47|Dalil Darraz|+212 6 •• •• 67 46": [
+      10,
+      7
+    ],
+    "s08|Division 1|Journée 11|Hassan Errafi|+212 6 •• •• 55 88|Mustapha Aman|+212 6 •• •• 63 41": [
+      3,
+      10
+    ],
+    "s08|Division 1|Journée 11|Kamal Sebti|+212 6 •• •• 47 60|Pascal Giusto|+212 6 •• •• 24 94": [
+      6,
+      10
+    ],
+    "s08|Division 1|Journée 12|Aziz Daya|+212 6 •• •• 85 39|Anass Belmehdi|+212 6 •• •• 83 61": [
+      1,
+      10
+    ],
+    "s08|Division 1|Journée 13|Anass Belmehdi|+212 6 •• •• 83 61|Anas Iraqui|+212 6 •• •• 76 67": [
+      10,
+      3
+    ],
+    "s08|Division 1|Journée 2|Kamal Sebti|+212 6 •• •• 47 60|Salim Benabdallah|+33 6 •• •• 15 56": [
+      10,
+      8
+    ],
+    "s08|Division 1|Journée 6|Anass Belmehdi|+212 6 •• •• 83 61|Hadi Kabbaj|+212 6 •• •• 58 44": [
+      3,
+      10
+    ],
+    "s08|Division 1|Journée 6|Salim Chaoui|+212 6 •• •• 25 58|Saad Bennani|+212 6 •• •• 46 47": [
+      5,
+      10
+    ],
+    "s08|Division 1|Journée 8|Saad Bennani|+212 6 •• •• 46 47|Pascal Giusto|+212 6 •• •• 24 94": [
+      7,
+      10
+    ],
+    "s08|Division 1|Journée 9|Anas Iraqui|+212 6 •• •• 76 67|Mustapha Aman|+212 6 •• •• 63 41": [
+      10,
+      6
+    ],
+    "s08|Division 1|Journée 9|Hadi Kabbaj|+212 6 •• •• 58 44|Saad Bennani|+212 6 •• •• 46 47": [
+      5,
+      10
+    ],
+    "s08|Division 2|Journée 10|Oussama Lemseffer|+212 6 •• •• 96 97|Youssef Tazi|+212 6 •• •• 09 09": [
+      4,
+      10
+    ],
+    "s08|Division 2|Journée 11|Hicham Bennis|+212 6 •• •• 54 26|Driss Belbacha|+212 6 •• •• 74 77": [
+      6,
+      10
+    ],
+    "s08|Division 2|Journée 12|Othmane Fjer|+212 6 •• •• 54 43|Saad Bennis|+212 6 •• •• 31 44": [
+      8,
+      10
+    ],
+    "s08|Division 2|Journée 12|Youssef Tazi|+212 6 •• •• 09 09|Reda Benkirane|+212 6 •• •• 08 46": [
+      11,
+      9
+    ],
+    "s08|Division 2|Journée 3|Jalil Bengelloun|+212 6 •• •• 91 06|Hicham Bennis|+212 6 •• •• 54 26": [
+      10,
+      7
+    ],
+    "s08|Division 2|Journée 4|Hicham Bennis|+212 6 •• •• 54 26|Khalil Tala|+212 6 •• •• 77 28": [
+      10,
+      8
+    ],
+    "s08|Division 2|Journée 8|Khalil Tala|+212 6 •• •• 77 28|Oussama Lemseffer|+212 6 •• •• 96 97": [
+      8,
+      10
+    ],
+    "s08|Division 3|Journée 10|Hicham Cherkaoui|+212 6 •• •• 39 00|Jawad Marouane|+212 6 •• •• 69 68": [
+      10,
+      6
+    ],
+    "s08|Division 3|Journée 12|Ismail Benkirane|+212 6 •• •• 80 30|Nabil Benjelloun|+44 74 •••• 0586": [
+      5,
+      10
+    ],
+    "s08|Division 3|Journée 13|Nabil Benjelloun|+44 74 •••• 0586|Jawad Marouane|+212 6 •• •• 69 68": [
+      10,
+      5
+    ],
+    "s08|Division 3|Journée 1|Kamil Cherkaoui|+212 6 •• •• 39 00|Neil Sebti|+212 6 •• •• 47 60": [
+      2,
+      10
+    ],
+    "s08|Division 3|Journée 2|Hani Guennioui|+212 6 •• •• 40 09|Nabil Benjelloun|+44 74 •••• 0586": [
+      10,
+      8
+    ],
+    "s08|Division 3|Journée 3|Kamil Cherkaoui|+212 6 •• •• 39 00|Nabil Benjelloun|+44 74 •••• 0586": [
+      10,
+      8
+    ],
+    "s08|Division 3|Journée 5|Mehdi Chafai|+212 6 •• •• 37 76|Kamil Cherkaoui|+212 6 •• •• 39 00": [
+      10,
+      6
+    ],
+    "s08|Division 3|Journée 7|Khalil Boutejdir|+212 6 •• •• 32 75|Mehdi Chafai|+212 6 •• •• 37 76": [
+      10,
+      4
+    ],
+    "s08|Division 3|Journée 7|Neil Sebti|+212 6 •• •• 47 60|Nabil Benjelloun|+44 74 •••• 0586": [
+      11,
+      9
+    ],
+    "s08|Division 3|Journée 8|Kamil Cherkaoui|+212 6 •• •• 39 00|Xavier Rocamora|+212 6 •• •• 85 15": [
+      11,
+      9
+    ],
+    "s08|Division 3|Journée 8|Nabil Benjelloun|+44 74 •••• 0586|Hamid El Kouchi|+212 6 •• •• 42 93": [
+      10,
+      8
+    ],
+    "s08|Division 4|Journée 11|Julien Broussard|+212 6 •• •• 32 03|Abdenasser Zahiri|+212 6 •• •• 90 39": [
+      10,
+      6
+    ],
+    "s08|Division 4|Journée 11|Yassir El Andaloussi|+212 6 •• •• 75 14|Ismail Skalli|+212 6 •• •• 89 42": [
+      9,
+      11
+    ],
+    "s08|Division 4|Journée 13|Omar Bellamine|+212 6 •• •• 10 70|Fahd Benkirane|+212 6 •• •• 72 45": [
+      10,
+      5
+    ],
+    "s08|Division 4|Journée 1|Ismail Skalli|+212 6 •• •• 89 42|Abdenasser Zahiri|+212 6 •• •• 90 39": [
+      10,
+      8
+    ],
+    "s08|Division 4|Journée 2|Mehdi Berrada|+212 6 •• •• 41 03|Jalil Skali|+212 6 •• •• 67 68": [
+      10,
+      8
+    ],
+    "s08|Division 4|Journée 4|Fahd Benkirane|+212 6 •• •• 72 45|Abdenasser Zahiri|+212 6 •• •• 90 39": [
+      4,
+      10
+    ],
+    "s08|Division 4|Journée 4|Yassir El Andaloussi|+212 6 •• •• 75 14|Mamoun Chlyah|+212 6 •• •• 14 02": [
+      10,
+      8
+    ],
+    "s08|Division 4|Journée 6|Aboubakr Jeddioui|+212 6 •• •• 09 67|Fahd Benkirane|+212 6 •• •• 72 45": [
+      4,
+      10
+    ],
+    "s08|Division 4|Journée 6|Ismail Skalli|+212 6 •• •• 89 42|Jalil Skali|+212 6 •• •• 67 68": [
+      7,
+      10
+    ],
+    "s08|Division 4|Journée 6|Zahra Bennani|+212 6 •• •• 46 47|Abdenasser Zahiri|+212 6 •• •• 90 39": [
+      12,
+      14
+    ],
+    "s08|Division 4|Journée 7|Abdenasser Zahiri|+212 6 •• •• 90 39|Mamoun Chlyah|+212 6 •• •• 14 02": [
+      10,
+      8
+    ],
+    "s08|Division 4|Journée 7|Amine Idrissi Kaitouni|+212 6 •• •• 40 46|Jalil Skali|+212 6 •• •• 67 68": [
+      5,
+      10
+    ],
+    "s08|Division 4|Journée 9|Mehdi Berrada|+212 6 •• •• 41 03|Amine Idrissi Kaitouni|+212 6 •• •• 40 46": [
+      10,
+      7
+    ],
+    "s08|Division 5|Journée 11|Othman Mdidech|+212 6 •• •• 96 81|Ali Akesbi|+212 6 •• •• 16 13": [
+      10,
+      3
+    ],
+    "s08|Division 5|Journée 12|Ali Zizi|+212 6 •• •• 35 94|Driss Moumane|+212 6 •• •• 30 85": [
+      10,
+      12
+    ],
+    "s08|Division 5|Journée 13|Driss Moumane|+212 6 •• •• 30 85|Othman Mdidech|+212 6 •• •• 96 81": [
+      10,
+      4
+    ],
+    "s08|Division 5|Journée 13|Ismail Benjelloun|+33 6 •• •• 22 15|Ali Akesbi|+212 6 •• •• 16 13": [
+      8,
+      10
+    ],
+    "s08|Division 5|Journée 13|Mamoun Berrissoul|+212 7 •• •• 18 95|Ali Zizi|+212 6 •• •• 35 94": [
+      6,
+      10
+    ],
+    "s08|Division 5|Journée 4|Othman Mdidech|+212 6 •• •• 96 81|Hassan Ibenmansour|+33 6 •• •• 85 60": [
+      10,
+      5
+    ],
+    "s08|Division 5|Journée 5|Ali Akesbi|+212 6 •• •• 16 13|Driss Moumane|+212 6 •• •• 30 85": [
+      7,
+      10
+    ],
+    "s08|Division 5|Journée 9|Ali Akesbi|+212 6 •• •• 16 13|Hassan Ibenmansour|+33 6 •• •• 85 60": [
+      4,
+      10
+    ],
+    "s08|Division 6|Journée 13|Ali Squalli|+212 6 •• •• 12 18|Anas Kabbaj|+212 6 •• •• 42 18": [
+      7,
+      10
+    ],
+    "s08|Division 6|Journée 13|Mehdi Smires|+212 6 •• •• 98 43|Younes Slaoui|+212 6 •• •• 17 55": [
+      6,
+      10
+    ],
+    "s08|Division 6|Journée 2|Ali Squalli|+212 6 •• •• 12 18|Catherine Yans|+212 6 •• •• 23 50": [
+      10,
+      7
+    ],
+    "s08|Division 6|Journée 2|Anas Kabbaj|+212 6 •• •• 42 18|Mehdi Smires|+212 6 •• •• 98 43": [
+      8,
+      10
+    ],
+    "s08|Division 6|Journée 5|Ali Jaouher|+212 6 •• •• 51 22|Catherine Yans|+212 6 •• •• 23 50": [
+      10,
+      7
+    ],
+    "s08|Division 6|Journée 5|Saad Bennani|+212 6 •• •• 07 24|Ali Squalli|+212 6 •• •• 12 18": [
+      10,
+      8
+    ],
+    "s08|Division 6|Journée 7|Younes Slaoui|+212 6 •• •• 17 55|Mehdi Bouragba|+212 6 •• •• 86 79": [
+      10,
+      5
+    ],
+    "s08|Division 7|Journée 10|Omar Rahmouni|+212 7 •• •• 82 12|Thomas Gilanton|+212 6 •• •• 82 15": [
+      7,
+      10
+    ],
+    "s08|Division 7|Journée 12|Mehdi Mrabet|+212 6 •• •• 43 37|Abdelfattah Gourja|+212 6 •• •• 53 75": [
+      6,
+      10
+    ],
+    "s08|Division 7|Journée 12|Thomas Gilanton|+212 6 •• •• 82 15|Aimane Sami|+212 6 •• •• 43 80": [
+      12,
+      10
+    ],
+    "s08|Division 7|Journée 1|Abdelfattah Gourja|+212 6 •• •• 53 75|Thomas Gilanton|+212 6 •• •• 82 15": [
+      7,
+      10
+    ],
+    "s08|Division 7|Journée 2|Omar Rahmouni|+212 7 •• •• 82 12|Tom Thréard|+33 7 •• •• 43 82": [
+      11,
+      9
+    ],
+    "s08|Division 7|Journée 3|Ismaïl Bennani|+212 6 •• •• 02 56|Aimane Sami|+212 6 •• •• 43 80": [
+      8,
+      10
+    ],
+    "s08|Division 7|Journée 4|Saïd Benzekri|+212 6 •• •• 82 17|Omar Rahmouni|+212 7 •• •• 82 12": [
+      10,
+      5
+    ],
+    "s08|Division 7|Journée 4|Youssef Essabban|+212 6 •• •• 16 81|Ismaïl Bennani|+212 6 •• •• 02 56": [
+      5,
+      10
+    ],
+    "s08|Division 7|Journée 5|Omar Rahmouni|+212 7 •• •• 82 12|Aimane Sami|+212 6 •• •• 43 80": [
+      10,
+      5
+    ],
+    "s08|Division 7|Journée 6|Abdelfattah Gourja|+212 6 •• •• 53 75|Tom Thréard|+33 7 •• •• 43 82": [
+      10,
+      2
+    ],
+    "s08|Division 7|Journée 8|Youssef Essabban|+212 6 •• •• 16 81|Aimane Sami|+212 6 •• •• 43 80": [
+      5,
+      10
+    ],
+    "s08|Division 7|Journée 9|Aimane Sami|+212 6 •• •• 43 80|Abdelfattah Gourja|+212 6 •• •• 53 75": [
+      8,
+      10
+    ],
+    "s08|Division 7|Journée 9|Omar Rahmouni|+212 7 •• •• 82 12|Noureddine Rais|+212 6 •• •• 05 01": [
+      7,
+      10
+    ],
+    "s08|Division 8|Journée 10|Mahmoud Tabbara|+212 6 •• •• 43 64|Moncef Alaoui|+212 6 •• •• 79 46": [
+      3,
+      10
+    ],
+    "s08|Division 8|Journée 10|Soufiane Benabderrazik|+212 7 •• •• 09 50|Amine Louali|+212 6 •• •• 31 28": [
+      10,
+      6
+    ],
+    "s08|Division 8|Journée 11|Ismaël Mechatte|+212 6 •• •• 06 79|Mourad Benkirane|+212 6 •• •• 10 29": [
+      10,
+      12
+    ],
+    "s08|Division 8|Journée 13|Moubarak El Kouchi|+212 6 •• •• 21 21|Mourad Benkirane|+212 6 •• •• 10 29": [
+      10,
+      7
+    ],
+    "s08|Division 8|Journée 4|Ismaël Mechatte|+212 6 •• •• 06 79|Abderrahim Ben El Attar|+212 6 •• •• 00 54": [
+      10,
+      7
+    ],
+    "s08|Division 8|Journée 6|Brahim Laroui|+212 6 •• •• 91 44|Mehdi Baumel|+212 6 •• •• 86 24": [
+      8,
+      10
+    ],
+    "s08|Division 8|Journée 7|Mohamed-Ali Khelil|+212 6 •• •• 20 51|Ismaël Mechatte|+212 6 •• •• 06 79": [
+      11,
+      9
+    ],
+    "s08|Division 8|Journée 8|Moubarak El Kouchi|+212 6 •• •• 21 21|Amine Louali|+212 6 •• •• 31 28": [
+      10,
+      7
+    ],
+    "s08|Division 8|Journée 9|Brahim Laroui|+212 6 •• •• 91 44|Mahmoud Tabbara|+212 6 •• •• 43 64": [
+      9,
+      11
+    ],
+    "s08|Division 9|Journée 11|Mohamed Cherradi|+212 6 •• •• 90 28|Othmane Jbara|+212 6 •• •• 05 81": [
+      6,
+      10
+    ],
+    "s08|Division 9|Journée 12|Othmane Jbara|+212 6 •• •• 05 81|Rajaa Benbadri|+212 6 •• •• 28 66": [
+      6,
+      10
+    ],
+    "s08|Division 9|Journée 13|Mehdi Scally|+212 6 •• •• 29 74|Othmane Jbara|+212 6 •• •• 05 81": [
+      5,
+      11
+    ],
+    "s08|Division 9|Journée 1|Mehdi Scally|+212 6 •• •• 29 74|Abdessamad Zouitini|+33 6 •• •• 68 46": [
+      10,
+      8
+    ],
+    "s08|Division 9|Journée 2|Abdessamad Zouitini|+33 6 •• •• 68 46|Simo Ouazzani|+212 6 •• •• 23 52": [
+      5,
+      10
+    ],
+    "s08|Division 9|Journée 2|Mohamed Cherradi|+212 6 •• •• 90 28|Anis Bouftass|+212 6 •• •• 08 96": [
+      8,
+      10
+    ],
+    "s08|Division 9|Journée 4|Mohamed Cherradi|+212 6 •• •• 90 28|Ali Belbacha|+212 6 •• •• 74 77": [
+      8,
+      10
+    ],
+    "s08|Division 9|Journée 5|Anis Bouftass|+212 6 •• •• 08 96|Simo Ouazzani|+212 6 •• •• 23 52": [
+      6,
+      10
+    ],
+    "s08|Division 9|Journée 7|Mohamed Slaoui|+212 6 •• •• 74 79|Anis Bouftass|+212 6 •• •• 08 96": [
+      10,
+      7
+    ],
+    "s08|Division 9|Journée 8|Ratiba Zemmama|+212 6 •• •• 66 93|Mohamed Slaoui|+212 6 •• •• 74 79": [
+      8,
+      10
+    ],
+    "s08|Division Étoile|Journée 11|Simo Zizi|+212 6 •• •• 73 56|Grégoire Chaste|+212 6 •• •• 99 18": [
+      3,
+      10
+    ],
+    "s08|Division Étoile|Journée 13|Mamoun Bengelloun|+212 6 •• •• 91 06|Taoufik Darraz|+212 6 •• •• 04 43": [
+      13,
+      11
+    ],
+    "s08|Division Étoile|Journée 2|Hakim Chaoui|+212 6 •• •• 02 95|Simo Zizi|+212 6 •• •• 73 56": [
+      4,
+      10
+    ],
+    "s08|Division Étoile|Journée 4|Amine Sebti|+212 6 •• •• 18 24|Majid Slimani|+212 6 •• •• 85 17": [
+      10,
+      3
+    ],
+    "s08|Division Étoile|Journée 6|Grégoire Chaste|+212 6 •• •• 99 18|Mekki El Kettani|+212 6 •• •• 11 24": [
+      6,
+      10
+    ],
+    "s08|Division Étoile|Journée 7|Amine Sebti|+212 6 •• •• 18 24|Mamoun Bengelloun|+212 6 •• •• 91 06": [
+      10,
+      5
+    ],
+    "s09|Division 10|Journée 4|Amine Louali|+212 6 •• •• 31 28|Mourad Benkirane|+212 6 •• •• 10 29": [
+      3,
+      10
+    ],
+    "s09|Division 10|Journée 4|Moubarak El Kouchi|+212 6 •• •• 21 21|Brahim Laroui|+212 6 •• •• 91 44": [
+      10,
+      7
+    ],
+    "s09|Division 10|Journée 5|Brahim Laroui|+212 6 •• •• 91 44|Saïd Benzekri|+212 6 •• •• 82 17": [
+      10,
+      7
+    ],
+    "s09|Division 10|Journée 7|Moubarak El Kouchi|+212 6 •• •• 21 21|Mourad Benkirane|+212 6 •• •• 10 29": [
+      7,
+      10
+    ],
+    "s09|Division 10|Journée 8|Mahmoud Tabbara|+212 6 •• •• 43 64|Moubarak El Kouchi|+212 6 •• •• 21 21": [
+      5,
+      10
+    ],
+    "s09|Division 10|Journée 9|Moncef Alaoui|+212 6 •• •• 79 46|Mahmoud Tabbara|+212 6 •• •• 43 64": [
+      4,
+      10
+    ],
+    "s09|Division 11|Journée 1|Sébastien Chasseray|+212 6 •• •• 36 58|Rajaa Benbadri|+212 6 •• •• 28 66": [
+      10,
+      4
+    ],
+    "s09|Division 11|Journée 4|Sébastien Chasseray|+212 6 •• •• 36 58|Abderrahim Ben El Attar|+212 6 •• •• 00 54": [
+      5,
+      10
+    ],
+    "s09|Division 11|Journée 8|Ismaël Mechatte|+212 6 •• •• 06 79|Rajaa Benbadri|+212 6 •• •• 28 66": [
+      10,
+      5
+    ],
+    "s09|Division 12|Journée 1|Adnane Zerhouni|+212 6 •• •• 17 37|Reda Alaoui|+212 6 •• •• 73 76": [
+      10,
+      6
+    ],
+    "s09|Division 12|Journée 4|Mohamed Cherradi|+212 6 •• •• 90 28|Kamil Bengelloun|+212 6 •• •• 91 06": [
+      12,
+      10
+    ],
+    "s09|Division 12|Journée 5|Anis Bouftass|+212 6 •• •• 08 96|Mohamed Cherradi|+212 6 •• •• 90 28": [
+      3,
+      10
+    ],
+    "s09|Division 12|Journée 5|Simo Ouazzani|+212 6 •• •• 23 52|Abdessamad Zouitini|+33 6 •• •• 68 46": [
+      10,
+      7
+    ],
+    "s09|Division 12|Journée 6|Mohamed Cherradi|+212 6 •• •• 90 28|Simo Ouazzani|+212 6 •• •• 23 52": [
+      10,
+      7
+    ],
+    "s09|Division 12|Journée 8|Kamil Bengelloun|+212 6 •• •• 91 06|Sanaa Tazi|+212 6 •• •• 69 28": [
+      10,
+      7
+    ],
+    "s09|Division 13|Journée 5|Jad Benkirane|+212 6 •• •• 72 45|Augustin Chaste|+212 6 •• •• 99 18": [
+      14,
+      15
+    ],
+    "s09|Division 14|Journée 2|Ismaïl Honegger|+212 6 •• •• 26 48|Ismaïl Wakrim|+212 6 •• •• 24 45": [
+      16,
+      18
+    ],
+    "s09|Division 14|Journée 6|Ismaïl Wakrim|+212 6 •• •• 24 45|Kamil Choukri|+212 6 •• •• 04 92": [
+      11,
+      9
+    ],
+    "s09|Division 1|Journée 2|Ali Lazraq|+212 6 •• •• 55 40|Saad Bennis|+212 6 •• •• 31 44": [
+      1,
+      10
+    ],
+    "s09|Division 1|Journée 8|Ali Lazraq|+212 6 •• •• 55 40|Mustapha Aman|+212 6 •• •• 63 41": [
+      8,
+      10
+    ],
+    "s09|Division 1|Journée 9|Anass Belmehdi|+212 6 •• •• 83 61|Mustapha Aman|+212 6 •• •• 63 41": [
+      9,
+      11
+    ],
+    "s09|Division 2|Journée 1|Hassan Errafi|+212 6 •• •• 55 88|Hicham Bennis|+212 6 •• •• 54 26": [
+      10,
+      12
+    ],
+    "s09|Division 2|Journée 3|Hassan Errafi|+212 6 •• •• 55 88|Frederic Ini|+212 6 •• •• 53 98": [
+      10,
+      5
+    ],
+    "s09|Division 2|Journée 5|Hassan Errafi|+212 6 •• •• 55 88|Youssef Lakhiry|+212 6 •• •• 23 40": [
+      8,
+      10
+    ],
+    "s09|Division 3|Journée 3|Neil Sebti|+212 6 •• •• 47 60|Mehdi Chafai|+212 6 •• •• 37 76": [
+      11,
+      9
+    ],
+    "s09|Division 3|Journée 4|Othmane Fjer|+212 6 •• •• 54 43|Neil Sebti|+212 6 •• •• 47 60": [
+      2,
+      10
+    ],
+    "s09|Division 3|Journée 5|Ali Berrissoul|+212 7 •• •• 18 96|Othmane Fjer|+212 6 •• •• 54 43": [
+      7,
+      10
+    ],
+    "s09|Division 3|Journée 8|Khalil Tala|+212 6 •• •• 77 28|Mehdi Chafai|+212 6 •• •• 37 76": [
+      12,
+      10
+    ],
+    "s09|Division 4|Journée 1|Ismail Benkirane|+212 6 •• •• 80 30|Nabil Benjelloun|+44 74 •••• 0586": [
+      5,
+      10
+    ],
+    "s09|Division 4|Journée 5|Abdenasser Zahiri|+212 6 •• •• 90 39|Ismail Benkirane|+212 6 •• •• 80 30": [
+      11,
+      9
+    ],
+    "s09|Division 4|Journée 5|Mamoun Chlyah|+212 6 •• •• 14 02|Jawad Marouane|+212 6 •• •• 69 68": [
+      10,
+      5
+    ],
+    "s09|Division 4|Journée 7|Xavier Rocamora|+212 6 •• •• 85 15|Nabil Benjelloun|+44 74 •••• 0586": [
+      10,
+      8
+    ],
+    "s09|Division 4|Journée 8|Ismail Benkirane|+212 6 •• •• 80 30|Fahd Benkirane|+212 6 •• •• 72 45": [
+      11,
+      9
+    ],
+    "s09|Division 4|Journée 9|Fahd Benkirane|+212 6 •• •• 72 45|Nabil Benjelloun|+44 74 •••• 0586": [
+      11,
+      9
+    ],
+    "s09|Division 5|Journée 2|Cédric Nalté|+212 6 •• •• 59 66|Hicham Cherkaoui|+212 6 •• •• 39 00": [
+      13,
+      11
+    ],
+    "s09|Division 5|Journée 2|Mamoun Berrissoul|+212 7 •• •• 18 95|Omar Bellamine|+212 6 •• •• 10 70": [
+      10,
+      8
+    ],
+    "s09|Division 5|Journée 5|Omar Bellamine|+212 6 •• •• 10 70|Julien Broussard|+212 6 •• •• 32 03": [
+      10,
+      3
+    ],
+    "s09|Division 5|Journée 6|Hamid El Kouchi|+212 6 •• •• 42 93|Mohamed Chennaoui|+212 6 •• •• 24 71": [
+      10,
+      3
+    ],
+    "s09|Division 5|Journée 7|Cédric Nalté|+212 6 •• •• 59 66|Julien Broussard|+212 6 •• •• 32 03": [
+      8,
+      10
+    ],
+    "s09|Division 5|Journée 8|Julien Broussard|+212 6 •• •• 32 03|Aboubakr Jeddioui|+212 6 •• •• 09 67": [
+      10,
+      6
+    ],
+    "s09|Division 5|Journée 9|Hicham Cherkaoui|+212 6 •• •• 39 00|Omar Bellamine|+212 6 •• •• 10 70": [
+      11,
+      9
+    ],
+    "s09|Division 6|Journée 1|Ismail Benjelloun|+33 6 •• •• 22 15|Mamoun Mechiche Alami|+212 6 •• •• 71 80": [
+      4,
+      10
+    ],
+    "s09|Division 6|Journée 2|Driss Moumane|+212 6 •• •• 30 85|Ali Zizi|+212 6 •• •• 35 94": [
+      10,
+      4
+    ],
+    "s09|Division 6|Journée 4|Adil El Kettani|+212 6 •• •• 51 55|Fayssal Benbrahim|+212 6 •• •• 22 35": [
+      10,
+      8
+    ],
+    "s09|Division 6|Journée 5|Ali Zizi|+212 6 •• •• 35 94|Adil El Kettani|+212 6 •• •• 51 55": [
+      7,
+      10
+    ],
+    "s09|Division 6|Journée 5|Driss Moumane|+212 6 •• •• 30 85|Kamal Lahbabi|+212 6 •• •• 19 87": [
+      10,
+      2
+    ],
+    "s09|Division 6|Journée 6|Amine Idrissi Kaitouni|+212 6 •• •• 40 46|Driss Moumane|+212 6 •• •• 30 85": [
+      7,
+      10
+    ],
+    "s09|Division 6|Journée 9|Ali Zizi|+212 6 •• •• 35 94|Mehdi Berrada|+212 6 •• •• 41 03": [
+      4,
+      10
+    ],
+    "s09|Division 7|Journée 5|Othman Mdidech|+212 6 •• •• 96 81|Tarik Boueddine|+212 6 •• •• 87 47": [
+      4,
+      10
+    ],
+    "s09|Division 7|Journée 7|Tarik Boueddine|+212 6 •• •• 87 47|Anas Kabbaj|+212 6 •• •• 42 18": [
+      10,
+      4
+    ],
+    "s09|Division 7|Journée 9|Ali Akesbi|+212 6 •• •• 16 13|Hassan Ibenmansour|+33 6 •• •• 85 60": [
+      2,
+      10
+    ],
+    "s09|Division 7|Journée 9|Tarik Boueddine|+212 6 •• •• 87 47|Youssef Diroussi|+212 6 •• •• 19 96": [
+      4,
+      10
+    ],
+    "s09|Division 8|Journée 2|Hamza Slaoui|+212 6 •• •• 56 56|Ali Squalli|+212 6 •• •• 12 18": [
+      6,
+      10
+    ],
+    "s09|Division 8|Journée 2|Reda Bezzari|+212 6 •• •• 66 09|Omar Rahmouni|+212 7 •• •• 82 12": [
+      7,
+      10
+    ],
+    "s09|Division 8|Journée 3|Hamza Slaoui|+212 6 •• •• 56 56|Saad Bennani|+212 6 •• •• 07 24": [
+      10,
+      7
+    ],
+    "s09|Division 8|Journée 4|Omar Rahmouni|+212 7 •• •• 82 12|Abdelfattah Gourja|+212 6 •• •• 53 75": [
+      10,
+      7
+    ],
+    "s09|Division 8|Journée 5|Saad Bennani|+212 6 •• •• 07 24|Hicham Bennani|+212 6 •• •• 68 45": [
+      10,
+      5
+    ],
+    "s09|Division 8|Journée 5|Younes Slaoui|+212 6 •• •• 17 55|Amine Lfadeli|+212 6 •• •• 21 79": [
+      7,
+      10
+    ],
+    "s09|Division 8|Journée 6|Amine Lfadeli|+212 6 •• •• 21 79|Reda Bezzari|+212 6 •• •• 66 09": [
+      5,
+      10
+    ],
+    "s09|Division 8|Journée 8|Omar Rahmouni|+212 7 •• •• 82 12|Ali Squalli|+212 6 •• •• 12 18": [
+      9,
+      11
+    ],
+    "s09|Division 8|Journée 9|Reda Bezzari|+212 6 •• •• 66 09|Saad Bennani|+212 6 •• •• 07 24": [
+      10,
+      3
+    ],
+    "s09|Division 9|Journée 3|Catherine Yans|+212 6 •• •• 23 50|Tom Thréard|+33 7 •• •• 43 82": [
+      8,
+      10
+    ],
+    "s09|Division 9|Journée 3|Ghali Lahlou|+33 6 •• •• 78 73|Hamza Lahlou|+212 6 •• •• 56 46": [
+      11,
+      9
+    ],
+    "s09|Division 9|Journée 5|Noureddine Rais|+212 6 •• •• 05 01|Ismaïl Bennani|+212 6 •• •• 02 56": [
+      5,
+      10
+    ],
+    "s09|Division 9|Journée 6|Hamza Lahlou|+212 6 •• •• 56 46|Mehdi Mrabet|+212 6 •• •• 43 37": [
+      9,
+      11
+    ],
+    "s09|Division 9|Journée 6|Noureddine Rais|+212 6 •• •• 05 01|Catherine Yans|+212 6 •• •• 23 50": [
+      9,
+      11
+    ],
+    "s09|Division 9|Journée 7|Thomas Gilanton|+212 6 •• •• 82 15|Catherine Yans|+212 6 •• •• 23 50": [
+      10,
+      3
+    ],
+    "s09|Division 9|Journée 8|Ghali Lahlou|+33 6 •• •• 78 73|Youssef Essabban|+212 6 •• •• 16 81": [
+      11,
+      9
+    ],
+    "s09|Division 9|Journée 8|Noureddine Rais|+212 6 •• •• 05 01|Mehdi Smires|+212 6 •• •• 98 43": [
+      10,
+      2
+    ],
+    "s09|Division 9|Journée 8|Thomas Gilanton|+212 6 •• •• 82 15|Tom Thréard|+33 7 •• •• 43 82": [
+      10,
+      7
+    ],
+    "s09|Division 9|Journée 9|Ghali Lahlou|+33 6 •• •• 78 73|Noureddine Rais|+212 6 •• •• 05 01": [
+      10,
+      7
+    ],
+    "s09|Division Poussin|Journée 6|Taoufik Darraz|+212 6 •• •• 04 43|Saad Bennani|+212 6 •• •• 46 47": [
+      10,
+      8
+    ],
+    "s09|Division Poussin|Journée 7|Taoufik Darraz|+212 6 •• •• 04 43|Badr Aman|+212 6 •• •• 89 46": [
+      17,
+      15
+    ],
+    "s09|Division Poussin|Journée 8|Jonathan Le Henry|+212 6 •• •• 25 07|Abdou Iraqi|+212 6 •• •• 72 20": [
+      7,
+      10
+    ],
+    "s09|Division Poussin|Journée 9|Taoufik Darraz|+212 6 •• •• 04 43|Grégoire Chaste|+212 6 •• •• 99 18": [
+      10,
+      6
+    ],
+    "s09|Division Étoile|Journée 1|Amine Sebti|+212 6 •• •• 18 24|Mamoun Bengelloun|+212 6 •• •• 91 06": [
+      6,
+      10
+    ],
+    "s09|Division Étoile|Journée 9|Salim Benabdallah|+33 6 •• •• 15 56|Mekki El Kettani|+212 6 •• •• 11 24": [
+      6,
+      10
+    ],
+    "s10|Division 10|Journée 1|Noureddine Rais|+212 6 •• •• 05 01|Catherine Yans|+212 6 •• •• 23 50": [
+      10,
+      4
+    ],
+    "s10|Division 10|Journée 4|Younes Slaoui|+212 6 •• •• 17 55|Noureddine Rais|+212 6 •• •• 05 01": [
+      11,
+      9
+    ],
+    "s10|Division 10|Journée 5|Ghali Lahlou|+33 6 •• •• 78 73|Noureddine Rais|+212 6 •• •• 05 01": [
+      10,
+      3
+    ],
+    "s10|Division 10|Journée 7|Tom Thréard|+33 7 •• •• 43 82|Tarik Derdeb|+212 6 •• •• 25 13": [
+      5,
+      10
+    ],
+    "s10|Division 10|Journée 7|Youssef Essabban|+212 6 •• •• 16 81|Younes Slaoui|+212 6 •• •• 17 55": [
+      10,
+      3
+    ],
+    "s10|Division 10|Journée 9|Tarik Derdeb|+212 6 •• •• 25 13|Catherine Yans|+212 6 •• •• 23 50": [
+      5,
+      10
+    ],
+    "s10|Division 10|Journée 9|Tom Thréard|+33 7 •• •• 43 82|Noureddine Rais|+212 6 •• •• 05 01": [
+      11,
+      9
+    ],
+    "s10|Division 11|Journée 2|Zouhair El Asfari|+212 6 •• •• 22 79|Mehdi Smires|+212 6 •• •• 98 43": [
+      10,
+      7
+    ],
+    "s10|Division 11|Journée 4|Faouzi Hatimy|+212 6 •• •• 74 24|Brahim Laroui|+212 6 •• •• 91 44": [
+      5,
+      10
+    ],
+    "s10|Division 11|Journée 5|Moubarak El Kouchi|+212 6 •• •• 21 21|Zouhair El Asfari|+212 6 •• •• 22 79": [
+      10,
+      4
+    ],
+    "s10|Division 11|Journée 6|Mehdi Smires|+212 6 •• •• 98 43|Ali Chami|+212 6 •• •• 24 10": [
+      3,
+      10
+    ],
+    "s10|Division 11|Journée 7|Mahmoud Tabbara|+212 6 •• •• 43 64|Mehdi Smires|+212 6 •• •• 98 43": [
+      7,
+      10
+    ],
+    "s10|Division 11|Journée 8|Mehdi Baumel|+212 6 •• •• 86 24|Zouhair El Asfari|+212 6 •• •• 22 79": [
+      10,
+      8
+    ],
+    "s10|Division 11|Journée 8|Mehdi Smires|+212 6 •• •• 98 43|Moubarak El Kouchi|+212 6 •• •• 21 21": [
+      8,
+      10
+    ],
+    "s10|Division 12|Journée 3|Simo Ouazzani|+212 6 •• •• 23 52|Anis Bouftass|+212 6 •• •• 08 96": [
+      10,
+      4
+    ],
+    "s10|Division 12|Journée 5|Sébastien Chasseray|+212 6 •• •• 36 58|Rajaa Benbadri|+212 6 •• •• 28 66": [
+      10,
+      8
+    ],
+    "s10|Division 12|Journée 6|Saïd Benzekri|+212 6 •• •• 82 17|Ismaël Mechatte|+212 6 •• •• 06 79": [
+      10,
+      6
+    ],
+    "s10|Division 12|Journée 6|Simo Ouazzani|+212 6 •• •• 23 52|Mohamed Cherradi|+212 6 •• •• 90 28": [
+      10,
+      3
+    ],
+    "s10|Division 12|Journée 7|Ismaël Mechatte|+212 6 •• •• 06 79|Amine Louali|+212 6 •• •• 31 28": [
+      5,
+      10
+    ],
+    "s10|Division 12|Journée 8|Mohamed Cherradi|+212 6 •• •• 90 28|Ismaël Mechatte|+212 6 •• •• 06 79": [
+      11,
+      9
+    ],
+    "s10|Division 12|Journée 8|Simo Ouazzani|+212 6 •• •• 23 52|Mohamed-Ali Khelil|+212 6 •• •• 20 51": [
+      6,
+      10
+    ],
+    "s10|Division 12|Journée 9|Anis Bouftass|+212 6 •• •• 08 96|Mohamed Cherradi|+212 6 •• •• 90 28": [
+      5,
+      10
+    ],
+    "s10|Division 12|Journée 9|Rajaa Benbadri|+212 6 •• •• 28 66|Ismaël Mechatte|+212 6 •• •• 06 79": [
+      10,
+      8
+    ],
+    "s10|Division 13|Journée 2|Augustin Chaste|+212 6 •• •• 99 18|Sanaa Tazi|+212 6 •• •• 69 28": [
+      10,
+      12
+    ],
+    "s10|Division 13|Journée 2|Yacine El Jamali|+212 6 •• •• 93 93|Reda Alaoui|+212 6 •• •• 73 76": [
+      10,
+      8
+    ],
+    "s10|Division 13|Journée 4|Augustin Chaste|+212 6 •• •• 99 18|Jad Benkirane|+212 6 •• •• 72 45": [
+      9,
+      11
+    ],
+    "s10|Division 13|Journée 5|Abderrahim Ben El Attar|+212 6 •• •• 00 54|Abdessamad Zouitini|+33 6 •• •• 68 46": [
+      11,
+      9
+    ],
+    "s10|Division 13|Journée 7|Augustin Chaste|+212 6 •• •• 99 18|Abdessamad Zouitini|+33 6 •• •• 68 46": [
+      11,
+      9
+    ],
+    "s10|Division 13|Journée 8|Abdessamad Zouitini|+33 6 •• •• 68 46|Kamil Bengelloun|+212 6 •• •• 91 06": [
+      11,
+      9
+    ],
+    "s10|Division 14|Journée 5|Amine Alj|+212 6 •• •• 85 87|Redouane Tazi|+212 6 •• •• 00 01": [
+      10,
+      7
+    ],
+    "s10|Division 14|Journée 6|Morchid Fassi-Fihri|+212 6 •• •• 36 41|Ratiba Zemmama|+212 6 •• •• 66 93": [
+      10,
+      5
+    ],
+    "s10|Division 14|Journée 7|Redouane Tazi|+212 6 •• •• 00 01|Iness Kazmane|+212 6 •• •• 87 70": [
+      10,
+      4
+    ],
+    "s10|Division 1|Journée 1|Saad Bennis|+212 6 •• •• 31 44|Mekki El Kettani|+212 6 •• •• 11 24": [
+      5,
+      10
+    ],
+    "s10|Division 1|Journée 5|Mustapha Aman|+212 6 •• •• 63 41|Saad Bennis|+212 6 •• •• 31 44": [
+      10,
+      5
+    ],
+    "s10|Division 1|Journée 8|Grégoire Chaste|+212 6 •• •• 99 18|Mekki El Kettani|+212 6 •• •• 11 24": [
+      5,
+      10
+    ],
+    "s10|Division 2|Journée 1|Youssef Lakhiry|+212 6 •• •• 23 40|Hassan Errafi|+212 6 •• •• 55 88": [
+      10,
+      8
+    ],
+    "s10|Division 2|Journée 3|Ali Moudden|+212 6 •• •• 12 18|Simo Zizi|+212 6 •• •• 88 03": [
+      10,
+      6
+    ],
+    "s10|Division 2|Journée 4|Hassan Errafi|+212 6 •• •• 55 88|Ali Moudden|+212 6 •• •• 12 18": [
+      7,
+      10
+    ],
+    "s10|Division 2|Journée 5|Hassan Errafi|+212 6 •• •• 55 88|Anass Belmehdi|+212 6 •• •• 83 61": [
+      6,
+      10
+    ],
+    "s10|Division 2|Journée 7|Anass Belmehdi|+212 6 •• •• 83 61|Reda Benkirane|+212 6 •• •• 08 46": [
+      1,
+      10
+    ],
+    "s10|Division 2|Journée 8|Simo Zizi|+212 6 •• •• 88 03|Hassan Errafi|+212 6 •• •• 55 88": [
+      10,
+      7
+    ],
+    "s10|Division 2|Journée 9|Adil El Kettani|+212 6 •• •• 51 55|Hassan Errafi|+212 6 •• •• 55 88": [
+      6,
+      10
+    ],
+    "s10|Division 3|Journée 7|Aziz Daya|+212 6 •• •• 85 39|Kamil Cherkaoui|+212 6 •• •• 39 00": [
+      3,
+      10
+    ],
+    "s10|Division 3|Journée 8|Aziz Daya|+212 6 •• •• 85 39|Khalil Tala|+212 6 •• •• 77 28": [
+      6,
+      10
+    ],
+    "s10|Division 4|Journée 1|Abdenasser Zahiri|+212 6 •• •• 90 39|Mehdi Chafai|+212 6 •• •• 37 76": [
+      10,
+      5
+    ],
+    "s10|Division 5|Journée 2|Stephan Pola|+212 6 •• •• 22 76|Jawad Marouane|+212 6 •• •• 69 68": [
+      3,
+      7
+    ],
+    "s10|Division 6|Journée 1|Ali Squalli|+212 6 •• •• 12 18|Hamid El Kouchi|+212 6 •• •• 42 93": [
+      7,
+      10
+    ],
+    "s10|Division 6|Journée 2|Mouhssine Abouyoub|+212 6 •• •• 35 34|Ali Squalli|+212 6 •• •• 12 18": [
+      15,
+      13
+    ],
+    "s10|Division 6|Journée 3|Julien Broussard|+212 6 •• •• 32 03|Mouhssine Abouyoub|+212 6 •• •• 35 34": [
+      11,
+      9
+    ],
+    "s10|Division 6|Journée 3|Mohamed Chennaoui|+212 6 •• •• 24 71|Aboubakr Jeddioui|+212 6 •• •• 09 67": [
+      10,
+      7
+    ],
+    "s10|Division 6|Journée 8|Mohamed Chennaoui|+212 6 •• •• 24 71|Driss Moumane|+212 6 •• •• 30 85": [
+      9,
+      11
+    ],
+    "s10|Division 6|Journée 9|Hicham Cherkaoui|+212 6 •• •• 39 00|Mohamed Chennaoui|+212 6 •• •• 24 71": [
+      4,
+      10
+    ],
+    "s10|Division 7|Journée 1|Tarik Boueddine|+212 6 •• •• 87 47|Mamoun Mechiche Alami|+212 6 •• •• 71 80": [
+      10,
+      3
+    ],
+    "s10|Division 7|Journée 2|Mehdi Berrada|+212 6 •• •• 41 03|Tarik Boueddine|+212 6 •• •• 87 47": [
+      10,
+      7
+    ],
+    "s10|Division 7|Journée 4|Ali Akesbi|+212 6 •• •• 16 13|Tarik Boueddine|+212 6 •• •• 87 47": [
+      6,
+      10
+    ],
+    "s10|Division 7|Journée 4|Ismail Benjelloun|+33 6 •• •• 22 15|Mamoun Mechiche Alami|+212 6 •• •• 71 80": [
+      5,
+      10
+    ],
+    "s10|Division 7|Journée 5|Amine Idrissi Kaitouni|+212 6 •• •• 40 46|Hassan Ibenmansour|+33 6 •• •• 85 60": [
+      7,
+      10
+    ],
+    "s10|Division 7|Journée 5|Mamoun Mechiche Alami|+212 6 •• •• 71 80|Ali Akesbi|+212 6 •• •• 16 13": [
+      10,
+      7
+    ],
+    "s10|Division 7|Journée 7|Ismail Benjelloun|+33 6 •• •• 22 15|Ali Akesbi|+212 6 •• •• 16 13": [
+      5,
+      10
+    ],
+    "s10|Division 8|Journée 1|Mehdi Barouti|+44 75 •••• 8481|Ali Jaouher|+212 6 •• •• 51 22": [
+      10,
+      6
+    ],
+    "s10|Division 8|Journée 1|Moncef Alaoui|+212 6 •• •• 79 46|Ismaïl Honegger|+212 6 •• •• 26 48": [
+      10,
+      7
+    ],
+    "s10|Division 8|Journée 4|Mehdi Barouti|+44 75 •••• 8481|Hamza Slaoui|+212 6 •• •• 56 56": [
+      6,
+      10
+    ],
+    "s10|Division 8|Journée 4|Omar Rahmouni|+212 7 •• •• 82 12|Ismaïl Honegger|+212 6 •• •• 26 48": [
+      10,
+      4
+    ],
+    "s10|Division 8|Journée 6|Ismaïl Honegger|+212 6 •• •• 26 48|Hakim Jamaï|+212 6 •• •• 25 50": [
+      10,
+      3
+    ],
+    "s10|Division 8|Journée 7|Moncef Alaoui|+212 6 •• •• 79 46|Omar Rahmouni|+212 7 •• •• 82 12": [
+      10,
+      7
+    ],
+    "s10|Division 8|Journée 8|Hamza Slaoui|+212 6 •• •• 56 56|Omar Rahmouni|+212 7 •• •• 82 12": [
+      4,
+      10
+    ],
+    "s10|Division 8|Journée 9|Moncef Alaoui|+212 6 •• •• 79 46|Hamza Slaoui|+212 6 •• •• 56 56": [
+      10,
+      8
+    ],
+    "s10|Division 9|Journée 6|Othman Mdidech|+212 6 •• •• 96 81|Amine Lfadeli|+212 6 •• •• 21 79": [
+      3,
+      10
+    ],
+    "s10|Division 9|Journée 6|Saad Bennani|+212 6 •• •• 07 24|Hicham Bennani|+212 6 •• •• 68 45": [
+      10,
+      7
+    ],
+    "s10|Division 9|Journée 9|Karim Azeriah|+212 6 •• •• 61 14|Amine Lfadeli|+212 6 •• •• 21 79": [
+      6,
+      10
+    ],
+    "s10|Division Étoile|Journée 1|Majid Slimani|+212 6 •• •• 85 17|Pascal Giusto|+212 6 •• •• 24 94": [
+      6,
+      10
+    ],
+    "s10|Division Étoile|Journée 2|Salim Benabdallah|+33 6 •• •• 15 56|Hakim Chaoui|+212 6 •• •• 02 95": [
+      10,
+      8
+    ],
+    "s10|Division Étoile|Journée 5|Taoufik Darraz|+212 6 •• •• 04 43|Mamoun Bengelloun|+212 6 •• •• 91 06": [
+      5,
+      10
+    ],
+    "s10|Division Étoile|Journée 6|Majid Slimani|+212 6 •• •• 85 17|Salim Benabdallah|+33 6 •• •• 15 56": [
+      5,
+      10
+    ],
+    "s11|Division 10|Journée 2|Amine Louali|+212 6 •• •• 31 28|Yassine El Akkari|+212 6 •• •• 46 40": [
+      6,
+      10
+    ],
+    "s11|Division 10|Journée 3|Ali Chami|+212 6 •• •• 24 10|Nabil Sebti|+212 6 •• •• 91 31": [
+      10,
+      12
+    ],
+    "s11|Division 10|Journée 4|Yassine El Akkari|+212 6 •• •• 46 40|Mehdi Smires|+212 6 •• •• 98 43": [
+      8,
+      10
+    ],
+    "s11|Division 10|Journée 6|Amine Louali|+212 6 •• •• 31 28|Ali Chami|+212 6 •• •• 24 10": [
+      10,
+      3
+    ],
+    "s11|Division 10|Journée 8|Nabil Sebti|+212 6 •• •• 91 31|Youssef El Akkari|+212 6 •• •• 36 72": [
+      10,
+      7
+    ],
+    "s11|Division 10|Journée 8|Sébastien Chasseray|+212 6 •• •• 36 58|Zouhair El Asfari|+212 6 •• •• 22 79": [
+      10,
+      6
+    ],
+    "s11|Division 10|Journée 9|Amine Louali|+212 6 •• •• 31 28|Nabil Sebti|+212 6 •• •• 91 31": [
+      7,
+      10
+    ],
+    "s11|Division 11|Journée 2|Rajaa Benbadri|+212 6 •• •• 28 66|Simo Ouazzani|+212 6 •• •• 23 52": [
+      8,
+      10
+    ],
+    "s11|Division 11|Journée 5|Ismaël Mechatte|+212 6 •• •• 06 79|Rajaa Benbadri|+212 6 •• •• 28 66": [
+      10,
+      5
+    ],
+    "s11|Division 11|Journée 6|Abderrahim Ben El Attar|+212 6 •• •• 00 54|Mohamed-Ali Khelil|+212 6 •• •• 20 51": [
+      9,
+      11
+    ],
+    "s11|Division 11|Journée 8|Simo Ouazzani|+212 6 •• •• 23 52|Ismaël Mechatte|+212 6 •• •• 06 79": [
+      11,
+      13
+    ],
+    "s11|Division 11|Journée 9|Ismaël Mechatte|+212 6 •• •• 06 79|Saïd Benzekri|+212 6 •• •• 82 17": [
+      10,
+      7
+    ],
+    "s11|Division 12|Journée 1|Anis Bouftass|+212 6 •• •• 08 96|Augustin Chaste|+212 6 •• •• 99 18": [
+      10,
+      7
+    ],
+    "s11|Division 12|Journée 2|Abdessamad Zouitini|+33 6 •• •• 68 46|Iness Kazmane|+212 6 •• •• 87 70": [
+      8,
+      10
+    ],
+    "s11|Division 12|Journée 3|Mehdi Scally|+212 6 •• •• 29 74|Anis Bouftass|+212 6 •• •• 08 96": [
+      8,
+      10
+    ],
+    "s11|Division 12|Journée 5|Abdessamad Zouitini|+33 6 •• •• 68 46|Anis Bouftass|+212 6 •• •• 08 96": [
+      6,
+      10
+    ],
+    "s11|Division 12|Journée 9|Mehdi Scally|+212 6 •• •• 29 74|Iness Kazmane|+212 6 •• •• 87 70": [
+      6,
+      10
+    ],
+    "s11|Division 1|Journée 5|Ladislas Lefort|+212 6 •• •• 73 83|Saad Bennani|+212 6 •• •• 46 47": [
+      6,
+      10
+    ],
+    "s11|Division 1|Journée 7|Grégoire Chaste|+212 6 •• •• 99 18|Hakim Chaoui|+212 6 •• •• 02 95": [
+      9,
+      11
+    ],
+    "s11|Division 1|Journée 8|Hakim Chaoui|+212 6 •• •• 02 95|Saad Bennani|+212 6 •• •• 46 47": [
+      8,
+      10
+    ],
+    "s11|Division 2|Journée 2|Youssef Lakhiry|+212 6 •• •• 23 40|Amine Benaicha|+212 6 •• •• 55 01": [
+      10,
+      7
+    ],
+    "s11|Division 2|Journée 3|Saad Bennis|+212 6 •• •• 31 44|Hicham Bennis|+212 6 •• •• 54 26": [
+      10,
+      6
+    ],
+    "s11|Division 2|Journée 5|Youssef Lakhiry|+212 6 •• •• 23 40|Hassan Errafi|+212 6 •• •• 55 88": [
+      10,
+      5
+    ],
+    "s11|Division 2|Journée 6|Hassan Errafi|+212 6 •• •• 55 88|Saad Bennis|+212 6 •• •• 31 44": [
+      3,
+      10
+    ],
+    "s11|Division 2|Journée 8|Hicham Bennis|+212 6 •• •• 54 26|Youssef Lakhiry|+212 6 •• •• 23 40": [
+      8,
+      10
+    ],
+    "s11|Division 2|Journée 8|Simo Zizi|+212 6 •• •• 88 03|Hassan Errafi|+212 6 •• •• 55 88": [
+      10,
+      3
+    ],
+    "s11|Division 2|Journée 9|Neil Sebti|+212 6 •• •• 47 60|Youssef Lakhiry|+212 6 •• •• 23 40": [
+      4,
+      10
+    ],
+    "s11|Division 3|Journée 1|Abdenasser Zahiri|+212 6 •• •• 90 39|Youssef Tazi|+212 6 •• •• 09 09": [
+      8,
+      10
+    ],
+    "s11|Division 3|Journée 2|Ismail Benkirane|+212 6 •• •• 80 30|Abdenasser Zahiri|+212 6 •• •• 90 39": [
+      10,
+      3
+    ],
+    "s11|Division 3|Journée 4|Reda Benkirane|+212 6 •• •• 08 46|Youssef Tazi|+212 6 •• •• 09 09": [
+      7,
+      10
+    ],
+    "s11|Division 3|Journée 5|Khalil Tala|+212 6 •• •• 77 28|Abdenasser Zahiri|+212 6 •• •• 90 39": [
+      10,
+      8
+    ],
+    "s11|Division 3|Journée 5|Youssef Tazi|+212 6 •• •• 09 09|Salim Chaoui|+212 6 •• •• 25 58": [
+      7,
+      10
+    ],
+    "s11|Division 3|Journée 6|Reda Benkirane|+212 6 •• •• 08 46|Anass Belmehdi|+212 6 •• •• 83 61": [
+      10,
+      4
+    ],
+    "s11|Division 3|Journée 8|Salim Chaoui|+212 6 •• •• 25 58|Anass Belmehdi|+212 6 •• •• 83 61": [
+      11,
+      6
+    ],
+    "s11|Division 4|Journée 1|Jawad Marouane|+212 6 •• •• 69 68|Othmane Fjer|+212 6 •• •• 54 43": [
+      10,
+      7
+    ],
+    "s11|Division 4|Journée 1|Xavier Rocamora|+212 6 •• •• 85 15|Mehdi Chafai|+212 6 •• •• 37 76": [
+      3,
+      10
+    ],
+    "s11|Division 4|Journée 2|Driss El Alami|+212 6 •• •• 99 04|Xavier Rocamora|+212 6 •• •• 85 15": [
+      7,
+      10
+    ],
+    "s11|Division 4|Journée 2|Nabil Benjelloun|+44 74 •••• 0586|Yassir El Andaloussi|+212 6 •• •• 75 14": [
+      8,
+      10
+    ],
+    "s11|Division 4|Journée 4|Mamoun Chlyah|+212 6 •• •• 14 02|Othmane Fjer|+212 6 •• •• 54 43": [
+      10,
+      3
+    ],
+    "s11|Division 4|Journée 5|Mehdi Chafai|+212 6 •• •• 37 76|Jawad Marouane|+212 6 •• •• 69 68": [
+      12,
+      10
+    ],
+    "s11|Division 4|Journée 6|Aziz Daya|+212 6 •• •• 85 39|Mehdi Chafai|+212 6 •• •• 37 76": [
+      10,
+      4
+    ],
+    "s11|Division 4|Journée 6|Yassir El Andaloussi|+212 6 •• •• 75 14|Mamoun Chlyah|+212 6 •• •• 14 02": [
+      5,
+      10
+    ],
+    "s11|Division 5|Journée 2|Fahd Benkirane|+212 6 •• •• 72 45|Cédric Nalté|+212 6 •• •• 59 66": [
+      4,
+      10
+    ],
+    "s11|Division 5|Journée 4|Driss Moumane|+212 6 •• •• 30 85|Fahd Benkirane|+212 6 •• •• 72 45": [
+      6,
+      10
+    ],
+    "s11|Division 5|Journée 6|Julien Broussard|+212 6 •• •• 32 03|Fahd Benkirane|+212 6 •• •• 72 45": [
+      7,
+      10
+    ],
+    "s11|Division 5|Journée 8|Hicham Cherkaoui|+212 6 •• •• 39 00|Mohamed Chennaoui|+212 6 •• •• 24 71": [
+      10,
+      4
+    ],
+    "s11|Division 5|Journée 9|Mohamed Chennaoui|+212 6 •• •• 24 71|Fahd Benkirane|+212 6 •• •• 72 45": [
+      8,
+      10
+    ],
+    "s11|Division 6|Journée 2|Ali Squalli|+212 6 •• •• 12 18|Tarik Boueddine|+212 6 •• •• 87 47": [
+      5,
+      10
+    ],
+    "s11|Division 6|Journée 2|Mamoun Mechiche Alami|+212 6 •• •• 71 80|Mouhssine Abouyoub|+212 6 •• •• 35 34": [
+      10,
+      4
+    ],
+    "s11|Division 6|Journée 4|Hassan Ibenmansour|+33 6 •• •• 85 60|Mamoun Mechiche Alami|+212 6 •• •• 71 80": [
+      10,
+      4
+    ],
+    "s11|Division 6|Journée 7|Mouhssine Abouyoub|+212 6 •• •• 35 34|Mehdi Berrada|+212 6 •• •• 41 03": [
+      10,
+      8
+    ],
+    "s11|Division 6|Journée 8|Tarik Boueddine|+212 6 •• •• 87 47|Hassan Ibenmansour|+33 6 •• •• 85 60": [
+      10,
+      5
+    ],
+    "s11|Division 6|Journée 9|Ali Akesbi|+212 6 •• •• 16 13|Tarik Boueddine|+212 6 •• •• 87 47": [
+      4,
+      10
+    ],
+    "s11|Division 7|Journée 4|Hamza Slaoui|+212 6 •• •• 56 56|Hakim Jamaï|+212 6 •• •• 25 50": [
+      10,
+      8
+    ],
+    "s11|Division 7|Journée 4|Mehdi Barouti|+44 75 •••• 8481|Mehdi Mrabet|+212 6 •• •• 43 37": [
+      7,
+      10
+    ],
+    "s11|Division 7|Journée 7|Omar Rahmouni|+212 7 •• •• 82 12|Moncef Alaoui|+212 6 •• •• 79 46": [
+      7,
+      10
+    ],
+    "s11|Division 7|Journée 8|Omar Rahmouni|+212 7 •• •• 82 12|Hamza Slaoui|+212 6 •• •• 56 56": [
+      10,
+      4
+    ],
+    "s11|Division 7|Journée 9|Ismaïl Honegger|+212 6 •• •• 26 48|Moncef Alaoui|+212 6 •• •• 79 46": [
+      10,
+      5
+    ],
+    "s11|Division 8|Journée 1|Amine Lfadeli|+212 6 •• •• 21 79|Saad Bennani|+212 6 •• •• 07 24": [
+      10,
+      3
+    ],
+    "s11|Division 8|Journée 3|Younes Slaoui|+212 6 •• •• 17 55|Youssef Essabban|+212 6 •• •• 16 81": [
+      13,
+      11
+    ],
+    "s11|Division 8|Journée 5|Amine Lfadeli|+212 6 •• •• 21 79|Hicham Bennani|+212 6 •• •• 68 45": [
+      10,
+      8
+    ],
+    "s11|Division 8|Journée 6|Youssef Essabban|+212 6 •• •• 16 81|Amine Lfadeli|+212 6 •• •• 21 79": [
+      3,
+      10
+    ],
+    "s11|Division 8|Journée 7|Amine Lfadeli|+212 6 •• •• 21 79|Ali Jaouher|+212 6 •• •• 51 22": [
+      12,
+      14
+    ],
+    "s11|Division 8|Journée 7|Hicham Bennani|+212 6 •• •• 68 45|Younes Slaoui|+212 6 •• •• 17 55": [
+      10,
+      4
+    ],
+    "s11|Division 8|Journée 8|Saad Bennani|+212 6 •• •• 07 24|Youssef Essabban|+212 6 •• •• 16 81": [
+      5,
+      10
+    ],
+    "s11|Division 8|Journée 9|Amine Lfadeli|+212 6 •• •• 21 79|Younes Slaoui|+212 6 •• •• 17 55": [
+      10,
+      4
+    ],
+    "s11|Division 8|Journée 9|Thomas Gilanton|+212 6 •• •• 82 15|Saad Bennani|+212 6 •• •• 07 24": [
+      3,
+      10
+    ],
+    "s11|Division 9|Journée 3|Moubarak El Kouchi|+212 6 •• •• 21 21|Karim Azeriah|+212 6 •• •• 61 14": [
+      10,
+      5
+    ],
+    "s11|Division 9|Journée 3|Noureddine Rais|+212 6 •• •• 05 01|Rayane Tazi|+212 7 •• •• 63 16": [
+      9,
+      11
+    ],
+    "s11|Division 9|Journée 4|Mahmoud Tabbara|+212 6 •• •• 43 64|Moubarak El Kouchi|+212 6 •• •• 21 21": [
+      9,
+      11
+    ],
+    "s11|Division 9|Journée 6|Mahmoud Tabbara|+212 6 •• •• 43 64|Noureddine Rais|+212 6 •• •• 05 01": [
+      10,
+      5
+    ],
+    "s11|Division 9|Journée 6|Mohcine Benjelloun|+212 6 •• •• 51 60|Rayane Tazi|+212 7 •• •• 63 16": [
+      11,
+      9
+    ],
+    "s11|Division 9|Journée 7|Rayane Tazi|+212 7 •• •• 63 16|Moubarak El Kouchi|+212 6 •• •• 21 21": [
+      10,
+      5
+    ],
+    "s11|Division Étoile|Journée 1|Ali Ftouh|+212 6 •• •• 58 04|Majid Slimani|+212 6 •• •• 85 17": [
+      10,
+      7
+    ],
+    "s11|Division Étoile|Journée 1|Mamoun Bengelloun|+212 6 •• •• 91 06|Tarik Jbel|+212 7 •• •• 81 86": [
+      9,
+      11
+    ],
+    "s11|Division Étoile|Journée 1|Taoufik Darraz|+212 6 •• •• 04 43|Amine Sebti|+212 6 •• •• 18 24": [
+      9,
+      11
+    ],
+    "s11|Division Étoile|Journée 2|Amine Sebti|+212 6 •• •• 18 24|Salim Benabdallah|+33 6 •• •• 15 56": [
+      10,
+      6
+    ],
+    "s11|Division Étoile|Journée 3|Mamoun Bengelloun|+212 6 •• •• 91 06|Taoufik Darraz|+212 6 •• •• 04 43": [
+      10,
+      7
+    ],
+    "s11|Division Étoile|Journée 5|Amine Sebti|+212 6 •• •• 18 24|Pascal Giusto|+212 6 •• •• 24 94": [
+      10,
+      6
+    ],
+    "s11|Division Étoile|Journée 6|Salim Benabdallah|+33 6 •• •• 15 56|Tarik Jbel|+212 7 •• •• 81 86": [
+      12,
+      14
+    ],
+    "s11|Division Étoile|Journée 8|Majid Slimani|+212 6 •• •• 85 17|Pascal Giusto|+212 6 •• •• 24 94": [
+      8,
+      10
+    ],
+    "s11|Division Étoile|Journée 9|Mamoun Bengelloun|+212 6 •• •• 91 06|Majid Slimani|+212 6 •• •• 85 17": [
+      5,
+      10
+    ],
+    "s12|Division 10|Journée 5|Amine Louali|+212 6 •• •• 31 28|Youssef El Akkari|+212 6 •• •• 36 72": [
+      6,
+      10
+    ],
+    "s12|Division 10|Journée 7|Mohamed-Ali Khelil|+212 6 •• •• 20 51|Ismaël Mechatte|+212 6 •• •• 06 79": [
+      7,
+      10
+    ],
+    "s12|Division 10|Journée 9|Mhamed Guessous|+212 6 •• •• 14 41|Yacine El Jamali|+212 6 •• •• 93 93": [
+      10,
+      6
+    ],
+    "s12|Division 11|Journée 2|Anis Bouftass|+212 6 •• •• 08 96|Rajaa Benbadri|+212 6 •• •• 28 66": [
+      3,
+      10
+    ],
+    "s12|Division 11|Journée 3|Faouzi Hatimy|+212 6 •• •• 74 24|Simo Ouazzani|+212 6 •• •• 23 52": [
+      11,
+      9
+    ],
+    "s12|Division 11|Journée 3|Rajaa Benbadri|+212 6 •• •• 28 66|Iness Kazmane|+212 6 •• •• 87 70": [
+      10,
+      8
+    ],
+    "s12|Division 12|Journée 4|Ishak Maher|+212 6 •• •• 76 14|Ratiba Zemmama|+212 6 •• •• 66 93": [
+      10,
+      3
+    ],
+    "s12|Division 12|Journée 7|Abdessamad Zouitini|+33 6 •• •• 68 46|Sara Kazmane|+212 6 •• •• 87 70": [
+      7,
+      10
+    ],
+    "s12|Division 12|Journée 9|Abdessamad Zouitini|+33 6 •• •• 68 46|Ratiba Zemmama|+212 6 •• •• 66 93": [
+      7,
+      10
+    ],
+    "s12|Division 13 (Accès)|Journée 3|Chakib Benjelloun|+212 6 •• •• 79 95|Othman Kamri|+212 6 •• •• 98 48": [
+      5,
+      10
+    ],
+    "s12|Division 1|Journée 1|Youssef Lakhiry|+212 6 •• •• 23 40|Saad Bennis|+212 6 •• •• 31 44": [
+      5,
+      10
+    ],
+    "s12|Division 1|Journée 5|Salim Benabdallah|+33 6 •• •• 15 56|Kamal Sebti|+212 6 •• •• 47 60": [
+      10,
+      5
+    ],
+    "s12|Division 2|Journée 6|Abdou Iraqi|+212 6 •• •• 72 20|Reda Benkirane|+212 6 •• •• 08 46": [
+      10,
+      2
+    ],
+    "s12|Division 2|Journée 7|Hicham Bennis|+212 6 •• •• 54 26|Hassan Errafi|+212 6 •• •• 55 88": [
+      10,
+      8
+    ],
+    "s12|Division 3|Journée 2|Abdenasser Zahiri|+212 6 •• •• 90 39|Othmane Laraqui|+212 6 •• •• 23 10": [
+      7,
+      10
+    ],
+    "s12|Division 3|Journée 3|Mamoun Chlyah|+212 6 •• •• 14 02|Salim Chaoui|+212 6 •• •• 25 58": [
+      10,
+      8
+    ],
+    "s12|Division 3|Journée 6|Omar Bellamine|+212 6 •• •• 10 70|Ismail Benkirane|+212 6 •• •• 80 30": [
+      8,
+      10
+    ],
+    "s12|Division 3|Journée 8|Nabil Benjelloun|+44 74 •••• 0586|Omar Bellamine|+212 6 •• •• 10 70": [
+      9,
+      11
+    ],
+    "s12|Division 3|Journée 9|Mamoun Berrissoul|+212 7 •• •• 18 95|Abdenasser Zahiri|+212 6 •• •• 90 39": [
+      3,
+      10
+    ],
+    "s12|Division 3|Journée 9|Salim Chaoui|+212 6 •• •• 25 58|Oussama Lemseffer|+212 6 •• •• 96 97": [
+      10,
+      4
+    ],
+    "s12|Division 4|Journée 5|Mehdi Chafai|+212 6 •• •• 37 76|Anass Belmehdi|+212 6 •• •• 83 61": [
+      10,
+      8
+    ],
+    "s12|Division 4|Journée 8|Mehdi Chafai|+212 6 •• •• 37 76|Xavier Rocamora|+212 6 •• •• 85 15": [
+      9,
+      11
+    ],
+    "s12|Division 4|Journée 9|Fayssal Benbrahim|+212 6 •• •• 22 35|Mehdi Chafai|+212 6 •• •• 37 76": [
+      10,
+      6
+    ],
+    "s12|Division 5|Journée 1|Driss Moumane|+212 6 •• •• 30 85|Fahd Benkirane|+212 6 •• •• 72 45": [
+      10,
+      6
+    ],
+    "s12|Division 5|Journée 3|Julien Broussard|+212 6 •• •• 32 03|Othmane Fjer|+212 6 •• •• 54 43": [
+      3,
+      10
+    ],
+    "s12|Division 5|Journée 3|Mamoun Mechiche Alami|+212 6 •• •• 71 80|Fahd Benkirane|+212 6 •• •• 72 45": [
+      10,
+      8
+    ],
+    "s12|Division 5|Journée 4|Driss Moumane|+212 6 •• •• 30 85|Hani Guennioui|+212 6 •• •• 40 09": [
+      3,
+      10
+    ],
+    "s12|Division 5|Journée 6|Driss Moumane|+212 6 •• •• 30 85|Jawad Marouane|+212 6 •• •• 69 68": [
+      12,
+      10
+    ],
+    "s12|Division 5|Journée 7|Jawad Marouane|+212 6 •• •• 69 68|Julien Broussard|+212 6 •• •• 32 03": [
+      6,
+      10
+    ],
+    "s12|Division 5|Journée 9|Othmane Fjer|+212 6 •• •• 54 43|Jawad Marouane|+212 6 •• •• 69 68": [
+      5,
+      10
+    ],
+    "s12|Division 6|Journée 1|Hamza Slaoui|+212 6 •• •• 56 56|Ali Squalli|+212 6 •• •• 12 18": [
+      7,
+      10
+    ],
+    "s12|Division 6|Journée 1|Mouhssine Abouyoub|+212 6 •• •• 35 34|Ismaïl Honegger|+212 6 •• •• 26 48": [
+      8,
+      10
+    ],
+    "s12|Division 6|Journée 2|Moncef Alaoui|+212 6 •• •• 79 46|Hicham Cherkaoui|+212 6 •• •• 39 00": [
+      13,
+      11
+    ],
+    "s12|Division 6|Journée 3|Jalil Skali|+212 6 •• •• 67 68|Mohamed Chennaoui|+212 6 •• •• 24 71": [
+      11,
+      13
+    ],
+    "s12|Division 6|Journée 4|Jalil Skali|+212 6 •• •• 67 68|Hicham Cherkaoui|+212 6 •• •• 39 00": [
+      10,
+      6
+    ],
+    "s12|Division 6|Journée 4|Mohamed Chennaoui|+212 6 •• •• 24 71|Ali Squalli|+212 6 •• •• 12 18": [
+      3,
+      10
+    ],
+    "s12|Division 6|Journée 4|Moncef Alaoui|+212 6 •• •• 79 46|Hamza Slaoui|+212 6 •• •• 56 56": [
+      10,
+      5
+    ],
+    "s12|Division 6|Journée 5|Moncef Alaoui|+212 6 •• •• 79 46|Mouhssine Abouyoub|+212 6 •• •• 35 34": [
+      11,
+      9
+    ],
+    "s12|Division 6|Journée 6|Jalil Skali|+212 6 •• •• 67 68|Moncef Alaoui|+212 6 •• •• 79 46": [
+      8,
+      10
+    ],
+    "s12|Division 6|Journée 6|Mohamed Chennaoui|+212 6 •• •• 24 71|Ismaïl Honegger|+212 6 •• •• 26 48": [
+      6,
+      10
+    ],
+    "s12|Division 6|Journée 6|Mouhssine Abouyoub|+212 6 •• •• 35 34|Hamza Slaoui|+212 6 •• •• 56 56": [
+      7,
+      3
+    ],
+    "s12|Division 6|Journée 7|Hamza Slaoui|+212 6 •• •• 56 56|Mohamed Chennaoui|+212 6 •• •• 24 71": [
+      10,
+      2
+    ],
+    "s12|Division 6|Journée 7|Ismaïl Honegger|+212 6 •• •• 26 48|Hicham Cherkaoui|+212 6 •• •• 39 00": [
+      10,
+      6
+    ],
+    "s12|Division 6|Journée 8|Mehdi Mrabet|+212 6 •• •• 43 37|Moncef Alaoui|+212 6 •• •• 79 46": [
+      7,
+      10
+    ],
+    "s12|Division 6|Journée 8|Tarik Boueddine|+212 6 •• •• 87 47|Ismaïl Honegger|+212 6 •• •• 26 48": [
+      10,
+      4
+    ],
+    "s12|Division 6|Journée 9|Jalil Skali|+212 6 •• •• 67 68|Ali Squalli|+212 6 •• •• 12 18": [
+      7,
+      10
+    ],
+    "s12|Division 6|Journée 9|Mohamed Chennaoui|+212 6 •• •• 24 71|Tarik Boueddine|+212 6 •• •• 87 47": [
+      10,
+      8
+    ],
+    "s12|Division 7|Journée 1|Mehdi Barouti|+44 75 •••• 8481|Omar Rahmouni|+212 7 •• •• 82 12": [
+      14,
+      12
+    ],
+    "s12|Division 7|Journée 1|Steve Thomson|+44 78 •••• 0027|Hicham Bennani|+212 6 •• •• 68 45": [
+      7,
+      10
+    ],
+    "s12|Division 7|Journée 3|Ismaïl Bennani|+212 6 •• •• 02 56|Mehdi Barouti|+44 75 •••• 8481": [
+      10,
+      8
+    ],
+    "s12|Division 7|Journée 3|Tom Thréard|+33 7 •• •• 43 82|Omar Rahmouni|+212 7 •• •• 82 12": [
+      5,
+      10
+    ],
+    "s12|Division 7|Journée 5|Aboubakr Jeddioui|+212 6 •• •• 09 67|Omar Rahmouni|+212 7 •• •• 82 12": [
+      12,
+      10
+    ],
+    "s12|Division 7|Journée 6|Hassan Ibenmansour|+33 6 •• •• 85 60|Hicham Bennani|+212 6 •• •• 68 45": [
+      13,
+      11
+    ],
+    "s12|Division 7|Journée 7|Aboubakr Jeddioui|+212 6 •• •• 09 67|Steve Thomson|+44 78 •••• 0027": [
+      10,
+      8
+    ],
+    "s12|Division 7|Journée 7|Hakim Jamaï|+212 6 •• •• 25 50|Younes Slaoui|+212 6 •• •• 17 55": [
+      2,
+      10
+    ],
+    "s12|Division 7|Journée 7|Mehdi Barouti|+44 75 •••• 8481|Hassan Ibenmansour|+33 6 •• •• 85 60": [
+      5,
+      10
+    ],
+    "s12|Division 8|Journée 3|Mahmoud Tabbara|+212 6 •• •• 43 64|Anas Kabbaj|+212 6 •• •• 42 18": [
+      10,
+      8
+    ],
+    "s12|Division 8|Journée 4|Anas Kabbaj|+212 6 •• •• 42 18|Amine Idrissi Kaitouni|+212 6 •• •• 40 46": [
+      6,
+      10
+    ],
+    "s12|Division 8|Journée 5|Othman Mdidech|+212 6 •• •• 96 81|Anas Kabbaj|+212 6 •• •• 42 18": [
+      7,
+      10
+    ],
+    "s12|Division 8|Journée 7|Amine Idrissi Kaitouni|+212 6 •• •• 40 46|Ali Jaouher|+212 6 •• •• 51 22": [
+      10,
+      8
+    ],
+    "s12|Division 8|Journée 8|Amine Idrissi Kaitouni|+212 6 •• •• 40 46|Noureddine Rais|+212 6 •• •• 05 01": [
+      10,
+      3
+    ],
+    "s12|Division 9|Journée 2|Tarik Derdeb|+212 6 •• •• 25 13|Zouhair El Asfari|+212 6 •• •• 22 79": [
+      12,
+      10
+    ],
+    "s12|Division 9|Journée 3|Saad Bennani|+212 6 •• •• 07 24|Zouhair El Asfari|+212 6 •• •• 22 79": [
+      10,
+      12
+    ],
+    "s12|Division 9|Journée 4|Zouhair El Asfari|+212 6 •• •• 22 79|Youssef Essabban|+212 6 •• •• 16 81": [
+      7,
+      10
+    ],
+    "s12|Division 9|Journée 5|Nabil Sebti|+212 6 •• •• 91 31|Karim Azeriah|+212 6 •• •• 61 14": [
+      6,
+      10
+    ],
+    "s12|Division 9|Journée 6|Zouhair El Asfari|+212 6 •• •• 22 79|Karim Azeriah|+212 6 •• •• 61 14": [
+      6,
+      10
+    ],
+    "s12|Division 9|Journée 8|Ahmed Marrakchi|+212 6 •• •• 79 76|Zouhair El Asfari|+212 6 •• •• 22 79": [
+      2,
+      10
+    ],
+    "s12|Division 9|Journée 8|Mehdi Smires|+212 6 •• •• 98 43|Karim Azeriah|+212 6 •• •• 61 14": [
+      5,
+      10
+    ],
+    "s12|Division Étoile|Journée 3|Amine Sebti|+212 6 •• •• 18 24|Mamoun Bengelloun|+212 6 •• •• 91 06": [
+      8,
+      10
+    ],
+    "s12|Division Étoile|Journée 6|Mamoun Bengelloun|+212 6 •• •• 91 06|Hakim Chaoui|+212 6 •• •• 02 95": [
+      7,
+      10
+    ],
+    "s13|Division 10|Journée 2|Ali Chami|+212 6 •• •• 24 10|Mehdi Smires|+212 6 •• •• 98 43": [
+      12,
+      10
+    ],
+    "s13|Division 10|Journée 2|Mohcine Benjelloun|+212 6 •• •• 51 60|Ahmed Marrakchi|+212 6 •• •• 79 76": [
+      2,
+      10
+    ],
+    "s13|Division 10|Journée 3|Sébastien Chasseray|+212 6 •• •• 36 58|Ismaël Mechatte|+212 6 •• •• 06 79": [
+      10,
+      4
+    ],
+    "s13|Division 10|Journée 4|Ismaël Mechatte|+212 6 •• •• 06 79|Mamoun Jamaï|+212 6 •• •• 62 28": [
+      8,
+      10
+    ],
+    "s13|Division 10|Journée 8|Sébastien Chasseray|+212 6 •• •• 36 58|Rajaa Benbadri|+212 6 •• •• 28 66": [
+      5,
+      10
+    ],
+    "s13|Division 11|Journée 1|Anis Bouftass|+212 6 •• •• 08 96|Abderrahim Ben El Attar|+212 6 •• •• 00 54": [
+      10,
+      7
+    ],
+    "s13|Division 11|Journée 5|Ratiba Zemmama|+212 6 •• •• 66 93|Anis Bouftass|+212 6 •• •• 08 96": [
+      7,
+      10
+    ],
+    "s13|Division 11|Journée 7|Abderrahim Ben El Attar|+212 6 •• •• 00 54|Augustin Chaste|+212 6 •• •• 99 18": [
+      6,
+      10
+    ],
+    "s13|Division 12 (Accès)|Journée 13|Abdessamad Zouitini|+33 6 •• •• 68 46|Sara Kazmane|+212 6 •• •• 87 70": [
+      6,
+      10
+    ],
+    "s13|Division 12 (Accès)|Journée 14|Radouane El Mousghi|+212 6 •• •• 99 06|Abdessamad Zouitini|+33 6 •• •• 68 46": [
+      14,
+      12
+    ],
+    "s13|Division 12 (Accès)|Journée 2|Abdessamad Zouitini|+33 6 •• •• 68 46|Mohamed Cherradi|+212 6 •• •• 90 28": [
+      8,
+      10
+    ],
+    "s13|Division 12 (Accès)|Journée 3|Youssef Aouad|+212 6 •• •• 35 07|Abdessamad Zouitini|+33 6 •• •• 68 46": [
+      9,
+      11
+    ],
+    "s13|Division 12 (Accès)|Journée 4|Radouane El Mousghi|+212 6 •• •• 99 06|Sara Kazmane|+212 6 •• •• 87 70": [
+      5,
+      10
+    ],
+    "s13|Division 12 (Accès)|Journée 7|Ishak Maher|+212 6 •• •• 76 14|Abdessamad Zouitini|+33 6 •• •• 68 46": [
+      5,
+      10
+    ],
+    "s13|Division 1|Journée 1|Grégoire Chaste|+212 6 •• •• 99 18|Kamal Sebti|+212 6 •• •• 47 60": [
+      10,
+      8
+    ],
+    "s13|Division 1|Journée 3|Grégoire Chaste|+212 6 •• •• 99 18|Kamil Cherkaoui|+212 6 •• •• 39 00": [
+      5,
+      10
+    ],
+    "s13|Division 1|Journée 3|Simo Zizi|+212 6 •• •• 88 03|Taoufik Darraz|+212 6 •• •• 04 43": [
+      10,
+      7
+    ],
+    "s13|Division 1|Journée 7|Grégoire Chaste|+212 6 •• •• 99 18|Taoufik Darraz|+212 6 •• •• 04 43": [
+      5,
+      10
+    ],
+    "s13|Division 1|Journée 8|Simo Zizi|+212 6 •• •• 88 03|Grégoire Chaste|+212 6 •• •• 99 18": [
+      10,
+      7
+    ],
+    "s13|Division 2|Journée 2|Ismail Benkirane|+212 6 •• •• 80 30|Pascal Giusto|+212 6 •• •• 24 94": [
+      10,
+      7
+    ],
+    "s13|Division 2|Journée 2|Omar Bellamine|+212 6 •• •• 10 70|Ahmed Cherradi|+212 6 •• •• 02 60": [
+      10,
+      5
+    ],
+    "s13|Division 2|Journée 8|Pascal Giusto|+212 6 •• •• 24 94|Reda Benkirane|+212 6 •• •• 08 46": [
+      12,
+      14
+    ],
+    "s13|Division 2|Journée 9|Neil Sebti|+212 6 •• •• 47 60|Omar Bellamine|+212 6 •• •• 10 70": [
+      10,
+      2
+    ],
+    "s13|Division 3|Journée 1|Abdenasser Zahiri|+212 6 •• •• 90 39|Hassan Errafi|+212 6 •• •• 55 88": [
+      10,
+      7
+    ],
+    "s13|Division 3|Journée 3|Abdenasser Zahiri|+212 6 •• •• 90 39|Othmane Laraqui|+212 6 •• •• 23 10": [
+      6,
+      10
+    ],
+    "s13|Division 3|Journée 3|Hassan Errafi|+212 6 •• •• 55 88|Stephan Pola|+212 6 •• •• 22 76": [
+      10,
+      5
+    ],
+    "s13|Division 3|Journée 3|Salim Chaoui|+212 6 •• •• 25 58|Mustapha Aman|+212 6 •• •• 63 41": [
+      9,
+      11
+    ],
+    "s13|Division 3|Journée 6|Mamoun Chlyah|+212 6 •• •• 14 02|Hassan Errafi|+212 6 •• •• 55 88": [
+      5,
+      10
+    ],
+    "s13|Division 3|Journée 7|Frederic Ini|+212 6 •• •• 53 98|Hassan Errafi|+212 6 •• •• 55 88": [
+      13,
+      15
+    ],
+    "s13|Division 3|Journée 7|Othmane Laraqui|+212 6 •• •• 23 10|Salim Chaoui|+212 6 •• •• 25 58": [
+      10,
+      6
+    ],
+    "s13|Division 3|Journée 8|Abdenasser Zahiri|+212 6 •• •• 90 39|Mustapha Aman|+212 6 •• •• 63 41": [
+      10,
+      5
+    ],
+    "s13|Division 3|Journée 8|Mamoun Chlyah|+212 6 •• •• 14 02|Othmane Laraqui|+212 6 •• •• 23 10": [
+      5,
+      10
+    ],
+    "s13|Division 3|Journée 9|Fayssal Benbrahim|+212 6 •• •• 22 35|Stephan Pola|+212 6 •• •• 22 76": [
+      10,
+      6
+    ],
+    "s13|Division 4|Journée 1|Jawad Marouane|+212 6 •• •• 69 68|Oussama Lemseffer|+212 6 •• •• 96 97": [
+      10,
+      8
+    ],
+    "s13|Division 4|Journée 2|Hamza Bennis|+33 6 •• •• 65 85|Jawad Marouane|+212 6 •• •• 69 68": [
+      5,
+      10
+    ],
+    "s13|Division 4|Journée 2|Mehdi Chafai|+212 6 •• •• 37 76|Mamoun Berrissoul|+212 7 •• •• 18 95": [
+      10,
+      8
+    ],
+    "s13|Division 4|Journée 3|Jawad Marouane|+212 6 •• •• 69 68|Othmane Fjer|+212 6 •• •• 54 43": [
+      10,
+      6
+    ],
+    "s13|Division 4|Journée 3|Mamoun Berrissoul|+212 7 •• •• 18 95|Anass Belmehdi|+212 6 •• •• 83 61": [
+      10,
+      7
+    ],
+    "s13|Division 4|Journée 5|Youssef Tazi|+212 6 •• •• 09 09|Jawad Marouane|+212 6 •• •• 69 68": [
+      10,
+      8
+    ],
+    "s13|Division 4|Journée 6|Driss Moumane|+212 6 •• •• 30 85|Youssef Tazi|+212 6 •• •• 09 09": [
+      5,
+      10
+    ],
+    "s13|Division 4|Journée 6|Jawad Marouane|+212 6 •• •• 69 68|Mehdi Chafai|+212 6 •• •• 37 76": [
+      11,
+      9
+    ],
+    "s13|Division 4|Journée 6|Othmane Fjer|+212 6 •• •• 54 43|Hamza Bennis|+33 6 •• •• 65 85": [
+      10,
+      1
+    ],
+    "s13|Division 4|Journée 7|Hamza Bennis|+33 6 •• •• 65 85|Mamoun Berrissoul|+212 7 •• •• 18 95": [
+      5,
+      10
+    ],
+    "s13|Division 4|Journée 7|Khalil Tala|+212 6 •• •• 77 28|Othmane Fjer|+212 6 •• •• 54 43": [
+      5,
+      10
+    ],
+    "s13|Division 4|Journée 9|Jawad Marouane|+212 6 •• •• 69 68|Driss Moumane|+212 6 •• •• 30 85": [
+      10,
+      8
+    ],
+    "s13|Division 5|Journée 2|Mamoun Mechiche Alami|+212 6 •• •• 71 80|Moncef Alaoui|+212 6 •• •• 79 46": [
+      3,
+      10
+    ],
+    "s13|Division 5|Journée 3|Fahd Benkirane|+212 6 •• •• 72 45|Mamoun Mechiche Alami|+212 6 •• •• 71 80": [
+      3,
+      10
+    ],
+    "s13|Division 5|Journée 3|Julien Broussard|+212 6 •• •• 32 03|Cédric Nalté|+212 6 •• •• 59 66": [
+      10,
+      12
+    ],
+    "s13|Division 5|Journée 6|Cédric Nalté|+212 6 •• •• 59 66|Fahd Benkirane|+212 6 •• •• 72 45": [
+      5,
+      10
+    ],
+    "s13|Division 5|Journée 6|Hani Guennioui|+212 6 •• •• 40 09|Aziz Daya|+212 6 •• •• 85 39": [
+      9,
+      11
+    ],
+    "s13|Division 5|Journée 7|Mamoun Mechiche Alami|+212 6 •• •• 71 80|Yassir El Andaloussi|+212 6 •• •• 75 14": [
+      10,
+      5
+    ],
+    "s13|Division 5|Journée 8|Mamoun Mechiche Alami|+212 6 •• •• 71 80|Aziz Daya|+212 6 •• •• 85 39": [
+      5,
+      10
+    ],
+    "s13|Division 6|Journée 1|Mehdi Barouti|+44 75 •••• 8481|Omar Rahmouni|+212 7 •• •• 82 12": [
+      6,
+      10
+    ],
+    "s13|Division 6|Journée 3|Jalil Skali|+212 6 •• •• 67 68|Mehdi Barouti|+44 75 •••• 8481": [
+      13,
+      15
+    ],
+    "s13|Division 6|Journée 4|Mehdi Barouti|+44 75 •••• 8481|Mouhssine Abouyoub|+212 6 •• •• 35 34": [
+      5,
+      10
+    ],
+    "s13|Division 6|Journée 5|Ismaïl Honegger|+212 6 •• •• 26 48|Mehdi Berrada|+212 6 •• •• 41 03": [
+      10,
+      2
+    ],
+    "s13|Division 6|Journée 5|Mouhssine Abouyoub|+212 6 •• •• 35 34|Ali Akesbi|+212 6 •• •• 16 13": [
+      10,
+      2
+    ],
+    "s13|Division 6|Journée 6|Jalil Skali|+212 6 •• •• 67 68|Ismaïl Honegger|+212 6 •• •• 26 48": [
+      10,
+      8
+    ],
+    "s13|Division 6|Journée 7|Mehdi Barouti|+44 75 •••• 8481|Ali Akesbi|+212 6 •• •• 16 13": [
+      10,
+      5
+    ],
+    "s13|Division 6|Journée 8|Jalil Skali|+212 6 •• •• 67 68|Mehdi Berrada|+212 6 •• •• 41 03": [
+      7,
+      10
+    ],
+    "s13|Division 6|Journée 9|Lilya Jelloule|+212 6 •• •• 04 32|Jalil Skali|+212 6 •• •• 67 68": [
+      11,
+      9
+    ],
+    "s13|Division 6|Journée 9|Omar Rahmouni|+212 7 •• •• 82 12|Aboubakr Jeddioui|+212 6 •• •• 09 67": [
+      10,
+      5
+    ],
+    "s13|Division 7|Journée 1|Steve Thomson|+44 78 •••• 0027|Amine Idrissi Kaitouni|+212 6 •• •• 40 46": [
+      5,
+      10
+    ],
+    "s13|Division 7|Journée 2|Anas Kabbaj|+212 6 •• •• 42 18|Steve Thomson|+44 78 •••• 0027": [
+      6,
+      10
+    ],
+    "s13|Division 7|Journée 2|Hicham Bennani|+212 6 •• •• 68 45|Hassan Ibenmansour|+33 6 •• •• 85 60": [
+      10,
+      8
+    ],
+    "s13|Division 7|Journée 3|Anas Kabbaj|+212 6 •• •• 42 18|Mohamed Chennaoui|+212 6 •• •• 24 71": [
+      5,
+      10
+    ],
+    "s13|Division 7|Journée 4|Hassan Ibenmansour|+33 6 •• •• 85 60|Amine Idrissi Kaitouni|+212 6 •• •• 40 46": [
+      10,
+      6
+    ],
+    "s13|Division 7|Journée 4|Ismaïl Bennani|+212 6 •• •• 02 56|Mehdi Mrabet|+212 6 •• •• 43 37": [
+      10,
+      12
+    ],
+    "s13|Division 7|Journée 4|Mohamed Chennaoui|+212 6 •• •• 24 71|Steve Thomson|+44 78 •••• 0027": [
+      11,
+      9
+    ],
+    "s13|Division 7|Journée 5|Mohamed Chennaoui|+212 6 •• •• 24 71|Hicham Bennani|+212 6 •• •• 68 45": [
+      10,
+      8
+    ],
+    "s13|Division 7|Journée 6|Hicham Bennani|+212 6 •• •• 68 45|Steve Thomson|+44 78 •••• 0027": [
+      10,
+      12
+    ],
+    "s13|Division 7|Journée 7|Hicham Bennani|+212 6 •• •• 68 45|Mahmoud Tabbara|+212 6 •• •• 43 64": [
+      10,
+      4
+    ],
+    "s13|Division 7|Journée 7|Steve Thomson|+44 78 •••• 0027|Hassan Ibenmansour|+33 6 •• •• 85 60": [
+      10,
+      12
+    ],
+    "s13|Division 7|Journée 9|Hicham Bennani|+212 6 •• •• 68 45|Mehdi Mrabet|+212 6 •• •• 43 37": [
+      5,
+      10
+    ],
+    "s13|Division 8|Journée 1|Karim Azeriah|+212 6 •• •• 61 14|Zouhair El Asfari|+212 6 •• •• 22 79": [
+      10,
+      4
+    ],
+    "s13|Division 8|Journée 2|Ismaïl Wakrim|+212 6 •• •• 24 45|Alia Ezzaim|+212 6 •• •• 73 65": [
+      10,
+      8
+    ],
+    "s13|Division 8|Journée 2|Karim Azeriah|+212 6 •• •• 61 14|Saad Bennani|+212 6 •• •• 07 24": [
+      8,
+      10
+    ],
+    "s13|Division 8|Journée 2|Zouhair El Asfari|+212 6 •• •• 22 79|Ali Jaouher|+212 6 •• •• 51 22": [
+      10,
+      12
+    ],
+    "s13|Division 8|Journée 3|Alia Ezzaim|+212 6 •• •• 73 65|Zouhair El Asfari|+212 6 •• •• 22 79": [
+      6,
+      10
+    ],
+    "s13|Division 8|Journée 4|Karim Azeriah|+212 6 •• •• 61 14|Moubarak El Kouchi|+212 6 •• •• 21 21": [
+      10,
+      7
+    ],
+    "s13|Division 8|Journée 5|Moubarak El Kouchi|+212 6 •• •• 21 21|Ali Jaouher|+212 6 •• •• 51 22": [
+      12,
+      14
+    ],
+    "s13|Division 8|Journée 5|Tom Thréard|+33 7 •• •• 43 82|Zouhair El Asfari|+212 6 •• •• 22 79": [
+      10,
+      8
+    ],
+    "s13|Division 8|Journée 7|Karim Azeriah|+212 6 •• •• 61 14|Ali Jaouher|+212 6 •• •• 51 22": [
+      1,
+      10
+    ],
+    "s13|Division 8|Journée 7|Tom Thréard|+33 7 •• •• 43 82|Saad Bennani|+212 6 •• •• 07 24": [
+      10,
+      6
+    ],
+    "s13|Division 8|Journée 7|Zouhair El Asfari|+212 6 •• •• 22 79|Hakim Jamaï|+212 6 •• •• 25 50": [
+      10,
+      6
+    ],
+    "s13|Division 8|Journée 9|Tom Thréard|+33 7 •• •• 43 82|Hakim Jamaï|+212 6 •• •• 25 50": [
+      10,
+      5
+    ],
+    "s13|Division 9|Journée 2|Mhamed Guessous|+212 6 •• •• 14 41|Amine Lfadeli|+212 6 •• •• 21 79": [
+      5,
+      10
+    ],
+    "s13|Division 9|Journée 2|Nabil Sebti|+212 6 •• •• 91 31|Noureddine Rais|+212 6 •• •• 05 01": [
+      10,
+      6
+    ],
+    "s13|Division 9|Journée 3|Noureddine Rais|+212 6 •• •• 05 01|Tarik Derdeb|+212 6 •• •• 25 13": [
+      2,
+      10
+    ],
+    "s13|Division 9|Journée 3|Youssef El Akkari|+212 6 •• •• 36 72|Yassine El Akkari|+212 6 •• •• 46 40": [
+      8,
+      6
+    ],
+    "s13|Division 9|Journée 4|Tarik Derdeb|+212 6 •• •• 25 13|Mhamed Guessous|+212 6 •• •• 14 41": [
+      3,
+      10
+    ],
+    "s13|Division 9|Journée 4|Thomas Gilanton|+212 6 •• •• 82 15|Noureddine Rais|+212 6 •• •• 05 01": [
+      6,
+      10
+    ],
+    "s13|Division 9|Journée 6|Youssef El Akkari|+212 6 •• •• 36 72|Mhamed Guessous|+212 6 •• •• 14 41": [
+      5,
+      10
+    ],
+    "s13|Division 9|Journée 7|Yassine El Akkari|+212 6 •• •• 46 40|Noureddine Rais|+212 6 •• •• 05 01": [
+      8,
+      10
+    ],
+    "s13|Division 9|Journée 8|Mhamed Guessous|+212 6 •• •• 14 41|Yassine El Akkari|+212 6 •• •• 46 40": [
+      3,
+      10
+    ],
+    "s13|Division 9|Journée 9|Yassine El Akkari|+212 6 •• •• 46 40|Nabil Sebti|+212 6 •• •• 91 31": [
+      10,
+      6
+    ],
+    "s13|Division Étoile|Journée 1|Hakim Chaoui|+212 6 •• •• 02 95|Ali El Idrissi|+1 ••• ••• 6450": [
+      5,
+      10
+    ],
+    "s13|Division Étoile|Journée 3|Ladislas Lefort|+212 6 •• •• 73 83|Amine Sebti|+212 6 •• •• 18 24": [
+      7,
+      10
+    ],
+    "s13|Division Étoile|Journée 4|Salim Benabdallah|+33 6 •• •• 15 56|Ladislas Lefort|+212 6 •• •• 73 83": [
+      8,
+      10
+    ],
+    "s13|Division Étoile|Journée 6|Salim Benabdallah|+33 6 •• •• 15 56|Amine Sebti|+212 6 •• •• 18 24": [
+      10,
+      3
+    ],
+    "s13|Division Étoile|Journée 8|Ladislas Lefort|+212 6 •• •• 73 83|Majid Slimani|+212 6 •• •• 85 17": [
+      4,
+      10
+    ],
+    "s13|Division Étoile|Journée 9|Amine Sebti|+212 6 •• •• 18 24|Mamoun Bengelloun|+212 6 •• •• 91 06": [
+      8,
+      10
+    ],
+    "s13|Division Étoile|Journée 9|Salim Benabdallah|+33 6 •• •• 15 56|Ali El Idrissi|+1 ••• ••• 6450": [
+      9,
+      11
+    ]
+  },
+  "confirmed_retirements": [
+    "s01|Division 4|Journée 5|Attef Lazrak|+212 6 •• •• 82 07|Khalil Boutejdir|+212 6 •• •• 32 75",
+    "s05|Division 7|Journée 7|Noureddine Rais|+212 6 •• •• 05 01|Omar Rahmouni|+212 7 •• •• 82 12",
+    "s05|Division Étoile|Journée 3|Stéphane Heuzé|+212 6 •• •• 44 60|Mamoun Bengelloun|+212 6 •• •• 91 06",
+    "s07|Division 2|Journée 5|Mustapha Aman|+212 6 •• •• 63 41|Boubker Sefraoui|+212 6 •• •• 05 50",
+    "s07|Division 4|Journée 10|Ismail Skalli|+212 6 •• •• 89 42|Hassan Ibenmansour|+33 6 •• •• 85 60",
+    "s07|Division 4|Journée 3|Fahd Benkirane|+212 6 •• •• 72 45|Omar Chlyah|+212 6 •• •• 14 02",
+    "s07|Division 4|Journée 9|Amine Idrissi Kaitouni|+212 6 •• •• 40 46|Ghali Akesbi|+212 6 •• •• 84 77",
+    "s07|Division 5|Journée 7|Mamoun Berrissoul|+212 7 •• •• 18 95|Kamil Cherkaoui|+212 6 •• •• 39 00",
+    "s07|Division Étoile|Journée 10|Amine Sebti|+212 6 •• •• 18 24|Omar Zizi|+212 6 •• •• 70 27",
+    "s07|Division Étoile|Journée 7|Stéphane Heuzé|+212 6 •• •• 44 60|Grégoire Chaste|+212 6 •• •• 99 18",
+    "s08|Division 4|Journée 2|Fahd Benkirane|+212 6 •• •• 72 45|Ismail Skalli|+212 6 •• •• 89 42",
+    "s08|Division 9|Journée 10|Simo Ouazzani|+212 6 •• •• 23 52|Mehdi Scally|+212 6 •• •• 29 74",
+    "s09|Division 4|Journée 7|Jawad Marouane|+212 6 •• •• 69 68|Ismail Benkirane|+212 6 •• •• 80 30",
+    "s09|Division 5|Journée 4|Hamid El Kouchi|+212 6 •• •• 42 93|Jalil Skali|+212 6 •• •• 67 68",
+    "s09|Division 5|Journée 9|Cédric Nalté|+212 6 •• •• 59 66|Yassir El Andaloussi|+212 6 •• •• 75 14",
+    "s09|Division 7|Journée 7|Hassan Ibenmansour|+33 6 •• •• 85 60|Majd Lemseffer|+212 6 •• •• 23 59",
+    "s09|Division Étoile|Journée 3|Salim Benabdallah|+33 6 •• •• 15 56|Amine Sebti|+212 6 •• •• 18 24",
+    "s09|Division Étoile|Journée 6|Amine Sebti|+212 6 •• •• 18 24|Hakim Chaoui|+212 6 •• •• 02 95",
+    "s10|Division 10|Journée 3|Noureddine Rais|+212 6 •• •• 05 01|Youssef Essabban|+212 6 •• •• 16 81",
+    "s10|Division 11|Journée 8|Brahim Laroui|+212 6 •• •• 91 44|Mahmoud Tabbara|+212 6 •• •• 43 64",
+    "s10|Division 3|Journée 4|Salim Chaoui|+212 6 •• •• 25 58|Aziz Daya|+212 6 •• •• 85 39",
+    "s10|Division 5|Journée 1|Omar Bellamine|+212 6 •• •• 10 70|Stephan Pola|+212 6 •• •• 22 76",
+    "s10|Division 8|Journée 9|Omar Rahmouni|+212 7 •• •• 82 12|Hakim Jamaï|+212 6 •• •• 25 50",
+    "s11|Division 4|Journée 1|Omar Bellamine|+212 6 •• •• 10 70|Aziz Daya|+212 6 •• •• 85 39",
+    "s11|Division 5|Journée 2|Stephan Pola|+212 6 •• •• 22 76|Hani Guennioui|+212 6 •• •• 40 09",
+    "s11|Division 9|Journée 7|Mahmoud Tabbara|+212 6 •• •• 43 64|Tarik Derdeb|+212 6 •• •• 25 13",
+    "s12|Division 1|Journée 1|Salim Benabdallah|+33 6 •• •• 15 56|Taoufik Darraz|+212 6 •• •• 04 43",
+    "s12|Division 5|Journée 5|Jawad Marouane|+212 6 •• •• 69 68|Mehdi Berrada|+212 6 •• •• 41 03",
+    "s12|Division 6|Journée 6|Hicham Cherkaoui|+212 6 •• •• 39 00|Mehdi Mrabet|+212 6 •• •• 43 37",
+    "s12|Division 8|Journée 2|Amine Lfadeli|+212 6 •• •• 21 79|Moubarak El Kouchi|+212 6 •• •• 21 21",
+    "s12|Division 8|Journée 7|Amine Lfadeli|+212 6 •• •• 21 79|Ismaïl Wakrim|+212 6 •• •• 24 45",
+    "s13|Division 2|Journée 5|Pascal Giusto|+212 6 •• •• 24 94|Ahmed Cherradi|+212 6 •• •• 02 60",
+    "s13|Division 3|Journée 1|Salim Chaoui|+212 6 •• •• 25 58|Frederic Ini|+212 6 •• •• 53 98",
+    "s13|Division 3|Journée 6|Mustapha Aman|+212 6 •• •• 63 41|Fayssal Benbrahim|+212 6 •• •• 22 35",
+    "s13|Division 3|Journée 9|Mustapha Aman|+212 6 •• •• 63 41|Hassan Errafi|+212 6 •• •• 55 88",
+    "s13|Division 6|Journée 2|Omar Rahmouni|+212 7 •• •• 82 12|Ali Akesbi|+212 6 •• •• 16 13"
+  ]
+}

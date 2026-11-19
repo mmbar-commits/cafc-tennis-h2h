@@ -92,125 +92,128 @@ async function screenshot(filename, fullPage = false) {
 
 await cdp('Runtime.enable');
 await cdp('Page.enable');
-await new Promise(r => setTimeout(r, 1500));
+await new Promise(r => setTimeout(r, 800));
 
-// Inject realistic Light theme tokens
-await evalJs(`(() => {
-  document.documentElement.style.setProperty('--background', '#f6f5f2');
-  document.documentElement.style.setProperty('--card', '#ffffff');
-  document.documentElement.style.setProperty('--border', '#e4e2dc');
-  document.documentElement.style.setProperty('--foreground', '#18181b');
-  document.documentElement.style.setProperty('--muted-foreground', '#6b6860');
-  document.documentElement.style.setProperty('--primary', '#c85a32');
+// 1. Initial render (standalone — NO artificial CSS token injection!)
+const initCheck = await evalJs(`(() => {
+  const ddStyle = getComputedStyle(document.getElementById('dropdown-a'));
+  const cardStyle = getComputedStyle(document.querySelector('.card'));
+  const footerText = document.querySelector('.site-footer').innerText;
+  return {
+    title: document.title,
+    h1: document.querySelector('.brand-title').textContent,
+    subtitle: document.getElementById('header-subtitle').textContent,
+    matchesCount: document.getElementById('matches-count-pill').textContent,
+    commonCount: document.getElementById('common-count-pill').textContent,
+    inputA: document.getElementById('input-a').value,
+    inputB: document.getElementById('input-b').value,
+    dropdownBg: ddStyle.backgroundColor,
+    cardBg: cardStyle.backgroundColor,
+    hasCopyWaBtn: !!document.getElementById('copy-wa-btn'),
+    hasCompFilter: document.querySelectorAll('[data-comp]').length,
+    footerHasArchives: footerText.includes('Source : Archives Mehdi Barouti'),
+    hasTournoiText: document.body.innerText.includes('Tournoi 02.24') || document.body.innerText.includes('Tournoi 02.2024'),
+    hasFamilyPhoneText: document.body.innerText.includes('Tél. familial partagé')
+  };
 })()`);
-await new Promise(r => setTimeout(r, 250));
-
-// 1. Initial render
-const initCheck = await evalJs(`({
-  subtitle: document.getElementById('header-subtitle').textContent,
-  matchesCount: document.getElementById('matches-count-pill').textContent,
-  commonCount: document.getElementById('common-count-pill').textContent,
-  inputA: document.getElementById('input-a').value,
-  inputB: document.getElementById('input-b').value
-})`);
 console.log('1. INIT CHECK:', initCheck);
-await screenshot('01_h2h_light_full.png', true);
+if (initCheck.dropdownBg === 'rgba(0, 0, 0, 0)' || initCheck.dropdownBg === 'transparent') {
+  throw new Error('Dropdown background is transparent: ' + initCheck.dropdownBg);
+}
+if (initCheck.hasCopyWaBtn) throw new Error('copy-wa-btn should be removed');
+if (initCheck.hasCompFilter !== 0) throw new Error('compFilter should be removed');
+if (!initCheck.footerHasArchives) throw new Error('Footer source text mismatch');
+if (initCheck.hasTournoiText) throw new Error('Tournoi text still present');
+await screenshot('01_h2h_standalone_full.png', true);
 
-// 2. Homonym search ("Saad Bennani")
+// 2. Autocomplete dropdown on Joueur B (reproducing user screenshot scenario!)
 await evalJs(`(() => {
-  focusPicker('a');
-  const inp = document.getElementById('input-a');
-  inp.value = 'Saad Bennani';
-  inp.dispatchEvent(new Event('input'));
+  const mb = PLAYERS.find(p => p.name === 'Mehdi Barouti');
+  const ms = PLAYERS.find(p => p.name === 'Majid Slimani');
+  setPair(mb.id, ms.id);
+  const inp = document.getElementById('input-b');
+  inp.focus();
+  inp.dispatchEvent(new Event('focus'));
 })()`);
 await new Promise(r => setTimeout(r, 200));
-const homCheck = await evalJs(`[...document.querySelectorAll('.combo-row-a')].map(el => el.innerText.replace(/\\n+/g, ' | '))`);
-console.log('2. SAAD BENNANI DROPDOWN:', homCheck);
-await screenshot('02_homonym_dropdown.png', false);
-
-// 3. Simo Zizi search
-await evalJs(`(() => {
-  const inp = document.getElementById('input-a');
-  inp.value = 'Simo Zizi';
-  inp.dispatchEvent(new Event('input'));
+const ddCheck = await evalJs(`(() => {
+  const dd = document.getElementById('dropdown-b');
+  return {
+    visible: !dd.classList.contains('hidden'),
+    bg: getComputedStyle(dd).backgroundColor,
+    zIndex: getComputedStyle(dd).zIndex,
+    rows: document.querySelectorAll('.combo-row-b').length
+  };
 })()`);
-const simoCheck = await evalJs(`[...document.querySelectorAll('.combo-row-a')].map(el => el.innerText.replace(/\\n+/g, ' | '))`);
-console.log('3. SIMO ZIZI DROPDOWN:', simoCheck);
+console.log('2. DROPDOWN B CHECK:', ddCheck);
+await screenshot('02_dropdown_opaque.png', false);
 
-// 4. Select Saad Bennani (Étoile) vs Taoufik Darraz in Dark Mode
+// 3. Exact Super Tie-Break score check (Mehdi Barouti vs Omar Rahmouni + Anas Kabbaj vs Catherine Yans 22-20)
 await evalJs(`(() => {
-  closeDropdown('a');
-  const sb = PLAYERS.find(p => p.name === 'Saad Bennani' && p.phoneDigits.includes('4647'));
-  const td = PLAYERS.find(p => p.name === 'Taoufik Darraz');
-  setPair(sb.id, td.id);
-  document.documentElement.style.setProperty('--background', '#121316');
-  document.documentElement.style.setProperty('--card', '#1a1c21');
-  document.documentElement.style.setProperty('--border', '#2c2f38');
-  document.documentElement.style.setProperty('--foreground', '#f1f2f4');
-  document.documentElement.style.setProperty('--muted-foreground', '#9ca3af');
-})()`);
-await new Promise(r => setTimeout(r, 250));
-const sbCheck = await evalJs(`({
-  inputA: document.getElementById('input-a').value,
-  matches: document.getElementById('matches-count-pill').textContent,
-  common: document.getElementById('common-count-pill').textContent
-})`);
-console.log('4. SAAD BENNANI (ETOILE) vs TAOUFIK DARRAZ:', sbCheck);
-await screenshot('03_h2h_dark_homonym.png', true);
-
-// 5. Zero direct matches test (Saad Bennani Div 6 vs Zouhair Kazmane)
-await evalJs(`(() => {
-  const sb2 = PLAYERS.find(p => p.name === 'Saad Bennani' && p.phoneDigits.includes('0724'));
-  const zk = PLAYERS.find(p => p.name === 'Zouhair Kazmane');
-  setPair(sb2.id, zk.id);
+  closeDropdown('b');
+  const mb = PLAYERS.find(p => p.name === 'Mehdi Barouti');
+  const or = PLAYERS.find(p => p.name === 'Omar Rahmouni');
+  setPair(mb.id, or.id);
 })()`);
 await new Promise(r => setTimeout(r, 200));
-const zeroCheck = await evalJs(`({
-  matches: document.getElementById('matches-count-pill').textContent,
-  statsMode: state.statsMode,
-  common: document.getElementById('common-count-pill').textContent
-})`);
-console.log('5. ZERO DIRECT MATCHES CHECK:', zeroCheck);
+const stbCheck = await evalJs(`(() => {
+  const pills = [...document.querySelectorAll('.set-pill.homonym-badge')].map(el => el.textContent.trim());
+  const exactTotal = MATCHES.filter(m => m.isStb && m.stb).length;
+  const stbTotal = MATCHES.filter(m => m.isStb).length;
+  return { baroutiRahmouniStbs: pills, exactTotal, stbTotal };
+})()`);
+console.log('3. EXACT STB CHECK:', stbCheck);
+if (stbCheck.exactTotal < 750) throw new Error('Expected >=750 exact STBs, got ' + stbCheck.exactTotal);
+await screenshot('03_h2h_exact_stb.png', true);
 
-// 6. Test Competition Filter (Tournoi 02.2024: Amine Sebti vs Salim Chaoui)
+// 4. Family phone check (Zouhair Kazmane vs Amine Sebti — verify no "Tél. familial partagé" & no "Ancien n° fusionné")
 await evalJs(`(() => {
   const a = PLAYERS.find(p => p.name === 'Amine Sebti');
-  const b = PLAYERS.find(p => p.name === 'Salim Chaoui');
+  const b = PLAYERS.find(p => p.name === 'Zouhair Kazmane');
   setPair(a.id, b.id);
-  setCompFilter('tournoi');
 })()`);
-const tournoiCheck = await evalJs(`({
-  tournoiMatches: document.getElementById('matches-count-pill').textContent
-})`);
-await evalJs(`setCompFilter('all')`);
-const allCheck = await evalJs(`({
-  allMatches: document.getElementById('matches-count-pill').textContent
-})`);
-console.log('6. COMP FILTER CHECK (Amine Sebti vs Salim Chaoui):', { ...tournoiCheck, ...allCheck });
+await new Promise(r => setTimeout(r, 200));
+const phoneCheck = await evalJs(`(() => {
+  const heroTxt = document.getElementById('h2h-hero').innerText;
+  return {
+    hasFamilyText: heroTxt.includes('Tél. familial'),
+    hasOldPhoneText: heroTxt.includes('Ancien n°'),
+    aminePhone: PLAYERS.find(p => p.name === 'Amine Sebti').phone,
+    kazmanePhone: PLAYERS.find(p => p.name === 'Zouhair Kazmane').phone
+  };
+})()`);
+console.log('4. PHONE & FAMILY CHECK:', phoneCheck);
+if (phoneCheck.hasFamilyText || phoneCheck.hasOldPhoneText) {
+  throw new Error('Family/old phone text still present in hero');
+}
 
-// 7. Directory & Homonyms tab (Light Mode)
-await evalJs(`(() => {
-  document.documentElement.style.setProperty('--background', '#f6f5f2');
-  document.documentElement.style.setProperty('--card', '#ffffff');
-  document.documentElement.style.setProperty('--border', '#e4e2dc');
-  document.documentElement.style.setProperty('--foreground', '#18181b');
-  document.documentElement.style.setProperty('--muted-foreground', '#6b6860');
-  switchTab('directory');
-})()`);
+// 5. Directory & Homonyms tab: scrollable table + Première saison column
+await evalJs(`switchTab('directory')`);
 await new Promise(r => setTimeout(r, 250));
-const dirCheck = await evalJs(`({
-  homCards: document.querySelectorAll('#homonym-cards > div').length,
-  dirRows: document.querySelectorAll('#dir-tbody > tr').length
-})`);
-console.log('7. DIRECTORY CHECK:', dirCheck);
-await screenshot('04_directory_homonyms.png', false);
+const dirCheck = await evalJs(`(() => {
+  const scroller = document.querySelector('.dir-table-scroll');
+  const headers = [...document.querySelectorAll('.dir-table-scroll thead th')].map(th => th.textContent.trim());
+  const firstRow = [...document.querySelectorAll('#dir-tbody tr:first-child td')].map(td => td.innerText.replace(/\\n+/g, ' | ').trim());
+  return {
+    homCards: document.querySelectorAll('#homonym-cards > div').length,
+    dirRows: document.querySelectorAll('#dir-tbody > tr').length,
+    headers,
+    firstRow,
+    scrollHeight: scroller.scrollHeight,
+    clientHeight: scroller.clientHeight,
+    isScrollable: scroller.scrollHeight > scroller.clientHeight
+  };
+})()`);
+console.log('5. DIRECTORY CHECK:', dirCheck);
+if (!dirCheck.headers.includes('Première saison')) throw new Error('Missing Première saison column');
+if (!dirCheck.isScrollable) throw new Error('Directory table is not independently scrollable');
+await screenshot('04_directory_scrollable.png', false);
 
-// 8. Grandes Rivalités tab
+// 6. Grandes Rivalités tab
 await evalJs(`switchTab('rivalries')`);
 await new Promise(r => setTimeout(r, 200));
 const rivCheck = await evalJs(`document.querySelectorAll('#rivalries-grid > button').length`);
-console.log('8. RIVALRIES COUNT (4+ matches):', rivCheck);
-await screenshot('05_rivalries.png', false);
+console.log('6. RIVALRIES COUNT (4+ matches):', rivCheck);
 
 console.log('CONSOLE ERRORS:', consoleErrors);
 console.log('PAGE ERRORS:', pageErrors);

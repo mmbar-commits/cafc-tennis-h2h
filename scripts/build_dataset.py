@@ -147,6 +147,8 @@ def main():
 
     resolved_matches = []
     for m in raw_matches:
+        if m.get("season_type") != "ligue":
+            continue
         k1 = ensure_player(m["p1_name"], m["p1_phone"])
         k2 = ensure_player(m["p2_name"], m["p2_phone"])
         if k1 is None or k2 is None:
@@ -155,11 +157,19 @@ def main():
             raise ValueError(f"Self-match detected! {k1} in {m}")
         resolved_matches.append((k1, k2, m))
 
+    # Load verified exact Super Tie-Break scores & confirmed retirements if present
+    stb_scores_path = os.path.join(OUT_DIR, "stb_scores.json")
+    stb_exact_map = {}
+    confirmed_ret_set = set()
+    if os.path.exists(stb_scores_path):
+        with open(stb_scores_path) as f:
+            stb_blob = json.load(f)
+            stb_exact_map = stb_blob.get("stb_exact", {})
+            confirmed_ret_set = set(stb_blob.get("confirmed_retirements", []))
+
     # AUDIT: Verify 100% match against Classification PDFs
     calc = defaultdict(lambda: defaultdict(lambda: {"j": 0, "ds": 0, "dg": 0}))
     for k1, k2, m in resolved_matches:
-        if m["season_type"] != "ligue":
-            continue
         dk = (m["season_id"], m["division"])
         calc[dk][k1]["j"] += 1
         calc[dk][k2]["j"] += 1
@@ -183,24 +193,24 @@ def main():
 
     sorted_keys = sorted(players_map.keys(), key=lambda k: (k[0].lower(), players_map[k]["phone_fmt"], k[1]))
 
+    def match_stb_key(k1, k2, m):
+        p1_obj, p2_obj = players_map[k1], players_map[k2]
+        return f"{m['season_id']}|{m['division']}|{m['round']}|{p1_obj['name']}|{p1_obj['phone_fmt']}|{p2_obj['name']}|{p2_obj['phone_fmt']}"
+
     for k1, k2, m in resolved_matches:
         p1 = players_map[k1]["stats"]
         p2 = players_map[k2]["stats"]
+        mkey = match_stb_key(k1, k2, m)
+        is_stb = (m["is_stb"] and mkey not in confirmed_ret_set) or (mkey in stb_exact_map)
+
         p1["m"] += 1
         p2["m"] += 1
-        if m["season_type"] == "tournoi":
-            p1["tournoi_m"] += 1
-            p2["tournoi_m"] += 1
         if m["winner"] == 1:
             p1["w"] += 1
             p2["l"] += 1
-            if m["season_type"] == "tournoi":
-                p1["tournoi_w"] += 1
         else:
             p2["w"] += 1
             p1["l"] += 1
-            if m["season_type"] == "tournoi":
-                p2["tournoi_w"] += 1
 
         p1["sw"] += m["p1_sets_won"]
         p1["sl"] += m["p2_sets_won"]
@@ -214,7 +224,7 @@ def main():
         p2["gw"] += g2
         p2["gl"] += g1
 
-        if m["is_stb"]:
+        if is_stb:
             if m["winner"] == 1:
                 p1["stb_w"] += 1
                 p2["stb_l"] += 1
@@ -265,7 +275,7 @@ def main():
                 "id": sid,
                 "order": m["season_order"],
                 "label": m["season_label"],
-                "type": m["season_type"],
+                "type": "ligue",
                 "matches": 0,
             }
         seasons_seen[sid]["matches"] += 1
@@ -276,14 +286,12 @@ def main():
         p = players_map[k]
         pid = id_map[k]
         seasons_hist = sorted(p["seasons_map"].values(), key=lambda x: x["ord"])
-        best_div = min(seasons_hist, key=lambda x: (x["dr"], x["rk"]))["div"] if seasons_hist else "Tournoi"
-        best_div_rank = min(x["dr"] for x in seasons_hist) if seasons_hist else 99
-        last_season = seasons_hist[-1] if seasons_hist else None
-        first_season = seasons_hist[0] if seasons_hist else None
+        best_div = min(seasons_hist, key=lambda x: (x["dr"], x["rk"]))["div"]
+        best_div_rank = min(x["dr"] for x in seasons_hist)
+        last_season = seasons_hist[-1]
+        first_season = seasons_hist[0]
         is_hom = len(active_name_counts[k[0].lower()]) > 1
-        shared_family = [
-            other[0] for other in active_keys if other[1] == k[1] and other[0] != k[0]
-        ]
+        st_clean = {k_: v_ for k_, v_ in p["stats"].items() if not k_.startswith("tournoi_")}
 
         players_out.append({
             "id": pid,
@@ -291,15 +299,13 @@ def main():
             "phone": p["phone_fmt"],
             "homonym": is_hom,
             "aliases": sorted(p["aliases"]),
-            "alt_phones": sorted(p["alt_phones"]),
-            "family_phone": shared_family,
             "best_div": best_div,
             "best_div_rank": best_div_rank,
-            "last_div": last_season["div"] if last_season else "Tournoi",
-            "last_season": last_season["lbl"] if last_season else "Tournoi 02.2024",
-            "first_season": first_season["lbl"] if first_season else "Tournoi 02.2024",
+            "last_div": last_season["div"],
+            "last_season": last_season["lbl"],
+            "first_season": first_season["lbl"],
             "seasons_count": len(seasons_hist),
-            "stats": p["stats"],
+            "stats": st_clean,
             "history": seasons_hist,
         })
 
@@ -307,30 +313,29 @@ def main():
         m_j = re.search(r"Journée\s+(\d+)", r)
         if m_j:
             return (0, int(m_j.group(1)))
-        order_map = {"huitièmes": 1, "quarts": 2, "demi": 3, "3ème": 4, "finale": 5}
-        rl = r.lower()
-        for kw, val in order_map.items():
-            if kw in rl:
-                return (1, val)
         return (2, 0)
 
     matches_out = []
+    stb_exact_count = 0
     for idx, (k1, k2, m) in enumerate(
         sorted(resolved_matches, key=lambda x: (x[2]["season_order"], x[2]["division_rank"], round_sort_key(x[2]["round"])))
     ):
+        mkey = match_stb_key(k1, k2, m)
+        stb_pts = stb_exact_map.get(mkey)
+        is_stb = (m["is_stb"] and mkey not in confirmed_ret_set) or (stb_pts is not None)
         flags = []
-        if m["is_stb"]:
+        if is_stb:
             flags.append("stb")
         if m["is_wo"]:
             flags.append("wo")
-        elif m["is_ret"]:
+        elif m["is_ret"] or mkey in confirmed_ret_set:
             flags.append("ret")
-        matches_out.append({
+        m_obj = {
             "id": idx,
             "sid": m["season_id"],
             "ord": m["season_order"],
             "sl": m["season_label"],
-            "st": m["season_type"],
+            "st": "ligue",
             "div": m["division"],
             "dr": m["division_rank"],
             "rd": m["round"],
@@ -340,7 +345,11 @@ def main():
             "s": m["sets"],
             "sw": [m["p1_sets_won"], m["p2_sets_won"]],
             "f": flags,
-        })
+        }
+        if stb_pts is not None:
+            m_obj["stb"] = stb_pts
+            stb_exact_count += 1
+        matches_out.append(m_obj)
 
     pair_counts = defaultdict(lambda: {"n": 0, "w1": 0, "w2": 0, "last_ord": 0})
     for m in matches_out:
@@ -360,10 +369,11 @@ def main():
         "meta": {
             "total_players": len(players_out),
             "total_matches": len(matches_out),
-            "ligue_matches": sum(1 for m in matches_out if m["st"] == "ligue"),
-            "tournoi_matches": sum(1 for m in matches_out if m["st"] == "tournoi"),
+            "ligue_matches": len(matches_out),
             "total_pairs": len(pair_counts),
-            "seasons_count": sum(1 for s in seasons_list if s["type"] == "ligue"),
+            "seasons_count": len(seasons_list),
+            "stb_total": sum(1 for m in matches_out if "stb" in m["f"]),
+            "stb_exact_count": stb_exact_count,
             "phones_masked": True,
             "homonym_groups": [
                 {
@@ -380,10 +390,6 @@ def main():
                     ],
                 }
                 for _, ks in sorted(active_homonyms.items())
-            ],
-            "merged_phone_updates": [
-                {"name": name, "old_phone": old_m, "new_phone": new_m}
-                for (name, old_m), new_m in sorted(merged_phone_log.items())
             ],
             "merged_name_variants": [
                 {"old_name": old_nm, "canonical_name": new_nm, "phone": masked_ph}
