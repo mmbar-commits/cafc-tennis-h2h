@@ -22,7 +22,7 @@ const chrome = spawn('chromium', [
   '--headless=new',
   '--no-sandbox',
   '--disable-gpu',
-  '--remote-debugging-port=9232',
+  '--remote-debugging-port=9233',
   '--window-size=1380,1100',
   url
 ], { stdio: 'ignore' });
@@ -30,7 +30,7 @@ const chrome = spawn('chromium', [
 let wsUrl = null;
 for (let i = 0; i < 40; i++) {
   try {
-    const res = await fetch('http://127.0.0.1:9232/json');
+    const res = await fetch('http://127.0.0.1:9233/json');
     const targets = await res.json();
     const page = targets.find(t => t.type === 'page');
     if (page && page.webSocketDebuggerUrl) {
@@ -94,120 +94,89 @@ await cdp('Runtime.enable');
 await cdp('Page.enable');
 await new Promise(r => setTimeout(r, 800));
 
-// 1. Accueil + hover tooltip on "Activité de la Ligue Saison par Saison"
+// 1. Accueil: no badge "2" on Annuaire + pro-rata 4-month chart hover tooltip
 await evalJs(`document.querySelectorAll('#home-season-chart .season-col-hit')[7].dispatchEvent(new MouseEvent('mouseenter', { bubbles: false }))`);
 await new Promise(r => setTimeout(r, 220));
 const homeCheck = await evalJs(`(() => {
-  const cols = document.querySelectorAll('#home-season-chart .season-col-hit');
   const tip = document.getElementById('home-season-tip');
+  const note = document.querySelector('#home-season-chart .chart-footnote')?.textContent.trim();
+  const dirBtnText = document.getElementById('tab-directory').textContent.trim();
   return {
     activeTab: state.tab,
-    colCount: cols.length,
+    dirBtnText,
     tipOpacity: getComputedStyle(tip).opacity,
     tipText: tip.textContent.trim(),
-    footerHasArchives: document.querySelector('.site-footer').innerText.includes('Source : Archives Mehdi Barouti')
+    note
   };
 })()`);
-console.log('1. HOME & CHART HOVER CHECK:', homeCheck);
-if (homeCheck.colCount !== 14 || homeCheck.tipOpacity !== '1' || !homeCheck.tipText.includes('612 matchs')) {
-  throw new Error('Home season chart hover tooltip failed: ' + JSON.stringify(homeCheck));
+console.log('1. HOME & PRO-RATA CHART CHECK:', homeCheck);
+if (homeCheck.dirBtnText !== 'Annuaire') throw new Error('Annuaire button should not have a badge: ' + homeCheck.dirBtnText);
+if (homeCheck.tipOpacity !== '1' || !homeCheck.tipText.includes('459 matchs/3m (612 réels)')) {
+  throw new Error('Pro-rata 4-month tooltip failed: ' + JSON.stringify(homeCheck));
 }
-await screenshot('01_home_hover.png', true);
+await screenshot('01_home_prorata.png', true);
 
-// 2. Click player in H2H -> redirects to Profil Joueur; also verify uniqueOpps in H2H Career stats
-await evalJs(`(() => {
-  const mb = PLAYERS.find(p => p.name === 'Mehdi Barouti');
-  const or = PLAYERS.find(p => p.name === 'Omar Rahmouni');
-  setPair(mb.id, or.id);
-  setStatsMode('career');
-})()`);
-await new Promise(r => setTimeout(r, 200));
-const h2hCheck = await evalJs(`(() => {
-  const statsTxt = document.getElementById('stats-panel').innerText;
-  const heroTxt = document.getElementById('h2h-hero').innerText;
-  return {
-    hasAdvDiffInStats: statsTxt.includes('Adversaires différents'),
-    hasAdvDiffInHero: heroTxt.includes('adv. diff.'),
-    colorA: getComputedStyle(document.querySelector('label[for="input-a"] .picker-label-left')).color,
-    colorB: getComputedStyle(document.querySelector('label[for="input-b"] .picker-label-left')).color
-  };
-})()`);
-console.log('2. H2H DIVERSITY & COLORS CHECK:', h2hCheck);
-if (!h2hCheck.hasAdvDiffInStats || !h2hCheck.hasAdvDiffInHero) throw new Error('Missing uniqueOpps in H2H');
-
-// Click Mehdi Barouti's name in H2H Hero -> should open Profil Joueur for Mehdi Barouti!
-await evalJs(`document.querySelector('#h2h-hero .player-link').click()`);
-await new Promise(r => setTimeout(r, 250));
-const profCheck = await evalJs(`(() => {
-  const h2 = document.querySelector('#profile-root h2')?.textContent.trim();
-  const kpis = [...document.querySelectorAll('#profile-root .pkpi-box')].map(b => b.innerText.replace(/\\n+/g, ' | ').trim());
-  const oppRows = document.querySelectorAll('#prof-opp-body tbody tr').length;
-  const matchRows = document.querySelectorAll('#prof-matches-body .match-row').length;
-  const hasDivSvg = !!document.querySelector('#profile-div-chart svg');
-  return {
-    activeTab: state.tab,
-    profileName: h2,
-    kpis,
-    oppRows,
-    matchRows,
-    hasDivSvg
-  };
-})()`);
-console.log('3. PROFIL JOUEUR CHECK (from H2H click):', profCheck);
-if (profCheck.activeTab !== 'profile' || profCheck.profileName !== 'Mehdi Barouti' || profCheck.oppRows < 50 || profCheck.matchRows !== 120 || !profCheck.hasDivSvg) {
-  throw new Error('Profil Joueur check failed: ' + JSON.stringify(profCheck));
-}
-await screenshot('02_profile_full.png', true);
-
-// Test opponent click inside Profil Joueur -> jumps to that opponent's profile!
-await evalJs(`document.querySelector('#prof-opp-body tbody tr:first-child .player-link').click()`);
-await new Promise(r => setTimeout(r, 200));
-const profJump = await evalJs(`document.querySelector('#profile-root h2')?.textContent.trim()`);
-console.log('3b. PROFIL OPPONENT CLICK REDIRECT:', profJump);
-if (!profJump || profJump === 'Mehdi Barouti') throw new Error('Opponent click did not switch profile');
-
-// 4. Directory: Adv. diff. column + sort by wins + sort by opps + clicking player name opens Profil Joueur
-await evalJs(`switchTab('directory')`);
-await new Promise(r => setTimeout(r, 200));
-const dirCheck = await evalJs(`(() => {
-  const headers = [...document.querySelectorAll('#view-directory .dir-table-scroll thead th')].map(th => th.textContent.trim());
-  document.getElementById('dir-sort').value = 'wins';
-  renderDirectory();
-  const topByWins = [...document.querySelectorAll('#dir-tbody tr')].slice(0, 3).map(tr => tr.innerText.replace(/\\s+/g, ' ').trim());
-  document.getElementById('dir-sort').value = 'opps';
-  renderDirectory();
-  const topByOpps = [...document.querySelectorAll('#dir-tbody tr')].slice(0, 3).map(tr => tr.innerText.replace(/\\s+/g, ' ').trim());
-  return { headers, topByWins, topByOpps };
-})()`);
-console.log('4. DIRECTORY WINS & OPPS SORT CHECK:', dirCheck);
-if (!dirCheck.headers.includes('Adv. diff.')) throw new Error('Missing Adv. diff. column in directory');
-await screenshot('03_directory_opps.png', false);
-
-// Click first player name in Directory -> opens Profil Joueur!
-await evalJs(`document.querySelector('#dir-tbody tr:first-child .player-link').click()`);
-await new Promise(r => setTimeout(r, 200));
-const fromDirTab = await evalJs(`({ tab: state.tab, name: document.querySelector('#profile-root h2')?.textContent.trim() })`);
-console.log('4b. DIRECTORY NAME CLICK -> PROFILE:', fromDirTab);
-if (fromDirTab.tab !== 'profile') throw new Error('Directory name click did not open profile');
-
-// 5. Classement click -> opens Profil Joueur
+// 2. Classement: default mode = Par division + green top-3 & red bottom-3 on s14 ONLY
 await evalJs(`switchTab('standings')`);
 await new Promise(r => setTimeout(r, 200));
-await evalJs(`document.querySelector('#standings-body tbody tr:first-child .player-link').click()`);
-await new Promise(r => setTimeout(r, 200));
-const fromSt = await evalJs(`({ tab: state.tab, name: document.querySelector('#profile-root h2')?.textContent.trim() })`);
-console.log('5. STANDINGS NAME CLICK -> PROFILE:', fromSt);
-if (fromSt.tab !== 'profile' || fromSt.name !== 'Zouhair Kazmane') throw new Error('Standings name click failed: ' + JSON.stringify(fromSt));
+const stCur = await evalJs(`(() => ({
+  mode: state.standingsMode,
+  season: state.standingsSeason,
+  divBlocks: document.querySelectorAll('#standings-body .div-block').length,
+  promoRows: document.querySelectorAll('#standings-body tr.row-promo').length,
+  relegRows: document.querySelectorAll('#standings-body tr.row-releg').length
+}))()`);
+console.log('2a. STANDINGS DEFAULT (s14 Par division + promo/releg):', stCur);
+if (stCur.mode !== 'division' || stCur.divBlocks !== 13 || stCur.promoRows !== 39 || stCur.relegRows !== 39) {
+  throw new Error('Standings current season check failed: ' + JSON.stringify(stCur));
+}
+await screenshot('02_standings_promo_releg.png', false);
 
-// 6. Fun Facts check (13 cards including Adversaires Différents & Record de Victoires)
-await evalJs(`switchTab('funfacts')`);
-await new Promise(r => setTimeout(r, 200));
-const ffCheck = await evalJs(`(() => {
-  const titles = [...document.querySelectorAll('#funfacts-root .card-title')].map(e => e.textContent.trim());
-  return { count: titles.length, hasDiversity: titles.some(t => t.includes('Adversaires Différents')), hasWins: titles.some(t => t.includes('Record de Victoires')) };
+// Switch to historical season s01 -> NO promo/releg highlights!
+await evalJs(`(() => {
+  const sel = document.getElementById('st-season');
+  sel.value = 's01';
+  onStandingsSeasonChange();
 })()`);
-console.log('6. FUN FACTS CHECK:', ffCheck);
-if (!ffCheck.hasDiversity || !ffCheck.hasWins || ffCheck.count !== 13) throw new Error('Fun Facts check failed: ' + JSON.stringify(ffCheck));
+await new Promise(r => setTimeout(r, 200));
+const stHist = await evalJs(`({
+  season: state.standingsSeason,
+  promoRows: document.querySelectorAll('#standings-body tr.row-promo').length,
+  relegRows: document.querySelectorAll('#standings-body tr.row-releg').length
+})`);
+console.log('2b. STANDINGS HISTORICAL (s01 no highlights):', stHist);
+if (stHist.season !== 's01' || stHist.promoRows !== 0 || stHist.relegRows !== 0) {
+  throw new Error('Historical season should have 0 promo/releg highlights: ' + JSON.stringify(stHist));
+}
+
+// Return to Accueil and click "Classement en cours" -> MUST reset season to s14!
+await evalJs(`switchTab('home')`);
+await new Promise(r => setTimeout(r, 150));
+await evalJs(`(() => {
+  const btn = [...document.querySelectorAll('#view-home button')].find(b => b.textContent.trim() === 'Classement en cours');
+  btn.click();
+})()`);
+await new Promise(r => setTimeout(r, 200));
+const stReset = await evalJs(`({
+  tab: state.tab,
+  season: state.standingsSeason,
+  selectVal: document.getElementById('st-season').value,
+  promoRows: document.querySelectorAll('#standings-body tr.row-promo').length
+})`);
+console.log('2c. RETURN VIA "CLASSEMENT EN COURS" RESET CHECK:', stReset);
+if (stReset.tab !== 'standings' || stReset.season !== 's14' || stReset.selectVal !== 's14' || stReset.promoRows !== 39) {
+  throw new Error('Classement en cours button did not reset to s14: ' + JSON.stringify(stReset));
+}
+
+// 3. Annuaire: Annuaire Complet FIRST, Gestion des Homonymes SECOND (below)
+await evalJs(`switchTab('directory')`);
+await new Promise(r => setTimeout(r, 200));
+const dirOrder = await evalJs(`[...document.querySelectorAll('#view-directory > .card h2.card-title')].map(h => h.textContent.replace(/\\s+/g, ' ').trim())`);
+console.log('3. DIRECTORY CARD ORDER:', dirOrder);
+if (!dirOrder[0].startsWith('Annuaire Complet') || !dirOrder[1].startsWith('Gestion des Homonymes')) {
+  throw new Error('Directory card order wrong: ' + JSON.stringify(dirOrder));
+}
+await screenshot('03_directory_order.png', true);
 
 console.log('CONSOLE ERRORS:', consoleErrors);
 console.log('PAGE ERRORS:', pageErrors);

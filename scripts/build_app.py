@@ -77,7 +77,7 @@ def build_compact_json(d):
     compact = {
         "meta": d["meta"],
         "seasons": [
-            [s["id"], s["order"], s["label"], s["matches"], 1 if s.get("in_progress") else 0, s.get("as_of", "")]
+            [s["id"], s["order"], s["label"], s["matches"], 1 if s.get("in_progress") else 0, s.get("as_of", ""), s.get("months", 3)]
             for s in seasons
         ],
         "divs": divs,

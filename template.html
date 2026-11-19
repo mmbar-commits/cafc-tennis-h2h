@@ -1291,6 +1291,42 @@
       background-color: var(--border);
       margin-top: 3px;
     }
+
+    /* Standings Promotion / Relegation Highlights (current season only) */
+    .data-table tbody tr.row-promo td {
+      background-color: rgba(31, 138, 101, 0.085);
+    }
+    .data-table tbody tr.row-promo:hover td {
+      background-color: rgba(31, 138, 101, 0.14);
+    }
+    .data-table tbody tr.row-promo td:first-child {
+      box-shadow: inset 3px 0 0 #1f8a65;
+    }
+    .data-table tbody tr.row-releg td {
+      background-color: rgba(220, 38, 38, 0.075);
+    }
+    .data-table tbody tr.row-releg:hover td {
+      background-color: rgba(220, 38, 38, 0.13);
+    }
+    .data-table tbody tr.row-releg td:first-child {
+      box-shadow: inset 3px 0 0 #dc2626;
+    }
+    .st-legend-swatch {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      border-radius: 3px;
+      vertical-align: -1px;
+      margin-right: 4px;
+    }
+    .swatch-promo { background-color: rgba(31, 138, 101, 0.25); border: 1px solid #1f8a65; }
+    .swatch-releg { background-color: rgba(220, 38, 38, 0.22); border: 1px solid #dc2626; }
+    .chart-footnote {
+      margin-top: 6px;
+      font-size: 11px;
+      color: var(--muted-foreground);
+      line-height: 1.4;
+    }
   </style>
 </head>
 <body>
@@ -1323,10 +1359,7 @@
           <button id="tab-standings" type="button" class="nav-tab" data-active="false" onclick="switchTab('standings')">Classement</button>
           <button id="tab-rivalries" type="button" class="nav-tab" data-active="false" onclick="switchTab('rivalries')">Grandes Rivalités</button>
           <button id="tab-funfacts" type="button" class="nav-tab" data-active="false" onclick="switchTab('funfacts')">Fun Facts</button>
-          <button id="tab-directory" type="button" class="nav-tab" data-active="false" onclick="switchTab('directory')">
-            Annuaire
-            <span class="nav-badge homonym-badge tabular-nums" id="homonym-count-badge">2</span>
-          </button>
+          <button id="tab-directory" type="button" class="nav-tab" data-active="false" onclick="switchTab('directory')">Annuaire</button>
         </nav>
       </div>
     </div>
@@ -1549,8 +1582,8 @@
           <div class="controls-row">
             <select id="st-season" class="select-input" onchange="onStandingsSeasonChange()" aria-label="Saison"></select>
             <div class="segmented" role="group" aria-label="Mode d'affichage classement">
-              <button id="st-mode-general" type="button" class="seg-btn" data-active="true" onclick="setStandingsMode('general')">Classement général</button>
-              <button id="st-mode-division" type="button" class="seg-btn" data-active="false" onclick="setStandingsMode('division')">Par division</button>
+              <button id="st-mode-division" type="button" class="seg-btn" data-active="true" onclick="setStandingsMode('division')">Par division</button>
+              <button id="st-mode-general" type="button" class="seg-btn" data-active="false" onclick="setStandingsMode('general')">Classement général</button>
             </div>
             <select id="st-div" class="select-input" onchange="renderStandings()" aria-label="Division"></select>
             <input id="st-search" type="text" class="search-sm" placeholder="Filtrer un joueur…" oninput="renderStandings()" />
@@ -1602,27 +1635,6 @@
 
     <!-- ==================== VIEW 5: ANNUAIRE & HOMONYMES ==================== -->
     <section id="view-directory" class="hidden stack-lg">
-      <div class="card stack-md">
-        <div class="card-header" style="margin-bottom:0;">
-          <div>
-            <h2 class="card-title">
-              Gestion des Homonymes
-              <span class="tag tag-pill homonym-badge">100% vérifié · 0 écart</span>
-            </h2>
-            <p class="card-desc">
-              Chaque joueur est identifié par son couple <strong>(Nom, Numéro de téléphone actif partiellement masqué)</strong> afin de séparer strictement les homonymes.
-            </p>
-          </div>
-        </div>
-
-        <div>
-          <div style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.06em; color:var(--muted-foreground); margin-bottom:10px;">
-            Homonymes actifs séparés par numéro de téléphone
-          </div>
-          <div id="homonym-cards" class="two-col-grid"></div>
-        </div>
-      </div>
-
       <div class="card">
         <div class="card-header">
           <div>
@@ -1671,6 +1683,27 @@
           </table>
         </div>
       </div>
+
+      <div class="card stack-md">
+        <div class="card-header" style="margin-bottom:0;">
+          <div>
+            <h2 class="card-title">
+              Gestion des Homonymes
+              <span class="tag tag-pill homonym-badge">100% vérifié · 0 écart</span>
+            </h2>
+            <p class="card-desc">
+              Chaque joueur est identifié par son couple <strong>(Nom, Numéro de téléphone actif partiellement masqué)</strong> afin de séparer strictement les homonymes.
+            </p>
+          </div>
+        </div>
+
+        <div>
+          <div style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.06em; color:var(--muted-foreground); margin-bottom:10px;">
+            Homonymes actifs séparés par numéro de téléphone
+          </div>
+          <div id="homonym-cards" class="two-col-grid"></div>
+        </div>
+      </div>
     </section>
 
   </main>
@@ -1692,7 +1725,7 @@
     const RAW = JSON.parse(document.getElementById('cafc-data').textContent);
 
     const SEASONS = RAW.seasons.map(s => ({
-      id: s[0], order: s[1], label: s[2], matches: s[3], inProgress: s[4] === 1, asOf: s[5] || ''
+      id: s[0], order: s[1], label: s[2], matches: s[3], inProgress: s[4] === 1, asOf: s[5] || '', months: s[6] || 3
     }));
     const LIGUE_SEASONS = SEASONS;
     const SEASON_BY_ID = new Map(SEASONS.map(s => [s.id, s]));
@@ -1816,7 +1849,7 @@
       userPickedStats: false,
       matchSortDesc: true,
       standingsSeason: META.current_season_id || SEASONS[SEASONS.length - 1].id,
-      standingsMode: 'general'
+      standingsMode: 'division'
     };
 
     function matchPassesFilter(m) {
@@ -2990,7 +3023,7 @@
             </div>
             <div class="home-cta-row">
               <button type="button" class="btn btn-primary-green" onclick="switchTab('h2h')">Comparer 2 joueurs (H2H)</button>
-              <button type="button" class="btn" onclick="switchTab('standings')">Classement en cours</button>
+              <button type="button" class="btn" onclick="openCurrentStandings()">Classement en cours</button>
               <button type="button" class="btn" onclick="switchTab('funfacts')">Fun Facts &amp; Records</button>
             </div>
           </div>
@@ -3011,7 +3044,7 @@
           <div class="kpi-card">
             <span class="kpi-label">Saison la plus active</span>
             <span class="kpi-val clay-text tabular-nums">${A.mostActive.matches} matchs</span>
-            <span class="kpi-sub">${esc(A.mostActive.label)} · ${A.mostActive.playersCount} joueurs (${A.mostActive.divsCount} div.)</span>
+            <span class="kpi-sub">${esc(A.mostActive.label)}${A.mostActive.months === 4 ? ' (4 mois · 459/3m)' : ''} · ${A.mostActive.playersCount} joueurs</span>
           </div>
           <div class="kpi-card">
             <span class="kpi-label">Volume de jeu cumulé</span>
@@ -3088,14 +3121,14 @@
             <div class="card-header">
               <div>
                 <h3 class="card-title">Activité de la Ligue Saison par Saison</h3>
-                <p class="card-desc">Barres : matchs · Courbe orange : joueurs · Survolez une colonne pour afficher les chiffres (* = en cours)</p>
+                <p class="card-desc">Barres : matchs (base 3 mois) · Courbe orange : joueurs · Survolez une colonne pour les chiffres</p>
               </div>
               <div class="chart-legend">
-                <span><span class="dot emerald-bg"></span>Matchs</span>
+                <span><span class="dot emerald-bg"></span>Matchs / 3m</span>
                 <span><span class="dot clay-bg"></span>Joueurs</span>
               </div>
             </div>
-            <div id="home-season-chart" class="chart-box">${buildHomeSeasonSvg(A.bySeason, A.mostActive.id)}</div>
+            <div id="home-season-chart" class="chart-box">${buildHomeSeasonSvg(A.bySeason)}</div>
           </div>
         </div>
 
@@ -3110,7 +3143,7 @@
                 </h3>
                 <p class="card-desc">Classement provisoire de l'élite · Cliquez sur un joueur pour ouvrir son profil</p>
               </div>
-              <button type="button" class="btn btn-sm" onclick="switchTab('standings')">Voir tout →</button>
+              <button type="button" class="btn btn-sm" onclick="openCurrentStandings()">Voir tout →</button>
             </div>
             <div class="stack-sm">
               ${etoileTop5.map(r => `
@@ -3190,14 +3223,20 @@
       `;
     }
 
-    function buildHomeSeasonSvg(seasons, peakId) {
+    function buildHomeSeasonSvg(seasons) {
       const W = 600, H = 228;
       const pL = 34, pR = 34, pT = 22, pB = 34;
       const plotW = W - pL - pR;
       const plotH = H - pT - pB;
       const n = seasons.length;
-      const maxM = Math.max(...seasons.map(s => s.matches), 100);
-      const maxP = Math.ceil(Math.max(...seasons.map(s => s.playersCount), 50) / 20) * 20;
+
+      const withNorm = seasons.map(s => ({
+        ...s,
+        normMatches: s.months === 4 ? Math.round((s.matches * 3) / 4) : s.matches
+      }));
+      const peakNorm = Math.max(...withNorm.map(s => s.normMatches), 100);
+      const maxM = Math.ceil(peakNorm / 50) * 50;
+      const maxP = Math.ceil(Math.max(...withNorm.map(s => s.playersCount), 50) / 20) * 20;
       const step = plotW / n;
       const barW = Math.max(14, Math.min(28, step * 0.6));
 
@@ -3214,26 +3253,37 @@
       let bars = '';
       let hitCols = '';
       const linePts = [];
-      seasons.forEach((s, i) => {
+      const fourMonthNotes = [];
+
+      withNorm.forEach((s, i) => {
         const cx = pL + step * (i + 0.5);
-        const bh = (s.matches / maxM) * plotH;
+        const bh = (s.normMatches / maxM) * plotH;
         const bx = cx - barW / 2;
         const by = pT + plotH - bh;
-        const isPeak = s.id === peakId;
+        const isPeak = s.normMatches === peakNorm;
+        const is4m = s.months === 4;
+        if (is4m) fourMonthNotes.push(`${s.label} (${s.matches} réels → ${s.normMatches}/3m)`);
+
         const fill = s.inProgress ? 'rgba(31, 138, 101, 0.42)' : (isPeak ? '#156c4e' : '#1f8a65');
         const stroke = s.inProgress ? '#1f8a65' : 'none';
         const dash = s.inProgress ? 'stroke-dasharray="3,2"' : '';
         bars += `<rect class="col-bar" x="${bx.toFixed(1)}" y="${by.toFixed(1)}" width="${barW.toFixed(1)}" height="${Math.max(2, bh).toFixed(1)}" rx="4" fill="${fill}" stroke="${stroke}" ${dash} />`;
 
-        const lbl = shortSeasonLabel(s.label) + (s.inProgress ? '*' : '');
+        if (is4m && bh >= 24) {
+          bars += `<text x="${cx.toFixed(1)}" y="${(pT + plotH - 6).toFixed(1)}" text-anchor="middle" fill="#ffffff" fill-opacity="0.82" font-size="8" font-weight="700" style="pointer-events:none;">4m</text>`;
+        }
+
+        const lbl = shortSeasonLabel(s.label) + (s.inProgress ? '*' : is4m ? '†' : '');
         bars += `<text x="${cx.toFixed(1)}" y="${H - 12}" text-anchor="middle" fill="${s.inProgress ? '#0f766e' : '#6c655c'}" font-size="9.5" font-weight="${s.inProgress || isPeak ? '750' : '600'}">${esc(lbl)}</text>`;
 
         const py = pT + plotH - (s.playersCount / maxP) * plotH;
         linePts.push({ x: cx, y: py, s });
 
-        const leaderTxt = s.etoileLeader ? ` · #1 Étoile : ${s.etoileLeader.player.name}` : '';
-        const statusTxt = s.inProgress ? ` (au ${s.asOf})` : '';
-        const tip = `${s.label}${statusTxt} : ${s.matches} matchs · ${s.playersCount} joueurs · ${s.divsCount} div. · ${s.stbCount} STB${leaderTxt}`;
+        const statusTxt = s.inProgress ? ` (au ${s.asOf})` : (is4m ? ' (4 mois)' : '');
+        const matchTxt = is4m
+          ? `${s.normMatches} matchs/3m (${s.matches} réels)`
+          : `${s.matches} matchs`;
+        const tip = `${s.label}${statusTxt} : ${matchTxt} · ${s.playersCount} joueurs · ${s.divsCount} div. · ${s.stbCount} STB`;
         const safeTip = esc(tip).replace(/'/g, "\\'");
         hitCols += `
           <g class="season-col-hit" onmouseenter="showSvgTip('home-season-tip', '${safeTip}')" onmouseleave="hideSvgTip('home-season-tip')">
@@ -3250,7 +3300,10 @@
         <path d="${linePath}" fill="none" stroke="#c85a32" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" style="pointer-events:none;"/>
         ${hitCols}
       </svg>
-      <div id="home-season-tip" class="svg-tooltip"></div>`;
+      <div id="home-season-tip" class="svg-tooltip"></div>
+      <div class="chart-footnote">
+        † Saisons de 4 mois ramenées au pro rata 3 mois : ${esc(fourMonthNotes.join(' · '))}. · * Saison en cours.
+      </div>`;
     }
 
     // ==================== VIEW 1B: PROFIL JOUEUR ====================
@@ -3995,6 +4048,19 @@
       divSel.value = seen.has(prev) ? prev : 'all';
     }
 
+    function openCurrentStandings() {
+      const curSid = META.current_season_id || SEASONS[SEASONS.length - 1].id;
+      state.standingsSeason = curSid;
+      const sel = document.getElementById('st-season');
+      if (sel) sel.value = curSid;
+      populateStandingsDivOptions();
+      const divSel = document.getElementById('st-div');
+      if (divSel) divSel.value = 'all';
+      const searchInp = document.getElementById('st-search');
+      if (searchInp) searchInp.value = '';
+      switchTab('standings');
+    }
+
     function onStandingsSeasonChange() {
       state.standingsSeason = document.getElementById('st-season').value;
       populateStandingsDivOptions();
@@ -4014,12 +4080,24 @@
       if (!season) return;
 
       const allRows = getSeasonStandings(sid);
+      const divSizes = new Map();
+      for (const r of allRows) {
+        divSizes.set(r.div, (divSizes.get(r.div) || 0) + 1);
+      }
+      const rowZoneClass = r => {
+        if (!season.inProgress) return '';
+        const sz = divSizes.get(r.div) || 0;
+        if (r.rk <= 3) return 'row-promo';
+        if (sz >= 6 && r.rk > sz - 3) return 'row-releg';
+        return '';
+      };
+
       const divFilter = document.getElementById('st-div').value;
       const rawQ = document.getElementById('st-search').value;
       const q = normStr(rawQ.trim());
       const qDigits = digitsOnly(rawQ);
 
-      const divCount = new Set(allRows.map(r => r.div)).size;
+      const divCount = divSizes.size;
       const banner = document.getElementById('standings-banner');
       if (season.inProgress) {
         banner.innerHTML = `
@@ -4027,7 +4105,11 @@
             <span class="live-dot"></span>
             <span>Classement en cours · ${esc(season.label)} (au ${esc(season.asOf)})</span>
           </div>
-          <div class="tabular-nums">${allRows.length} joueurs · ${divCount} divisions · ${season.matches} matchs disputés</div>`;
+          <div style="display:flex; flex-wrap:wrap; align-items:center; gap:12px;">
+            <span><span class="st-legend-swatch swatch-promo"></span>Top 3 (promotion probable)</span>
+            <span><span class="st-legend-swatch swatch-releg"></span>3 derniers (relégation probable)</span>
+            <span class="tabular-nums">${allRows.length} joueurs · ${divCount} divisions · ${season.matches} matchs</span>
+          </div>`;
       } else {
         banner.innerHTML = `
           <div style="font-weight:700; color:var(--foreground);">Classement officiel de fin de saison · ${esc(season.label)}</div>
@@ -4070,7 +4152,7 @@
               </thead>
               <tbody>
                 ${rows.map(r => `
-                  <tr>
+                  <tr class="${rowZoneClass(r)}">
                     <td>${rankBadgeHtml(r.generalRank)}</td>
                     <td style="white-space:nowrap; font-weight:600;">${esc(r.div)}</td>
                     <td class="td-c">${rankBadgeHtml(r.rk)}</td>
@@ -4127,7 +4209,7 @@
                     </thead>
                     <tbody>
                       ${grp.map(r => `
-                        <tr>
+                        <tr class="${rowZoneClass(r)}">
                           <td>${rankBadgeHtml(r.rk)}</td>
                           <td>
                             <div style="display:flex; align-items:center; gap:6px; flex-wrap:wrap;">
@@ -4743,7 +4825,6 @@
     function init() {
       document.getElementById('header-subtitle').textContent =
         `${META.total_players} joueurs · ${META.total_matches.toLocaleString('fr-FR')} matchs · ${META.seasons_count} saisons (Simple)`;
-      document.getElementById('homonym-count-badge').textContent = META.homonym_groups.length;
 
       const totalClassifRows = PLAYERS.reduce((sum, p) => sum + p.history.length, 0);
       const footerAudit = document.getElementById('footer-audit');
