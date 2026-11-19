@@ -26,12 +26,13 @@ Chaque joueur est identifié de manière unique par son couple **(Nom, Numéro d
 
 ## Fonctionnalités
 
-- **Accueil** : vue synthétique de la ligue (KPIs globaux, comparaison Première vs. Dernière saison, graphique d'activité saison par saison, Top 5 Division Étoile en cours, affiches phares et records marquants).
-- **Head 2 Head** (Joueur A en vert, Joueur B en orange) : recherche instantanée par nom ou téléphone, badge *Division Actuelle*, statistiques comparatives *H2H Direct / Carrière*, courbes SVG d'évolution du H2H et des divisions sur 14 saisons, historique complet avec scores exacts des Super Tie-Breaks et comparaison indirecte sur les adversaires communs.
+- **Accueil** : vue synthétique de la ligue (KPIs globaux, comparaison Première vs. Dernière saison, graphique d'activité saison par saison avec infobulles au survol, Top 5 Division Étoile en cours, affiches phares et records marquants).
+- **Head 2 Head** (Joueur A en vert, Joueur B en orange) : recherche instantanée par nom ou téléphone, badge *Division Actuelle*, statistiques comparatives *H2H Direct / Carrière* (incluant le nombre d'adversaires différents), courbes SVG d'évolution du H2H et des divisions sur 14 saisons, historique complet avec scores exacts des Super Tie-Breaks et comparaison indirecte sur les adversaires communs.
+- **Profil Joueur** : fiche individuelle accessible en un clic sur n'importe quel nom de joueur sur le site (toutes les statistiques de carrière, diversité *adversaires différents*, trajectoire SVG des divisions, parcours saison par saison avec rang de division et rang général, liste complète et filtrable des adversaires affrontés et historique exhaustif des matchs).
 - **Classement** : classement général et par division pour la saison en cours (*Automne 2026 au 19.11.2026*) ainsi que tous les classements officiels de fin de saison depuis *Hiver 2023*.
 - **Grandes Rivalités** : explorateur des affiches récurrentes (le joueur recherché s'affiche toujours à gauche et ses rivaux à droite).
-- **Fun Facts & Records** : plus longues séries de victoires et de défaites, classement par nombre d'abandons, plus grandes évolutions de division, Super Tie-Breaks les plus fous, rois du STB, distributeurs de 6–0, champions de division, bêtes noires, marathoniens et fidèles du Jour 1 (14/14 saisons).
-- **Annuaire & Homonymes** : table de données défilable avec colonnes *Première saison* et *Div. Actuelle*, filtres par niveau (*Top Divisions Étoile – Div. 2*, *Divisions Intermédiaires Div. 3 – 7*, *Divisions Progression Div. 8+*, *Inscrits Automne 2026*, *Homonymes*, *50+ matchs*).
+- **Fun Facts & Records** : plus longues séries de victoires et de défaites, classement par nombre d'abandons, plus grandes évolutions de division, Super Tie-Breaks les plus fous, rois du STB, distributeurs de 6–0, champions de division, bêtes noires, marathoniens, plus grand nombre d'adversaires différents, record de victoires et fidèles du Jour 1 (14/14 saisons).
+- **Annuaire & Homonymes** : table de données défilable avec colonnes *Première saison*, *Div. Actuelle* et *Adv. diff.*, tris par matchs, victoires, % victoires, adversaires différents, meilleure division, première saison ou nom, et filtres par niveau (*Top Divisions Étoile – Div. 2*, *Divisions Intermédiaires Div. 3 – 7*, *Divisions Progression Div. 8+*, *Inscrits Automne 2026*, *Homonymes*, *50+ matchs*).
 
 ## Mettre à jour les données (nouvelle saison)
 
