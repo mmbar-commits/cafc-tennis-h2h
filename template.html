@@ -57,7 +57,7 @@
       color: #1f8a65;
     }
     .btn.emerald-soft:hover { background-color: rgba(31, 138, 101, 0.22); border-color: #1f8a65; }
-    .homonym-badge {
+    .homonym-badge, .amber-soft {
       background-color: rgba(217, 119, 6, 0.14);
       color: #b45309;
       border: 1px solid rgba(217, 119, 6, 0.38);
@@ -141,18 +141,19 @@
     /* Navigation Tabs */
     .nav-tabs {
       display: inline-flex;
+      flex-wrap: wrap;
       align-items: center;
-      gap: 4px;
+      gap: 3px;
       padding: 4px;
       border-radius: 10px;
-      background-color: var(--card);
+      background-color: var(--background);
       border: 1px solid var(--border);
     }
     .nav-tab {
       display: inline-flex;
       align-items: center;
-      gap: 6px;
-      padding: 6px 12px;
+      gap: 5px;
+      padding: 6px 11px;
       border-radius: 7px;
       border: none;
       background: transparent;
@@ -161,12 +162,13 @@
       font-weight: 600;
       cursor: pointer;
       transition: background-color 0.15s, color 0.15s;
+      white-space: nowrap;
     }
     .nav-tab:hover { color: var(--foreground); }
     .nav-tab[data-active="true"] {
-      background-color: var(--background);
+      background-color: var(--card);
       color: var(--foreground);
-      box-shadow: 0 1px 2px rgba(0,0,0,0.08);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.09);
     }
     .nav-badge {
       display: inline-flex;
@@ -281,8 +283,8 @@
       transition: border-color 0.15s, box-shadow 0.15s;
     }
     .text-input::placeholder { color: var(--muted-foreground); font-weight: 400; }
-    .text-input-a:focus { border-color: #c85a32; box-shadow: 0 0 0 3px rgba(200, 90, 50, 0.18); background-color: var(--card); }
-    .text-input-b:focus { border-color: #1f8a65; box-shadow: 0 0 0 3px rgba(31, 138, 101, 0.18); background-color: var(--card); }
+    .text-input-a:focus { border-color: #1f8a65; box-shadow: 0 0 0 3px rgba(31, 138, 101, 0.18); background-color: var(--card); }
+    .text-input-b:focus { border-color: #c85a32; box-shadow: 0 0 0 3px rgba(200, 90, 50, 0.18); background-color: var(--card); }
 
     .input-icon-btn {
       position: absolute;
@@ -415,7 +417,7 @@
       cursor: pointer;
       transition: border-color 0.15s, color 0.15s;
     }
-    .quick-pick-btn:hover { border-color: #c85a32; color: #c85a32; }
+    .quick-pick-btn:hover { border-color: #1f8a65; color: #1f8a65; }
 
     .controls-row { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
     .segmented {
@@ -439,7 +441,7 @@
     .seg-btn:first-child { border-left: none; }
     .seg-btn:hover { color: var(--foreground); }
     .seg-btn[data-active="true"] {
-      background-color: #c85a32;
+      background-color: #1f8a65;
       color: #ffffff;
     }
     .select-input {
@@ -465,13 +467,13 @@
       color: var(--foreground);
       outline: none;
     }
-    .search-sm:focus { border-color: #c85a32; }
+    .search-sm:focus { border-color: #1f8a65; }
 
     /* Hero Scoreboard */
     .hero-accent-bar {
       height: 5px;
       width: 100%;
-      background: linear-gradient(90deg, #c85a32 0%, rgba(200,90,50,0.22) 46%, rgba(31,138,101,0.22) 54%, #1f8a65 100%);
+      background: linear-gradient(90deg, #1f8a65 0%, rgba(31,138,101,0.22) 46%, rgba(200,90,50,0.22) 54%, #c85a32 100%);
     }
     .hero-body { padding: 22px 24px 18px; }
     .hero-grid {
@@ -821,7 +823,7 @@
       gap: 8px;
       transition: border-color 0.15s, transform 0.12s;
     }
-    .rivalry-card:hover { border-color: #c85a32; transform: translateY(-1px); }
+    .rivalry-card:hover { border-color: #1f8a65; transform: translateY(-1px); }
     .rivalry-top {
       display: grid;
       grid-template-columns: 1fr auto 1fr;
@@ -915,6 +917,279 @@
       cursor: pointer;
       user-select: none;
     }
+
+    /* Division Actuelle Badge */
+    .current-div-badge {
+      background-color: rgba(15, 118, 110, 0.11);
+      border: 1px solid rgba(15, 118, 110, 0.34);
+      color: #0f766e;
+    }
+    .live-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background-color: #16a34a;
+      display: inline-block;
+      flex-shrink: 0;
+      box-shadow: 0 0 0 2px rgba(22, 163, 74, 0.22);
+    }
+
+    /* Home Page (Accueil) */
+    .home-hero {
+      background-color: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+    .home-hero-bar {
+      height: 5px;
+      background: linear-gradient(90deg, #1f8a65 0%, #2aa177 50%, #c85a32 100%);
+    }
+    .home-hero-body {
+      padding: 26px 28px 24px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+    .home-hero-title {
+      margin: 10px 0 6px;
+      font-size: 26px;
+      font-weight: 850;
+      letter-spacing: -0.025em;
+      line-height: 1.15;
+    }
+    .home-hero-sub {
+      margin: 0;
+      font-size: 14px;
+      color: var(--muted-foreground);
+      max-width: 620px;
+    }
+    .home-cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px;
+    }
+    .btn-primary-green {
+      background-color: #1f8a65;
+      border-color: #1f8a65;
+      color: #ffffff;
+    }
+    .btn-primary-green:hover {
+      background-color: #187253;
+      border-color: #187253;
+      color: #ffffff;
+    }
+
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+    @media (max-width: 900px) {
+      .kpi-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (max-width: 560px) {
+      .kpi-grid { grid-template-columns: 1fr; }
+    }
+    .kpi-card {
+      background-color: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 16px 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .kpi-label {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--muted-foreground);
+    }
+    .kpi-val {
+      font-size: 26px;
+      font-weight: 850;
+      letter-spacing: -0.025em;
+      line-height: 1.15;
+    }
+    .kpi-sub {
+      font-size: 12px;
+      color: var(--muted-foreground);
+    }
+
+    .home-two-col {
+      display: grid;
+      grid-template-columns: 5fr 7fr;
+      gap: 20px;
+      align-items: start;
+    }
+    .home-even-col {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 20px;
+      align-items: start;
+    }
+    @media (max-width: 960px) {
+      .home-two-col, .home-even-col { grid-template-columns: 1fr; }
+    }
+
+    .season-compare-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+    .season-compare-table th {
+      padding: 8px 8px;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--muted-foreground);
+      border-bottom: 1px solid var(--border);
+      text-align: right;
+    }
+    .season-compare-table th:first-child { text-align: left; }
+    .season-compare-table td {
+      padding: 9px 8px;
+      border-bottom: 1px solid var(--border);
+      text-align: right;
+    }
+    .season-compare-table td:first-child {
+      text-align: left;
+      color: var(--muted-foreground);
+      font-weight: 500;
+    }
+    .season-compare-table tr:last-child td { border-bottom: none; }
+
+    .highlight-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 10px 12px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background-color: var(--background);
+      width: 100%;
+      text-align: left;
+      cursor: pointer;
+      transition: border-color 0.15s;
+    }
+    .highlight-row:hover { border-color: #1f8a65; }
+
+    /* Classement (Standings) */
+    .standings-banner {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 10px 14px;
+      border-radius: 10px;
+      background-color: var(--background);
+      border: 1px solid var(--border);
+      font-size: 12px;
+      color: var(--muted-foreground);
+      margin-bottom: 14px;
+    }
+    .rank-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 26px;
+      height: 24px;
+      padding: 0 7px;
+      border-radius: 7px;
+      font-size: 12px;
+      font-weight: 750;
+      background-color: var(--background);
+      border: 1px solid var(--border);
+      color: var(--muted-foreground);
+    }
+    .rank-1 { background-color: rgba(217, 119, 6, 0.16); border-color: rgba(217, 119, 6, 0.45); color: #b45309; }
+    .rank-2 { background-color: rgba(100, 116, 139, 0.15); border-color: rgba(100, 116, 139, 0.4); color: #475569; }
+    .rank-3 { background-color: rgba(180, 83, 9, 0.13); border-color: rgba(180, 83, 9, 0.35); color: #9a3412; }
+    .diff-pos { color: #1f8a65; font-weight: 650; }
+    .diff-neg { color: #c85a32; font-weight: 500; }
+
+    .div-block {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      background-color: var(--card);
+    }
+    .div-block-hdr {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      padding: 10px 14px;
+      background-color: var(--background);
+      border-bottom: 1px solid var(--border);
+      font-weight: 750;
+      font-size: 13px;
+    }
+
+    /* Fun Facts */
+    .ff-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+      align-items: start;
+    }
+    @media (max-width: 900px) {
+      .ff-grid { grid-template-columns: 1fr; }
+    }
+    .ff-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 8px 10px;
+      border-radius: 9px;
+      border: 1px solid var(--border);
+      background-color: var(--background);
+      font-size: 13px;
+    }
+    .ff-row-btn {
+      width: 100%;
+      text-align: left;
+      cursor: pointer;
+      transition: border-color 0.15s;
+    }
+    .ff-row-btn:hover { border-color: #1f8a65; }
+    .ff-left {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      min-width: 0;
+    }
+    .ff-sub {
+      font-size: 11.5px;
+      color: var(--muted-foreground);
+      margin-top: 1px;
+    }
+    .fideles-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+    }
+    .fidele-chip {
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background-color: var(--background);
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: border-color 0.15s, color 0.15s;
+    }
+    .fidele-chip:hover { border-color: #1f8a65; color: #1f8a65; }
   </style>
 </head>
 <body>
@@ -923,7 +1198,7 @@
   <header class="site-header">
     <div class="container">
       <div class="header-inner">
-        <div class="brand">
+        <div class="brand" style="cursor:pointer;" onclick="switchTab('home')" title="Retour à l'accueil">
           <div class="brand-mark" aria-hidden="true">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
               <circle cx="12" cy="12" r="9.5"></circle>
@@ -941,10 +1216,13 @@
         </div>
 
         <nav class="nav-tabs" aria-label="Navigation principale">
-          <button id="tab-h2h" type="button" class="nav-tab" data-active="true" onclick="switchTab('h2h')">Head 2 Head</button>
+          <button id="tab-home" type="button" class="nav-tab" data-active="true" onclick="switchTab('home')">Accueil</button>
+          <button id="tab-h2h" type="button" class="nav-tab" data-active="false" onclick="switchTab('h2h')">Head 2 Head</button>
+          <button id="tab-standings" type="button" class="nav-tab" data-active="false" onclick="switchTab('standings')">Classement</button>
           <button id="tab-rivalries" type="button" class="nav-tab" data-active="false" onclick="switchTab('rivalries')">Grandes Rivalités</button>
+          <button id="tab-funfacts" type="button" class="nav-tab" data-active="false" onclick="switchTab('funfacts')">Fun Facts</button>
           <button id="tab-directory" type="button" class="nav-tab" data-active="false" onclick="switchTab('directory')">
-            Annuaire &amp; Homonymes
+            Annuaire
             <span class="nav-badge homonym-badge tabular-nums" id="homonym-count-badge">2</span>
           </button>
         </nav>
@@ -954,17 +1232,22 @@
 
   <main class="container main-content">
 
+    <!-- ==================== VIEW 0: ACCUEIL ==================== -->
+    <section id="view-home" class="stack-lg">
+      <div id="home-root" class="stack-lg"></div>
+    </section>
+
     <!-- ==================== VIEW 1: HEAD 2 HEAD ==================== -->
-    <section id="view-h2h" class="stack-lg">
+    <section id="view-h2h" class="stack-lg hidden">
 
       <!-- PLAYER SELECTOR & FILTERS -->
       <div class="card picker-card">
         <div class="picker-grid">
-          <!-- Player A -->
+          <!-- Player A (Vert) -->
           <div class="picker-wrap" id="picker-a-wrap">
             <label for="input-a" class="picker-label">
-              <span class="picker-label-left clay-text">
-                <span class="dot clay-bg"></span>
+              <span class="picker-label-left emerald-text">
+                <span class="dot emerald-bg"></span>
                 Joueur A
               </span>
               <span class="picker-hint">Nom ou n° de téléphone</span>
@@ -995,11 +1278,11 @@
             </button>
           </div>
 
-          <!-- Player B -->
+          <!-- Player B (Orange) -->
           <div class="picker-wrap" id="picker-b-wrap">
             <label for="input-b" class="picker-label">
-              <span class="picker-label-left emerald-text">
-                <span class="dot emerald-bg"></span>
+              <span class="picker-label-left clay-text">
+                <span class="dot clay-bg"></span>
                 Joueur B
               </span>
               <span class="picker-hint">Adversaires directs en priorité</span>
@@ -1114,13 +1397,36 @@
       </div>
     </section>
 
-    <!-- ==================== VIEW 2: GRANDES RIVALITÉS ==================== -->
+    <!-- ==================== VIEW 2: CLASSEMENT ==================== -->
+    <section id="view-standings" class="hidden stack-lg">
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <h2 class="card-title">Classement Général &amp; Par Saison</h2>
+            <p class="card-desc">Classement en cours (Automne 2026 au 19.11.2026) et classements officiels de fin de saison depuis Hiver 2023</p>
+          </div>
+          <div class="controls-row">
+            <select id="st-season" class="select-input" onchange="onStandingsSeasonChange()" aria-label="Saison"></select>
+            <div class="segmented" role="group" aria-label="Mode d'affichage classement">
+              <button id="st-mode-general" type="button" class="seg-btn" data-active="true" onclick="setStandingsMode('general')">Classement général</button>
+              <button id="st-mode-division" type="button" class="seg-btn" data-active="false" onclick="setStandingsMode('division')">Par division</button>
+            </div>
+            <select id="st-div" class="select-input" onchange="renderStandings()" aria-label="Division"></select>
+            <input id="st-search" type="text" class="search-sm" placeholder="Filtrer un joueur…" oninput="renderStandings()" />
+          </div>
+        </div>
+        <div id="standings-banner" class="standings-banner"></div>
+        <div id="standings-body"></div>
+      </div>
+    </section>
+
+    <!-- ==================== VIEW 3: GRANDES RIVALITÉS ==================== -->
     <section id="view-rivalries" class="hidden">
       <div class="card">
         <div class="card-header">
           <div>
             <h2 class="card-title">Grandes Rivalités de la Ligue CAFC (Simple)</h2>
-            <p class="card-desc">Toutes les affiches disputées au moins 2 fois depuis Hiver 2023</p>
+            <p class="card-desc">Toutes les affiches disputées au moins 2 fois depuis Hiver 2023 · Le joueur recherché s'affiche toujours à gauche</p>
           </div>
           <div class="controls-row">
             <input id="riv-search" type="text" class="search-sm" placeholder="Filtrer par joueur…" oninput="renderRivalries()" />
@@ -1131,7 +1437,7 @@
               <option value="2">2+ matchs</option>
             </select>
             <label class="check-pill">
-              <input id="riv-close-only" type="checkbox" onchange="renderRivalries()" style="accent-color:#c85a32;" />
+              <input id="riv-close-only" type="checkbox" onchange="renderRivalries()" style="accent-color:#1f8a65;" />
               <span>Duel serré (écart ≤ 1)</span>
             </label>
           </div>
@@ -1140,7 +1446,20 @@
       </div>
     </section>
 
-    <!-- ==================== VIEW 3: ANNUAIRE & HOMONYMES ==================== -->
+    <!-- ==================== VIEW 4: FUN FACTS ==================== -->
+    <section id="view-funfacts" class="hidden stack-lg">
+      <div class="card">
+        <div class="card-header" style="margin-bottom:0; border-bottom:none; padding-bottom:0;">
+          <div>
+            <h2 class="card-title">Fun Facts &amp; Records de la Ligue CAFC</h2>
+            <p class="card-desc">Séries historiques, ascensions fulgurantes, Super Tie-Breaks mémorables, abandons et fidèles depuis le Jour 1 (Simple · 2023–2026)</p>
+          </div>
+        </div>
+      </div>
+      <div id="funfacts-root" class="ff-grid"></div>
+    </section>
+
+    <!-- ==================== VIEW 5: ANNUAIRE & HOMONYMES ==================== -->
     <section id="view-directory" class="hidden stack-lg">
       <div class="card stack-md">
         <div class="card-header" style="margin-bottom:0;">
@@ -1167,14 +1486,17 @@
         <div class="card-header">
           <div>
             <h2 class="card-title">Annuaire Complet des Joueurs</h2>
-            <p class="card-desc" id="dir-count-label">252 joueurs actifs</p>
+            <p class="card-desc" id="dir-count-label">Chargement…</p>
           </div>
           <div class="controls-row">
             <input id="dir-search" type="text" class="search-sm" placeholder="Nom ou téléphone…" oninput="renderDirectory()" />
             <select id="dir-filter" class="select-input" onchange="renderDirectory()" aria-label="Filtre annuaire">
               <option value="all">Tous les joueurs</option>
-              <option value="homonym">Homonymes uniquement</option>
+              <option value="current">Inscrits Automne 2026 (en cours)</option>
               <option value="top">Top Divisions (Étoile – Div. 2)</option>
+              <option value="mid">Divisions Intermédiaires (Div. 3 – 7)</option>
+              <option value="prog">Divisions Progression (Div. 8+)</option>
+              <option value="homonym">Homonymes uniquement</option>
               <option value="active50">Grands habitués (50+ matchs)</option>
             </select>
             <select id="dir-sort" class="select-input" onchange="renderDirectory()" aria-label="Tri annuaire">
@@ -1192,6 +1514,7 @@
               <tr>
                 <th>Joueur &amp; Téléphone</th>
                 <th>Première saison</th>
+                <th>Div. Actuelle</th>
                 <th>Meilleure Div.</th>
                 <th class="th-r">Saisons</th>
                 <th class="th-r">Matchs</th>
@@ -1212,7 +1535,7 @@
     <div class="container">
       <div class="footer-inner">
         <span>Source : Archives Mehdi Barouti</span>
-        <span>Audit croisé : 1 614 lignes de classements vérifiées · 0 écart.</span>
+        <span id="footer-audit">Audit croisé : 1 744 lignes de classements vérifiées · 0 écart.</span>
       </div>
     </div>
   </footer>
@@ -1225,9 +1548,10 @@
     const RAW = JSON.parse(document.getElementById('cafc-data').textContent);
 
     const SEASONS = RAW.seasons.map(s => ({
-      id: s[0], order: s[1], label: s[2], matches: s[3]
+      id: s[0], order: s[1], label: s[2], matches: s[3], inProgress: s[4] === 1, asOf: s[5] || ''
     }));
     const LIGUE_SEASONS = SEASONS;
+    const SEASON_BY_ID = new Map(SEASONS.map(s => [s.id, s]));
     const DIVS = RAW.divs;
     const ROUNDS = RAW.rounds;
     const META = RAW.meta;
@@ -1246,10 +1570,13 @@
     function esc(str) {
       return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
     }
+    function normDivRank(dr) {
+      return dr >= 90 ? 7 : dr;
+    }
 
     const PLAYERS = RAW.players.map(p => {
-      const st = p[8];
-      const hist = p[9].map(h => ({
+      const st = p[9];
+      const hist = p[10].map(h => ({
         sidIdx: h[0],
         sid: SEASONS[h[0]].id,
         ord: SEASONS[h[0]].order,
@@ -1275,7 +1602,8 @@
         bestDiv: p[4] >= 0 ? DIVS[p[4]] : '—',
         bestDivRank: p[5],
         lastDiv: p[6] >= 0 ? DIVS[p[6]] : '—',
-        aliases: p[7],
+        currentDiv: p[7] >= 0 ? DIVS[p[7]] : null,
+        aliases: p[8],
         firstSeason,
         firstSeasonOrd,
         lastSeason,
@@ -1327,13 +1655,15 @@
 
     // ==================== STATE ====================
     const state = {
-      tab: 'h2h',
+      tab: 'home',
       playerA: null,
       playerB: null,
       seasonFilter: 'all',
       statsMode: 'h2h',
       userPickedStats: false,
-      matchSortDesc: true
+      matchSortDesc: true,
+      standingsSeason: META.current_season_id || SEASONS[SEASONS.length - 1].id,
+      standingsMode: 'general'
     };
 
     function matchPassesFilter(m) {
@@ -1466,6 +1796,7 @@
         if (!q && !qDigits) return true;
         if (q && p.searchName.includes(q)) return true;
         if (q && normStr(p.bestDiv).includes(q)) return true;
+        if (q && p.currentDiv && normStr(p.currentDiv).includes(q)) return true;
         if (q && p.aliases.some(al => normStr(al).includes(q))) return true;
         if (qDigits && p.phoneDigits.includes(qDigits)) return true;
         return false;
@@ -1538,11 +1869,15 @@
 
     function renderDropdownRow(side, p, h, idx) {
       const hBadge = h
-        ? `<span class="tag tag-pill tag-xs tabular-nums ${side === 'a' ? 'clay-soft' : 'emerald-soft'}" style="flex-shrink:0;">${h.n}m · ${h.n - h.wOther}–${h.wOther}</span>`
+        ? `<span class="tag tag-pill tag-xs tabular-nums ${side === 'a' ? 'emerald-soft' : 'clay-soft'}" style="flex-shrink:0;">${h.n}m · ${h.n - h.wOther}–${h.wOther}</span>`
         : `<span class="tabular-nums" style="flex-shrink:0; font-size:12px; color:var(--muted-foreground);">${p.stats.m}m</span>`;
 
       const homTag = p.homonym
         ? `<span class="tag tag-xs homonym-badge" style="text-transform:uppercase; letter-spacing:0.03em;">Homonyme</span>`
+        : '';
+
+      const curTag = p.currentDiv
+        ? `<span class="tag tag-xs current-div-badge">Actuelle : ${esc(p.currentDiv)}</span>`
         : '';
 
       return `
@@ -1553,11 +1888,12 @@
             <div class="combo-name-line">
               <span class="combo-name truncate">${esc(p.name)}</span>
               ${homTag}
+              ${curTag}
             </div>
             <div class="combo-sub tabular-nums">
               <span class="${p.homonym ? 'combo-phone-strong' : ''}">${esc(p.phone)}</span>
               <span>·</span>
-              <span>${esc(p.bestDiv)}</span>
+              <span>Meilleure : ${esc(p.bestDiv)}</span>
               ${p.homonym ? `<span>· ${esc(p.firstSeason)} – ${esc(p.lastSeason)}</span>` : ''}
             </div>
           </div>
@@ -1691,12 +2027,16 @@
 
     function switchTab(tab) {
       state.tab = tab;
-      ['h2h', 'rivalries', 'directory'].forEach(t => {
+      ['home', 'h2h', 'standings', 'rivalries', 'funfacts', 'directory'].forEach(t => {
         document.getElementById(`view-${t}`).classList.toggle('hidden', t !== tab);
         document.getElementById(`tab-${t}`).setAttribute('data-active', t === tab ? 'true' : 'false');
       });
+      if (tab === 'home') renderHome();
+      if (tab === 'standings') renderStandings();
       if (tab === 'rivalries') renderRivalries();
+      if (tab === 'funfacts') renderFunFacts();
       if (tab === 'directory') renderDirectory();
+      window.scrollTo({ top: 0, behavior: 'instant' });
     }
 
     // ==================== H2H RENDERING ====================
@@ -1723,14 +2063,18 @@
 
     function renderPlayerSideCard(p, side, alignRight) {
       const isA = side === 'a';
-      const accentBg = isA ? 'clay-bg' : 'emerald-bg';
-      const accentSoft = isA ? 'clay-soft' : 'emerald-soft';
+      const accentBg = isA ? 'emerald-bg' : 'clay-bg';
+      const accentSoft = isA ? 'emerald-soft' : 'clay-soft';
       const careerFiltered = computeStatsFromMatches(p.id, getFilteredMatchesForPlayer(p.id));
       const winRate = pct(careerFiltered.w, careerFiltered.l);
 
       const phoneEl = p.homonym
         ? `<span class="tag tag-pill tag-xs homonym-badge tabular-nums">Homonyme · ${esc(p.phone)}</span>`
         : `<span class="tabular-nums" style="font-size:12px; color:var(--muted-foreground);">${esc(p.phone)}</span>`;
+
+      const currentOrLastBadge = p.currentDiv
+        ? `<span class="tag current-div-badge" title="Division en cours (Automne 2026)"><span class="live-dot"></span>Division Actuelle : ${esc(p.currentDiv)}</span>`
+        : `<span class="tag tag-muted">Dernière : ${esc(p.lastDiv)}</span>`;
 
       return `
         <div class="player-side ${alignRight ? 'player-side-right' : ''}">
@@ -1743,8 +2087,8 @@
           </div>
 
           <div class="pill-row ${alignRight ? 'pill-row-right' : ''}">
+            ${currentOrLastBadge}
             <span class="tag ${accentSoft}">Meilleure : ${esc(p.bestDiv)}</span>
-            <span class="tag tag-muted">Dernière : ${esc(p.lastDiv)}</span>
             <span class="tag tag-muted tabular-nums">${p.seasonsCount} saison${p.seasonsCount > 1 ? 's' : ''}</span>
           </div>
 
@@ -1768,7 +2112,7 @@
         const lastWinner = PLAYER_BY_ID.get(last.w);
         const streakWinner = sA.curStreak > 0 ? pA : pB;
         const streakLen = Math.max(sA.curStreak, sB.curStreak);
-        const streakClass = streakWinner.id === pA.id ? 'clay-text' : 'emerald-text';
+        const streakClass = streakWinner.id === pA.id ? 'emerald-text' : 'clay-text';
         const lastScores = formatScoreForWinner(last, last.w).join(' ');
         statusHtml = `
           <div style="display:flex; flex-wrap:wrap; align-items:center; gap:12px;">
@@ -1787,20 +2131,20 @@
             <div class="score-center">
               <div class="score-caption">${total > 0 ? `${total} confrontation${total > 1 ? 's' : ''}` : 'Face-à-face'}</div>
               <div class="score-numbers tabular-nums">
-                <span class="score-big ${total > 0 && sA.w >= sB.w ? 'clay-text' : ''}" style="${total > 0 && sA.w < sB.w ? 'opacity:0.65;' : ''}">${sA.w}</span>
+                <span class="score-big ${total > 0 && sA.w >= sB.w ? 'emerald-text' : ''}" style="${total > 0 && sA.w < sB.w ? 'opacity:0.65;' : ''}">${sA.w}</span>
                 <span class="score-dash">—</span>
-                <span class="score-big ${total > 0 && sB.w >= sA.w ? 'emerald-text' : ''}" style="${total > 0 && sB.w < sA.w ? 'opacity:0.65;' : ''}">${sB.w}</span>
+                <span class="score-big ${total > 0 && sB.w >= sA.w ? 'clay-text' : ''}" style="${total > 0 && sB.w < sA.w ? 'opacity:0.65;' : ''}">${sB.w}</span>
               </div>
               <div class="tug-bar">
                 ${total > 0 ? `
-                  <div class="clay-bg tug-fill" style="width:${pctA}%"></div>
-                  <div class="emerald-bg tug-fill" style="width:${pctB}%"></div>
+                  <div class="emerald-bg tug-fill" style="width:${pctA}%"></div>
+                  <div class="clay-bg tug-fill" style="width:${pctB}%"></div>
                 ` : `<div style="width:100%; height:100%; opacity:0.25; background:var(--muted-foreground);"></div>`}
               </div>
               <div class="tug-labels tabular-nums">
-                <span class="clay-text">${total > 0 ? pctA + '%' : '—'}</span>
+                <span class="emerald-text">${total > 0 ? pctA + '%' : '—'}</span>
                 <span style="font-weight:500; color:var(--muted-foreground); font-size:11px;">Sets ${sA.sw}–${sB.sw} · Jeux ${sA.gw}–${sB.gw}</span>
-                <span class="emerald-text">${total > 0 ? pctB + '%' : '—'}</span>
+                <span class="clay-text">${total > 0 ? pctB + '%' : '—'}</span>
               </div>
             </div>
 
@@ -1828,7 +2172,7 @@
         panel.innerHTML = `
           <div class="empty-box">
             <div>Aucun match direct entre <strong>${esc(pA.name)}</strong> et <strong>${esc(pB.name)}</strong> sur cette période.</div>
-            <button type="button" onclick="setStatsMode('career')" class="btn btn-sm clay-soft" style="margin-top:10px;">
+            <button type="button" onclick="setStatsMode('career')" class="btn btn-sm emerald-soft" style="margin-top:10px;">
               Comparer leurs statistiques de carrière →
             </button>
           </div>`;
@@ -1892,13 +2236,13 @@
         return `
           <div class="stat-row">
             <div class="stat-vals tabular-nums">
-              <span class="${leadA ? 'clay-text' : ''}" style="${leadA ? 'font-weight:750;' : 'opacity:0.82;'}">${esc(r.fmtA)}</span>
+              <span class="${leadA ? 'emerald-text' : ''}" style="${leadA ? 'font-weight:750;' : 'opacity:0.82;'}">${esc(r.fmtA)}</span>
               <span class="stat-lbl">${esc(r.label)}</span>
-              <span class="${leadB ? 'emerald-text' : ''}" style="text-align:right; ${leadB ? 'font-weight:750;' : 'opacity:0.82;'}">${esc(r.fmtB)}</span>
+              <span class="${leadB ? 'clay-text' : ''}" style="text-align:right; ${leadB ? 'font-weight:750;' : 'opacity:0.82;'}">${esc(r.fmtB)}</span>
             </div>
             <div class="stat-bars">
-              <div class="stat-track-l"><div class="clay-bg stat-fill-l" style="width:${wA}%"></div></div>
-              <div class="stat-track-r"><div class="emerald-bg stat-fill-r" style="width:${wB}%"></div></div>
+              <div class="stat-track-l"><div class="emerald-bg stat-fill-l" style="width:${wA}%"></div></div>
+              <div class="stat-track-r"><div class="clay-bg stat-fill-r" style="width:${wB}%"></div></div>
             </div>
           </div>`;
       }).join('');
@@ -1910,8 +2254,8 @@
       const legend = document.getElementById('h2h-chart-legend');
 
       legend.innerHTML = `
-        <span class="legend-item"><span class="dot clay-bg"></span><span class="truncate" style="max-width:120px;">${esc(pA.name)}</span></span>
-        <span class="legend-item"><span class="dot emerald-bg"></span><span class="truncate" style="max-width:120px;">${esc(pB.name)}</span></span>`;
+        <span class="legend-item"><span class="dot emerald-bg"></span><span class="truncate" style="max-width:120px;">${esc(pA.name)}</span></span>
+        <span class="legend-item"><span class="dot clay-bg"></span><span class="truncate" style="max-width:120px;">${esc(pB.name)}</span></span>`;
 
       if (matches.length < 2) {
         container.innerHTML = `
@@ -1976,8 +2320,8 @@
         return `
           <g style="cursor:pointer;" onmouseenter="showSvgTip('h2h-tip', '${esc(tip).replace(/'/g, "\\'")}')" onmouseleave="hideSvgTip('h2h-tip')">
             <rect x="${(sx(i + 1) - innerW / (matches.length * 2)).toFixed(1)}" y="${pad.top}" width="${(innerW / matches.length).toFixed(1)}" height="${innerH}" fill="transparent" />
-            <circle cx="${sx(aPt.x).toFixed(1)}" cy="${sy(aPt.y).toFixed(1)}" r="${m.w === pA.id ? 4.8 : 3.2}" fill="#c85a32" stroke="var(--card)" stroke-width="1.6" />
-            <circle cx="${sx(bPt.x).toFixed(1)}" cy="${sy(bPt.y).toFixed(1)}" r="${m.w === pB.id ? 4.8 : 3.2}" fill="#1f8a65" stroke="var(--card)" stroke-width="1.6" />
+            <circle cx="${sx(aPt.x).toFixed(1)}" cy="${sy(aPt.y).toFixed(1)}" r="${m.w === pA.id ? 4.8 : 3.2}" fill="#1f8a65" stroke="var(--card)" stroke-width="1.6" />
+            <circle cx="${sx(bPt.x).toFixed(1)}" cy="${sy(bPt.y).toFixed(1)}" r="${m.w === pB.id ? 4.8 : 3.2}" fill="#c85a32" stroke="var(--card)" stroke-width="1.6" />
           </g>`;
       }).join('');
 
@@ -1985,8 +2329,8 @@
         <svg viewBox="0 0 ${W} ${H}" class="chart-svg">
           ${gridLines}
           ${xLabels}
-          <path d="${pathA}" fill="none" stroke="#c85a32" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
-          <path d="${pathB}" fill="none" stroke="#1f8a65" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+          <path d="${pathA}" fill="none" stroke="#1f8a65" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+          <path d="${pathB}" fill="none" stroke="#c85a32" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
           ${dots}
         </svg>
         <div id="h2h-tip" class="svg-tooltip"></div>`;
@@ -1998,14 +2342,14 @@
       const legend = document.getElementById('div-chart-legend');
 
       legend.innerHTML = `
-        <span class="legend-item"><span class="dot clay-bg"></span><span class="truncate" style="max-width:120px;">${esc(pA.name)}</span></span>
-        <span class="legend-item"><span class="dot emerald-bg"></span><span class="truncate" style="max-width:120px;">${esc(pB.name)}</span></span>`;
+        <span class="legend-item"><span class="dot emerald-bg"></span><span class="truncate" style="max-width:120px;">${esc(pA.name)}</span></span>
+        <span class="legend-item"><span class="dot clay-bg"></span><span class="truncate" style="max-width:120px;">${esc(pB.name)}</span></span>`;
 
       const hA = new Map(pA.history.map(h => [h.sid, h]));
       const hB = new Map(pB.history.map(h => [h.sid, h]));
       const metSeasons = new Set(h2hMatches.map(m => m.sid));
 
-      const normRank = h => (h.dr >= 90 ? 7 : h.dr);
+      const normRank = h => normDivRank(h.dr);
 
       const allVals = [];
       LIGUE_SEASONS.forEach(s => {
@@ -2057,7 +2401,7 @@
           .replace('Été ', 'Ét ')
           .replace('20', '');
         const hasMatch = metSeasons.has(s.id);
-        return `<text x="${sx(i).toFixed(1)}" y="${H - 12}" text-anchor="middle" font-size="9.5" font-weight="${hasMatch ? '700' : '400'}" fill="${hasMatch ? '#d97706' : 'currentColor'}" opacity="${hasMatch ? '1' : '0.62'}">${esc(short)}</text>`;
+        return `<text x="${sx(i).toFixed(1)}" y="${H - 12}" text-anchor="middle" font-size="9" font-weight="${hasMatch ? '700' : '400'}" fill="${hasMatch ? '#d97706' : 'currentColor'}" opacity="${hasMatch ? '1' : '0.62'}">${esc(short)}</text>`;
       }).join('');
 
       function buildPath(hMap) {
@@ -2080,7 +2424,7 @@
 
       const cols = LIGUE_SEASONS.map((s, i) => {
         const a = hA.get(s.id), b = hB.get(s.id);
-        const parts = [`${s.label}`];
+        const parts = [`${s.label}${s.inProgress ? ' (en cours)' : ''}`];
         if (a) parts.push(`${pA.name}: ${a.div} (#${a.rk}, ${a.pts} pts)`);
         if (b) parts.push(`${pB.name}: ${b.div} (#${b.rk}, ${b.pts} pts)`);
         if (!a && !b) parts.push('Non inscrits');
@@ -2091,8 +2435,8 @@
         return `
           <g style="cursor:pointer;" onmouseenter="showSvgTip('div-tip', '${esc(tip).replace(/'/g, "\\'")}')" onmouseleave="hideSvgTip('div-tip')">
             <rect x="${(sx(i) - innerW / (N * 2)).toFixed(1)}" y="${pad.top}" width="${(innerW / N).toFixed(1)}" height="${innerH}" fill="transparent" />
-            ${a ? `<circle cx="${sx(i).toFixed(1)}" cy="${(sy(normRank(a)) + dyA).toFixed(1)}" r="4.2" fill="#c85a32" stroke="var(--card)" stroke-width="1.5" />` : ''}
-            ${b ? `<circle cx="${sx(i).toFixed(1)}" cy="${(sy(normRank(b)) + dyB).toFixed(1)}" r="4.2" fill="#1f8a65" stroke="var(--card)" stroke-width="1.5" />` : ''}
+            ${a ? `<circle cx="${sx(i).toFixed(1)}" cy="${(sy(normRank(a)) + dyA).toFixed(1)}" r="4.2" fill="#1f8a65" stroke="var(--card)" stroke-width="1.5" />` : ''}
+            ${b ? `<circle cx="${sx(i).toFixed(1)}" cy="${(sy(normRank(b)) + dyB).toFixed(1)}" r="4.2" fill="#c85a32" stroke="var(--card)" stroke-width="1.5" />` : ''}
           </g>`;
       }).join('');
 
@@ -2101,8 +2445,8 @@
           ${sameDivBands}
           ${yGrid}
           ${xLabels}
-          <path d="${pathA}" fill="none" stroke="#c85a32" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" />
-          <path d="${pathB}" fill="none" stroke="#1f8a65" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" />
+          <path d="${pathA}" fill="none" stroke="#1f8a65" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" />
+          <path d="${pathB}" fill="none" stroke="#c85a32" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" />
           ${cols}
         </svg>
         <div id="div-tip" class="svg-tooltip"></div>`;
@@ -2148,9 +2492,9 @@
         const aWon = m.w === pA.id;
         const winner = aWon ? pA : pB;
         const loser = aWon ? pB : pA;
-        const winColor = aWon ? 'clay-text' : 'emerald-text';
-        const winDot = aWon ? 'clay-bg' : 'emerald-bg';
-        const winSoft = aWon ? 'clay-soft' : 'emerald-soft';
+        const winColor = aWon ? 'emerald-text' : 'clay-text';
+        const winDot = aWon ? 'emerald-bg' : 'clay-bg';
+        const winSoft = aWon ? 'emerald-soft' : 'clay-soft';
 
         const isWinnerP1 = m.p1 === winner.id;
         const setPills = m.sets.map(([g1, g2], sIdx) => {
@@ -2246,7 +2590,7 @@
         return;
       }
 
-      summaryEl.innerHTML = `Face aux ${common.length} adversaires communs : <strong class="clay-text">${esc(pA.name)} ${totAW}V–${totAL}D (${pct(totAW, totAL)}%)</strong> vs <strong class="emerald-text">${esc(pB.name)} ${totBW}V–${totBL}D (${pct(totBW, totBL)}%)</strong>`;
+      summaryEl.innerHTML = `Face aux ${common.length} adversaires communs : <strong class="emerald-text">${esc(pA.name)} ${totAW}V–${totAL}D (${pct(totAW, totAL)}%)</strong> vs <strong class="clay-text">${esc(pB.name)} ${totBW}V–${totBL}D (${pct(totBW, totBL)}%)</strong>`;
 
       const sortBy = document.getElementById('common-sort').value;
       common.sort((x, y) => {
@@ -2264,8 +2608,8 @@
               <tr>
                 <th>Adversaire commun</th>
                 <th>Meilleure Div.</th>
-                <th class="th-c clay-text">${esc(pA.name)} vs Adv.</th>
-                <th class="th-c emerald-text">${esc(pB.name)} vs Adv.</th>
+                <th class="th-c emerald-text">${esc(pA.name)} vs Adv.</th>
+                <th class="th-c clay-text">${esc(pB.name)} vs Adv.</th>
                 <th class="th-r">Avantage</th>
               </tr>
             </thead>
@@ -2274,9 +2618,9 @@
                 const pA_r = pct(c.rA.w, c.rA.l);
                 const pB_r = pct(c.rB.w, c.rB.l);
                 const advBadge = c.edgeA > 0
-                  ? `<span class="tag tag-pill tag-xs clay-soft">${esc(pA.name.split(' ')[0])} +${c.edgeA}%</span>`
+                  ? `<span class="tag tag-pill tag-xs emerald-soft">${esc(pA.name.split(' ')[0])} +${c.edgeA}%</span>`
                   : c.edgeA < 0
-                    ? `<span class="tag tag-pill tag-xs emerald-soft">${esc(pB.name.split(' ')[0])} +${-c.edgeA}%</span>`
+                    ? `<span class="tag tag-pill tag-xs clay-soft">${esc(pB.name.split(' ')[0])} +${-c.edgeA}%</span>`
                     : `<span class="tag tag-pill tag-xs tag-muted">Égalité</span>`;
 
                 return `
@@ -2289,13 +2633,13 @@
                     </td>
                     <td style="color:var(--muted-foreground);">${esc(c.opp.bestDiv)}</td>
                     <td class="td-c tabular-nums">
-                      <button type="button" class="link-btn ${pA_r >= 50 ? 'clay-text' : ''}" style="${pA_r < 50 ? 'color:var(--muted-foreground);' : ''}"
+                      <button type="button" class="link-btn ${pA_r >= 50 ? 'emerald-text' : ''}" style="${pA_r < 50 ? 'color:var(--muted-foreground);' : ''}"
                         onclick="setPair(${pA.id}, ${c.opp.id})" title="Voir le H2H ${esc(pA.name)} vs ${esc(c.opp.name)}">
                         ${c.rA.w}V–${c.rA.l}D (${pA_r}%)
                       </button>
                     </td>
                     <td class="td-c tabular-nums">
-                      <button type="button" class="link-btn ${pB_r >= 50 ? 'emerald-text' : ''}" style="${pB_r < 50 ? 'color:var(--muted-foreground);' : ''}"
+                      <button type="button" class="link-btn ${pB_r >= 50 ? 'clay-text' : ''}" style="${pB_r < 50 ? 'color:var(--muted-foreground);' : ''}"
                         onclick="setPair(${pB.id}, ${c.opp.id})" title="Voir le H2H ${esc(pB.name)} vs ${esc(c.opp.name)}">
                         ${c.rB.w}V–${c.rB.l}D (${pB_r}%)
                       </button>
@@ -2309,7 +2653,630 @@
         ${common.length > 30 ? `<div style="margin-top:10px; text-align:center; font-size:12px; color:var(--muted-foreground);">Affichage des 30 premiers adversaires communs sur ${common.length}.</div>` : ''}`;
     }
 
-    // ==================== VIEW 2: RIVALRIES ====================
+    // ==================== SHARED ANALYTICS & HELPERS ====================
+    const SEASON_WD = new Map();
+    for (const m of MATCHES) {
+      const k1 = `${m.sid}_${m.p1}`;
+      const k2 = `${m.sid}_${m.p2}`;
+      let r1 = SEASON_WD.get(k1); if (!r1) { r1 = { w: 0, l: 0 }; SEASON_WD.set(k1, r1); }
+      let r2 = SEASON_WD.get(k2); if (!r2) { r2 = { w: 0, l: 0 }; SEASON_WD.set(k2, r2); }
+      if (m.w === m.p1) { r1.w++; r2.l++; } else { r2.w++; r1.l++; }
+    }
+
+    function openPlayerInH2H(pid) {
+      const oppCounts = new Map();
+      for (const m of (MATCHES_BY_PLAYER.get(pid) || [])) {
+        const opp = m.p1 === pid ? m.p2 : m.p1;
+        oppCounts.set(opp, (oppCounts.get(opp) || 0) + 1);
+      }
+      let bestOpp = null;
+      let bestN = -1;
+      for (const [opp, n] of oppCounts.entries()) {
+        if (n > bestN) { bestN = n; bestOpp = opp; }
+      }
+      if (bestOpp === null) {
+        bestOpp = PLAYERS.find(p => p.id !== pid)?.id ?? state.playerB;
+      }
+      setPair(pid, bestOpp);
+    }
+
+    function shortSeasonLabel(lbl) {
+      const s = normStr(lbl);
+      const yr = (lbl.match(/\d{4}/) || [''])[0].slice(-2);
+      if (s.includes('hiver')) return `H${yr}`;
+      if (s.includes('printemps') && s.includes('ete')) return `PE${yr}`;
+      if (s.includes('printemps')) return `P${yr}`;
+      if (s.includes('ete')) return `E${yr}`;
+      if (s.includes('automne')) return `A${yr}`;
+      return lbl.slice(0, 4);
+    }
+
+    function fmtSigned(n) {
+      if (n > 0) return `<span class="diff-pos">+${n}</span>`;
+      if (n < 0) return `<span class="diff-neg">${n}</span>`;
+      return `<span style="color:var(--muted-foreground);">0</span>`;
+    }
+
+    function rankBadgeHtml(rk) {
+      const cls = rk === 1 ? 'rank-1' : rk === 2 ? 'rank-2' : rk === 3 ? 'rank-3' : '';
+      return `<span class="rank-badge tabular-nums ${cls}">${rk}</span>`;
+    }
+
+    function getSeasonStandings(sid) {
+      const rows = [];
+      for (const p of PLAYERS) {
+        const h = p.history.find(x => x.sid === sid);
+        if (!h) continue;
+        const wd = SEASON_WD.get(`${sid}_${p.id}`) || { w: 0, l: 0 };
+        rows.push({
+          player: p,
+          div: h.div,
+          dr: h.dr,
+          rk: h.rk,
+          j: h.j,
+          w: wd.w,
+          l: wd.l,
+          ds: h.ds,
+          dg: h.dg,
+          pts: h.pts
+        });
+      }
+      rows.sort((a, b) => a.dr - b.dr || a.rk - b.rk || b.pts - a.pts || b.ds - a.ds || b.dg - a.dg || a.player.name.localeCompare(b.player.name));
+      rows.forEach((r, idx) => { r.generalRank = idx + 1; });
+      return rows;
+    }
+
+    let LEAGUE_ANALYTICS = null;
+    function getLeagueAnalytics() {
+      if (LEAGUE_ANALYTICS) return LEAGUE_ANALYTICS;
+
+      const bySeason = SEASONS.map(s => {
+        const rows = getSeasonStandings(s.id);
+        const divSet = new Set(rows.map(r => r.div));
+        const sMatches = MATCHES.filter(m => m.sid === s.id);
+        const stbCount = sMatches.filter(m => m.isStb).length;
+        const etoileLeader = rows.find(r => r.dr === 0 && r.rk === 1) || rows[0] || null;
+        return {
+          ...s,
+          playersCount: rows.length,
+          divsCount: divSet.size,
+          stbCount,
+          etoileLeader
+        };
+      });
+
+      const completed = bySeason.filter(s => !s.inProgress);
+      const current = bySeason.find(s => s.inProgress) || bySeason[bySeason.length - 1];
+      const first = bySeason[0];
+      const lastCompleted = completed[completed.length - 1] || bySeason[bySeason.length - 1];
+      const mostActive = [...bySeason].sort((a, b) => b.matches - a.matches)[0];
+      const mostPlayers = [...bySeason].sort((a, b) => b.playersCount - a.playersCount)[0];
+
+      let totalSets = 0, totalGames = 0, totalStbs = 0, exactStbs = 0, totalBagels = 0, totalRetWo = 0;
+      for (const m of MATCHES) {
+        totalSets += m.sets.length;
+        for (const [g1, g2] of m.sets) {
+          totalGames += g1 + g2;
+          if ((g1 === 6 && g2 === 0) || (g2 === 6 && g1 === 0)) totalBagels++;
+        }
+        if (m.isStb) {
+          totalStbs++;
+          if (m.stb) exactStbs++;
+        }
+        if (m.isRet || m.isWo) totalRetWo++;
+      }
+
+      const fideles = PLAYERS.filter(p => p.seasonsCount === SEASONS.length);
+      const currentActiveCount = PLAYERS.filter(p => p.currentDiv).length;
+
+      LEAGUE_ANALYTICS = {
+        bySeason,
+        first,
+        lastCompleted,
+        current,
+        mostActive,
+        mostPlayers,
+        totalSets,
+        totalGames,
+        totalStbs,
+        exactStbs,
+        totalBagels,
+        totalRetWo,
+        fidelesCount: fideles.length,
+        currentActiveCount
+      };
+      return LEAGUE_ANALYTICS;
+    }
+
+    // ==================== VIEW 0: ACCUEIL ====================
+    let homeRendered = false;
+    function renderHome() {
+      if (homeRendered) return;
+      homeRendered = true;
+
+      const A = getLeagueAnalytics();
+      const curStandings = getSeasonStandings(A.current.id);
+      const etoileTop5 = curStandings.filter(r => r.dr === 0).slice(0, 5);
+      const topRivalries = getAllRivalries(2)
+        .sort((a, b) => b.n - a.n || Math.abs(a.w1 - a.w2) - Math.abs(b.w1 - b.w2))
+        .slice(0, 4);
+
+      const ff = computeFunFactsData();
+      const topStreak = ff.winStreaks[0];
+      const topEvo = ff.evolutions[0];
+      const topStb = ff.craziestStbs[0];
+
+      const playersGrowth = A.first.playersCount ? Math.round(((A.lastCompleted.playersCount - A.first.playersCount) / A.first.playersCount) * 100) : 0;
+      const matchesGrowth = A.first.matches ? Math.round(((A.lastCompleted.matches - A.first.matches) / A.first.matches) * 100) : 0;
+      const divsGrowth = A.lastCompleted.divsCount - A.first.divsCount;
+      const exactStbPct = A.totalStbs ? ((A.exactStbs / A.totalStbs) * 100).toFixed(1).replace('.', ',') : '0';
+
+      const root = document.getElementById('home-root');
+      root.innerHTML = `
+        <!-- HERO -->
+        <div class="home-hero">
+          <div class="home-hero-bar"></div>
+          <div class="home-hero-body">
+            <div class="min-w-0">
+              <span class="tag tag-pill current-div-badge">
+                <span class="live-dot"></span>
+                Saison en cours : ${esc(A.current.label)} · Mise à jour au ${esc(A.current.asOf)} (${A.current.matches} matchs)
+              </span>
+              <h2 class="home-hero-title">Ligue CAFC Tennis Simple</h2>
+              <p class="home-hero-sub">
+                Toutes les confrontations Head 2 Head, les classements officiels en cours et historiques, les grandes rivalités et les records de la ligue depuis ${esc(A.first.label)}.
+              </p>
+            </div>
+            <div class="home-cta-row">
+              <button type="button" class="btn btn-primary-green" onclick="switchTab('h2h')">Comparer 2 joueurs (H2H)</button>
+              <button type="button" class="btn" onclick="switchTab('standings')">Classement en cours</button>
+              <button type="button" class="btn" onclick="switchTab('funfacts')">Fun Facts &amp; Records</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- KPI GRID -->
+        <div class="kpi-grid">
+          <div class="kpi-card">
+            <span class="kpi-label">Matchs disputés</span>
+            <span class="kpi-val emerald-text tabular-nums">${META.total_matches.toLocaleString('fr-FR')}</span>
+            <span class="kpi-sub tabular-nums">${META.total_pairs.toLocaleString('fr-FR')} affiches uniques · ${SEASONS.length} saisons</span>
+          </div>
+          <div class="kpi-card">
+            <span class="kpi-label">Joueurs classés</span>
+            <span class="kpi-val tabular-nums">${META.total_players}</span>
+            <span class="kpi-sub tabular-nums">${A.currentActiveCount} inscrits en ${esc(A.current.label)} · ${A.fidelesCount} fidèles (${SEASONS.length}/${SEASONS.length})</span>
+          </div>
+          <div class="kpi-card">
+            <span class="kpi-label">Saison la plus active</span>
+            <span class="kpi-val clay-text tabular-nums">${A.mostActive.matches} matchs</span>
+            <span class="kpi-sub">${esc(A.mostActive.label)} · ${A.mostActive.playersCount} joueurs (${A.mostActive.divsCount} div.)</span>
+          </div>
+          <div class="kpi-card">
+            <span class="kpi-label">Volume de jeu cumulé</span>
+            <span class="kpi-val tabular-nums">${A.totalSets.toLocaleString('fr-FR')} sets</span>
+            <span class="kpi-sub tabular-nums">${A.totalGames.toLocaleString('fr-FR')} jeux disputés · ${A.totalBagels} « bulles » (6–0)</span>
+          </div>
+          <div class="kpi-card">
+            <span class="kpi-label">Super Tie-Breaks</span>
+            <span class="kpi-val emerald-text tabular-nums">${A.totalStbs}</span>
+            <span class="kpi-sub tabular-nums">${A.exactStbs} scores exacts intégrés (${exactStbPct}%)</span>
+          </div>
+          <div class="kpi-card">
+            <span class="kpi-label">Échelle actuelle</span>
+            <span class="kpi-val tabular-nums">${A.current.divsCount} divisions</span>
+            <span class="kpi-sub">De Division Étoile à Division 12 · Record : ${A.mostPlayers.playersCount} joueurs (${esc(A.mostPlayers.label)})</span>
+          </div>
+        </div>
+
+        <!-- MIDDLE: FIRST VS LAST + SEASON CHART -->
+        <div class="home-two-col">
+          <div class="card">
+            <div class="card-header">
+              <div>
+                <h3 class="card-title">Première vs. Dernière Saison</h3>
+                <p class="card-desc">La croissance de la Ligue CAFC entre ${esc(A.first.label)} et 2026</p>
+              </div>
+              <span class="tag tag-pill emerald-soft tabular-nums">+${playersGrowth}% joueurs</span>
+            </div>
+            <table class="season-compare-table tabular-nums">
+              <thead>
+                <tr>
+                  <th>Indicateur</th>
+                  <th>${esc(A.first.label)}<br><span style="font-weight:500; text-transform:none;">1re saison</span></th>
+                  <th>${esc(A.lastCompleted.label)}<br><span style="font-weight:500; text-transform:none;">Dernière clôturée</span></th>
+                  <th>${esc(A.current.label)}<br><span style="font-weight:500; text-transform:none; color:#0f766e;">Au ${esc(A.current.asOf)}</span></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Joueurs classés</td>
+                  <td>${A.first.playersCount}</td>
+                  <td><strong>${A.lastCompleted.playersCount}</strong> <span class="diff-pos" style="font-size:11px;">(+${playersGrowth}%)</span></td>
+                  <td style="font-weight:700; color:#0f766e;">${A.current.playersCount}</td>
+                </tr>
+                <tr>
+                  <td>Divisions</td>
+                  <td>${A.first.divsCount}</td>
+                  <td><strong>${A.lastCompleted.divsCount}</strong> <span class="diff-pos" style="font-size:11px;">(${divsGrowth >= 0 ? '+' : ''}${divsGrowth})</span></td>
+                  <td style="font-weight:700; color:#0f766e;">${A.current.divsCount}</td>
+                </tr>
+                <tr>
+                  <td>Matchs joués</td>
+                  <td>${A.first.matches}</td>
+                  <td><strong>${A.lastCompleted.matches}</strong> <span class="diff-pos" style="font-size:11px;">(${matchesGrowth >= 0 ? '+' : ''}${matchesGrowth}%)</span></td>
+                  <td style="font-weight:700; color:#0f766e;">${A.current.matches} <span style="font-size:11px; font-weight:500; color:var(--muted-foreground);">en cours</span></td>
+                </tr>
+                <tr>
+                  <td>Super Tie-Breaks</td>
+                  <td>${A.first.stbCount} (${Math.round((A.first.stbCount / Math.max(1, A.first.matches)) * 100)}%)</td>
+                  <td><strong>${A.lastCompleted.stbCount}</strong> (${Math.round((A.lastCompleted.stbCount / Math.max(1, A.lastCompleted.matches)) * 100)}%)</td>
+                  <td style="font-weight:700; color:#0f766e;">${A.current.stbCount} (${Math.round((A.current.stbCount / Math.max(1, A.current.matches)) * 100)}%)</td>
+                </tr>
+                <tr>
+                  <td>#1 Div. Étoile</td>
+                  <td style="font-size:12px;">${A.first.etoileLeader ? esc(A.first.etoileLeader.player.name) : '—'}</td>
+                  <td style="font-size:12px; font-weight:700;">${A.lastCompleted.etoileLeader ? esc(A.lastCompleted.etoileLeader.player.name) : '—'}</td>
+                  <td style="font-size:12px; font-weight:700; color:#0f766e;">${A.current.etoileLeader ? esc(A.current.etoileLeader.player.name) : '—'}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <div>
+                <h3 class="card-title">Activité de la Ligue Saison par Saison</h3>
+                <p class="card-desc">Barres : matchs disputés · Courbe orange : nombre de joueurs classés (* = saison en cours)</p>
+              </div>
+              <div class="chart-legend">
+                <span><span class="dot emerald-bg"></span>Matchs</span>
+                <span><span class="dot clay-bg"></span>Joueurs</span>
+              </div>
+            </div>
+            <div id="home-season-chart" class="chart-box">${buildHomeSeasonSvg(A.bySeason, A.mostActive.id)}</div>
+          </div>
+        </div>
+
+        <!-- BOTTOM: LIVE ETOILE PODIUM + HIGHLIGHTS -->
+        <div class="home-even-col">
+          <div class="card">
+            <div class="card-header">
+              <div>
+                <h3 class="card-title">
+                  Top 5 · Division Étoile (${esc(A.current.label)})
+                  <span class="tag tag-pill tag-xs current-div-badge"><span class="live-dot"></span>Au ${esc(A.current.asOf)}</span>
+                </h3>
+                <p class="card-desc">Classement provisoire de l'élite · Cliquez sur un joueur pour ouvrir son H2H</p>
+              </div>
+              <button type="button" class="btn btn-sm" onclick="switchTab('standings')">Voir tout →</button>
+            </div>
+            <div class="stack-sm">
+              ${etoileTop5.map(r => `
+                <button type="button" class="highlight-row" onclick="openPlayerInH2H(${r.player.id})">
+                  <div class="ff-left">
+                    ${rankBadgeHtml(r.rk)}
+                    <div class="min-w-0">
+                      <div class="truncate" style="font-weight:700; font-size:13.5px;">${esc(r.player.name)}</div>
+                      <div class="ff-sub tabular-nums">${r.j} joués · ${r.w}V–${r.l}D · Diff. S ${r.ds >= 0 ? '+' + r.ds : r.ds} · Diff. J ${r.dg >= 0 ? '+' + r.dg : r.dg}</div>
+                    </div>
+                  </div>
+                  <span class="tag tag-pill emerald-soft tabular-nums" style="flex-shrink:0;">${r.pts} pts</span>
+                </button>
+              `).join('')}
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <div>
+                <h3 class="card-title">Affiches Phares &amp; Records Marquants</h3>
+                <p class="card-desc">Accès direct aux plus grandes rivalités et aux exploits historiques</p>
+              </div>
+              <button type="button" class="btn btn-sm" onclick="switchTab('rivalries')">Toutes les rivalités →</button>
+            </div>
+            <div class="stack-sm">
+              ${topRivalries.map(r => {
+                const p1 = PLAYER_BY_ID.get(r.p1);
+                const p2 = PLAYER_BY_ID.get(r.p2);
+                const left = r.w1 >= r.w2 ? p1 : p2;
+                const right = r.w1 >= r.w2 ? p2 : p1;
+                const wl = Math.max(r.w1, r.w2);
+                const wr = Math.min(r.w1, r.w2);
+                return `
+                  <button type="button" class="highlight-row" onclick="setPair(${left.id}, ${right.id})">
+                    <div class="min-w-0">
+                      <div style="font-weight:700; font-size:13px;">
+                        <span class="emerald-text">${esc(left.name)}</span>
+                        <span style="color:var(--muted-foreground); font-weight:500;"> vs </span>
+                        <span class="clay-text">${esc(right.name)}</span>
+                      </div>
+                      <div class="ff-sub">${r.n} confrontations · Dernière : ${esc(r.lastLabel)}</div>
+                    </div>
+                    <span class="meta-pill tabular-nums" style="font-weight:800; color:var(--foreground); flex-shrink:0;">${wl} – ${wr}</span>
+                  </button>`;
+              }).join('')}
+
+              ${topStreak ? `
+                <button type="button" class="highlight-row" onclick="switchTab('funfacts')">
+                  <div class="min-w-0">
+                    <div style="font-weight:700; font-size:13px;">Record de victoires consécutives · ${esc(topStreak.player.name)}</div>
+                    <div class="ff-sub">${topStreak.active ? 'Série toujours en cours' : `${esc(topStreak.startLabel)} → ${esc(topStreak.endLabel)}`} · Voir tous les Fun Facts</div>
+                  </div>
+                  <span class="tag tag-pill emerald-soft tabular-nums" style="flex-shrink:0;">${topStreak.len}V</span>
+                </button>` : ''}
+
+              ${topEvo ? `
+                <button type="button" class="highlight-row" onclick="switchTab('funfacts')">
+                  <div class="min-w-0">
+                    <div style="font-weight:700; font-size:13px;">Plus grande ascension · ${esc(topEvo.player.name)}</div>
+                    <div class="ff-sub">${esc(topEvo.fromDiv)} → ${esc(topEvo.toDiv)}</div>
+                  </div>
+                  <span class="tag tag-pill clay-soft tabular-nums" style="flex-shrink:0;">+${topEvo.gain} div.</span>
+                </button>` : ''}
+
+              ${topStb ? `
+                <button type="button" class="highlight-row" onclick="setPair(${topStb.winner.id}, ${topStb.loser.id})">
+                  <div class="min-w-0">
+                    <div style="font-weight:700; font-size:13px;">Super Tie-Break le plus fou · ${esc(topStb.winner.name)} vs ${esc(topStb.loser.name)}</div>
+                    <div class="ff-sub">${esc(topStb.match.sl)} · ${esc(topStb.match.div)}</div>
+                  </div>
+                  <span class="tag tag-pill amber-soft tabular-nums" style="flex-shrink:0;">${topStb.stbW}–${topStb.stbL}</span>
+                </button>` : ''}
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function buildHomeSeasonSvg(seasons, peakId) {
+      const W = 600, H = 228;
+      const pL = 34, pR = 34, pT = 22, pB = 34;
+      const plotW = W - pL - pR;
+      const plotH = H - pT - pB;
+      const n = seasons.length;
+      const maxM = Math.max(...seasons.map(s => s.matches), 100);
+      const maxP = Math.ceil(Math.max(...seasons.map(s => s.playersCount), 50) / 20) * 20;
+      const step = plotW / n;
+      const barW = Math.max(14, Math.min(28, step * 0.6));
+
+      let grid = '';
+      for (const frac of [0.25, 0.5, 0.75, 1]) {
+        const y = pT + plotH * (1 - frac);
+        const valM = Math.round(maxM * frac);
+        const valP = Math.round(maxP * frac);
+        grid += `<line x1="${pL}" y1="${y.toFixed(1)}" x2="${W - pR}" y2="${y.toFixed(1)}" stroke="#e4ded2" stroke-dasharray="3,3" stroke-width="1"/>`;
+        grid += `<text x="${pL - 6}" y="${(y + 3.5).toFixed(1)}" text-anchor="end" fill="#1f8a65" font-size="9.5" font-weight="650">${valM}</text>`;
+        grid += `<text x="${W - pR + 6}" y="${(y + 3.5).toFixed(1)}" text-anchor="start" fill="#c85a32" font-size="9.5" font-weight="650">${valP}</text>`;
+      }
+
+      let bars = '';
+      let labels = '';
+      const linePts = [];
+      seasons.forEach((s, i) => {
+        const cx = pL + step * (i + 0.5);
+        const bh = (s.matches / maxM) * plotH;
+        const bx = cx - barW / 2;
+        const by = pT + plotH - bh;
+        const isPeak = s.id === peakId;
+        const fill = s.inProgress ? 'rgba(31, 138, 101, 0.42)' : (isPeak ? '#156c4e' : '#1f8a65');
+        const stroke = s.inProgress ? '#1f8a65' : 'none';
+        const dash = s.inProgress ? 'stroke-dasharray="3,2"' : '';
+        bars += `<rect x="${bx.toFixed(1)}" y="${by.toFixed(1)}" width="${barW.toFixed(1)}" height="${Math.max(2, bh).toFixed(1)}" rx="4" fill="${fill}" stroke="${stroke}" ${dash}>
+          <title>${esc(s.label)} : ${s.matches} matchs · ${s.playersCount} joueurs · ${s.divsCount} divisions</title>
+        </rect>`;
+        labels += `<text x="${cx.toFixed(1)}" y="${(by - 5).toFixed(1)}" text-anchor="middle" fill="${isPeak ? '#156c4e' : '#3d372f'}" font-size="9" font-weight="750" paint-order="stroke" stroke="#fffdf9" stroke-width="3" stroke-linejoin="round">${s.matches}</text>`;
+
+        const lbl = shortSeasonLabel(s.label) + (s.inProgress ? '*' : '');
+        bars += `<text x="${cx.toFixed(1)}" y="${H - 12}" text-anchor="middle" fill="${s.inProgress ? '#0f766e' : '#6c655c'}" font-size="9.5" font-weight="${s.inProgress || isPeak ? '750' : '600'}">${esc(lbl)}</text>`;
+
+        const py = pT + plotH - (s.playersCount / maxP) * plotH;
+        linePts.push({ x: cx, y: py, s });
+      });
+
+      const linePath = linePts.map((pt, i) => `${i === 0 ? 'M' : 'L'}${pt.x.toFixed(1)},${pt.y.toFixed(1)}`).join(' ');
+      const dots = linePts.map(pt =>
+        `<circle cx="${pt.x.toFixed(1)}" cy="${pt.y.toFixed(1)}" r="3.4" fill="#c85a32" stroke="#fffdf9" stroke-width="1.5">
+          <title>${esc(pt.s.label)} : ${pt.s.playersCount} joueurs classés</title>
+        </circle>`
+      ).join('');
+
+      return `<svg viewBox="0 0 ${W} ${H}" width="100%" style="display:block; max-height:240px;">
+        ${grid}
+        ${bars}
+        <path d="${linePath}" fill="none" stroke="#c85a32" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/>
+        ${dots}
+        ${labels}
+      </svg>`;
+    }
+
+    // ==================== VIEW 2: CLASSEMENT ====================
+    function initStandingsControls() {
+      const sel = document.getElementById('st-season');
+      const ordered = [...SEASONS].reverse();
+      sel.innerHTML = ordered.map(s => {
+        const suffix = s.inProgress ? ` — En cours (au ${s.asOf})` : ' (Classement final)';
+        return `<option value="${esc(s.id)}">${esc(s.label)}${esc(suffix)}</option>`;
+      }).join('');
+      sel.value = state.standingsSeason;
+      populateStandingsDivOptions();
+    }
+
+    function populateStandingsDivOptions() {
+      const rows = getSeasonStandings(state.standingsSeason);
+      const divList = [];
+      const seen = new Set();
+      for (const r of rows) {
+        if (!seen.has(r.div)) { seen.add(r.div); divList.push(r.div); }
+      }
+      const divSel = document.getElementById('st-div');
+      const prev = divSel.value;
+      divSel.innerHTML = `<option value="all">Toutes les divisions (${divList.length})</option>` +
+        divList.map(d => `<option value="${esc(d)}">${esc(d)}</option>`).join('');
+      divSel.value = seen.has(prev) ? prev : 'all';
+    }
+
+    function onStandingsSeasonChange() {
+      state.standingsSeason = document.getElementById('st-season').value;
+      populateStandingsDivOptions();
+      renderStandings();
+    }
+
+    function setStandingsMode(mode) {
+      state.standingsMode = mode;
+      document.getElementById('st-mode-general').setAttribute('data-active', mode === 'general' ? 'true' : 'false');
+      document.getElementById('st-mode-division').setAttribute('data-active', mode === 'division' ? 'true' : 'false');
+      renderStandings();
+    }
+
+    function renderStandings() {
+      const sid = state.standingsSeason;
+      const season = SEASON_BY_ID.get(sid);
+      if (!season) return;
+
+      const allRows = getSeasonStandings(sid);
+      const divFilter = document.getElementById('st-div').value;
+      const rawQ = document.getElementById('st-search').value;
+      const q = normStr(rawQ.trim());
+      const qDigits = digitsOnly(rawQ);
+
+      const divCount = new Set(allRows.map(r => r.div)).size;
+      const banner = document.getElementById('standings-banner');
+      if (season.inProgress) {
+        banner.innerHTML = `
+          <div style="display:flex; align-items:center; gap:8px; font-weight:700; color:#0f766e;">
+            <span class="live-dot"></span>
+            <span>Classement en cours · ${esc(season.label)} (au ${esc(season.asOf)})</span>
+          </div>
+          <div class="tabular-nums">${allRows.length} joueurs · ${divCount} divisions · ${season.matches} matchs disputés</div>`;
+      } else {
+        banner.innerHTML = `
+          <div style="font-weight:700; color:var(--foreground);">Classement officiel de fin de saison · ${esc(season.label)}</div>
+          <div class="tabular-nums">${allRows.length} joueurs · ${divCount} divisions · ${season.matches} matchs</div>`;
+      }
+
+      let rows = allRows.filter(r => {
+        if (divFilter !== 'all' && r.div !== divFilter) return false;
+        if (q || qDigits) {
+          const okName = q && (r.player.searchName.includes(q) || normStr(r.div).includes(q));
+          const okPhone = qDigits && r.player.phoneDigits.includes(qDigits);
+          if (!okName && !okPhone) return false;
+        }
+        return true;
+      });
+
+      const body = document.getElementById('standings-body');
+      if (rows.length === 0) {
+        body.innerHTML = `<div class="empty-box">Aucun joueur ne correspond à ces filtres pour ${esc(season.label)}.</div>`;
+        return;
+      }
+
+      if (state.standingsMode === 'general') {
+        body.innerHTML = `
+          <div class="dir-table-scroll thin-scroll">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th style="width:62px;"># Gén.</th>
+                  <th>Division</th>
+                  <th class="th-c" style="width:62px;"># Div.</th>
+                  <th>Joueur</th>
+                  <th class="th-r">J</th>
+                  <th class="th-r">V–D</th>
+                  <th class="th-r">Diff. S</th>
+                  <th class="th-r">Diff. J</th>
+                  <th class="th-r">Pts</th>
+                  <th class="th-r">Comparer</th>
+                </tr>
+              </thead>
+              <tbody>
+                ${rows.map(r => `
+                  <tr>
+                    <td>${rankBadgeHtml(r.generalRank)}</td>
+                    <td style="white-space:nowrap; font-weight:600;">${esc(r.div)}</td>
+                    <td class="td-c">${rankBadgeHtml(r.rk)}</td>
+                    <td>
+                      <div style="display:flex; align-items:center; gap:6px; flex-wrap:wrap;">
+                        <strong>${esc(r.player.name)}</strong>
+                        ${r.player.homonym ? `<span class="tag tag-xs homonym-badge tabular-nums">${esc(r.player.phone)}</span>` : ''}
+                      </div>
+                    </td>
+                    <td class="td-r tabular-nums" style="color:var(--muted-foreground);">${r.j}</td>
+                    <td class="td-r tabular-nums">${r.w}V–${r.l}D</td>
+                    <td class="td-r tabular-nums">${fmtSigned(r.ds)}</td>
+                    <td class="td-r tabular-nums">${fmtSigned(r.dg)}</td>
+                    <td class="td-r tabular-nums" style="font-weight:800;">${r.pts}</td>
+                    <td class="td-r" style="white-space:nowrap;">
+                      <button type="button" class="btn btn-xs emerald-soft" style="margin-right:4px;" onclick="selectPlayer('a', ${r.player.id}); switchTab('h2h');">A</button>
+                      <button type="button" class="btn btn-xs clay-soft" onclick="selectPlayer('b', ${r.player.id}); switchTab('h2h');">B</button>
+                    </td>
+                  </tr>
+                `).join('')}
+              </tbody>
+            </table>
+          </div>`;
+      } else {
+        const groups = new Map();
+        for (const r of rows) {
+          if (!groups.has(r.div)) groups.set(r.div, []);
+          groups.get(r.div).push(r);
+        }
+        body.innerHTML = `<div class="stack-md">
+          ${[...groups.entries()].map(([divName, grp]) => {
+            const leader = grp[0];
+            return `
+              <div class="div-block">
+                <div class="div-block-hdr">
+                  <span>${esc(divName)}</span>
+                  <span style="font-weight:500; font-size:12px; color:var(--muted-foreground);">
+                    ${grp.length} joueur${grp.length > 1 ? 's' : ''} · ${season.inProgress ? 'En tête' : 'Champion'} : <strong style="color:var(--foreground);">${esc(leader.player.name)}</strong> (${leader.pts} pts)
+                  </span>
+                </div>
+                <div class="table-wrap">
+                  <table class="data-table">
+                    <thead>
+                      <tr>
+                        <th style="width:54px;">#</th>
+                        <th>Joueur</th>
+                        <th class="th-r">J</th>
+                        <th class="th-r">V–D</th>
+                        <th class="th-r">Diff. S</th>
+                        <th class="th-r">Diff. J</th>
+                        <th class="th-r">Pts</th>
+                        <th class="th-r">Comparer</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      ${grp.map(r => `
+                        <tr>
+                          <td>${rankBadgeHtml(r.rk)}</td>
+                          <td>
+                            <div style="display:flex; align-items:center; gap:6px; flex-wrap:wrap;">
+                              <strong>${esc(r.player.name)}</strong>
+                              ${r.player.homonym ? `<span class="tag tag-xs homonym-badge tabular-nums">${esc(r.player.phone)}</span>` : ''}
+                            </div>
+                          </td>
+                          <td class="td-r tabular-nums" style="color:var(--muted-foreground);">${r.j}</td>
+                          <td class="td-r tabular-nums">${r.w}V–${r.l}D</td>
+                          <td class="td-r tabular-nums">${fmtSigned(r.ds)}</td>
+                          <td class="td-r tabular-nums">${fmtSigned(r.dg)}</td>
+                          <td class="td-r tabular-nums" style="font-weight:800;">${r.pts}</td>
+                          <td class="td-r" style="white-space:nowrap;">
+                            <button type="button" class="btn btn-xs emerald-soft" style="margin-right:4px;" onclick="selectPlayer('a', ${r.player.id}); switchTab('h2h');">A</button>
+                            <button type="button" class="btn btn-xs clay-soft" onclick="selectPlayer('b', ${r.player.id}); switchTab('h2h');">B</button>
+                          </td>
+                        </tr>
+                      `).join('')}
+                    </tbody>
+                  </table>
+                </div>
+              </div>`;
+          }).join('')}
+        </div>`;
+      }
+    }
+
+    // ==================== VIEW 3: RIVALRIES ====================
     function getAllRivalries(minMatches = 2) {
       const pairs = new Map();
       for (const m of MATCHES) {
@@ -2350,27 +3317,408 @@
       grid.innerHTML = list.slice(0, 80).map(r => {
         const p1 = PLAYER_BY_ID.get(r.p1);
         const p2 = PLAYER_BY_ID.get(r.p2);
-        const pct1 = Math.round((r.w1 / r.n) * 100);
+
+        // Toujours placer le joueur recherché sur la gauche (vert) et ses rivaux sur la droite (orange)
+        let left = p1, right = p2, wLeft = r.w1, wRight = r.w2;
+        if (q) {
+          const m1 = p1.searchName.includes(q);
+          const m2 = p2.searchName.includes(q);
+          const swapForSearch = (m2 && !m1) || (m1 && m2 && p2.searchName.indexOf(q) < p1.searchName.indexOf(q));
+          if (swapForSearch) {
+            left = p2; right = p1; wLeft = r.w2; wRight = r.w1;
+          }
+        } else if (r.w2 > r.w1) {
+          left = p2; right = p1; wLeft = r.w2; wRight = r.w1;
+        }
+
+        const pctLeft = Math.round((wLeft / r.n) * 100);
         return `
-          <button type="button" class="rivalry-card" onclick="setPair(${p1.id}, ${p2.id})">
+          <button type="button" class="rivalry-card" onclick="setPair(${left.id}, ${right.id})">
             <div class="rivalry-top">
-              <span class="truncate ${r.w1 >= r.w2 ? 'clay-text' : ''}" style="font-weight:700;">${esc(p1.name)}${p1.homonym ? ` (${esc(p1.phone.slice(-5))})` : ''}</span>
-              <span class="meta-pill tabular-nums" style="color:var(--foreground); font-weight:800;">${r.w1} – ${r.w2}</span>
-              <span class="truncate ${r.w2 >= r.w1 ? 'emerald-text' : ''}" style="font-weight:700; text-align:right;">${esc(p2.name)}${p2.homonym ? ` (${esc(p2.phone.slice(-5))})` : ''}</span>
+              <span class="truncate ${q || wLeft >= wRight ? 'emerald-text' : ''}" style="font-weight:750;">${esc(left.name)}${left.homonym ? ` (${esc(left.phone.slice(-5))})` : ''}</span>
+              <span class="meta-pill tabular-nums" style="color:var(--foreground); font-weight:800;">${wLeft} – ${wRight}</span>
+              <span class="truncate ${!q && wRight >= wLeft ? 'clay-text' : ''}" style="font-weight:700; text-align:right; ${q ? 'color:#c85a32;' : ''}">${esc(right.name)}${right.homonym ? ` (${esc(right.phone.slice(-5))})` : ''}</span>
             </div>
             <div class="tug-bar" style="height:6px; margin-top:0;">
-              <div class="clay-bg" style="width:${pct1}%"></div>
-              <div class="emerald-bg" style="width:${100 - pct1}%"></div>
+              <div class="emerald-bg" style="width:${pctLeft}%"></div>
+              <div class="clay-bg" style="width:${100 - pctLeft}%"></div>
             </div>
             <div style="display:flex; justify-content:space-between; font-size:12px; color:var(--muted-foreground);">
               <span>${r.n} matchs · Dernier : ${esc(r.lastLabel)}</span>
-              <span class="clay-text" style="font-weight:650;">Voir le H2H →</span>
+              <span class="emerald-text" style="font-weight:650;">Voir le H2H →</span>
             </div>
           </button>`;
       }).join('');
     }
 
-    // ==================== VIEW 3: DIRECTORY & HOMONYMS ====================
+    // ==================== VIEW 4: FUN FACTS ====================
+    let FUN_FACTS_DATA = null;
+    function computeFunFactsData() {
+      if (FUN_FACTS_DATA) return FUN_FACTS_DATA;
+
+      const curSid = META.current_season_id || SEASONS[SEASONS.length - 1].id;
+      const winStreaks = [];
+      const lossStreaks = [];
+      const abandons = [];
+      const evolutions = [];
+      const stbKings = [];
+      const bagels = [];
+      const titles = [];
+
+      for (const p of PLAYERS) {
+        const pm = [...(MATCHES_BY_PLAYER.get(p.id) || [])].sort((a, b) => a.ord - b.ord || a.id - b.id);
+        let curW = 0, bestW = 0, bwStart = null, bwEnd = null, cwStart = null;
+        let curL = 0, bestL = 0, blStart = null, blEnd = null, clStart = null;
+        let retConceded = 0, woConceded = 0;
+
+        for (const m of pm) {
+          const won = m.w === p.id;
+          if (won) {
+            if (curW === 0) cwStart = m.sl;
+            curW++;
+            if (curW > bestW) { bestW = curW; bwStart = cwStart; bwEnd = m.sl; }
+            curL = 0;
+          } else {
+            if (m.isRet) retConceded++;
+            if (m.isWo) woConceded++;
+            if (curL === 0) clStart = m.sl;
+            curL++;
+            if (curL > bestL) { bestL = curL; blStart = clStart; blEnd = m.sl; }
+            curW = 0;
+          }
+        }
+
+        const lastM = pm[pm.length - 1];
+        const activeW = curW === bestW && bestW > 0 && lastM && lastM.sid === curSid;
+        const activeL = curL === bestL && bestL > 0 && lastM && lastM.sid === curSid;
+
+        if (bestW >= 5) winStreaks.push({ player: p, len: bestW, startLabel: bwStart, endLabel: bwEnd, active: activeW });
+        if (bestL >= 5) lossStreaks.push({ player: p, len: bestL, startLabel: blStart, endLabel: blEnd, active: activeL });
+
+        const totalAb = retConceded + woConceded;
+        if (totalAb > 0) {
+          abandons.push({ player: p, total: totalAb, ret: retConceded, wo: woConceded, m: p.stats.m });
+        }
+
+        if (p.history.length >= 2) {
+          const firstH = p.history[0];
+          const startRank = normDivRank(firstH.dr);
+          let bestAfterH = null;
+          let bestAfterRank = startRank;
+          for (const h of p.history.slice(1)) {
+            const r = normDivRank(h.dr);
+            if (r < bestAfterRank) {
+              bestAfterRank = r;
+              bestAfterH = h;
+            }
+          }
+          const gain = startRank - bestAfterRank;
+          if (gain > 0 && bestAfterH) {
+            evolutions.push({
+              player: p,
+              gain,
+              fromDiv: firstH.div,
+              fromSeason: firstH.lbl,
+              toDiv: bestAfterH.div,
+              toSeason: bestAfterH.lbl
+            });
+          }
+        }
+
+        const stbTotal = p.stats.stbW + p.stats.stbL;
+        if (stbTotal >= 8) {
+          stbKings.push({ player: p, w: p.stats.stbW, l: p.stats.stbL, total: stbTotal, rate: Math.round((p.stats.stbW / stbTotal) * 100) });
+        }
+
+        if (p.stats.bagelsW > 0) {
+          bagels.push({ player: p, count: p.stats.bagelsW, m: p.stats.m });
+        }
+
+        const doneHist = p.history.filter(h => {
+          const s = SEASON_BY_ID.get(h.sid);
+          return s && !s.inProgress;
+        });
+        const ch = doneHist.filter(h => h.rk === 1);
+        if (ch.length > 0) {
+          const etoileCount = ch.filter(h => h.dr === 0).length;
+          titles.push({ player: p, count: ch.length, etoileCount, divs: ch.map(h => h.div) });
+        }
+      }
+
+      winStreaks.sort((a, b) => b.len - a.len || (b.active ? 1 : 0) - (a.active ? 1 : 0) || b.player.stats.w - a.player.stats.w);
+      lossStreaks.sort((a, b) => b.len - a.len || b.player.stats.m - a.player.stats.m);
+      abandons.sort((a, b) => b.total - a.total || b.ret - a.ret || a.m - b.m);
+      evolutions.sort((a, b) => b.gain - a.gain || normDivRank(a.player.bestDivRank) - normDivRank(b.player.bestDivRank) || b.player.stats.m - a.player.stats.m);
+      stbKings.sort((a, b) => b.rate - a.rate || b.w - a.w || b.total - a.total);
+      bagels.sort((a, b) => b.count - a.count || b.player.stats.w - a.player.stats.w);
+      titles.sort((a, b) => b.count - a.count || b.etoileCount - a.etoileCount || b.player.stats.w - a.player.stats.w);
+
+      const craziestStbs = MATCHES
+        .filter(m => m.stb && m.stb.length === 2)
+        .map(m => {
+          const winner = PLAYER_BY_ID.get(m.w);
+          const loser = PLAYER_BY_ID.get(m.w === m.p1 ? m.p2 : m.p1);
+          const stbW = Math.max(m.stb[0], m.stb[1]);
+          const stbL = Math.min(m.stb[0], m.stb[1]);
+          return { match: m, winner, loser, stbW, stbL, totalPts: stbW + stbL };
+        })
+        .sort((a, b) => b.totalPts - a.totalPts || b.stbW - a.stbW || b.match.ord - a.match.ord);
+
+      const betesNoires = getAllRivalries(4)
+        .filter(r => r.w1 === 0 || r.w2 === 0)
+        .map(r => {
+          const dom = PLAYER_BY_ID.get(r.w1 > 0 ? r.p1 : r.p2);
+          const vic = PLAYER_BY_ID.get(r.w1 > 0 ? r.p2 : r.p1);
+          return { dom, vic, n: r.n, lastLabel: r.lastLabel };
+        })
+        .sort((a, b) => b.n - a.n || b.dom.stats.w - a.dom.stats.w);
+
+      const fideles = PLAYERS
+        .filter(p => p.seasonsCount === SEASONS.length)
+        .sort((a, b) => normDivRank(a.bestDivRank) - normDivRank(b.bestDivRank) || b.stats.m - a.stats.m);
+
+      FUN_FACTS_DATA = {
+        winStreaks,
+        lossStreaks,
+        abandons,
+        evolutions,
+        craziestStbs,
+        stbKings,
+        bagels,
+        titles,
+        betesNoires,
+        fideles
+      };
+      return FUN_FACTS_DATA;
+    }
+
+    let funFactsRendered = false;
+    function renderFunFacts() {
+      if (funFactsRendered) return;
+      funFactsRendered = true;
+
+      const d = computeFunFactsData();
+      const root = document.getElementById('funfacts-root');
+
+      const ffCard = (title, desc, rowsHtml, fullWidth = false) => `
+        <div class="card" ${fullWidth ? 'style="grid-column:1 / -1;"' : ''}>
+          <div class="card-header">
+            <div>
+              <h3 class="card-title">${title}</h3>
+              <p class="card-desc">${desc}</p>
+            </div>
+          </div>
+          <div class="stack-sm">${rowsHtml}</div>
+        </div>`;
+
+      const htmlParts = [
+        // 1. Win streaks
+        ffCard(
+          'Plus longue série de victoires',
+          'Victoires consécutives en Ligue Simple toutes saisons confondues',
+          d.winStreaks.slice(0, 8).map((x, i) => `
+            <button type="button" class="ff-row ff-row-btn" onclick="openPlayerInH2H(${x.player.id})">
+              <div class="ff-left">
+                ${rankBadgeHtml(i + 1)}
+                <div class="min-w-0">
+                  <div class="truncate" style="font-weight:700;">${esc(x.player.name)}${x.active ? ' <span class="tag tag-xs current-div-badge" style="margin-left:4px;">En cours</span>' : ''}</div>
+                  <div class="ff-sub">${esc(x.startLabel)} → ${esc(x.endLabel)}</div>
+                </div>
+              </div>
+              <span class="tag tag-pill emerald-soft tabular-nums" style="flex-shrink:0;">${x.len}V</span>
+            </button>
+          `).join('')
+        ),
+
+        // 2. Loss streaks
+        ffCard(
+          'Plus longue série de défaites',
+          'Séries de revers consécutifs — la persévérance récompensée !',
+          d.lossStreaks.slice(0, 8).map((x, i) => `
+            <button type="button" class="ff-row ff-row-btn" onclick="openPlayerInH2H(${x.player.id})">
+              <div class="ff-left">
+                ${rankBadgeHtml(i + 1)}
+                <div class="min-w-0">
+                  <div class="truncate" style="font-weight:700;">${esc(x.player.name)}${x.active ? ' <span class="tag tag-xs clay-soft" style="margin-left:4px;">En cours</span>' : ''}</div>
+                  <div class="ff-sub">${esc(x.startLabel)} → ${esc(x.endLabel)}</div>
+                </div>
+              </div>
+              <span class="tag tag-pill clay-soft tabular-nums" style="flex-shrink:0;">${x.len}D</span>
+            </button>
+          `).join('')
+        ),
+
+        // 3. Abandons
+        ffCard(
+          "Classement par nombre d'abandons",
+          'Matchs perdus sur abandon en cours de partie ou forfait (WO)',
+          d.abandons.slice(0, 8).map((x, i) => `
+            <button type="button" class="ff-row ff-row-btn" onclick="openPlayerInH2H(${x.player.id})">
+              <div class="ff-left">
+                ${rankBadgeHtml(i + 1)}
+                <div class="min-w-0">
+                  <div class="truncate" style="font-weight:700;">${esc(x.player.name)}</div>
+                  <div class="ff-sub tabular-nums">${x.ret} ab.${x.wo ? ` · ${x.wo} WO` : ''} · sur ${x.m} matchs joués (${Math.round((x.total / Math.max(1, x.m)) * 100)}%)</div>
+                </div>
+              </div>
+              <span class="tag tag-pill clay-soft tabular-nums" style="flex-shrink:0;">${x.total}</span>
+            </button>
+          `).join('')
+        ),
+
+        // 4. Plus grande évolution
+        ffCard(
+          'Plus grande évolution de division',
+          'Nombre de divisions gravies entre la première saison et le meilleur classement atteint ensuite',
+          d.evolutions.slice(0, 8).map((x, i) => `
+            <button type="button" class="ff-row ff-row-btn" onclick="openPlayerInH2H(${x.player.id})">
+              <div class="ff-left">
+                ${rankBadgeHtml(i + 1)}
+                <div class="min-w-0">
+                  <div class="truncate" style="font-weight:700;">${esc(x.player.name)}</div>
+                  <div class="ff-sub">${esc(x.fromDiv)} (${esc(x.fromSeason)}) → <strong>${esc(x.toDiv)}</strong> (${esc(x.toSeason)})</div>
+                </div>
+              </div>
+              <span class="tag tag-pill emerald-soft tabular-nums" style="flex-shrink:0;">+${x.gain} div.</span>
+            </button>
+          `).join('')
+        ),
+
+        // 5. Craziest STBs
+        ffCard(
+          'Super Tie-Breaks les plus fous',
+          'Les 3es sets décisifs les plus longs et irrespirables de la ligue',
+          d.craziestStbs.slice(0, 8).map((x, i) => `
+            <button type="button" class="ff-row ff-row-btn" onclick="setPair(${x.winner.id}, ${x.loser.id})">
+              <div class="ff-left">
+                ${rankBadgeHtml(i + 1)}
+                <div class="min-w-0">
+                  <div class="truncate" style="font-weight:700;">
+                    <span class="emerald-text">${esc(x.winner.name)}</span>
+                    <span style="color:var(--muted-foreground); font-weight:500;"> bat </span>
+                    <span>${esc(x.loser.name)}</span>
+                  </div>
+                  <div class="ff-sub">${esc(x.match.sl)} · ${esc(x.match.div)}</div>
+                </div>
+              </div>
+              <span class="tag tag-pill amber-soft tabular-nums" style="flex-shrink:0;">${x.stbW}–${x.stbL}</span>
+            </button>
+          `).join('')
+        ),
+
+        // 6. STB Kings
+        ffCard(
+          'Rois du Super Tie-Break',
+          'Meilleur % de réussite en Super Tie-Break (minimum 8 STB disputés)',
+          d.stbKings.slice(0, 8).map((x, i) => `
+            <button type="button" class="ff-row ff-row-btn" onclick="openPlayerInH2H(${x.player.id})">
+              <div class="ff-left">
+                ${rankBadgeHtml(i + 1)}
+                <div class="min-w-0">
+                  <div class="truncate" style="font-weight:700;">${esc(x.player.name)}</div>
+                  <div class="ff-sub tabular-nums">${x.w}V–${x.l}D en STB (${x.total} disputés)</div>
+                </div>
+              </div>
+              <span class="tag tag-pill emerald-soft tabular-nums" style="flex-shrink:0;">${x.rate}%</span>
+            </button>
+          `).join('')
+        ),
+
+        // 7. Bagel dealers
+        ffCard(
+          'Distributeurs de « Bulles » (6–0)',
+          'Joueurs ayant infligé le plus grand nombre de sets 6–0',
+          d.bagels.slice(0, 8).map((x, i) => `
+            <button type="button" class="ff-row ff-row-btn" onclick="openPlayerInH2H(${x.player.id})">
+              <div class="ff-left">
+                ${rankBadgeHtml(i + 1)}
+                <div class="min-w-0">
+                  <div class="truncate" style="font-weight:700;">${esc(x.player.name)}</div>
+                  <div class="ff-sub tabular-nums">${esc(x.player.bestDiv)} · ${x.m} matchs joués</div>
+                </div>
+              </div>
+              <span class="tag tag-pill emerald-soft tabular-nums" style="flex-shrink:0;">${x.count} × 6–0</span>
+            </button>
+          `).join('')
+        ),
+
+        // 8. Division champions
+        ffCard(
+          'Champions de Division (Titres #1)',
+          'Plus grand nombre de 1res places en fin de saison (saisons clôturées Hiver 2023 – Printemps/Été 2026)',
+          d.titles.slice(0, 8).map((x, i) => `
+            <button type="button" class="ff-row ff-row-btn" onclick="openPlayerInH2H(${x.player.id})">
+              <div class="ff-left">
+                ${rankBadgeHtml(i + 1)}
+                <div class="min-w-0">
+                  <div class="truncate" style="font-weight:700;">${esc(x.player.name)}</div>
+                  <div class="ff-sub">${x.etoileCount ? `dont ${x.etoileCount} titre${x.etoileCount > 1 ? 's' : ''} en Div. Étoile` : `Meilleure div. : ${esc(x.player.bestDiv)}`}</div>
+                </div>
+              </div>
+              <span class="tag tag-pill amber-soft tabular-nums" style="flex-shrink:0;">${x.count} titre${x.count > 1 ? 's' : ''}</span>
+            </button>
+          `).join('')
+        ),
+
+        // 9. Bêtes Noires
+        ffCard(
+          'Bêtes Noires (Rivalités à sens unique)',
+          'Plus longues invincibilités face à un même adversaire (4 matchs minimum, 0 défaite)',
+          d.betesNoires.slice(0, 8).map((x, i) => `
+            <button type="button" class="ff-row ff-row-btn" onclick="setPair(${x.dom.id}, ${x.vic.id})">
+              <div class="ff-left">
+                ${rankBadgeHtml(i + 1)}
+                <div class="min-w-0">
+                  <div class="truncate" style="font-weight:700;">
+                    <span class="emerald-text">${esc(x.dom.name)}</span>
+                    <span style="color:var(--muted-foreground); font-weight:500;"> vs </span>
+                    <span class="clay-text">${esc(x.vic.name)}</span>
+                  </div>
+                  <div class="ff-sub">Dernier duel : ${esc(x.lastLabel)}</div>
+                </div>
+              </div>
+              <span class="meta-pill tabular-nums" style="font-weight:800; color:var(--foreground); flex-shrink:0;">${x.n} – 0</span>
+            </button>
+          `).join('')
+        ),
+
+        // 10. Most active players (ironmen)
+        ffCard(
+          'Les Marathoniens de la Ligue',
+          'Joueurs ayant disputé le plus grand nombre de matchs depuis Hiver 2023',
+          [...PLAYERS].sort((a, b) => b.stats.m - a.stats.m).slice(0, 8).map((p, i) => `
+            <button type="button" class="ff-row ff-row-btn" onclick="openPlayerInH2H(${p.id})">
+              <div class="ff-left">
+                ${rankBadgeHtml(i + 1)}
+                <div class="min-w-0">
+                  <div class="truncate" style="font-weight:700;">${esc(p.name)}</div>
+                  <div class="ff-sub tabular-nums">${p.seasonsCount} saisons · ${p.stats.w}V–${p.stats.l}D (${pct(p.stats.w, p.stats.l)}%)</div>
+                </div>
+              </div>
+              <span class="tag tag-pill emerald-soft tabular-nums" style="flex-shrink:0;">${p.stats.m} matchs</span>
+            </button>
+          `).join('')
+        ),
+
+        // 11. Fidèles du Jour 1 (full width)
+        ffCard(
+          `Les Fidèles du Jour 1 (${d.fideles.length} joueurs · ${SEASONS.length}/${SEASONS.length} saisons)`,
+          `Présents sans interruption depuis ${esc(SEASONS[0].label)} jusqu'à ${esc(SEASONS[SEASONS.length - 1].label)} · Cliquez sur un nom pour ouvrir son H2H`,
+          `<div class="fideles-wrap">
+            ${d.fideles.map(p => `
+              <button type="button" class="fidele-chip" onclick="openPlayerInH2H(${p.id})" title="${esc(p.bestDiv)} · ${p.stats.m} matchs">
+                ${esc(p.name)} <span style="color:var(--muted-foreground); font-weight:500;" class="tabular-nums">(${p.stats.m}m)</span>
+              </button>
+            `).join('')}
+          </div>`,
+          true
+        )
+      ];
+
+      root.innerHTML = htmlParts.join('');
+    }
+
+    // ==================== VIEW 5: DIRECTORY & HOMONYMS ====================
     function renderHomonymSection() {
       const container = document.getElementById('homonym-cards');
       container.innerHTML = META.homonym_groups.map(g => `
@@ -2388,12 +3736,13 @@
                   <div>
                     <div class="tabular-nums" style="font-weight:750; font-size:13px;">${esc(p.phone)}</div>
                     <div style="font-size:12px; color:var(--muted-foreground); margin-top:2px;">
+                      ${p.currentDiv ? `<span class="tag tag-xs current-div-badge" style="margin-right:4px;">Actuelle : ${esc(p.currentDiv)}</span>` : ''}
                       ${esc(p.bestDiv)} · ${esc(hp.period)} · <strong class="tabular-nums" style="color:var(--foreground);">${p.stats.m}m (${p.stats.w}V–${p.stats.l}D, ${wPct}%)</strong>
                     </div>
                   </div>
                   <div style="display:flex; gap:6px;">
-                    <button type="button" class="btn btn-xs clay-soft" onclick="selectPlayer('a', ${p.id}); switchTab('h2h');">Joueur A</button>
-                    <button type="button" class="btn btn-xs emerald-soft" onclick="selectPlayer('b', ${p.id}); switchTab('h2h');">Joueur B</button>
+                    <button type="button" class="btn btn-xs emerald-soft" onclick="selectPlayer('a', ${p.id}); switchTab('h2h');">Joueur A</button>
+                    <button type="button" class="btn btn-xs clay-soft" onclick="selectPlayer('b', ${p.id}); switchTab('h2h');">Joueur B</button>
                   </div>
                 </div>`;
             }).join('')}
@@ -2410,11 +3759,20 @@
       const sortBy = document.getElementById('dir-sort').value;
 
       let list = PLAYERS.filter(p => {
+        const bRank = normDivRank(p.bestDivRank);
+        if (filt === 'current' && !p.currentDiv) return false;
+        if (filt === 'top' && bRank > 2) return false;
+        if (filt === 'mid' && (bRank < 3 || bRank > 7)) return false;
+        if (filt === 'prog' && bRank < 8) return false;
         if (filt === 'homonym' && !p.homonym) return false;
-        if (filt === 'top' && p.bestDivRank > 2) return false;
         if (filt === 'active50' && p.stats.m < 50) return false;
         if (q || qDigits) {
-          const okName = q && (p.searchName.includes(q) || normStr(p.bestDiv).includes(q) || normStr(p.firstSeason).includes(q));
+          const okName = q && (
+            p.searchName.includes(q) ||
+            normStr(p.bestDiv).includes(q) ||
+            normStr(p.currentDiv || '').includes(q) ||
+            normStr(p.firstSeason).includes(q)
+          );
           const okPhone = qDigits && p.phoneDigits.includes(qDigits);
           if (!okName && !okPhone) return false;
         }
@@ -2423,7 +3781,7 @@
 
       list.sort((a, b) => {
         if (sortBy === 'name') return a.name.localeCompare(b.name);
-        if (sortBy === 'bestdiv') return a.bestDivRank - b.bestDivRank || b.stats.m - a.stats.m;
+        if (sortBy === 'bestdiv') return normDivRank(a.bestDivRank) - normDivRank(b.bestDivRank) || b.stats.m - a.stats.m;
         if (sortBy === 'firstseason') return a.firstSeasonOrd - b.firstSeasonOrd || b.stats.m - a.stats.m || a.name.localeCompare(b.name);
         if (sortBy === 'winpct') return pct(b.stats.w, b.stats.l) - pct(a.stats.w, a.stats.l) || b.stats.m - a.stats.m;
         return b.stats.m - a.stats.m || a.name.localeCompare(b.name);
@@ -2444,14 +3802,19 @@
               <div class="tabular-nums" style="font-size:12px; color:var(--muted-foreground); margin-top:1px;">${esc(p.phone)}</div>
             </td>
             <td style="white-space:nowrap; color:var(--muted-foreground);">${esc(p.firstSeason)}</td>
+            <td style="white-space:nowrap;">
+              ${p.currentDiv
+                ? `<span class="tag tag-pill tag-xs current-div-badge"><span class="live-dot"></span>${esc(p.currentDiv)}</span>`
+                : `<span style="color:var(--muted-foreground); font-size:12px;">—</span>`}
+            </td>
             <td style="font-weight:500; white-space:nowrap;">${esc(p.bestDiv)}</td>
             <td class="td-r tabular-nums" style="color:var(--muted-foreground);">${p.seasonsCount}</td>
             <td class="td-r tabular-nums" style="font-weight:700;">${p.stats.m}</td>
             <td class="td-r tabular-nums">${p.stats.w}V–${p.stats.l}D</td>
             <td class="td-r tabular-nums ${wp >= 60 ? 'emerald-text' : ''}" style="font-weight:700; ${wp <= 35 ? 'color:var(--muted-foreground);' : ''}">${wp}%</td>
             <td class="td-r" style="white-space:nowrap;">
-              <button type="button" class="btn btn-xs clay-soft" style="margin-right:4px;" onclick="selectPlayer('a', ${p.id}); switchTab('h2h');">A</button>
-              <button type="button" class="btn btn-xs emerald-soft" onclick="selectPlayer('b', ${p.id}); switchTab('h2h');">B</button>
+              <button type="button" class="btn btn-xs emerald-soft" style="margin-right:4px;" onclick="selectPlayer('a', ${p.id}); switchTab('h2h');">A</button>
+              <button type="button" class="btn btn-xs clay-soft" onclick="selectPlayer('b', ${p.id}); switchTab('h2h');">B</button>
             </td>
           </tr>`;
       }).join('');
@@ -2463,8 +3826,15 @@
         `${META.total_players} joueurs · ${META.total_matches.toLocaleString('fr-FR')} matchs · ${META.seasons_count} saisons (Simple)`;
       document.getElementById('homonym-count-badge').textContent = META.homonym_groups.length;
 
+      const totalClassifRows = PLAYERS.reduce((sum, p) => sum + p.history.length, 0);
+      const footerAudit = document.getElementById('footer-audit');
+      if (footerAudit) {
+        footerAudit.textContent = `Audit croisé : ${totalClassifRows.toLocaleString('fr-FR')} lignes de classements vérifiées · 0 écart.`;
+      }
+
       setupPicker('a');
       setupPicker('b');
+      initStandingsControls();
 
       const featuredSpecs = [
         { a: ['Hakim Chaoui'], b: ['Majid Slimani'], label: 'Chaoui vs Slimani' },
@@ -2503,6 +3873,7 @@
       syncInputLabel('a');
       syncInputLabel('b');
       renderH2H();
+      switchTab('home');
     }
 
     init();

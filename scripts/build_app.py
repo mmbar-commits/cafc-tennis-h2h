@@ -46,6 +46,7 @@ def build_compact_json(d):
             div_idx.get(p["best_div"], -1),
             p["best_div_rank"],
             div_idx.get(p["last_div"], -1),
+            div_idx.get(p.get("current_div"), -1) if p.get("current_div") else -1,
             p["aliases"],
             st_arr,
             h_arr,
@@ -76,7 +77,7 @@ def build_compact_json(d):
     compact = {
         "meta": d["meta"],
         "seasons": [
-            [s["id"], s["order"], s["label"], s["matches"]]
+            [s["id"], s["order"], s["label"], s["matches"], 1 if s.get("in_progress") else 0, s.get("as_of", "")]
             for s in seasons
         ],
         "divs": divs,

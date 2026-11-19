@@ -1,6 +1,6 @@
 # Ligue CAFC Tennis Simple — Head 2 Head (2023–2026)
 
-Outil web autonome permettant d'afficher un **Head 2 Head complet** entre deux joueurs de la **Ligue CAFC Tennis en simple** sur l'ensemble des 13 saisons historiques (Hiver 2023 à Printemps/Été 2026).
+Outil web autonome permettant d'explorer les statistiques, classements, rivalités, records et confrontations **Head 2 Head** de la **Ligue CAFC Tennis en simple** sur l'ensemble des **14 saisons** (Hiver 2023 à Automne 2026 en cours, mise à jour au 19.11.2026).
 
 ## Utilisation immédiate
 
@@ -11,10 +11,10 @@ L'application finale est 100 % autonome dans un seul fichier HTML sans serveur n
 
 ## Données & Audit de fiabilité
 
-- **Source** : Archives Mehdi Barouti (`13` saisons complètes de Ligue CAFC Tennis en simple, Hiver 2023 – Printemps/Été 2026).
-- **Volume** : **4 875 matchs joués**, **252 joueurs actifs**, **3 138 confrontations uniques**.
-- **Super Tie-Breaks** : **759 scores exacts** de Super Tie-Breaks reconstitués (sur 766 Super Tie-Breaks disputés, comptabilisés `1–0` au classement officiel de la Ligue).
-- **Audit croisé** : `1 614` lignes joueur-saison vérifiées contre les classements officiels (`J`, `Diff. Sets`, `Diff. Jeux`) → **0 écart**.
+- **Source** : Archives Mehdi Barouti (`14` saisons de Ligue CAFC Tennis en simple : 13 saisons clôturées d'Hiver 2023 à Printemps/Été 2026 + Automne 2026 en cours au 19.11.2026).
+- **Volume** : **5 250 matchs joués**, **268 joueurs classés** (dont 130 inscrits en Automne 2026), **3 336 confrontations uniques**.
+- **Super Tie-Breaks** : **830 scores exacts** de Super Tie-Breaks reconstitués (sur 837 Super Tie-Breaks disputés, soit 99,2 %, comptabilisés `1–0` au classement officiel de la Ligue).
+- **Audit croisé** : `1 719` lignes joueur-saison vérifiées contre les classements officiels (`J`, `Diff. Sets`, `Diff. Jeux`) → **0 écart**.
 
 ### Gestion des homonymes
 
@@ -26,11 +26,12 @@ Chaque joueur est identifié de manière unique par son couple **(Nom, Numéro d
 
 ## Fonctionnalités
 
-- **Recherche instantanée & désambiguïsation** : recherche insensible aux accents par nom ou chiffres du numéro de téléphone, priorisation des adversaires déjà affrontés, inversion rapide et tirage de rivalité aléatoire.
-- **Tableau de bord H2H complet** : score global, série en cours, dernier match, filtre par période.
-- **Statistiques & graphiques SVG** : comparaison *H2H Direct / Carrière* (sets, jeux, 2 sets secs, 3 sets, Super Tie-Breaks, Tie-Breaks `7–6`, bulles `6–0`), courbe d'évolution du H2H et trajectoire des divisions sur les 13 saisons.
-- **Historique complet & Adversaires communs** : chaque match avec scores exacts des Super Tie-Breaks et H2H cumulé, plus comparaison indirecte sur les adversaires communs.
-- **Explorateurs dédiés** : onglets *Grandes Rivalités* et *Annuaire & Homonymes* (table de données défilable avec colonne *Première saison*).
+- **Accueil** : vue synthétique de la ligue (KPIs globaux, comparaison Première vs. Dernière saison, graphique d'activité saison par saison, Top 5 Division Étoile en cours, affiches phares et records marquants).
+- **Head 2 Head** (Joueur A en vert, Joueur B en orange) : recherche instantanée par nom ou téléphone, badge *Division Actuelle*, statistiques comparatives *H2H Direct / Carrière*, courbes SVG d'évolution du H2H et des divisions sur 14 saisons, historique complet avec scores exacts des Super Tie-Breaks et comparaison indirecte sur les adversaires communs.
+- **Classement** : classement général et par division pour la saison en cours (*Automne 2026 au 19.11.2026*) ainsi que tous les classements officiels de fin de saison depuis *Hiver 2023*.
+- **Grandes Rivalités** : explorateur des affiches récurrentes (le joueur recherché s'affiche toujours à gauche et ses rivaux à droite).
+- **Fun Facts & Records** : plus longues séries de victoires et de défaites, classement par nombre d'abandons, plus grandes évolutions de division, Super Tie-Breaks les plus fous, rois du STB, distributeurs de 6–0, champions de division, bêtes noires, marathoniens et fidèles du Jour 1 (14/14 saisons).
+- **Annuaire & Homonymes** : table de données défilable avec colonnes *Première saison* et *Div. Actuelle*, filtres par niveau (*Top Divisions Étoile – Div. 2*, *Divisions Intermédiaires Div. 3 – 7*, *Divisions Progression Div. 8+*, *Inscrits Automne 2026*, *Homonymes*, *50+ matchs*).
 
 ## Mettre à jour les données (nouvelle saison)
 
