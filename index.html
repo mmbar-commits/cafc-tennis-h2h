@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Ligue CAFC Tennis Simple — Head 2 Head (2023–2026)</title>
   <meta name="description" content="Outil interactif de Head 2 Head de la Ligue CAFC Tennis en simple (2023–2026) : confrontations directes, statistiques avancées, scores exacts des Super Tie-Breaks, trajectoires de divisions et adversaires communs." />
+  <script defer src="https://cloud.umami.is/script.js" data-website-id="2243c985-8fe4-4a1d-b21a-be6d0f956bc1" data-domains="mmbar-commits.github.io"></script>
   <style>
     :root {
       --background: #f6f5f2;
@@ -2215,7 +2216,18 @@
       renderMatchesList();
     }
 
-    function switchTab(tab) {
+    const TAB_LABELS = {
+      home: 'Accueil',
+      h2h: 'Head 2 Head',
+      profile: 'Profil Joueur',
+      standings: 'Classement',
+      rivalries: 'Grandes Rivalités',
+      funfacts: 'Fun Facts',
+      directory: 'Annuaire'
+    };
+
+    function switchTab(tab, opts = {}) {
+      const prevTab = state.tab;
       state.tab = tab;
       ['home', 'h2h', 'profile', 'standings', 'rivalries', 'funfacts', 'directory'].forEach(t => {
         document.getElementById(`view-${t}`).classList.toggle('hidden', t !== tab);
@@ -2227,6 +2239,15 @@
       if (tab === 'rivalries') renderRivalries();
       if (tab === 'funfacts') renderFunFacts();
       if (tab === 'directory') renderDirectory();
+      if (opts.track !== false && prevTab !== tab && window.umami && typeof window.umami.track === 'function') {
+        try {
+          window.umami.track(props => ({
+            ...props,
+            url: `/cafc-tennis-h2h/${tab}`,
+            title: `${TAB_LABELS[tab] || tab} · Ligue CAFC Tennis Simple`
+          }));
+        } catch {}
+      }
       window.scrollTo({ top: 0, behavior: 'instant' });
     }
 
@@ -4884,7 +4905,7 @@
       syncInputLabel('a');
       syncInputLabel('b');
       renderH2H();
-      switchTab('home');
+      switchTab('home', { track: false });
     }
 
     init();
