@@ -4366,15 +4366,22 @@
           const startRank = normDivRank(firstH.dr);
           let bestAfterH = null;
           let bestAfterRank = startRank;
+          let prevRank = startRank;
+          let continuous = true;
           for (const h of p.history.slice(1)) {
             const r = normDivRank(h.dr);
+            if (prevRank - r > 1) {
+              continuous = false;
+              break;
+            }
+            prevRank = r;
             if (r < bestAfterRank) {
               bestAfterRank = r;
               bestAfterH = h;
             }
           }
           const gain = startRank - bestAfterRank;
-          if (gain > 0 && bestAfterH) {
+          if (continuous && gain > 0 && bestAfterH) {
             evolutions.push({
               player: p,
               gain,
@@ -4530,7 +4537,7 @@
         // 4. Plus grande évolution
         ffCard(
           'Plus grande évolution de division',
-          'Nombre de divisions gravies entre la première saison et le meilleur classement atteint ensuite',
+          'Progression continue sans saut de division (+1 div. max par saison, hors reclassements)',
           d.evolutions.slice(0, 8).map((x, i) => `
             <button type="button" class="ff-row ff-row-btn" onclick="openProfile(${x.player.id})">
               <div class="ff-left">
