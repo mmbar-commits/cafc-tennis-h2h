@@ -189,6 +189,32 @@ if (!dirOrder[0].startsWith('Annuaire Complet') || !dirOrder[1].startsWith('Gest
 }
 await screenshot('03_directory_order.png', true);
 
+// 4. Mobile 390px viewport check across ALL 7 tabs -> zero horizontal page overflow!
+await cdp('Emulation.setDeviceMetricsOverride', { width: 390, height: 844, deviceScaleFactor: 2, mobile: true });
+await new Promise(r => setTimeout(r, 150));
+const mobileOverflows = {};
+for (const t of ['home', 'h2h', 'profile', 'standings', 'rivalries', 'funfacts', 'directory']) {
+  await evalJs(`switchTab('${t}', { track: false })`);
+  await new Promise(r => setTimeout(r, 150));
+  const m = await evalJs(`({ scrollWidth: document.documentElement.scrollWidth, innerWidth: window.innerWidth })`);
+  mobileOverflows[t] = m;
+  if (t === 'profile') {
+    const metrics = await cdp('Page.getLayoutMetrics');
+    const h = Math.min(Math.ceil(metrics.contentSize.height), 2600);
+    await cdp('Emulation.setDeviceMetricsOverride', { width: 390, height: h, deviceScaleFactor: 1, mobile: true });
+    await new Promise(r => setTimeout(r, 150));
+    const { data } = await cdp('Page.captureScreenshot', { format: 'png' });
+    fs.writeFileSync(path.join(OUT_DIR, '04_mobile_profile.png'), Buffer.from(data, 'base64'));
+    await cdp('Emulation.setDeviceMetricsOverride', { width: 390, height: 844, deviceScaleFactor: 2, mobile: true });
+  }
+}
+console.log('4. MOBILE 390px OVERFLOW CHECK:', mobileOverflows);
+for (const [t, m] of Object.entries(mobileOverflows)) {
+  if (m.scrollWidth > m.innerWidth) {
+    throw new Error(`Mobile horizontal overflow on tab ${t}: scrollWidth=${m.scrollWidth} > innerWidth=${m.innerWidth}`);
+  }
+}
+
 console.log('CONSOLE ERRORS:', consoleErrors);
 console.log('PAGE ERRORS:', pageErrors);
 
