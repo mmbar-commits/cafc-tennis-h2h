@@ -1,0 +1,2552 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CAFC Tennis — Head 2 Head Historique (2023–2026)</title>
+  <meta name="description" content="Outil interactif de Head 2 Head complet de la Ligue CAFC Tennis (2023–2026) avec séparation des homonymes par numéro de téléphone, statistiques avancées, trajectoires de divisions et adversaires communs." />
+  <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: var(--background);
+      color: var(--foreground);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      font-size: 14px;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    button, input, select {
+      font: inherit;
+      color: inherit;
+    }
+
+    .hidden { display: none !important; }
+    .tabular-nums { font-variant-numeric: tabular-nums; }
+    .truncate { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .min-w-0 { min-width: 0; }
+
+    /* Signature CAFC Tennis Accents (Clay & Court Emerald — high contrast in light & dark) */
+    .clay-text { color: #c85a32; }
+    .clay-bg { background-color: #c85a32; color: #ffffff; }
+    .clay-soft, .btn.clay-soft {
+      background-color: rgba(200, 90, 50, 0.12);
+      border: 1px solid rgba(200, 90, 50, 0.36);
+      color: #c85a32;
+    }
+    .btn.clay-soft:hover { background-color: rgba(200, 90, 50, 0.22); border-color: #c85a32; }
+    .emerald-text { color: #1f8a65; }
+    .emerald-bg { background-color: #1f8a65; color: #ffffff; }
+    .emerald-soft, .btn.emerald-soft {
+      background-color: rgba(31, 138, 101, 0.12);
+      border: 1px solid rgba(31, 138, 101, 0.36);
+      color: #1f8a65;
+    }
+    .btn.emerald-soft:hover { background-color: rgba(31, 138, 101, 0.22); border-color: #1f8a65; }
+    .homonym-badge {
+      background-color: rgba(217, 119, 6, 0.14);
+      color: #d97706;
+      border: 1px solid rgba(217, 119, 6, 0.38);
+    }
+
+    /* Scrollbars */
+    .thin-scroll::-webkit-scrollbar { width: 6px; height: 6px; }
+    .thin-scroll::-webkit-scrollbar-track { background: transparent; }
+    .thin-scroll::-webkit-scrollbar-thumb { background: rgba(128, 128, 128, 0.32); border-radius: 999px; }
+
+    /* Layout Shell */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      background-color: var(--background);
+      border-bottom: 1px solid var(--border);
+    }
+    .container {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    .header-inner {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 12px 0;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+    }
+    .brand-mark {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      background-color: #c85a32;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      box-shadow: 0 2px 8px rgba(200, 90, 50, 0.25);
+    }
+    .brand-title-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .brand-title {
+      margin: 0;
+      font-size: 17px;
+      font-weight: 750;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+    }
+    .brand-subtitle {
+      margin: 2px 0 0;
+      font-size: 12px;
+      color: var(--muted-foreground);
+      line-height: 1.3;
+    }
+    .meta-pill {
+      display: inline-flex;
+      align-items: center;
+      padding: 2px 8px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 600;
+      background-color: var(--card);
+      border: 1px solid var(--border);
+      color: var(--muted-foreground);
+    }
+
+    /* Navigation Tabs */
+    .nav-tabs {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px;
+      border-radius: 10px;
+      background-color: var(--card);
+      border: 1px solid var(--border);
+    }
+    .nav-tab {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      border-radius: 7px;
+      border: none;
+      background: transparent;
+      color: var(--muted-foreground);
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.15s, color 0.15s;
+    }
+    .nav-tab:hover { color: var(--foreground); }
+    .nav-tab[data-active="true"] {
+      background-color: var(--background);
+      color: var(--foreground);
+      box-shadow: 0 1px 2px rgba(0,0,0,0.08);
+    }
+    .nav-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 6px;
+      height: 18px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    /* Main Content & Cards */
+    .main-content {
+      padding-top: 20px;
+      padding-bottom: 24px;
+    }
+    .stack-lg { display: flex; flex-direction: column; gap: 20px; }
+    .stack-md { display: flex; flex-direction: column; gap: 14px; }
+    .stack-sm { display: flex; flex-direction: column; gap: 8px; }
+
+    .card {
+      background-color: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 20px;
+    }
+    .card-flush {
+      background-color: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+    }
+    .card-header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding-bottom: 12px;
+      margin-bottom: 14px;
+      border-bottom: 1px solid var(--border);
+    }
+    .card-title {
+      margin: 0;
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: -0.015em;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .card-desc {
+      margin: 2px 0 0;
+      font-size: 12px;
+      color: var(--muted-foreground);
+    }
+
+    /* Player Picker Grid */
+    .picker-grid {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      gap: 14px;
+      align-items: end;
+    }
+    @media (max-width: 860px) {
+      .picker-grid { grid-template-columns: 1fr; }
+    }
+    .picker-wrap { position: relative; }
+    .picker-label {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 6px;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .picker-label-left { display: inline-flex; align-items: center; gap: 6px; }
+    .picker-hint {
+      font-weight: 400;
+      text-transform: none;
+      letter-spacing: 0;
+      color: var(--muted-foreground);
+      font-size: 12px;
+    }
+    .dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 999px;
+      display: inline-block;
+      flex-shrink: 0;
+    }
+    .input-wrap { position: relative; }
+    .text-input {
+      width: 100%;
+      padding: 10px 36px 10px 14px;
+      border-radius: 10px;
+      background-color: var(--background);
+      border: 1px solid var(--border);
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--foreground);
+      outline: none;
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+    .text-input::placeholder { color: var(--muted-foreground); font-weight: 400; }
+    .text-input-a:focus { border-color: #c85a32; box-shadow: 0 0 0 3px rgba(200, 90, 50, 0.18); }
+    .text-input-b:focus { border-color: #1f8a65; box-shadow: 0 0 0 3px rgba(31, 138, 101, 0.18); }
+
+    .input-icon-btn {
+      position: absolute;
+      right: 8px;
+      top: 50%;
+      transform: translateY(-50%);
+      border: none;
+      background: transparent;
+      color: var(--muted-foreground);
+      padding: 4px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      border-radius: 6px;
+    }
+    .input-icon-btn:hover { color: var(--foreground); }
+
+    .picker-actions {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding-bottom: 1px;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      height: 40px;
+      padding: 0 12px;
+      border-radius: 10px;
+      background-color: var(--background);
+      border: 1px solid var(--border);
+      color: var(--foreground);
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: border-color 0.15s, background-color 0.15s, color 0.15s;
+      white-space: nowrap;
+    }
+    .btn:hover { border-color: var(--muted-foreground); }
+    .btn-sm { height: 30px; padding: 0 10px; border-radius: 8px; font-size: 12px; }
+    .btn-xs { height: 26px; padding: 0 8px; border-radius: 6px; font-size: 12px; }
+
+    /* Combobox Dropdown */
+    .combo-dropdown {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: calc(100% + 6px);
+      max-height: 340px;
+      overflow-y: auto;
+      border-radius: 12px;
+      background-color: var(--card);
+      border: 1px solid var(--border);
+      box-shadow: 0 16px 40px -8px rgba(0, 0, 0, 0.24), 0 4px 12px -2px rgba(0, 0, 0, 0.12);
+      z-index: 50;
+    }
+    .combo-group-hdr {
+      position: sticky;
+      top: 0;
+      padding: 6px 12px;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--muted-foreground);
+      background-color: var(--background);
+      border-bottom: 1px solid var(--border);
+      z-index: 1;
+    }
+    .combo-row {
+      width: 100%;
+      padding: 9px 12px;
+      border: none;
+      border-bottom: 1px solid var(--border);
+      background: transparent;
+      text-align: left;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      cursor: pointer;
+      transition: background-color 0.1s;
+    }
+    .combo-row:last-child { border-bottom: none; }
+    .combo-row.is-hi, .combo-row:hover { background-color: var(--background); }
+    .combo-name-line { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+    .combo-name { font-size: 13px; font-weight: 650; color: var(--foreground); }
+    .combo-sub {
+      margin-top: 2px;
+      font-size: 12px;
+      color: var(--muted-foreground);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+    .combo-phone-strong { color: var(--foreground); font-weight: 600; }
+
+    /* Filters & Quick Picks Bar */
+    .selector-footer {
+      margin-top: 14px;
+      padding-top: 14px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .quick-picks-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+    }
+    .quick-pick-btn {
+      padding: 4px 10px;
+      border-radius: 999px;
+      background-color: var(--background);
+      border: 1px solid var(--border);
+      color: var(--foreground);
+      font-size: 12px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: border-color 0.15s, color 0.15s;
+    }
+    .quick-pick-btn:hover { border-color: #c85a32; color: #c85a32; }
+
+    .controls-row { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+    .segmented {
+      display: inline-flex;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      overflow: hidden;
+      background-color: var(--background);
+    }
+    .seg-btn {
+      padding: 5px 10px;
+      border: none;
+      border-left: 1px solid var(--border);
+      background: transparent;
+      color: var(--muted-foreground);
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.15s, color 0.15s;
+    }
+    .seg-btn:first-child { border-left: none; }
+    .seg-btn:hover { color: var(--foreground); }
+    .seg-btn[data-active="true"] {
+      background-color: #c85a32;
+      color: #ffffff;
+    }
+    .select-input {
+      height: 30px;
+      padding: 0 10px;
+      border-radius: 8px;
+      background-color: var(--background);
+      border: 1px solid var(--border);
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--foreground);
+      cursor: pointer;
+      outline: none;
+    }
+    .search-sm {
+      height: 30px;
+      width: 200px;
+      padding: 0 10px;
+      border-radius: 8px;
+      background-color: var(--background);
+      border: 1px solid var(--border);
+      font-size: 12px;
+      color: var(--foreground);
+      outline: none;
+    }
+    .search-sm:focus { border-color: #c85a32; }
+
+    /* Hero Scoreboard */
+    .hero-accent-bar {
+      height: 5px;
+      width: 100%;
+      background: linear-gradient(90deg, #c85a32 0%, rgba(200,90,50,0.22) 46%, rgba(31,138,101,0.22) 54%, #1f8a65 100%);
+    }
+    .hero-body { padding: 22px 24px 18px; }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 250px 1fr;
+      gap: 20px;
+      align-items: center;
+    }
+    @media (max-width: 880px) {
+      .hero-grid { grid-template-columns: 1fr; }
+    }
+    .player-side {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      min-width: 0;
+    }
+    .player-side-right { align-items: flex-end; text-align: right; }
+    @media (max-width: 880px) {
+      .player-side-right { align-items: flex-start; text-align: left; }
+    }
+    .player-head {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+    }
+    .player-head-right { flex-direction: row-reverse; }
+    @media (max-width: 880px) {
+      .player-head-right { flex-direction: row; }
+    }
+    .avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      flex-shrink: 0;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+    }
+    .player-name {
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+    }
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+    }
+    .pill-row-right { justify-content: flex-end; }
+    @media (max-width: 880px) {
+      .pill-row-right { justify-content: flex-start; }
+    }
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 2px 8px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      line-height: 1.4;
+    }
+    .tag-muted {
+      background-color: var(--background);
+      border: 1px solid var(--border);
+      color: var(--muted-foreground);
+      font-weight: 500;
+    }
+    .tag-pill { border-radius: 999px; }
+    .tag-xs { padding: 1px 6px; font-size: 11px; }
+
+    /* Center Score Box */
+    .score-center {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 14px 16px;
+      border-radius: 12px;
+      background-color: var(--background);
+      border: 1px solid var(--border);
+    }
+    .score-caption {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted-foreground);
+      margin-bottom: 4px;
+    }
+    .score-numbers {
+      display: flex;
+      align-items: baseline;
+      justify-content: center;
+      gap: 12px;
+      line-height: 1;
+    }
+    .score-big {
+      font-size: 46px;
+      font-weight: 850;
+      letter-spacing: -0.03em;
+    }
+    .score-dash {
+      font-size: 22px;
+      font-weight: 300;
+      color: var(--muted-foreground);
+    }
+    .tug-bar {
+      width: 100%;
+      height: 9px;
+      border-radius: 999px;
+      overflow: hidden;
+      display: flex;
+      background-color: var(--border);
+      margin-top: 12px;
+    }
+    .tug-fill { height: 100%; transition: width 0.35s cubic-bezier(0.22, 1, 0.36, 1); }
+    .tug-labels {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 6px;
+      margin-top: 6px;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .hero-footer {
+      margin-top: 16px;
+      padding-top: 12px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      font-size: 12px;
+      color: var(--muted-foreground);
+    }
+
+    /* Two-Column Analytics Grid */
+    .analytics-grid {
+      display: grid;
+      grid-template-columns: 5fr 7fr;
+      gap: 20px;
+      align-items: start;
+    }
+    @media (max-width: 960px) {
+      .analytics-grid { grid-template-columns: 1fr; }
+    }
+
+    /* Comparative Stat Rows */
+    .stat-row { display: flex; flex-direction: column; gap: 5px; }
+    .stat-vals {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: baseline;
+      gap: 8px;
+      font-size: 13px;
+    }
+    .stat-lbl {
+      font-size: 12px;
+      color: var(--muted-foreground);
+      font-weight: 500;
+      text-align: center;
+    }
+    .stat-bars {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4px;
+      height: 6px;
+    }
+    .stat-track-l {
+      background-color: var(--border);
+      border-radius: 999px 0 0 999px;
+      overflow: hidden;
+      display: flex;
+      justify-content: flex-end;
+    }
+    .stat-track-r {
+      background-color: var(--border);
+      border-radius: 0 999px 999px 0;
+      overflow: hidden;
+      display: flex;
+      justify-content: flex-start;
+    }
+    .stat-fill-l { height: 100%; border-radius: 999px 0 0 999px; transition: width 0.35s ease; }
+    .stat-fill-r { height: 100%; border-radius: 0 999px 999px 0; transition: width 0.35s ease; }
+
+    /* Charts */
+    .chart-legend {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+    .legend-item { display: inline-flex; align-items: center; gap: 6px; }
+    .chart-box { position: relative; width: 100%; }
+    .chart-svg { width: 100%; height: auto; display: block; overflow: visible; }
+    .svg-tooltip {
+      pointer-events: none;
+      position: absolute;
+      top: 4px;
+      left: 8px;
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      background-color: var(--foreground);
+      color: var(--background);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      max-width: calc(100% - 16px);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      opacity: 0;
+      transition: opacity 0.12s ease;
+    }
+
+    /* Match History Rows */
+    .match-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 11px 14px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background-color: var(--background);
+      transition: border-color 0.15s;
+    }
+    .match-row:hover { border-color: var(--muted-foreground); }
+    .match-left {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+      min-width: 0;
+    }
+    .match-right {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px;
+    }
+    .set-pills { display: inline-flex; align-items: center; gap: 5px; }
+    .set-pill {
+      padding: 2px 8px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 700;
+      border: 1px solid var(--border);
+      background-color: var(--card);
+    }
+    .set-pill-lost {
+      color: var(--muted-foreground);
+      font-weight: 500;
+      background-color: transparent;
+    }
+
+    /* Tables */
+    .table-wrap { overflow-x: auto; }
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+      text-align: left;
+    }
+    .data-table th {
+      padding: 8px 10px;
+      border-bottom: 1px solid var(--border);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--muted-foreground);
+      white-space: nowrap;
+    }
+    .data-table td {
+      padding: 10px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: middle;
+    }
+    .data-table tr:last-child td { border-bottom: none; }
+    .data-table tbody tr:hover { background-color: var(--background); }
+    .th-r, .td-r { text-align: right; }
+    .th-c, .td-c { text-align: center; }
+
+    .link-btn {
+      border: none;
+      background: transparent;
+      padding: 2px 6px;
+      border-radius: 6px;
+      font-weight: 650;
+      cursor: pointer;
+    }
+    .link-btn:hover { text-decoration: underline; }
+
+    /* Rivalries & Homonym Grids */
+    .two-col-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+    @media (max-width: 760px) {
+      .two-col-grid { grid-template-columns: 1fr; }
+    }
+    .rivalry-card {
+      width: 100%;
+      text-align: left;
+      padding: 14px 16px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background-color: var(--background);
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      transition: border-color 0.15s, transform 0.12s;
+    }
+    .rivalry-card:hover { border-color: #c85a32; transform: translateY(-1px); }
+    .rivalry-top {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+    }
+
+    .homonym-group-card {
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background-color: var(--background);
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .homonym-member-row {
+      border-radius: 10px;
+      background-color: var(--card);
+      border: 1px solid var(--border);
+      padding: 10px 12px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .audit-details {
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background-color: var(--background);
+      padding: 12px 14px;
+      font-size: 12px;
+    }
+    .audit-details summary {
+      font-weight: 650;
+      cursor: pointer;
+      user-select: none;
+    }
+    .audit-grid {
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px solid var(--border);
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+    @media (max-width: 760px) {
+      .audit-grid { grid-template-columns: 1fr; }
+    }
+    .audit-list { margin: 6px 0 0; padding-left: 16px; color: var(--muted-foreground); }
+    .audit-list li { margin-bottom: 4px; }
+
+    .empty-box {
+      padding: 28px 16px;
+      text-align: center;
+      font-size: 13px;
+      color: var(--muted-foreground);
+      background-color: var(--background);
+      border: 1px dashed var(--border);
+      border-radius: 10px;
+    }
+
+    .site-footer {
+      border-top: 1px solid var(--border);
+      padding: 18px 0 28px;
+      margin-top: 16px;
+      font-size: 12px;
+      color: var(--muted-foreground);
+    }
+    .footer-inner {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .check-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      height: 30px;
+      padding: 0 10px;
+      border-radius: 8px;
+      background-color: var(--background);
+      border: 1px solid var(--border);
+      font-size: 12px;
+      cursor: pointer;
+      user-select: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- TOP HEADER -->
+  <header class="site-header">
+    <div class="container">
+      <div class="header-inner">
+        <div class="brand">
+          <div class="brand-mark" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="9.5"></circle>
+              <path d="M5.6 5.6c2.6 2.6 2.6 10.2 0 12.8"></path>
+              <path d="M18.4 5.6c-2.6 2.6-2.6 10.2 0 12.8"></path>
+            </svg>
+          </div>
+          <div class="min-w-0">
+            <div class="brand-title-row">
+              <h1 class="brand-title">CAFC Tennis · Head 2 Head</h1>
+              <span class="meta-pill tabular-nums">2023–2026</span>
+            </div>
+            <p class="brand-subtitle" id="header-subtitle">Chargement des données historiques…</p>
+          </div>
+        </div>
+
+        <nav class="nav-tabs" aria-label="Navigation principale">
+          <button id="tab-h2h" type="button" class="nav-tab" data-active="true" onclick="switchTab('h2h')">Head 2 Head</button>
+          <button id="tab-rivalries" type="button" class="nav-tab" data-active="false" onclick="switchTab('rivalries')">Grandes Rivalités</button>
+          <button id="tab-directory" type="button" class="nav-tab" data-active="false" onclick="switchTab('directory')">
+            Annuaire &amp; Homonymes
+            <span class="nav-badge homonym-badge tabular-nums" id="homonym-count-badge">2</span>
+          </button>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main class="container main-content">
+
+    <!-- ==================== VIEW 1: HEAD 2 HEAD ==================== -->
+    <section id="view-h2h" class="stack-lg">
+
+      <!-- PLAYER SELECTOR & FILTERS -->
+      <div class="card">
+        <div class="picker-grid">
+          <!-- Player A -->
+          <div class="picker-wrap" id="picker-a-wrap">
+            <label for="input-a" class="picker-label">
+              <span class="picker-label-left clay-text">
+                <span class="dot clay-bg"></span>
+                Joueur A
+              </span>
+              <span class="picker-hint">Nom ou n° de téléphone</span>
+            </label>
+            <div class="input-wrap">
+              <input id="input-a" type="text" autocomplete="off" class="text-input text-input-a"
+                placeholder="Rechercher (ex: Saad Bennani, 4647, Sebti…)" />
+              <button type="button" class="input-icon-btn" title="Rechercher un joueur" onclick="focusPicker('a')">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+              </button>
+            </div>
+            <div id="dropdown-a" class="combo-dropdown thin-scroll hidden"></div>
+          </div>
+
+          <!-- Swap & Random -->
+          <div class="picker-actions">
+            <button id="btn-swap" type="button" class="btn" onclick="swapPlayers()" title="Inverser Joueur A et Joueur B">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M8 3 4 7l4 4"/><path d="M4 7h16"/><path d="m16 21 4-4-4-4"/><path d="M20 17H4"/>
+              </svg>
+              <span>Inverser</span>
+            </button>
+            <button id="btn-random" type="button" class="btn" onclick="pickRandomRivalry()" title="Charger une rivalité aléatoire (3+ matchs)">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="16 3 21 3 21 8"/><line x1="4" y1="20" x2="21" y2="3"/><polyline points="21 16 21 21 16 21"/><line x1="15" y1="15" x2="21" y2="21"/><line x1="4" y1="4" x2="9" y2="9"/>
+              </svg>
+              <span>Aléatoire</span>
+            </button>
+          </div>
+
+          <!-- Player B -->
+          <div class="picker-wrap" id="picker-b-wrap">
+            <label for="input-b" class="picker-label">
+              <span class="picker-label-left emerald-text">
+                <span class="dot emerald-bg"></span>
+                Joueur B
+              </span>
+              <span class="picker-hint">Adversaires directs en priorité</span>
+            </label>
+            <div class="input-wrap">
+              <input id="input-b" type="text" autocomplete="off" class="text-input text-input-b"
+                placeholder="Rechercher un adversaire (nom ou tél…)" />
+              <button type="button" class="input-icon-btn" title="Rechercher un adversaire" onclick="focusPicker('b')">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+              </button>
+            </div>
+            <div id="dropdown-b" class="combo-dropdown thin-scroll hidden"></div>
+          </div>
+        </div>
+
+        <div class="selector-footer">
+          <div class="quick-picks-wrap">
+            <span style="color: var(--muted-foreground); font-weight: 600;">Affiches phares :</span>
+            <div id="quick-picks" style="display:flex; flex-wrap:wrap; gap:6px;"></div>
+          </div>
+
+          <div class="controls-row">
+            <div class="segmented" role="group" aria-label="Filtre compétition">
+              <button type="button" class="seg-btn" data-comp="all" data-active="true" onclick="setCompFilter('all')">Tout</button>
+              <button type="button" class="seg-btn" data-comp="ligue" data-active="false" onclick="setCompFilter('ligue')">Ligue</button>
+              <button type="button" class="seg-btn" data-comp="tournoi" data-active="false" onclick="setCompFilter('tournoi')">Tournoi 02.24</button>
+            </div>
+            <select id="season-filter" class="select-input" onchange="setSeasonFilter(this.value)" aria-label="Période">
+              <option value="all">Toutes saisons (2023–2026)</option>
+              <option value="2024">Depuis 2024</option>
+              <option value="2025">Depuis 2025</option>
+              <option value="2026">2026 uniquement</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- HERO SCOREBOARD -->
+      <div id="h2h-hero" class="card-flush"></div>
+
+      <!-- ANALYTICS GRID: STATS + CHARTS -->
+      <div class="analytics-grid">
+        <!-- Left: Comparative Statistics -->
+        <div class="card">
+          <div class="card-header">
+            <h2 class="card-title">Statistiques Comparatives</h2>
+            <div class="segmented">
+              <button id="stats-mode-h2h" type="button" class="seg-btn" data-active="true" onclick="setStatsMode('h2h')">H2H Direct</button>
+              <button id="stats-mode-career" type="button" class="seg-btn" data-active="false" onclick="setStatsMode('career')">Carrière</button>
+            </div>
+          </div>
+          <div id="stats-panel" class="stack-md"></div>
+        </div>
+
+        <!-- Right: Charts -->
+        <div class="stack-lg">
+          <div class="card">
+            <div class="card-header">
+              <div>
+                <h2 class="card-title">Évolution du Head 2 Head</h2>
+                <p class="card-desc">Progression cumulée des victoires match par match</p>
+              </div>
+              <div id="h2h-chart-legend" class="chart-legend"></div>
+            </div>
+            <div id="h2h-chart-container" class="chart-box"></div>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <div>
+                <h2 class="card-title">Trajectoire des Divisions (2023–2026)</h2>
+                <p class="card-desc">Évolution saison par saison · Colonnes ambrées = même division</p>
+              </div>
+              <div id="div-chart-legend" class="chart-legend"></div>
+            </div>
+            <div id="div-chart-container" class="chart-box"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MATCH-BY-MATCH HISTORY -->
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <h2 class="card-title">
+              Historique Complet des Confrontations
+              <span id="matches-count-pill" class="meta-pill tabular-nums">0</span>
+            </h2>
+            <p class="card-desc">Scores officiels Winner Pro · STB = Super Tie-Break (comptabilisé 1–0 au 3e set selon le règlement Ligue CAFC)</p>
+          </div>
+          <button id="sort-matches-btn" type="button" class="btn btn-sm" onclick="toggleMatchSort()">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m3 16 4 4 4-4"/><path d="M7 20V4"/><path d="m21 8-4-4-4 4"/><path d="M17 4v16"/></svg>
+            <span id="sort-matches-label">Plus récents d'abord</span>
+          </button>
+        </div>
+        <div id="matches-list" class="stack-sm"></div>
+      </div>
+
+      <!-- COMMON OPPONENTS -->
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <h2 class="card-title">
+              Adversaires Communs (Comparaison Indirecte)
+              <span id="common-count-pill" class="meta-pill tabular-nums">0</span>
+            </h2>
+            <p class="card-desc" id="common-summary">Tous les joueurs affrontés par les deux protagonistes</p>
+          </div>
+          <select id="common-sort" class="select-input" onchange="renderCommonOpponents()" aria-label="Tri adversaires communs">
+            <option value="total">Trier par volume de matchs</option>
+            <option value="div">Trier par meilleure division</option>
+            <option value="edge_a">Meilleur avantage Joueur A</option>
+            <option value="edge_b">Meilleur avantage Joueur B</option>
+          </select>
+        </div>
+        <div id="common-opponents-body"></div>
+      </div>
+    </section>
+
+    <!-- ==================== VIEW 2: GRANDES RIVALITÉS ==================== -->
+    <section id="view-rivalries" class="hidden">
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <h2 class="card-title">Grandes Rivalités de la Ligue CAFC</h2>
+            <p class="card-desc">Toutes les affiches disputées au moins 2 fois depuis Hiver 2023</p>
+          </div>
+          <div class="controls-row">
+            <input id="riv-search" type="text" class="search-sm" placeholder="Filtrer par joueur…" oninput="renderRivalries()" />
+            <select id="riv-min" class="select-input" onchange="renderRivalries()" aria-label="Minimum de matchs">
+              <option value="5">5+ matchs</option>
+              <option value="4" selected>4+ matchs</option>
+              <option value="3">3+ matchs</option>
+              <option value="2">2+ matchs</option>
+            </select>
+            <label class="check-pill">
+              <input id="riv-close-only" type="checkbox" onchange="renderRivalries()" style="accent-color:#c85a32;" />
+              <span>Duel serré (écart ≤ 1)</span>
+            </label>
+          </div>
+        </div>
+        <div id="rivalries-grid" class="two-col-grid"></div>
+      </div>
+    </section>
+
+    <!-- ==================== VIEW 3: ANNUAIRE & HOMONYMES ==================== -->
+    <section id="view-directory" class="hidden stack-lg">
+      <div class="card stack-md">
+        <div class="card-header" style="margin-bottom:0;">
+          <div>
+            <h2 class="card-title">
+              Gestion des Homonymes &amp; Audit des Identités
+              <span class="tag tag-pill homonym-badge">100% vérifié · 0 écart</span>
+            </h2>
+            <p class="card-desc">
+              Chaque joueur est identifié par son couple <strong>(Nom, Numéro de téléphone)</strong>. Les homonymes sont strictement séparés, les téléphones familiaux partagés sont distingués, et les 8 mises à jour de numéro d’un même adhérent ont été validées contre le registre CAFC.
+            </p>
+          </div>
+        </div>
+
+        <div>
+          <div style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.06em; color:var(--muted-foreground); margin-bottom:10px;">
+            Homonymes actifs séparés par numéro de téléphone
+          </div>
+          <div id="homonym-cards" class="two-col-grid"></div>
+        </div>
+
+        <details class="audit-details">
+          <summary>Voir le journal complet de réconciliation (8 mises à jour de téléphone · 6 variantes orthographiques · 13 téléphones familiaux distingués)</summary>
+          <div id="audit-log-content" class="audit-grid"></div>
+        </details>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <h2 class="card-title">Annuaire Complet des Joueurs</h2>
+            <p class="card-desc" id="dir-count-label">252 joueurs actifs</p>
+          </div>
+          <div class="controls-row">
+            <input id="dir-search" type="text" class="search-sm" placeholder="Nom ou téléphone…" oninput="renderDirectory()" />
+            <select id="dir-filter" class="select-input" onchange="renderDirectory()" aria-label="Filtre annuaire">
+              <option value="all">Tous les joueurs</option>
+              <option value="homonym">Homonymes uniquement</option>
+              <option value="top">Top Divisions (Étoile – Div. 2)</option>
+              <option value="active50">Grands habitués (50+ matchs)</option>
+            </select>
+            <select id="dir-sort" class="select-input" onchange="renderDirectory()" aria-label="Tri annuaire">
+              <option value="matches">Trier par matchs joués</option>
+              <option value="winpct">Trier par % victoires</option>
+              <option value="bestdiv">Trier par meilleure division</option>
+              <option value="name">Trier par ordre alphabétique</option>
+            </select>
+          </div>
+        </div>
+        <div class="table-wrap thin-scroll">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Joueur &amp; Téléphone</th>
+                <th>Meilleure Div.</th>
+                <th class="th-r">Saisons</th>
+                <th class="th-r">Matchs</th>
+                <th class="th-r">Bilan V–D</th>
+                <th class="th-r">% Vic.</th>
+                <th class="th-r">Comparer</th>
+              </tr>
+            </thead>
+            <tbody id="dir-tbody"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-inner">
+        <span>Source : Google Drive « 02 - CAFC Tennis / 05 - Résultats Ligue CAFC Tennis » (154 PDF Matchs + 154 Classifications) &amp; Tournoi 02.2024.</span>
+        <span>Audit croisé : 1 614 lignes de classements vérifiées · 0 écart.</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- EMBEDDED COMPACT DATASET -->
+  <script id="cafc-data" type="application/json">__CAFC_COMPACT_JSON__</script>
+
+  <script>
+    // ==================== DATA HYDRATION ====================
+    const RAW = JSON.parse(document.getElementById('cafc-data').textContent);
+
+    const SEASONS = RAW.seasons.map(s => ({
+      id: s[0], order: s[1], label: s[2], type: s[3] === 0 ? 'ligue' : 'tournoi', matches: s[4]
+    }));
+    const LIGUE_SEASONS = SEASONS.filter(s => s.type === 'ligue');
+    const DIVS = RAW.divs;
+    const ROUNDS = RAW.rounds;
+    const META = RAW.meta;
+
+    function normStr(s) {
+      return (s || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+    }
+    function digitsOnly(s) {
+      return (s || '').replace(/\D/g, '');
+    }
+    function initials(name) {
+      const parts = name.trim().split(/\s+/);
+      if (parts.length === 1) return parts[0].slice(0, 2).toUpperCase();
+      return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
+    }
+    function esc(str) {
+      return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+    }
+
+    const PLAYERS = RAW.players.map(p => {
+      const st = p[10];
+      const hist = p[11].map(h => ({
+        sidIdx: h[0],
+        sid: SEASONS[h[0]].id,
+        ord: SEASONS[h[0]].order,
+        lbl: SEASONS[h[0]].label,
+        div: DIVS[h[1]],
+        dr: h[2],
+        rk: h[3],
+        j: h[4],
+        ds: h[5],
+        dg: h[6],
+        pts: h[7]
+      }));
+      const firstSeason = hist.length ? hist[0].lbl : 'Tournoi 02.2024';
+      const lastSeason = hist.length ? hist[hist.length - 1].lbl : 'Tournoi 02.2024';
+      return {
+        id: p[0],
+        name: p[1],
+        searchName: normStr(p[1]),
+        phone: p[2],
+        phoneDigits: digitsOnly(p[2]),
+        homonym: p[3] === 1,
+        bestDiv: p[4] >= 0 ? DIVS[p[4]] : 'Tournoi',
+        bestDivRank: p[5],
+        lastDiv: p[6] >= 0 ? DIVS[p[6]] : 'Tournoi',
+        aliases: p[7],
+        altPhones: p[8],
+        familyPhone: p[9],
+        firstSeason,
+        lastSeason,
+        seasonsCount: hist.length,
+        history: hist,
+        stats: {
+          m: st[0], w: st[1], l: st[2],
+          sw: st[3], sl: st[4],
+          gw: st[5], gl: st[6],
+          stbW: st[7], stbL: st[8],
+          tbW: st[9], tbL: st[10],
+          s3W: st[11], s3L: st[12],
+          bagelsW: st[13], bagelsL: st[14],
+          tM: st[15], tW: st[16]
+        }
+      };
+    });
+
+    const PLAYER_BY_ID = new Map(PLAYERS.map(p => [p.id, p]));
+
+    const MATCHES = RAW.matches.map((m, idx) => {
+      const s = SEASONS[m[0]];
+      const fm = m[8];
+      return {
+        id: idx,
+        sidIdx: m[0],
+        sid: s.id,
+        ord: s.order,
+        sl: s.label,
+        st: s.type,
+        div: DIVS[m[1]],
+        rd: ROUNDS[m[2]],
+        p1: m[3],
+        p2: m[4],
+        w: m[5],
+        sets: m[6],
+        sw: m[7],
+        isStb: (fm & 1) !== 0,
+        isWo: (fm & 2) !== 0,
+        isRet: (fm & 4) !== 0
+      };
+    });
+
+    const MATCHES_BY_PLAYER = new Map();
+    PLAYERS.forEach(p => MATCHES_BY_PLAYER.set(p.id, []));
+    MATCHES.forEach(m => {
+      MATCHES_BY_PLAYER.get(m.p1).push(m);
+      MATCHES_BY_PLAYER.get(m.p2).push(m);
+    });
+
+    // ==================== STATE ====================
+    const state = {
+      tab: 'h2h',
+      playerA: null,
+      playerB: null,
+      compFilter: 'all',
+      seasonFilter: 'all',
+      statsMode: 'h2h',
+      userPickedStats: false,
+      matchSortDesc: true
+    };
+
+    function matchPassesFilter(m) {
+      if (state.compFilter !== 'all' && m.st !== state.compFilter) return false;
+      if (state.seasonFilter === '2024' && m.ord < 5) return false;
+      if (state.seasonFilter === '2025' && m.ord < 9) return false;
+      if (state.seasonFilter === '2026' && m.ord < 12) return false;
+      return true;
+    }
+
+    function findPlayerByNamePhone(name, phoneFragment) {
+      return PLAYERS.find(p =>
+        normStr(p.name) === normStr(name) && (!phoneFragment || p.phoneDigits.includes(phoneFragment))
+      );
+    }
+
+    function getFilteredMatchesForPair(idA, idB) {
+      const list = MATCHES_BY_PLAYER.get(idA) || [];
+      return list.filter(m => (m.p1 === idB || m.p2 === idB) && matchPassesFilter(m));
+    }
+
+    function getFilteredMatchesForPlayer(id) {
+      return (MATCHES_BY_PLAYER.get(id) || []).filter(matchPassesFilter);
+    }
+
+    function computeStatsFromMatches(playerId, matches) {
+      const s = {
+        m: 0, w: 0, l: 0,
+        sw: 0, sl: 0,
+        gw: 0, gl: 0,
+        straightW: 0, straightL: 0,
+        s3W: 0, s3L: 0,
+        stbW: 0, stbL: 0,
+        tbW: 0, tbL: 0,
+        bagelsW: 0, bagelsL: 0,
+        maxStreak: 0, curStreak: 0
+      };
+      let streak = 0;
+      for (const m of matches) {
+        const isP1 = m.p1 === playerId;
+        const won = m.w === playerId;
+        s.m++;
+        if (won) {
+          s.w++;
+          streak++;
+          if (streak > s.maxStreak) s.maxStreak = streak;
+        } else {
+          s.l++;
+          streak = 0;
+        }
+        const sw = isP1 ? m.sw[0] : m.sw[1];
+        const sl = isP1 ? m.sw[1] : m.sw[0];
+        s.sw += sw;
+        s.sl += sl;
+
+        let mgw = 0, mgl = 0;
+        for (const [g1, g2] of m.sets) {
+          const a = isP1 ? g1 : g2;
+          const b = isP1 ? g2 : g1;
+          mgw += a;
+          mgl += b;
+          if (a === 7 && b === 6) s.tbW++;
+          else if (b === 7 && a === 6) s.tbL++;
+          if (a === 6 && b === 0) s.bagelsW++;
+          else if (b === 6 && a === 0) s.bagelsL++;
+        }
+        s.gw += mgw;
+        s.gl += mgl;
+
+        if (won && sl === 0 && sw === 2 && !m.isWo && !m.isRet) s.straightW++;
+        if (!won && sw === 0 && sl === 2 && !m.isWo && !m.isRet) s.straightL++;
+
+        if (m.sets.length === 3) {
+          if (won) s.s3W++; else s.s3L++;
+        }
+        if (m.isStb) {
+          if (won) s.stbW++; else s.stbL++;
+        }
+      }
+      let cs = 0;
+      for (let i = matches.length - 1; i >= 0; i--) {
+        if (matches[i].w === playerId) cs++;
+        else break;
+      }
+      s.curStreak = cs;
+      return s;
+    }
+
+    function formatScoreForWinner(m, perspectiveId) {
+      const isP1 = m.p1 === perspectiveId;
+      return m.sets.map(([g1, g2], idx) => {
+        const a = isP1 ? g1 : g2;
+        const b = isP1 ? g2 : g1;
+        if (idx === 2 && m.isStb) return `STB ${a}-${b}`;
+        return `${a}-${b}`;
+      });
+    }
+
+    function pct(a, b) {
+      const t = a + b;
+      return t === 0 ? 0 : Math.round((a / t) * 100);
+    }
+
+    // ==================== COMBOBOX PICKER ====================
+    const comboState = { a: { open: false, hi: 0, items: [] }, b: { open: false, hi: 0, items: [] } };
+
+    function getPickerCandidates(side, query) {
+      const otherId = side === 'a' ? state.playerB : state.playerA;
+      const q = normStr(query.trim());
+      const qDigits = digitsOnly(query);
+
+      const h2hMap = new Map();
+      if (otherId !== null) {
+        for (const m of getFilteredMatchesForPlayer(otherId)) {
+          const oid = m.p1 === otherId ? m.p2 : m.p1;
+          let rec = h2hMap.get(oid);
+          if (!rec) { rec = { n: 0, wOther: 0 }; h2hMap.set(oid, rec); }
+          rec.n++;
+          if (m.w === otherId) rec.wOther++;
+        }
+      }
+
+      const matchesQuery = p => {
+        if (!q && !qDigits) return true;
+        if (q && p.searchName.includes(q)) return true;
+        if (q && normStr(p.bestDiv).includes(q)) return true;
+        if (q && p.aliases.some(al => normStr(al).includes(q))) return true;
+        if (qDigits && p.phoneDigits.includes(qDigits)) return true;
+        if (qDigits && p.altPhones.some(ap => digitsOnly(ap).includes(qDigits))) return true;
+        return false;
+      };
+
+      const direct = [];
+      const others = [];
+      for (const p of PLAYERS) {
+        if (p.id === otherId) continue;
+        if (!matchesQuery(p)) continue;
+        const h = h2hMap.get(p.id);
+        if (h && h.n > 0) direct.push({ p, h });
+        else others.push({ p, h: null });
+      }
+
+      direct.sort((x, y) => y.h.n - x.h.n || y.p.stats.m - x.p.stats.m || x.p.name.localeCompare(y.p.name));
+      others.sort((x, y) => {
+        if (q) {
+          const xs = x.p.searchName.startsWith(q) ? 0 : 1;
+          const ys = y.p.searchName.startsWith(q) ? 0 : 1;
+          if (xs !== ys) return xs - ys;
+        }
+        return y.p.stats.m - x.p.stats.m || x.p.name.localeCompare(y.p.name);
+      });
+
+      return { direct, others };
+    }
+
+    function renderDropdown(side, query = '') {
+      const dd = document.getElementById(`dropdown-${side}`);
+      const { direct, others } = getPickerCandidates(side, query);
+      const flat = [];
+      let html = '';
+
+      if (direct.length > 0) {
+        const otherName = PLAYER_BY_ID.get(side === 'a' ? state.playerB : state.playerA)?.name || '';
+        html += `<div class="combo-group-hdr">Déjà affrontés par ${esc(otherName)} (${direct.length})</div>`;
+        for (const item of direct.slice(0, 40)) {
+          const idx = flat.length;
+          flat.push(item.p.id);
+          html += renderDropdownRow(side, item.p, item.h, idx);
+        }
+      }
+
+      if (others.length > 0) {
+        html += `<div class="combo-group-hdr">${direct.length > 0 ? `Autres joueurs (${others.length})` : `Joueurs (${others.length})`}</div>`;
+        for (const item of others.slice(0, 60)) {
+          const idx = flat.length;
+          flat.push(item.p.id);
+          html += renderDropdownRow(side, item.p, null, idx);
+        }
+      }
+
+      if (flat.length === 0) {
+        html = `<div style="padding:20px; text-align:center; font-size:12px; color:var(--muted-foreground);">Aucun joueur trouvé pour « ${esc(query)} »</div>`;
+      }
+
+      comboState[side].items = flat;
+      comboState[side].hi = 0;
+      comboState[side].open = true;
+      dd.innerHTML = html;
+      dd.classList.remove('hidden');
+      highlightRow(side);
+    }
+
+    function renderDropdownRow(side, p, h, idx) {
+      const hBadge = h
+        ? `<span class="tag tag-pill tag-xs tabular-nums ${side === 'a' ? 'clay-soft' : 'emerald-soft'}" style="flex-shrink:0;">${h.n}m · ${h.n - h.wOther}–${h.wOther}</span>`
+        : `<span class="tabular-nums" style="flex-shrink:0; font-size:12px; color:var(--muted-foreground);">${p.stats.m}m</span>`;
+
+      const homTag = p.homonym
+        ? `<span class="tag tag-xs homonym-badge" style="text-transform:uppercase; letter-spacing:0.03em;">Homonyme</span>`
+        : '';
+
+      return `
+        <button type="button" data-idx="${idx}" class="combo-row combo-row-${side}"
+          onmousedown="event.preventDefault(); selectPlayer('${side}', ${p.id})"
+          onmouseenter="comboState['${side}'].hi=${idx}; highlightRow('${side}')">
+          <div class="min-w-0">
+            <div class="combo-name-line">
+              <span class="combo-name truncate">${esc(p.name)}</span>
+              ${homTag}
+            </div>
+            <div class="combo-sub tabular-nums">
+              <span class="${p.homonym ? 'combo-phone-strong' : ''}">${esc(p.phone)}</span>
+              <span>·</span>
+              <span>${esc(p.bestDiv)}</span>
+              ${p.homonym ? `<span>· ${esc(p.firstSeason)} – ${esc(p.lastSeason)}</span>` : ''}
+            </div>
+          </div>
+          ${hBadge}
+        </button>`;
+    }
+
+    function highlightRow(side) {
+      document.querySelectorAll(`.combo-row-${side}`).forEach((el, i) => {
+        el.classList.toggle('is-hi', i === comboState[side].hi);
+      });
+    }
+
+    function closeDropdown(side) {
+      comboState[side].open = false;
+      document.getElementById(`dropdown-${side}`).classList.add('hidden');
+      syncInputLabel(side);
+    }
+
+    function syncInputLabel(side) {
+      const pid = side === 'a' ? state.playerA : state.playerB;
+      const p = PLAYER_BY_ID.get(pid);
+      const inp = document.getElementById(`input-${side}`);
+      if (p) {
+        inp.value = p.homonym ? `${p.name} (${p.phone} · ${p.bestDiv})` : p.name;
+      }
+    }
+
+    function focusPicker(side) {
+      const inp = document.getElementById(`input-${side}`);
+      inp.value = '';
+      inp.focus();
+      renderDropdown(side, '');
+    }
+
+    function selectPlayer(side, id) {
+      if (side === 'a') {
+        if (id === state.playerB) state.playerB = state.playerA;
+        state.playerA = id;
+      } else {
+        if (id === state.playerA) state.playerA = state.playerB;
+        state.playerB = id;
+      }
+      state.userPickedStats = false;
+      closeDropdown('a');
+      closeDropdown('b');
+      renderH2H();
+    }
+
+    function setupPicker(side) {
+      const inp = document.getElementById(`input-${side}`);
+      inp.addEventListener('focus', () => {
+        inp.select();
+        renderDropdown(side, '');
+      });
+      inp.addEventListener('input', () => renderDropdown(side, inp.value));
+      inp.addEventListener('keydown', e => {
+        const st = comboState[side];
+        if (!st.open) return;
+        if (e.key === 'ArrowDown') {
+          e.preventDefault();
+          st.hi = Math.min(st.hi + 1, st.items.length - 1);
+          highlightRow(side);
+          document.querySelector(`.combo-row-${side}[data-idx="${st.hi}"]`)?.scrollIntoView({ block: 'nearest' });
+        } else if (e.key === 'ArrowUp') {
+          e.preventDefault();
+          st.hi = Math.max(st.hi - 1, 0);
+          highlightRow(side);
+          document.querySelector(`.combo-row-${side}[data-idx="${st.hi}"]`)?.scrollIntoView({ block: 'nearest' });
+        } else if (e.key === 'Enter') {
+          e.preventDefault();
+          if (st.items[st.hi] !== undefined) selectPlayer(side, st.items[st.hi]);
+        } else if (e.key === 'Escape') {
+          closeDropdown(side);
+          inp.blur();
+        }
+      });
+      document.addEventListener('click', e => {
+        const wrap = document.getElementById(`picker-${side}-wrap`);
+        if (!wrap.contains(e.target) && comboState[side].open) {
+          closeDropdown(side);
+        }
+      });
+    }
+
+    // ==================== ACTIONS ====================
+    function swapPlayers() {
+      const tmp = state.playerA;
+      state.playerA = state.playerB;
+      state.playerB = tmp;
+      syncInputLabel('a');
+      syncInputLabel('b');
+      renderH2H();
+    }
+
+    function setPair(idA, idB) {
+      state.playerA = idA;
+      state.playerB = idB;
+      state.userPickedStats = false;
+      syncInputLabel('a');
+      syncInputLabel('b');
+      switchTab('h2h');
+      renderH2H();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function pickRandomRivalry() {
+      const pool = getAllRivalries(3);
+      if (!pool.length) return;
+      const pick = pool[Math.floor(Math.random() * pool.length)];
+      setPair(pick.p1, pick.p2);
+    }
+
+    function setCompFilter(val) {
+      state.compFilter = val;
+      document.querySelectorAll('.seg-btn[data-comp]').forEach(btn => {
+        btn.setAttribute('data-active', btn.dataset.comp === val ? 'true' : 'false');
+      });
+      renderH2H();
+    }
+
+    function setSeasonFilter(val) {
+      state.seasonFilter = val;
+      renderH2H();
+    }
+
+    function setStatsMode(mode) {
+      state.userPickedStats = true;
+      state.statsMode = mode;
+      renderStats();
+    }
+
+    function toggleMatchSort() {
+      state.matchSortDesc = !state.matchSortDesc;
+      document.getElementById('sort-matches-label').textContent = state.matchSortDesc ? "Plus récents d'abord" : "Plus anciens d'abord";
+      renderMatchesList();
+    }
+
+    function switchTab(tab) {
+      state.tab = tab;
+      ['h2h', 'rivalries', 'directory'].forEach(t => {
+        document.getElementById(`view-${t}`).classList.toggle('hidden', t !== tab);
+        document.getElementById(`tab-${t}`).setAttribute('data-active', t === tab ? 'true' : 'false');
+      });
+      if (tab === 'rivalries') renderRivalries();
+      if (tab === 'directory') renderDirectory();
+    }
+
+    function copyWhatsAppSummary() {
+      const pA = PLAYER_BY_ID.get(state.playerA);
+      const pB = PLAYER_BY_ID.get(state.playerB);
+      const matches = getFilteredMatchesForPair(pA.id, pB.id);
+      const sA = computeStatsFromMatches(pA.id, matches);
+      const sB = computeStatsFromMatches(pB.id, matches);
+      const nA = pA.homonym ? `${pA.name} (${pA.phone})` : pA.name;
+      const nB = pB.homonym ? `${pB.name} (${pB.phone})` : pB.name;
+
+      const lines = [
+        `🎾 *CAFC Tennis · Head 2 Head*`,
+        `*${nA}* ${sA.w} – ${sB.w} *${nB}* (${matches.length} match${matches.length > 1 ? 's' : ''})`,
+        `Sets : ${sA.sw}–${sB.sw} · Jeux : ${sA.gw}–${sB.gw}`
+      ];
+      if (matches.length > 0) {
+        const recent = [...matches].reverse().slice(0, 5);
+        lines.push('', 'Dernières confrontations :');
+        for (const m of recent) {
+          const w = PLAYER_BY_ID.get(m.w);
+          const sc = formatScoreForWinner(m, m.w).join(' ');
+          lines.push(`• ${m.sl} (${m.div}) : *${w.name}* ${sc}`);
+        }
+      }
+      const txt = lines.join('\n');
+      const btn = document.getElementById('copy-wa-btn');
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(txt).then(() => {
+          if (btn) {
+            const orig = btn.innerHTML;
+            btn.textContent = '✓ Résumé copié !';
+            setTimeout(() => { btn.innerHTML = orig; }, 1800);
+          }
+        }).catch(() => {});
+      }
+    }
+
+    // ==================== H2H RENDERING ====================
+    function renderH2H() {
+      const pA = PLAYER_BY_ID.get(state.playerA);
+      const pB = PLAYER_BY_ID.get(state.playerB);
+      if (!pA || !pB) return;
+
+      const h2hMatches = getFilteredMatchesForPair(pA.id, pB.id);
+      const sA = computeStatsFromMatches(pA.id, h2hMatches);
+      const sB = computeStatsFromMatches(pB.id, h2hMatches);
+
+      if (!state.userPickedStats) {
+        state.statsMode = h2hMatches.length > 0 ? 'h2h' : 'career';
+      }
+
+      renderHero(pA, pB, h2hMatches, sA, sB);
+      renderStats();
+      renderH2HChart(pA, pB, h2hMatches);
+      renderDivisionChart(pA, pB, h2hMatches);
+      renderMatchesList();
+      renderCommonOpponents();
+    }
+
+    function renderPlayerSideCard(p, side, alignRight) {
+      const isA = side === 'a';
+      const accentBg = isA ? 'clay-bg' : 'emerald-bg';
+      const accentSoft = isA ? 'clay-soft' : 'emerald-soft';
+      const careerFiltered = computeStatsFromMatches(p.id, getFilteredMatchesForPlayer(p.id));
+      const winRate = pct(careerFiltered.w, careerFiltered.l);
+
+      const phoneEl = p.homonym
+        ? `<span class="tag tag-pill tag-xs homonym-badge tabular-nums">Homonyme · ${esc(p.phone)}</span>`
+        : `<span class="tabular-nums" style="font-size:12px; color:var(--muted-foreground);">${esc(p.phone)}</span>`;
+
+      const notes = [];
+      if (p.altPhones.length) notes.push(`Ancien n° fusionné : ${p.altPhones.join(', ')}`);
+      if (p.aliases.length) notes.push(`Variante : ${p.aliases.join(', ')}`);
+      if (p.familyPhone.length) notes.push(`Tél. familial partagé avec : ${p.familyPhone.join(', ')}`);
+
+      return `
+        <div class="player-side ${alignRight ? 'player-side-right' : ''}">
+          <div class="player-head ${alignRight ? 'player-head-right' : ''}">
+            <div class="avatar ${accentBg}">${esc(initials(p.name))}</div>
+            <div class="min-w-0">
+              <div class="player-name truncate">${esc(p.name)}</div>
+              <div style="margin-top:3px;">${phoneEl}</div>
+            </div>
+          </div>
+
+          <div class="pill-row ${alignRight ? 'pill-row-right' : ''}">
+            <span class="tag ${accentSoft}">Meilleure : ${esc(p.bestDiv)}</span>
+            <span class="tag tag-muted">Dernière : ${esc(p.lastDiv)}</span>
+            <span class="tag tag-muted tabular-nums">${p.seasonsCount} saison${p.seasonsCount > 1 ? 's' : ''}</span>
+          </div>
+
+          <div class="tabular-nums" style="font-size:12px; color:var(--muted-foreground);">
+            Bilan global : <strong style="color:var(--foreground);">${careerFiltered.w}V – ${careerFiltered.l}D</strong> (${winRate}% sur ${careerFiltered.m} matchs)
+          </div>
+
+          ${notes.length ? `<div style="font-size:11px; color:var(--muted-foreground); opacity:0.9;">${esc(notes.join(' · '))}</div>` : ''}
+        </div>`;
+    }
+
+    function renderHero(pA, pB, matches, sA, sB) {
+      const hero = document.getElementById('h2h-hero');
+      const total = matches.length;
+      const pctA = total > 0 ? Math.round((sA.w / total) * 100) : 50;
+      const pctB = total > 0 ? 100 - pctA : 50;
+
+      let statusHtml = '';
+      if (total === 0) {
+        statusHtml = `<span>Aucune confrontation directe sur ce périmètre · Consultez la comparaison indirecte ci-dessous.</span>`;
+      } else {
+        const last = matches[matches.length - 1];
+        const lastWinner = PLAYER_BY_ID.get(last.w);
+        const streakWinner = sA.curStreak > 0 ? pA : pB;
+        const streakLen = Math.max(sA.curStreak, sB.curStreak);
+        const streakClass = streakWinner.id === pA.id ? 'clay-text' : 'emerald-text';
+        const lastScores = formatScoreForWinner(last, last.w).join(' ');
+        statusHtml = `
+          <div style="display:flex; flex-wrap:wrap; align-items:center; gap:12px;">
+            <span>Série en cours : <strong class="${streakClass}">${esc(streakWinner.name)} (${streakLen}V)</strong></span>
+            <span>·</span>
+            <span>Dernier match : <strong style="color:var(--foreground);">${esc(last.sl)}</strong> (${esc(lastWinner.name)} ${esc(lastScores)})</span>
+          </div>`;
+      }
+
+      hero.innerHTML = `
+        <div class="hero-accent-bar"></div>
+        <div class="hero-body">
+          <div class="hero-grid">
+            ${renderPlayerSideCard(pA, 'a', false)}
+
+            <div class="score-center">
+              <div class="score-caption">${total > 0 ? `${total} confrontation${total > 1 ? 's' : ''}` : 'Face-à-face'}</div>
+              <div class="score-numbers tabular-nums">
+                <span class="score-big ${total > 0 && sA.w >= sB.w ? 'clay-text' : ''}" style="${total > 0 && sA.w < sB.w ? 'opacity:0.65;' : ''}">${sA.w}</span>
+                <span class="score-dash">—</span>
+                <span class="score-big ${total > 0 && sB.w >= sA.w ? 'emerald-text' : ''}" style="${total > 0 && sB.w < sA.w ? 'opacity:0.65;' : ''}">${sB.w}</span>
+              </div>
+              <div class="tug-bar">
+                ${total > 0 ? `
+                  <div class="clay-bg tug-fill" style="width:${pctA}%"></div>
+                  <div class="emerald-bg tug-fill" style="width:${pctB}%"></div>
+                ` : `<div style="width:100%; height:100%; opacity:0.25; background:var(--muted-foreground);"></div>`}
+              </div>
+              <div class="tug-labels tabular-nums">
+                <span class="clay-text">${total > 0 ? pctA + '%' : '—'}</span>
+                <span style="font-weight:500; color:var(--muted-foreground); font-size:11px;">Sets ${sA.sw}–${sB.sw} · Jeux ${sA.gw}–${sB.gw}</span>
+                <span class="emerald-text">${total > 0 ? pctB + '%' : '—'}</span>
+              </div>
+            </div>
+
+            ${renderPlayerSideCard(pB, 'b', true)}
+          </div>
+
+          <div class="hero-footer">
+            ${statusHtml}
+            <button id="copy-wa-btn" type="button" class="btn btn-sm" onclick="copyWhatsAppSummary()" title="Copier un résumé formaté pour WhatsApp">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+              <span>Copier résumé WhatsApp</span>
+            </button>
+          </div>
+        </div>`;
+    }
+
+    function renderStats() {
+      const pA = PLAYER_BY_ID.get(state.playerA);
+      const pB = PLAYER_BY_ID.get(state.playerB);
+      const h2hMatches = getFilteredMatchesForPair(pA.id, pB.id);
+      const isH2h = state.statsMode === 'h2h';
+
+      document.getElementById('stats-mode-h2h').setAttribute('data-active', isH2h ? 'true' : 'false');
+      document.getElementById('stats-mode-career').setAttribute('data-active', !isH2h ? 'true' : 'false');
+
+      const panel = document.getElementById('stats-panel');
+
+      if (isH2h && h2hMatches.length === 0) {
+        panel.innerHTML = `
+          <div class="empty-box">
+            <div>Aucun match direct entre <strong>${esc(pA.name)}</strong> et <strong>${esc(pB.name)}</strong> sur cette période.</div>
+            <button type="button" onclick="setStatsMode('career')" class="btn btn-sm clay-soft" style="margin-top:10px;">
+              Comparer leurs statistiques de carrière →
+            </button>
+          </div>`;
+        return;
+      }
+
+      const sA = isH2h
+        ? computeStatsFromMatches(pA.id, h2hMatches)
+        : computeStatsFromMatches(pA.id, getFilteredMatchesForPlayer(pA.id));
+      const sB = isH2h
+        ? computeStatsFromMatches(pB.id, h2hMatches)
+        : computeStatsFromMatches(pB.id, getFilteredMatchesForPlayer(pB.id));
+
+      const splitPct = (a, b) => {
+        const tot = a + b;
+        if (tot === 0) return [0, 0];
+        const pa = Math.round((a / tot) * 100);
+        return [pa, 100 - pa];
+      };
+      const [mpA, mpB] = splitPct(sA.w, sB.w);
+      const [spA, spB] = splitPct(sA.sw, sB.sw);
+      const [gpA, gpB] = splitPct(sA.gw, sB.gw);
+
+      const rows = isH2h ? [
+        { label: 'Matchs gagnés', a: sA.w, b: sB.w, fmtA: `${sA.w} (${mpA}%)`, fmtB: `${sB.w} (${mpB}%)` },
+        { label: 'Sets gagnés', a: sA.sw, b: sB.sw, fmtA: `${sA.sw} (${spA}%)`, fmtB: `${sB.sw} (${spB}%)` },
+        { label: 'Jeux gagnés', a: sA.gw, b: sB.gw, fmtA: `${sA.gw} (${gpA}%)`, fmtB: `${sB.gw} (${gpB}%)` },
+        { label: 'Victoires en 2 sets secs', a: sA.straightW, b: sB.straightW, fmtA: `${sA.straightW}`, fmtB: `${sB.straightW}` },
+        { label: 'Matchs en 3 sets / décisifs', a: sA.s3W, b: sB.s3W, fmtA: `${sA.s3W}`, fmtB: `${sB.s3W}` },
+        { label: 'Super Tie-Breaks (1–0)', a: sA.stbW, b: sB.stbW, fmtA: `${sA.stbW}`, fmtB: `${sB.stbW}` },
+        { label: 'Tie-Breaks (7–6)', a: sA.tbW, b: sB.tbW, fmtA: `${sA.tbW}`, fmtB: `${sB.tbW}` },
+        { label: 'Sets 6–0 (bulles)', a: sA.bagelsW, b: sB.bagelsW, fmtA: `${sA.bagelsW}`, fmtB: `${sB.bagelsW}` },
+        { label: 'Plus longue série H2H', a: sA.maxStreak, b: sB.maxStreak, fmtA: `${sA.maxStreak}V`, fmtB: `${sB.maxStreak}V` }
+      ] : [
+        { label: 'Matchs joués', a: sA.m, b: sB.m, fmtA: `${sA.m}`, fmtB: `${sB.m}` },
+        { label: '% Victoires', a: pct(sA.w, sA.l), b: pct(sB.w, sB.l), fmtA: `${pct(sA.w, sA.l)}% (${sA.w}V)`, fmtB: `${pct(sB.w, sB.l)}% (${sB.w}V)` },
+        { label: '% Sets gagnés', a: pct(sA.sw, sA.sl), b: pct(sB.sw, sB.sl), fmtA: `${pct(sA.sw, sA.sl)}%`, fmtB: `${pct(sB.sw, sB.sl)}%` },
+        { label: '% Jeux gagnés', a: pct(sA.gw, sA.gl), b: pct(sB.gw, sB.gl), fmtA: `${pct(sA.gw, sA.gl)}%`, fmtB: `${pct(sB.gw, sB.gl)}%` },
+        { label: 'Diff. jeux / match', a: sA.m ? (sA.gw - sA.gl) / sA.m : 0, b: sB.m ? (sB.gw - sB.gl) / sB.m : 0,
+          fmtA: `${sA.m ? ((sA.gw - sA.gl) / sA.m >= 0 ? '+' : '') + ((sA.gw - sA.gl) / sA.m).toFixed(1) : '0'}`,
+          fmtB: `${sB.m ? ((sB.gw - sB.gl) / sB.m >= 0 ? '+' : '') + ((sB.gw - sB.gl) / sB.m).toFixed(1) : '0'}`, isSigned: true },
+        { label: 'Bilan en 3 sets', a: pct(sA.s3W, sA.s3L), b: pct(sB.s3W, sB.s3L), fmtA: `${sA.s3W}–${sA.s3L} (${pct(sA.s3W, sA.s3L)}%)`, fmtB: `${sB.s3W}–${sB.s3L} (${pct(sB.s3W, sB.s3L)}%)` },
+        { label: 'Super Tie-Breaks (1–0)', a: pct(sA.stbW, sA.stbL), b: pct(sB.stbW, sB.stbL), fmtA: `${sA.stbW}–${sA.stbL} (${pct(sA.stbW, sA.stbL)}%)`, fmtB: `${sB.stbW}–${sB.stbL} (${pct(sB.stbW, sB.stbL)}%)` },
+        { label: 'Tie-Breaks (7–6)', a: pct(sA.tbW, sA.tbL), b: pct(sB.tbW, sB.tbL), fmtA: `${sA.tbW}–${sA.tbL}`, fmtB: `${sB.tbW}–${sB.tbL}` },
+        { label: 'Sets 6–0 infligés', a: sA.bagelsW, b: sB.bagelsW, fmtA: `${sA.bagelsW}`, fmtB: `${sB.bagelsW}` }
+      ];
+
+      panel.innerHTML = rows.map(r => {
+        let wA = 0, wB = 0;
+        if (r.isSigned) {
+          const maxAbs = Math.max(Math.abs(r.a), Math.abs(r.b), 1);
+          wA = Math.max(8, Math.round(((r.a + maxAbs) / (2 * maxAbs)) * 100));
+          wB = Math.max(8, Math.round(((r.b + maxAbs) / (2 * maxAbs)) * 100));
+        } else if (r.a + r.b > 0) {
+          wA = Math.round((r.a / (r.a + r.b)) * 100);
+          wB = 100 - wA;
+        }
+        const leadA = r.a > r.b;
+        const leadB = r.b > r.a;
+
+        return `
+          <div class="stat-row">
+            <div class="stat-vals tabular-nums">
+              <span class="${leadA ? 'clay-text' : ''}" style="${leadA ? 'font-weight:750;' : 'opacity:0.82;'}">${esc(r.fmtA)}</span>
+              <span class="stat-lbl">${esc(r.label)}</span>
+              <span class="${leadB ? 'emerald-text' : ''}" style="text-align:right; ${leadB ? 'font-weight:750;' : 'opacity:0.82;'}">${esc(r.fmtB)}</span>
+            </div>
+            <div class="stat-bars">
+              <div class="stat-track-l"><div class="clay-bg stat-fill-l" style="width:${wA}%"></div></div>
+              <div class="stat-track-r"><div class="emerald-bg stat-fill-r" style="width:${wB}%"></div></div>
+            </div>
+          </div>`;
+      }).join('');
+    }
+
+    // ==================== SVG CHART 1: H2H PROGRESSION ====================
+    function renderH2HChart(pA, pB, matches) {
+      const container = document.getElementById('h2h-chart-container');
+      const legend = document.getElementById('h2h-chart-legend');
+
+      legend.innerHTML = `
+        <span class="legend-item"><span class="dot clay-bg"></span><span class="truncate" style="max-width:120px;">${esc(pA.name)}</span></span>
+        <span class="legend-item"><span class="dot emerald-bg"></span><span class="truncate" style="max-width:120px;">${esc(pB.name)}</span></span>`;
+
+      if (matches.length < 2) {
+        container.innerHTML = `
+          <div class="empty-box" style="padding:22px 14px;">
+            ${matches.length === 0
+              ? 'Au moins 2 confrontations sont nécessaires pour afficher la courbe d’évolution.'
+              : `1 seule confrontation enregistrée (${esc(matches[0].sl)} — victoire de <strong>${esc(PLAYER_BY_ID.get(matches[0].w).name)}</strong>).`}
+          </div>`;
+        return;
+      }
+
+      const W = 620, H = 185;
+      const pad = { top: 20, right: 20, bottom: 32, left: 32 };
+      const innerW = W - pad.left - pad.right;
+      const innerH = H - pad.top - pad.bottom;
+
+      const ptsA = [{ x: 0, y: 0 }];
+      const ptsB = [{ x: 0, y: 0 }];
+      let cA = 0, cB = 0;
+      matches.forEach((m, i) => {
+        if (m.w === pA.id) cA++; else cB++;
+        ptsA.push({ x: i + 1, y: cA });
+        ptsB.push({ x: i + 1, y: cB });
+      });
+
+      const maxY = Math.max(cA, cB, 2);
+      const sx = x => pad.left + (x / matches.length) * innerW;
+      const sy = y => pad.top + innerH - (y / maxY) * innerH;
+
+      const yTicks = [];
+      const stepY = maxY <= 5 ? 1 : Math.ceil(maxY / 4);
+      for (let v = 0; v <= maxY; v += stepY) yTicks.push(v);
+      if (yTicks[yTicks.length - 1] !== maxY) yTicks.push(maxY);
+
+      const pathA = ptsA.map((p, i) => `${i === 0 ? 'M' : 'L'}${sx(p.x).toFixed(1)},${sy(p.y).toFixed(1)}`).join(' ');
+      const pathB = ptsB.map((p, i) => `${i === 0 ? 'M' : 'L'}${sx(p.x).toFixed(1)},${sy(p.y).toFixed(1)}`).join(' ');
+
+      const gridLines = yTicks.map(v => `
+        <line x1="${pad.left}" y1="${sy(v).toFixed(1)}" x2="${W - pad.right}" y2="${sy(v).toFixed(1)}" stroke="currentColor" stroke-opacity="0.12" stroke-dasharray="3,3" />
+        <text x="${pad.left - 8}" y="${(sy(v) + 4).toFixed(1)}" text-anchor="end" font-size="11" fill="currentColor" opacity="0.6" class="tabular-nums">${v}</text>
+      `).join('');
+
+      const xLabels = matches.map((m, i) => {
+        const show = matches.length <= 9 || i === 0 || i === matches.length - 1 || i % Math.ceil(matches.length / 7) === 0;
+        if (!show) return '';
+        const shortLbl = m.sl
+          .replace('Printemps/Été ', 'P/É ')
+          .replace('Printemps ', 'Pr ')
+          .replace('Automne ', 'Au ')
+          .replace('Hiver ', 'Hi ')
+          .replace('Été ', 'Ét ')
+          .replace('Tournoi 02.', 'T.')
+          .replace('20', '');
+        return `<text x="${sx(i + 1).toFixed(1)}" y="${H - 8}" text-anchor="middle" font-size="10" fill="currentColor" opacity="0.6">#${i + 1} · ${esc(shortLbl)}</text>`;
+      }).join('');
+
+      const dots = matches.map((m, i) => {
+        const aPt = ptsA[i + 1];
+        const bPt = ptsB[i + 1];
+        const wName = PLAYER_BY_ID.get(m.w).name;
+        const sc = formatScoreForWinner(m, m.w).join(' ');
+        const tip = `Match #${i + 1} · ${m.sl} (${m.div}) — ${wName} ${sc} [H2H: ${aPt.y}–${bPt.y}]`;
+        return `
+          <g style="cursor:pointer;" onmouseenter="showSvgTip('h2h-tip', '${esc(tip).replace(/'/g, "\\'")}')" onmouseleave="hideSvgTip('h2h-tip')">
+            <rect x="${(sx(i + 1) - innerW / (matches.length * 2)).toFixed(1)}" y="${pad.top}" width="${(innerW / matches.length).toFixed(1)}" height="${innerH}" fill="transparent" />
+            <circle cx="${sx(aPt.x).toFixed(1)}" cy="${sy(aPt.y).toFixed(1)}" r="${m.w === pA.id ? 4.8 : 3.2}" fill="#c85a32" stroke="var(--card)" stroke-width="1.6" />
+            <circle cx="${sx(bPt.x).toFixed(1)}" cy="${sy(bPt.y).toFixed(1)}" r="${m.w === pB.id ? 4.8 : 3.2}" fill="#1f8a65" stroke="var(--card)" stroke-width="1.6" />
+          </g>`;
+      }).join('');
+
+      container.innerHTML = `
+        <svg viewBox="0 0 ${W} ${H}" class="chart-svg">
+          ${gridLines}
+          ${xLabels}
+          <path d="${pathA}" fill="none" stroke="#c85a32" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+          <path d="${pathB}" fill="none" stroke="#1f8a65" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+          ${dots}
+        </svg>
+        <div id="h2h-tip" class="svg-tooltip"></div>`;
+    }
+
+    // ==================== SVG CHART 2: DIVISION TRAJECTORY ====================
+    function renderDivisionChart(pA, pB, h2hMatches) {
+      const container = document.getElementById('div-chart-container');
+      const legend = document.getElementById('div-chart-legend');
+
+      legend.innerHTML = `
+        <span class="legend-item"><span class="dot clay-bg"></span><span class="truncate" style="max-width:120px;">${esc(pA.name)}</span></span>
+        <span class="legend-item"><span class="dot emerald-bg"></span><span class="truncate" style="max-width:120px;">${esc(pB.name)}</span></span>`;
+
+      const hA = new Map(pA.history.map(h => [h.sid, h]));
+      const hB = new Map(pB.history.map(h => [h.sid, h]));
+      const metSeasons = new Set(h2hMatches.map(m => m.sid));
+
+      const normRank = h => (h.dr >= 90 ? 7 : h.dr);
+
+      const allVals = [];
+      LIGUE_SEASONS.forEach(s => {
+        if (hA.has(s.id)) allVals.push(normRank(hA.get(s.id)));
+        if (hB.has(s.id)) allVals.push(normRank(hB.get(s.id)));
+      });
+
+      if (allVals.length === 0) {
+        container.innerHTML = `<div class="empty-box" style="padding:20px;">Aucune donnée de classement en ligue pour ces joueurs.</div>`;
+        return;
+      }
+
+      const minD = Math.max(0, Math.floor(Math.min(...allVals)));
+      const maxD = Math.min(15, Math.max(Math.ceil(Math.max(...allVals)), minD + 3));
+
+      const W = 620, H = 205;
+      const pad = { top: 20, right: 20, bottom: 38, left: 48 };
+      const innerW = W - pad.left - pad.right;
+      const innerH = H - pad.top - pad.bottom;
+      const N = LIGUE_SEASONS.length;
+
+      const sx = i => pad.left + (i / (N - 1)) * innerW;
+      const sy = d => pad.top + ((d - minD) / Math.max(maxD - minD, 1)) * innerH;
+
+      let sameDivBands = '';
+      LIGUE_SEASONS.forEach((s, i) => {
+        const a = hA.get(s.id), b = hB.get(s.id);
+        if (a && b && a.div === b.div) {
+          const bw = innerW / (N - 1) * 0.72;
+          sameDivBands += `<rect x="${(sx(i) - bw / 2).toFixed(1)}" y="${pad.top - 4}" width="${bw.toFixed(1)}" height="${innerH + 8}" rx="4" fill="#d97706" fill-opacity="0.13" />`;
+        }
+      });
+
+      const yStep = (maxD - minD) <= 6 ? 1 : (maxD - minD) <= 12 ? 2 : 3;
+      let yGrid = '';
+      for (let d = minD; d <= maxD; d += yStep) {
+        const lbl = d === 0 ? 'Étoile' : `Div ${d}`;
+        yGrid += `
+          <line x1="${pad.left}" y1="${sy(d).toFixed(1)}" x2="${W - pad.right}" y2="${sy(d).toFixed(1)}" stroke="currentColor" stroke-opacity="0.12" stroke-dasharray="3,3" />
+          <text x="${pad.left - 8}" y="${(sy(d) + 3.5).toFixed(1)}" text-anchor="end" font-size="10.5" fill="currentColor" opacity="0.62">${lbl}</text>`;
+      }
+
+      const xLabels = LIGUE_SEASONS.map((s, i) => {
+        const short = s.label
+          .replace('Printemps/Été ', 'P/É ')
+          .replace('Printemps ', 'Pr ')
+          .replace('Automne ', 'Au ')
+          .replace('Hiver ', 'Hi ')
+          .replace('Été ', 'Ét ')
+          .replace('20', '');
+        const hasMatch = metSeasons.has(s.id);
+        return `<text x="${sx(i).toFixed(1)}" y="${H - 12}" text-anchor="middle" font-size="9.5" font-weight="${hasMatch ? '700' : '400'}" fill="${hasMatch ? '#d97706' : 'currentColor'}" opacity="${hasMatch ? '1' : '0.62'}">${esc(short)}</text>`;
+      }).join('');
+
+      function buildPath(hMap) {
+        let d = '';
+        let started = false;
+        LIGUE_SEASONS.forEach((s, i) => {
+          const h = hMap.get(s.id);
+          if (h) {
+            d += `${started ? 'L' : 'M'}${sx(i).toFixed(1)},${sy(normRank(h)).toFixed(1)} `;
+            started = true;
+          } else {
+            started = false;
+          }
+        });
+        return d;
+      }
+
+      const pathA = buildPath(hA);
+      const pathB = buildPath(hB);
+
+      const cols = LIGUE_SEASONS.map((s, i) => {
+        const a = hA.get(s.id), b = hB.get(s.id);
+        const parts = [`${s.label}`];
+        if (a) parts.push(`${pA.name}: ${a.div} (#${a.rk}, ${a.pts} pts)`);
+        if (b) parts.push(`${pB.name}: ${b.div} (#${b.rk}, ${b.pts} pts)`);
+        if (!a && !b) parts.push('Non inscrits');
+        const tip = parts.join(' · ');
+        const same = a && b && a.div === b.div;
+        const dyA = same ? -2.2 : 0;
+        const dyB = same ? 2.2 : 0;
+        return `
+          <g style="cursor:pointer;" onmouseenter="showSvgTip('div-tip', '${esc(tip).replace(/'/g, "\\'")}')" onmouseleave="hideSvgTip('div-tip')">
+            <rect x="${(sx(i) - innerW / (N * 2)).toFixed(1)}" y="${pad.top}" width="${(innerW / N).toFixed(1)}" height="${innerH}" fill="transparent" />
+            ${a ? `<circle cx="${sx(i).toFixed(1)}" cy="${(sy(normRank(a)) + dyA).toFixed(1)}" r="4.2" fill="#c85a32" stroke="var(--card)" stroke-width="1.5" />` : ''}
+            ${b ? `<circle cx="${sx(i).toFixed(1)}" cy="${(sy(normRank(b)) + dyB).toFixed(1)}" r="4.2" fill="#1f8a65" stroke="var(--card)" stroke-width="1.5" />` : ''}
+          </g>`;
+      }).join('');
+
+      container.innerHTML = `
+        <svg viewBox="0 0 ${W} ${H}" class="chart-svg">
+          ${sameDivBands}
+          ${yGrid}
+          ${xLabels}
+          <path d="${pathA}" fill="none" stroke="#c85a32" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" />
+          <path d="${pathB}" fill="none" stroke="#1f8a65" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" />
+          ${cols}
+        </svg>
+        <div id="div-tip" class="svg-tooltip"></div>`;
+    }
+
+    function showSvgTip(tipId, text) {
+      const el = document.getElementById(tipId);
+      if (!el) return;
+      el.textContent = text;
+      el.style.opacity = '1';
+    }
+    function hideSvgTip(tipId) {
+      const el = document.getElementById(tipId);
+      if (!el) return;
+      el.style.opacity = '0';
+    }
+
+    // ==================== MATCH-BY-MATCH LIST ====================
+    function renderMatchesList() {
+      const pA = PLAYER_BY_ID.get(state.playerA);
+      const pB = PLAYER_BY_ID.get(state.playerB);
+      const matches = getFilteredMatchesForPair(pA.id, pB.id);
+      document.getElementById('matches-count-pill').textContent = matches.length;
+      const wrap = document.getElementById('matches-list');
+
+      if (matches.length === 0) {
+        wrap.innerHTML = `
+          <div class="empty-box">
+            Aucun match enregistré entre <strong>${esc(pA.name)}</strong> et <strong>${esc(pB.name)}</strong> pour les filtres actuels.
+            <div style="margin-top:4px;">Consultez la section <strong>Adversaires Communs</strong> ci-dessous pour comparer leurs performances indirectes.</div>
+          </div>`;
+        return;
+      }
+
+      let runA = 0, runB = 0;
+      const enriched = matches.map((m, idx) => {
+        if (m.w === pA.id) runA++; else runB++;
+        return { m, num: idx + 1, runA, runB };
+      });
+      const display = state.matchSortDesc ? [...enriched].reverse() : enriched;
+
+      wrap.innerHTML = display.map(({ m, num, runA, runB }) => {
+        const aWon = m.w === pA.id;
+        const winner = aWon ? pA : pB;
+        const loser = aWon ? pB : pA;
+        const winColor = aWon ? 'clay-text' : 'emerald-text';
+        const winDot = aWon ? 'clay-bg' : 'emerald-bg';
+        const winSoft = aWon ? 'clay-soft' : 'emerald-soft';
+
+        const isWinnerP1 = m.p1 === winner.id;
+        const setPills = m.sets.map(([g1, g2], sIdx) => {
+          const wg = isWinnerP1 ? g1 : g2;
+          const lg = isWinnerP1 ? g2 : g1;
+          const isStbSet = sIdx === 2 && m.isStb;
+          const wonSet = wg > lg;
+          return `<span class="set-pill tabular-nums ${isStbSet ? 'homonym-badge' : (wonSet ? '' : 'set-pill-lost')}"
+            ${isStbSet ? 'title="Super Tie-Break (comptabilisé 1-0 en Ligue CAFC)"' : ''}>
+            ${isStbSet ? `STB ${wg}–${lg}` : `${wg}–${lg}`}
+          </span>`;
+        }).join('');
+
+        const flags = [];
+        if (m.isStb) flags.push(`<span class="tag tag-xs homonym-badge">Super TB</span>`);
+        if (m.isWo) flags.push(`<span class="tag tag-xs tag-muted">1–0 / Forf.</span>`);
+        else if (m.isRet) flags.push(`<span class="tag tag-xs tag-muted">Ab. / Inc.</span>`);
+        if (m.st === 'tournoi') flags.push(`<span class="tag tag-xs" style="background:var(--foreground); color:var(--background);">Tournoi</span>`);
+
+        return `
+          <div class="match-row">
+            <div class="match-left">
+              <span class="tabular-nums" style="font-size:12px; font-weight:700; color:var(--muted-foreground); min-width:24px;">#${num}</span>
+              <span class="tag" style="background:var(--card); border:1px solid var(--border);">${esc(m.sl)}</span>
+              <span style="font-size:12px; color:var(--muted-foreground);">${esc(m.div)} · ${esc(m.rd)}</span>
+              ${flags.join('')}
+            </div>
+
+            <div class="match-right">
+              <div style="display:flex; align-items:center; gap:6px; font-size:13px;">
+                <span class="dot ${winDot}"></span>
+                <strong class="${winColor}">${esc(winner.name)}</strong>
+                <span style="color:var(--muted-foreground);">bat</span>
+                <span style="color:var(--muted-foreground);">${esc(loser.name)}</span>
+              </div>
+              <div class="set-pills">${setPills}</div>
+              <span class="tag tag-pill tag-xs tabular-nums ${winSoft}" title="H2H cumulé après ce match (${esc(pA.name)} – ${esc(pB.name)})">${runA}–${runB}</span>
+            </div>
+          </div>`;
+      }).join('');
+    }
+
+    // ==================== COMMON OPPONENTS ====================
+    function renderCommonOpponents() {
+      const pA = PLAYER_BY_ID.get(state.playerA);
+      const pB = PLAYER_BY_ID.get(state.playerB);
+      const mA = getFilteredMatchesForPlayer(pA.id);
+      const mB = getFilteredMatchesForPlayer(pB.id);
+
+      const recA = new Map();
+      const recB = new Map();
+      for (const m of mA) {
+        const o = m.p1 === pA.id ? m.p2 : m.p1;
+        if (o === pB.id) continue;
+        const r = recA.get(o) || { w: 0, l: 0 };
+        if (m.w === pA.id) r.w++; else r.l++;
+        recA.set(o, r);
+      }
+      for (const m of mB) {
+        const o = m.p1 === pB.id ? m.p2 : m.p1;
+        if (o === pA.id) continue;
+        const r = recB.get(o) || { w: 0, l: 0 };
+        if (m.w === pB.id) r.w++; else r.l++;
+        recB.set(o, r);
+      }
+
+      const common = [];
+      let totAW = 0, totAL = 0, totBW = 0, totBL = 0;
+      for (const [oid, rA] of recA.entries()) {
+        if (!recB.has(oid)) continue;
+        const rB = recB.get(oid);
+        const opp = PLAYER_BY_ID.get(oid);
+        totAW += rA.w; totAL += rA.l;
+        totBW += rB.w; totBL += rB.l;
+        common.push({
+          opp, rA, rB,
+          total: rA.w + rA.l + rB.w + rB.l,
+          edgeA: pct(rA.w, rA.l) - pct(rB.w, rB.l)
+        });
+      }
+
+      document.getElementById('common-count-pill').textContent = common.length;
+      const summaryEl = document.getElementById('common-summary');
+      const body = document.getElementById('common-opponents-body');
+
+      if (common.length === 0) {
+        summaryEl.textContent = 'Aucun adversaire commun sur la période sélectionnée.';
+        body.innerHTML = `<div class="empty-box" style="padding:20px;">Ces deux joueurs n’ont pas encore affronté d’adversaire commun sur ce périmètre.</div>`;
+        return;
+      }
+
+      summaryEl.innerHTML = `Face aux ${common.length} adversaires communs : <strong class="clay-text">${esc(pA.name)} ${totAW}V–${totAL}D (${pct(totAW, totAL)}%)</strong> vs <strong class="emerald-text">${esc(pB.name)} ${totBW}V–${totBL}D (${pct(totBW, totBL)}%)</strong>`;
+
+      const sortBy = document.getElementById('common-sort').value;
+      common.sort((x, y) => {
+        if (sortBy === 'div') return x.opp.bestDivRank - y.opp.bestDivRank || y.total - x.total;
+        if (sortBy === 'edge_a') return y.edgeA - x.edgeA || y.total - x.total;
+        if (sortBy === 'edge_b') return x.edgeA - y.edgeA || y.total - x.total;
+        return y.total - x.total || x.opp.bestDivRank - y.opp.bestDivRank;
+      });
+
+      const shown = common.slice(0, 30);
+      body.innerHTML = `
+        <div class="table-wrap thin-scroll">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Adversaire commun</th>
+                <th>Meilleure Div.</th>
+                <th class="th-c clay-text">${esc(pA.name)} vs Adv.</th>
+                <th class="th-c emerald-text">${esc(pB.name)} vs Adv.</th>
+                <th class="th-r">Avantage</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${shown.map(c => {
+                const pA_r = pct(c.rA.w, c.rA.l);
+                const pB_r = pct(c.rB.w, c.rB.l);
+                const advBadge = c.edgeA > 0
+                  ? `<span class="tag tag-pill tag-xs clay-soft">${esc(pA.name.split(' ')[0])} +${c.edgeA}%</span>`
+                  : c.edgeA < 0
+                    ? `<span class="tag tag-pill tag-xs emerald-soft">${esc(pB.name.split(' ')[0])} +${-c.edgeA}%</span>`
+                    : `<span class="tag tag-pill tag-xs tag-muted">Égalité</span>`;
+
+                return `
+                  <tr>
+                    <td>
+                      <div style="display:flex; align-items:center; gap:6px; flex-wrap:wrap;">
+                        <strong>${esc(c.opp.name)}</strong>
+                        ${c.opp.homonym ? `<span class="tag tag-xs homonym-badge tabular-nums">${esc(c.opp.phone)}</span>` : ''}
+                      </div>
+                    </td>
+                    <td style="color:var(--muted-foreground);">${esc(c.opp.bestDiv)}</td>
+                    <td class="td-c tabular-nums">
+                      <button type="button" class="link-btn ${pA_r >= 50 ? 'clay-text' : ''}" style="${pA_r < 50 ? 'color:var(--muted-foreground);' : ''}"
+                        onclick="setPair(${pA.id}, ${c.opp.id})" title="Voir le H2H ${esc(pA.name)} vs ${esc(c.opp.name)}">
+                        ${c.rA.w}V–${c.rA.l}D (${pA_r}%)
+                      </button>
+                    </td>
+                    <td class="td-c tabular-nums">
+                      <button type="button" class="link-btn ${pB_r >= 50 ? 'emerald-text' : ''}" style="${pB_r < 50 ? 'color:var(--muted-foreground);' : ''}"
+                        onclick="setPair(${pB.id}, ${c.opp.id})" title="Voir le H2H ${esc(pB.name)} vs ${esc(c.opp.name)}">
+                        ${c.rB.w}V–${c.rB.l}D (${pB_r}%)
+                      </button>
+                    </td>
+                    <td class="td-r">${advBadge}</td>
+                  </tr>`;
+              }).join('')}
+            </tbody>
+          </table>
+        </div>
+        ${common.length > 30 ? `<div style="margin-top:10px; text-align:center; font-size:12px; color:var(--muted-foreground);">Affichage des 30 premiers adversaires communs sur ${common.length}.</div>` : ''}`;
+    }
+
+    // ==================== VIEW 2: RIVALRIES ====================
+    function getAllRivalries(minMatches = 2) {
+      const pairs = new Map();
+      for (const m of MATCHES) {
+        const a = Math.min(m.p1, m.p2);
+        const b = Math.max(m.p1, m.p2);
+        const key = `${a}_${b}`;
+        let r = pairs.get(key);
+        if (!r) { r = { p1: a, p2: b, n: 0, w1: 0, w2: 0, lastOrd: 0, lastLabel: '' }; pairs.set(key, r); }
+        r.n++;
+        if (m.w === a) r.w1++; else r.w2++;
+        if (m.ord >= r.lastOrd) { r.lastOrd = m.ord; r.lastLabel = m.sl; }
+      }
+      return [...pairs.values()].filter(r => r.n >= minMatches);
+    }
+
+    function renderRivalries() {
+      const q = normStr(document.getElementById('riv-search').value.trim());
+      const minM = parseInt(document.getElementById('riv-min').value, 10) || 4;
+      const closeOnly = document.getElementById('riv-close-only').checked;
+
+      let list = getAllRivalries(minM);
+      if (closeOnly) list = list.filter(r => Math.abs(r.w1 - r.w2) <= 1);
+      if (q) {
+        list = list.filter(r => {
+          const p1 = PLAYER_BY_ID.get(r.p1);
+          const p2 = PLAYER_BY_ID.get(r.p2);
+          return p1.searchName.includes(q) || p2.searchName.includes(q);
+        });
+      }
+      list.sort((a, b) => b.n - a.n || Math.abs(a.w1 - a.w2) - Math.abs(b.w1 - b.w2) || b.lastOrd - a.lastOrd);
+
+      const grid = document.getElementById('rivalries-grid');
+      if (list.length === 0) {
+        grid.innerHTML = `<div class="empty-box" style="grid-column:1 / -1;">Aucune rivalité ne correspond à ces critères.</div>`;
+        return;
+      }
+
+      grid.innerHTML = list.slice(0, 80).map(r => {
+        const p1 = PLAYER_BY_ID.get(r.p1);
+        const p2 = PLAYER_BY_ID.get(r.p2);
+        const pct1 = Math.round((r.w1 / r.n) * 100);
+        return `
+          <button type="button" class="rivalry-card" onclick="setPair(${p1.id}, ${p2.id})">
+            <div class="rivalry-top">
+              <span class="truncate ${r.w1 >= r.w2 ? 'clay-text' : ''}" style="font-weight:700;">${esc(p1.name)}${p1.homonym ? ` (${esc(p1.phone.slice(-5))})` : ''}</span>
+              <span class="meta-pill tabular-nums" style="color:var(--foreground); font-weight:800;">${r.w1} – ${r.w2}</span>
+              <span class="truncate ${r.w2 >= r.w1 ? 'emerald-text' : ''}" style="font-weight:700; text-align:right;">${esc(p2.name)}${p2.homonym ? ` (${esc(p2.phone.slice(-5))})` : ''}</span>
+            </div>
+            <div class="tug-bar" style="height:6px; margin-top:0;">
+              <div class="clay-bg" style="width:${pct1}%"></div>
+              <div class="emerald-bg" style="width:${100 - pct1}%"></div>
+            </div>
+            <div style="display:flex; justify-content:space-between; font-size:12px; color:var(--muted-foreground);">
+              <span>${r.n} matchs · Dernier : ${esc(r.lastLabel)}</span>
+              <span class="clay-text" style="font-weight:650;">Voir le H2H →</span>
+            </div>
+          </button>`;
+      }).join('');
+    }
+
+    // ==================== VIEW 3: DIRECTORY & HOMONYMS ====================
+    function renderHomonymSection() {
+      const container = document.getElementById('homonym-cards');
+      container.innerHTML = META.homonym_groups.map(g => `
+        <div class="homonym-group-card">
+          <div style="display:flex; align-items:center; justify-content:space-between; gap:8px;">
+            <strong style="font-size:15px;">${esc(g.name)}</strong>
+            <span class="tag tag-pill tag-xs homonym-badge">${g.players.length} joueurs distincts</span>
+          </div>
+          <div class="stack-sm">
+            ${g.players.map(hp => {
+              const p = PLAYER_BY_ID.get(hp.id);
+              const wPct = pct(p.stats.w, p.stats.l);
+              return `
+                <div class="homonym-member-row">
+                  <div>
+                    <div class="tabular-nums" style="font-weight:750; font-size:13px;">${esc(p.phone)}</div>
+                    <div style="font-size:12px; color:var(--muted-foreground); margin-top:2px;">
+                      ${esc(p.bestDiv)} · ${esc(hp.period)} · <strong class="tabular-nums" style="color:var(--foreground);">${p.stats.m}m (${p.stats.w}V–${p.stats.l}D, ${wPct}%)</strong>
+                    </div>
+                  </div>
+                  <div style="display:flex; gap:6px;">
+                    <button type="button" class="btn btn-xs clay-soft" onclick="selectPlayer('a', ${p.id}); switchTab('h2h');">Joueur A</button>
+                    <button type="button" class="btn btn-xs emerald-soft" onclick="selectPlayer('b', ${p.id}); switchTab('h2h');">Joueur B</button>
+                  </div>
+                </div>`;
+            }).join('')}
+          </div>
+        </div>
+      `).join('');
+
+      const familyGroups = new Map();
+      PLAYERS.forEach(p => {
+        if (p.familyPhone.length) {
+          const list = familyGroups.get(p.phone) || [];
+          list.push(p.name);
+          familyGroups.set(p.phone, list);
+        }
+      });
+
+      document.getElementById('audit-log-content').innerHTML = `
+        <div>
+          <strong style="display:block; margin-bottom:4px;">Mises à jour de téléphone fusionnées (même adhérent vérifié)</strong>
+          <ul class="audit-list tabular-nums">
+            ${META.merged_phone_updates.map(u => `<li><strong style="color:var(--foreground);">${esc(u.name)}</strong> : ${esc(u.old_phone)} → ${esc(u.new_phone)}</li>`).join('')}
+          </ul>
+          <strong style="display:block; margin:12px 0 4px;">Variantes orthographiques fusionnées (même téléphone)</strong>
+          <ul class="audit-list tabular-nums">
+            ${META.merged_name_variants.map(v => `<li>${esc(v.old_name)} → <strong style="color:var(--foreground);">${esc(v.canonical_name)}</strong> (${esc(v.phone)})</li>`).join('')}
+          </ul>
+        </div>
+        <div>
+          <strong style="display:block; margin-bottom:4px;">Numéros familiaux partagés (conservés strictement distincts)</strong>
+          <ul class="audit-list tabular-nums">
+            ${[...familyGroups.entries()].sort().map(([ph, names]) => `<li><strong style="color:var(--foreground);">${esc(ph)}</strong> : ${esc(names.join(', '))}</li>`).join('')}
+          </ul>
+        </div>`;
+    }
+
+    function renderDirectory() {
+      const rawQ = document.getElementById('dir-search').value;
+      const q = normStr(rawQ.trim());
+      const qDigits = digitsOnly(rawQ);
+      const filt = document.getElementById('dir-filter').value;
+      const sortBy = document.getElementById('dir-sort').value;
+
+      let list = PLAYERS.filter(p => {
+        if (filt === 'homonym' && !p.homonym) return false;
+        if (filt === 'top' && p.bestDivRank > 2) return false;
+        if (filt === 'active50' && p.stats.m < 50) return false;
+        if (q || qDigits) {
+          const okName = q && (p.searchName.includes(q) || normStr(p.bestDiv).includes(q));
+          const okPhone = qDigits && p.phoneDigits.includes(qDigits);
+          if (!okName && !okPhone) return false;
+        }
+        return true;
+      });
+
+      list.sort((a, b) => {
+        if (sortBy === 'name') return a.name.localeCompare(b.name);
+        if (sortBy === 'bestdiv') return a.bestDivRank - b.bestDivRank || b.stats.m - a.stats.m;
+        if (sortBy === 'winpct') return pct(b.stats.w, b.stats.l) - pct(a.stats.w, a.stats.l) || b.stats.m - a.stats.m;
+        return b.stats.m - a.stats.m || a.name.localeCompare(b.name);
+      });
+
+      document.getElementById('dir-count-label').textContent = `${list.length} joueur${list.length > 1 ? 's' : ''} affiché${list.length > 1 ? 's' : ''} sur ${PLAYERS.length}`;
+      const tbody = document.getElementById('dir-tbody');
+
+      tbody.innerHTML = list.map(p => {
+        const wp = pct(p.stats.w, p.stats.l);
+        return `
+          <tr>
+            <td>
+              <div style="display:flex; align-items:center; gap:6px; flex-wrap:wrap;">
+                <strong>${esc(p.name)}</strong>
+                ${p.homonym ? `<span class="tag tag-xs homonym-badge">Homonyme</span>` : ''}
+              </div>
+              <div class="tabular-nums" style="font-size:12px; color:var(--muted-foreground); margin-top:1px;">${esc(p.phone)}</div>
+            </td>
+            <td style="font-weight:500;">${esc(p.bestDiv)}</td>
+            <td class="td-r tabular-nums" style="color:var(--muted-foreground);">${p.seasonsCount}</td>
+            <td class="td-r tabular-nums" style="font-weight:700;">${p.stats.m}</td>
+            <td class="td-r tabular-nums">${p.stats.w}V–${p.stats.l}D</td>
+            <td class="td-r tabular-nums ${wp >= 60 ? 'emerald-text' : ''}" style="font-weight:700; ${wp <= 35 ? 'color:var(--muted-foreground);' : ''}">${wp}%</td>
+            <td class="td-r" style="white-space:nowrap;">
+              <button type="button" class="btn btn-xs clay-soft" style="margin-right:4px;" onclick="selectPlayer('a', ${p.id}); switchTab('h2h');">A</button>
+              <button type="button" class="btn btn-xs emerald-soft" onclick="selectPlayer('b', ${p.id}); switchTab('h2h');">B</button>
+            </td>
+          </tr>`;
+      }).join('');
+    }
+
+    // ==================== INITIALIZATION ====================
+    function init() {
+      document.getElementById('header-subtitle').textContent =
+        `${META.total_players} joueurs · ${META.total_matches.toLocaleString('fr-FR')} matchs · ${META.seasons_count} saisons Ligue + Tournoi 02.2024`;
+      document.getElementById('homonym-count-badge').textContent = META.homonym_groups.length;
+
+      setupPicker('a');
+      setupPicker('b');
+
+      const featuredSpecs = [
+        { a: ['Hakim Chaoui'], b: ['Majid Slimani'], label: 'Chaoui vs Slimani (8)' },
+        { a: ['Aboubakr Jeddioui'], b: ['Jalil Skali'], label: 'Jeddioui vs Skali (9)' },
+        { a: ['Mehdi Barouti'], b: ['Omar Rahmouni'], label: 'Barouti vs Rahmouni (7)' },
+        { a: ['Amine Sebti'], b: ['Zouhair Kazmane'], label: 'Sebti vs Kazmane (6)' },
+        { a: ['Saad Bennani', '4647'], b: ['Taoufik Darraz'], label: 'S. Bennani (Étoile) vs Darraz (6)' },
+        { a: ['Simo Zizi', '8803'], b: ['Hassan Errafi'], label: 'S. Zizi (Div. 1) vs Errafi (4)' }
+      ];
+
+      const qpWrap = document.getElementById('quick-picks');
+      const resolvedFeatured = [];
+      for (const spec of featuredSpecs) {
+        const pA = findPlayerByNamePhone(spec.a[0], spec.a[1]);
+        const pB = findPlayerByNamePhone(spec.b[0], spec.b[1]);
+        if (pA && pB) resolvedFeatured.push({ pA, pB, label: spec.label });
+      }
+
+      qpWrap.innerHTML = resolvedFeatured.map(f => `
+        <button type="button" class="quick-pick-btn" onclick="setPair(${f.pA.id}, ${f.pB.id})">${esc(f.label)}</button>
+      `).join('');
+
+      renderHomonymSection();
+
+      const def = resolvedFeatured[0];
+      if (def) {
+        state.playerA = def.pA.id;
+        state.playerB = def.pB.id;
+      } else {
+        state.playerA = RAW.top[0][0];
+        state.playerB = RAW.top[0][1];
+      }
+      syncInputLabel('a');
+      syncInputLabel('b');
+      renderH2H();
+    }
+
+    init();
+  </script>
+</body>
+</html>

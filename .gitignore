@@ -1,0 +1,13 @@
+# Raw downloaded PDFs (re-downloadable from Google Drive via scripts/download_all.py)
+pdfs/
+samples/
+screenshots/
+
+# Raw unmasked intermediate extractions (never commit raw phone numbers to public repo)
+data/raw_matches.json
+data/raw_classifs.json
+data/compact_b64.txt
+
+__pycache__/
+*.pyc
+.DS_Store
