@@ -1670,7 +1670,7 @@
         <div class="card-header">
           <div>
             <h2 class="card-title">Classement Général &amp; Par Saison</h2>
-            <p class="card-desc">Classement en cours (Automne 2026 au 19.11.2026) et classements officiels de fin de saison depuis Hiver 2023</p>
+            <p class="card-desc">Classement en cours (<span id="st-as-of-lbl">Automne 2026</span>) et classements officiels de fin de saison depuis Hiver 2023</p>
           </div>
           <div class="controls-row">
             <select id="st-season" class="select-input" onchange="onStandingsSeasonChange()" aria-label="Saison"></select>
@@ -4231,6 +4231,8 @@
 
     // ==================== VIEW 2: CLASSEMENT ====================
     function initStandingsControls() {
+      const asOfEl = document.getElementById('st-as-of-lbl');
+      if (asOfEl) asOfEl.textContent = `${META.current_season_label || 'Saison en cours'}${META.current_season_as_of ? ` au ${META.current_season_as_of}` : ''}`;
       const sel = document.getElementById('st-season');
       const ordered = [...SEASONS].reverse();
       sel.innerHTML = ordered.map(s => {
