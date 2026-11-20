@@ -1353,6 +1353,73 @@
       .controls-row { width: 100%; }
       .controls-row > .select-input { max-width: 100%; }
     }
+
+    /* Match Date Pill & 3e Set vs Super TB Comparison Panel */
+    .date-pill {
+      display: inline-flex;
+      align-items: center;
+      padding: 1px 7px;
+      border-radius: 6px;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--muted-foreground);
+      background-color: var(--background);
+      border: 1px solid var(--border);
+      white-space: nowrap;
+    }
+    .decider-panel {
+      margin-top: 12px;
+      padding: 12px;
+      border-radius: 10px;
+      background-color: var(--background);
+      border: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .decider-head {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 6px;
+      font-size: 12px;
+      font-weight: 750;
+    }
+    .decider-split-bar {
+      display: flex;
+      height: 8px;
+      border-radius: 999px;
+      overflow: hidden;
+      background-color: var(--border);
+    }
+    .decider-perf-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+    }
+    .decider-mini {
+      background-color: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 8px 10px;
+    }
+    .decider-mini-lbl {
+      font-size: 10.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--muted-foreground);
+    }
+    .decider-mini-val {
+      font-size: 17px;
+      font-weight: 850;
+      margin-top: 2px;
+    }
+    .decider-mini-sub {
+      font-size: 11px;
+      color: var(--muted-foreground);
+    }
   </style>
 </head>
 <body>
@@ -1826,9 +1893,20 @@
 
     const PLAYER_BY_ID = new Map(PLAYERS.map(p => [p.id, p]));
 
+    function compareMatchesChrono(a, b) {
+      if (a.ord !== b.ord) return a.ord - b.ord;
+      if (a.dt && b.dt && a.dt !== b.dt) return a.dt < b.dt ? -1 : 1;
+      if (a.dt && !b.dt) return -1;
+      if (!a.dt && b.dt) return 1;
+      return a.id - b.id;
+    }
+
     const MATCHES = RAW.matches.map((m, idx) => {
       const s = SEASONS[m[0]];
       const fm = m[8];
+      const dtRaw = m[10] || null;
+      const dt = dtRaw ? `20${dtRaw.slice(0, 2)}-${dtRaw.slice(2, 4)}-${dtRaw.slice(4, 6)}` : null;
+      const dtFmt = dtRaw ? `${dtRaw.slice(4, 6)}/${dtRaw.slice(2, 4)}/20${dtRaw.slice(0, 2)}` : null;
       return {
         id: idx,
         sidIdx: m[0],
@@ -1845,7 +1923,9 @@
         isStb: (fm & 1) !== 0,
         isWo: (fm & 2) !== 0,
         isRet: (fm & 4) !== 0,
-        stb: m[9] || null
+        stb: m[9] || null,
+        dt,
+        dtFmt
       };
     });
 
@@ -1856,11 +1936,19 @@
       MATCHES_BY_PLAYER.get(m.p2).push(m);
     });
     PLAYERS.forEach(p => {
+      const pList = MATCHES_BY_PLAYER.get(p.id) || [];
+      pList.sort(compareMatchesChrono);
       const opps = new Set();
-      for (const m of (MATCHES_BY_PLAYER.get(p.id) || [])) {
+      let full3W = 0, full3L = 0;
+      for (const m of pList) {
         opps.add(m.p1 === p.id ? m.p2 : m.p1);
+        if (m.sets.length === 3 && !m.isStb) {
+          if (m.w === p.id) full3W++; else full3L++;
+        }
       }
       p.uniqueOpps = opps.size;
+      p.stats.full3W = full3W;
+      p.stats.full3L = full3L;
     });
 
     // ==================== STATE ====================
@@ -1907,6 +1995,7 @@
         gw: 0, gl: 0,
         straightW: 0, straightL: 0,
         s3W: 0, s3L: 0,
+        full3W: 0, full3L: 0,
         stbW: 0, stbL: 0,
         tbW: 0, tbL: 0,
         bagelsW: 0, bagelsL: 0,
@@ -1952,6 +2041,9 @@
 
         if (m.sets.length === 3) {
           if (won) s.s3W++; else s.s3L++;
+          if (!m.isStb) {
+            if (won) s.full3W++; else s.full3L++;
+          }
         }
         if (m.isStb) {
           if (won) s.stbW++; else s.stbL++;
@@ -2357,7 +2449,7 @@
           <div style="display:flex; flex-wrap:wrap; align-items:center; gap:12px;">
             <span>Série en cours : <strong class="${streakClass}">${esc(streakWinner.name)} (${streakLen}V)</strong></span>
             <span>·</span>
-            <span>Dernier match : <strong style="color:var(--foreground);">${esc(last.sl)}</strong> (${esc(lastWinner.name)} ${esc(lastScores)})</span>
+            <span>Dernier match : <strong style="color:var(--foreground);">${esc(last.sl)}${last.dtFmt ? ` (${esc(last.dtFmt)})` : ''}</strong> · ${esc(lastWinner.name)} ${esc(lastScores)}</span>
           </div>`;
       }
 
@@ -2435,12 +2527,21 @@
       const [spA, spB] = splitPct(sA.sw, sB.sw);
       const [gpA, gpB] = splitPct(sA.gw, sB.gw);
 
+      const f3TotA = sA.full3W + sA.full3L;
+      const f3TotB = sB.full3W + sB.full3L;
+      const stbTotA = sA.stbW + sA.stbL;
+      const stbTotB = sB.stbW + sB.stbL;
+      const decTotA = f3TotA + stbTotA;
+      const decTotB = f3TotB + stbTotB;
+      const f3ShareA = decTotA ? Math.round((f3TotA / decTotA) * 100) : 0;
+      const f3ShareB = decTotB ? Math.round((f3TotB / decTotB) * 100) : 0;
+
       const rows = isH2h ? [
         { label: 'Matchs gagnés', a: sA.w, b: sB.w, fmtA: `${sA.w} (${mpA}%)`, fmtB: `${sB.w} (${mpB}%)` },
         { label: 'Sets gagnés', a: sA.sw, b: sB.sw, fmtA: `${sA.sw} (${spA}%)`, fmtB: `${sB.sw} (${spB}%)` },
         { label: 'Jeux gagnés', a: sA.gw, b: sB.gw, fmtA: `${sA.gw} (${gpA}%)`, fmtB: `${sB.gw} (${gpB}%)` },
         { label: 'Victoires en 2 sets secs', a: sA.straightW, b: sB.straightW, fmtA: `${sA.straightW}`, fmtB: `${sB.straightW}` },
-        { label: 'Matchs en 3 sets / décisifs', a: sA.s3W, b: sB.s3W, fmtA: `${sA.s3W}`, fmtB: `${sB.s3W}` },
+        { label: '3e set complet (hors STB)', a: sA.full3W, b: sB.full3W, fmtA: `${sA.full3W}`, fmtB: `${sB.full3W}` },
         { label: 'Super Tie-Breaks', a: sA.stbW, b: sB.stbW, fmtA: `${sA.stbW}`, fmtB: `${sB.stbW}` },
         { label: 'Tie-Breaks (7–6)', a: sA.tbW, b: sB.tbW, fmtA: `${sA.tbW}`, fmtB: `${sB.tbW}` },
         { label: 'Sets 6–0 (bulles)', a: sA.bagelsW, b: sB.bagelsW, fmtA: `${sA.bagelsW}`, fmtB: `${sB.bagelsW}` },
@@ -2454,8 +2555,15 @@
         { label: 'Diff. jeux / match', a: sA.m ? (sA.gw - sA.gl) / sA.m : 0, b: sB.m ? (sB.gw - sB.gl) / sB.m : 0,
           fmtA: `${sA.m ? ((sA.gw - sA.gl) / sA.m >= 0 ? '+' : '') + ((sA.gw - sA.gl) / sA.m).toFixed(1) : '0'}`,
           fmtB: `${sB.m ? ((sB.gw - sB.gl) / sB.m >= 0 ? '+' : '') + ((sB.gw - sB.gl) / sB.m).toFixed(1) : '0'}`, isSigned: true },
-        { label: 'Bilan en 3 sets', a: pct(sA.s3W, sA.s3L), b: pct(sB.s3W, sB.s3L), fmtA: `${sA.s3W}–${sA.s3L} (${pct(sA.s3W, sA.s3L)}%)`, fmtB: `${sB.s3W}–${sB.s3L} (${pct(sB.s3W, sB.s3L)}%)` },
-        { label: 'Super Tie-Breaks', a: pct(sA.stbW, sA.stbL), b: pct(sB.stbW, sB.stbL), fmtA: `${sA.stbW}–${sA.stbL} (${pct(sA.stbW, sA.stbL)}%)`, fmtB: `${sB.stbW}–${sB.stbL} (${pct(sB.stbW, sB.stbL)}%)` },
+        { label: '3e set complet (hors STB)', a: pct(sA.full3W, sA.full3L), b: pct(sB.full3W, sB.full3L),
+          fmtA: f3TotA ? `${sA.full3W}–${sA.full3L} (${pct(sA.full3W, sA.full3L)}%)` : '0–0',
+          fmtB: f3TotB ? `${sB.full3W}–${sB.full3L} (${pct(sB.full3W, sB.full3L)}%)` : '0–0' },
+        { label: 'Super Tie-Breaks', a: pct(sA.stbW, sA.stbL), b: pct(sB.stbW, sB.stbL),
+          fmtA: stbTotA ? `${sA.stbW}–${sA.stbL} (${pct(sA.stbW, sA.stbL)}%)` : '0–0',
+          fmtB: stbTotB ? `${sB.stbW}–${sB.stbL} (${pct(sB.stbW, sB.stbL)}%)` : '0–0' },
+        { label: 'Part 3e set / décisifs', a: f3ShareA, b: f3ShareB,
+          fmtA: decTotA ? `${f3TotA}/${decTotA} (${f3ShareA}%)` : '—',
+          fmtB: decTotB ? `${f3TotB}/${decTotB} (${f3ShareB}%)` : '—' },
         { label: 'Tie-Breaks (7–6)', a: pct(sA.tbW, sA.tbL), b: pct(sB.tbW, sB.tbL), fmtA: `${sA.tbW}–${sA.tbL}`, fmtB: `${sB.tbW}–${sB.tbL}` },
         { label: 'Sets 6–0 infligés', a: sA.bagelsW, b: sB.bagelsW, fmtA: `${sA.bagelsW}`, fmtB: `${sB.bagelsW}` }
       ];
@@ -2556,7 +2664,8 @@
         const bPt = ptsB[i + 1];
         const wName = PLAYER_BY_ID.get(m.w).name;
         const sc = formatScoreForWinner(m, m.w).join(' ');
-        const tip = `Match #${i + 1} · ${m.sl} (${m.div}) — ${wName} ${sc} [H2H: ${aPt.y}–${bPt.y}]`;
+        const dtStr = m.dtFmt ? ` · ${m.dtFmt}` : '';
+        const tip = `Match #${i + 1} · ${m.sl}${dtStr} (${m.div}) — ${wName} ${sc} [H2H: ${aPt.y}–${bPt.y}]`;
         return `
           <g style="cursor:pointer;" onmouseenter="showSvgTip('h2h-tip', '${esc(tip).replace(/'/g, "\\'")}')" onmouseleave="hideSvgTip('h2h-tip')">
             <rect x="${(sx(i + 1) - innerW / (matches.length * 2)).toFixed(1)}" y="${pad.top}" width="${(innerW / matches.length).toFixed(1)}" height="${innerH}" fill="transparent" />
@@ -2763,6 +2872,7 @@
             <div class="match-left">
               <span class="tabular-nums" style="font-size:12px; font-weight:700; color:var(--muted-foreground); min-width:24px;">#${num}</span>
               <span class="tag" style="background:var(--card); border:1px solid var(--border);">${esc(m.sl)}</span>
+              ${m.dtFmt ? `<span class="date-pill tabular-nums">${esc(m.dtFmt)}</span>` : ''}
               <span style="font-size:12px; color:var(--muted-foreground);">${esc(m.div)} · ${esc(m.rd)}</span>
               ${flags.join('')}
             </div>
@@ -3504,7 +3614,7 @@
     }
 
     function computePlayerProfileData(p) {
-      const matches = [...(MATCHES_BY_PLAYER.get(p.id) || [])].sort((a, b) => a.ord - b.ord || a.id - b.id);
+      const matches = [...(MATCHES_BY_PLAYER.get(p.id) || [])].sort(compareMatchesChrono);
       const st = computeStatsFromMatches(p.id, matches);
 
       let curW = 0, bestW = 0, curL = 0, bestL = 0, retConceded = 0, woConceded = 0;
@@ -3527,7 +3637,7 @@
         }
         rec.n++;
         if (won) rec.w++; else rec.l++;
-        if (m.ord >= rec.lastMatch.ord) rec.lastMatch = m;
+        if (compareMatchesChrono(m, rec.lastMatch) >= 0) rec.lastMatch = m;
       }
 
       const titles = p.history.filter(h => {
@@ -3581,10 +3691,24 @@
       const winRate = pct(s.w, s.l);
       const setRate = pct(s.sw, s.sl);
       const gameRate = pct(s.gw, s.gl);
+      const stbTot = s.stbW + s.stbL;
+      const full3Tot = s.full3W + s.full3L;
+      const decTot = full3Tot + stbTot;
       const stbRate = pct(s.stbW, s.stbL);
+      const full3Rate = pct(s.full3W, s.full3L);
+      const full3Share = decTot > 0 ? Math.round((full3Tot / decTot) * 100) : 0;
+      const stbShare = decTot > 0 ? 100 - full3Share : 0;
       const s3Rate = pct(s.s3W, s.s3L);
       const avgMatchesPerOpp = s.uniqueOpps ? (s.m / s.uniqueOpps).toFixed(2).replace('.', ',') : '0';
       const diffGamesPerMatch = s.m ? ((s.gw - s.gl) / s.m >= 0 ? '+' : '') + ((s.gw - s.gl) / s.m).toFixed(1) : '0';
+
+      let deciderBadge = '';
+      if (full3Tot >= 3 && stbTot >= 3) {
+        const diff = full3Rate - stbRate;
+        if (diff >= 12) deciderBadge = `<span class="tag tag-pill tag-xs emerald-soft">Meilleur en 3e set (+${diff} pts)</span>`;
+        else if (diff <= -12) deciderBadge = `<span class="tag tag-pill tag-xs clay-soft">Meilleur en Super TB (+${-diff} pts)</span>`;
+        else deciderBadge = `<span class="tag tag-pill tag-xs tag-muted">Équilibré (3e set ≈ STB)</span>`;
+      }
 
       const currentBadge = p.currentDiv
         ? `<span class="tag tag-pill current-div-badge"><span class="live-dot"></span>Division Actuelle : ${esc(p.currentDiv)}${D.curSeasonRow ? ` (#${D.curSeasonRow.rk} · #${D.curSeasonRow.generalRank} gén.)` : ''}</span>`
@@ -3637,14 +3761,14 @@
                 <div class="pkpi-sub">${avgMatchesPerOpp} matchs / adv.</div>
               </div>
               <div class="pkpi-box">
-                <div class="pkpi-lbl">Sets gagnés</div>
-                <div class="pkpi-val">${setRate}%</div>
-                <div class="pkpi-sub">${s.sw} – ${s.sl}</div>
+                <div class="pkpi-lbl">3e set complet</div>
+                <div class="pkpi-val ${full3Tot > 0 && full3Rate >= 50 ? 'emerald-text' : ''}">${full3Tot > 0 ? full3Rate + '%' : '—'}</div>
+                <div class="pkpi-sub">${s.full3W}V – ${s.full3L}D (${full3Tot})</div>
               </div>
               <div class="pkpi-box">
                 <div class="pkpi-lbl">Super Tie-Breaks</div>
-                <div class="pkpi-val">${s.stbW + s.stbL > 0 ? stbRate + '%' : '—'}</div>
-                <div class="pkpi-sub">${s.stbW}V – ${s.stbL}D</div>
+                <div class="pkpi-val ${stbTot > 0 && stbRate >= 50 ? 'emerald-text' : ''}">${stbTot > 0 ? stbRate + '%' : '—'}</div>
+                <div class="pkpi-sub">${s.stbW}V – ${s.stbL}D (${stbTot})</div>
               </div>
               <div class="pkpi-box">
                 <div class="pkpi-lbl">Série record</div>
@@ -3671,13 +3795,44 @@
               <div class="pstat-row"><span class="pstat-lbl">Jeux gagnés / perdus</span><span class="pstat-val">${s.gw.toLocaleString('fr-FR')} – ${s.gl.toLocaleString('fr-FR')} (${gameRate}%)</span></div>
               <div class="pstat-row"><span class="pstat-lbl">Différentiel de jeux / match</span><span class="pstat-val ${s.gw >= s.gl ? 'emerald-text' : 'clay-text'}">${diffGamesPerMatch}</span></div>
               <div class="pstat-row"><span class="pstat-lbl">Victoires en 2 sets secs</span><span class="pstat-val">${s.straightW} (${s.straightL} défaites 0–2)</span></div>
-              <div class="pstat-row"><span class="pstat-lbl">Matchs en 3 sets / décisifs</span><span class="pstat-val">${s.s3W}V – ${s.s3L}D (${s3Rate}%)</span></div>
-              <div class="pstat-row"><span class="pstat-lbl">Super Tie-Breaks</span><span class="pstat-val">${s.stbW}V – ${s.stbL}D (${s.stbW + s.stbL > 0 ? stbRate + '%' : '—'})</span></div>
+              <div class="pstat-row"><span class="pstat-lbl">Matchs décisifs (total 3e set + STB)</span><span class="pstat-val">${s.s3W}V – ${s.s3L}D (${decTot > 0 ? s3Rate + '%' : '—'})</span></div>
               <div class="pstat-row"><span class="pstat-lbl">Tie-Breaks (7–6)</span><span class="pstat-val">${s.tbW}V – ${s.tbL}D</span></div>
               <div class="pstat-row"><span class="pstat-lbl">« Bulles » (6–0) infligées / subies</span><span class="pstat-val">${s.bagelsW} / ${s.bagelsL}</span></div>
               <div class="pstat-row"><span class="pstat-lbl">Plus longue série (V / D)</span><span class="pstat-val"><span class="emerald-text">${D.bestW}V</span> / <span class="clay-text">${D.bestL}D</span></span></div>
               <div class="pstat-row"><span class="pstat-lbl">Abandons / forfaits concédés</span><span class="pstat-val">${D.retConceded + D.woConceded}${D.woConceded ? ` (${D.retConceded} ab. · ${D.woConceded} WO)` : ''}</span></div>
               <div class="pstat-row"><span class="pstat-lbl">Titres de champion de division (#1)</span><span class="pstat-val">${D.titlesCount}${D.etoileTitles ? ` (dont ${D.etoileTitles} en Étoile)` : ''}</span></div>
+            </div>
+
+            <!-- 3e SET COMPLET VS SUPER TIE-BREAK COMPARISON -->
+            <div class="decider-panel tabular-nums">
+              <div class="decider-head">
+                <span>3e Set Complet vs. Super Tie-Break</span>
+                ${deciderBadge}
+              </div>
+              ${decTot > 0 ? `
+                <div>
+                  <div style="display:flex; justify-content:space-between; font-size:11.5px; margin-bottom:4px;">
+                    <span class="emerald-text" style="font-weight:700;">3e set complet : ${full3Tot} (${full3Share}%)</span>
+                    <span class="clay-text" style="font-weight:700;">Super TB : ${stbTot} (${stbShare}%)</span>
+                  </div>
+                  <div class="decider-split-bar">
+                    <div class="emerald-bg" style="width:${full3Share}%"></div>
+                    <div class="clay-bg" style="width:${stbShare}%"></div>
+                  </div>
+                </div>
+                <div class="decider-perf-grid">
+                  <div class="decider-mini">
+                    <div class="decider-mini-lbl">Perf. 3e set complet</div>
+                    <div class="decider-mini-val ${full3Tot > 0 && full3Rate >= 50 ? 'emerald-text' : 'clay-text'}">${full3Tot > 0 ? full3Rate + '%' : '—'}</div>
+                    <div class="decider-mini-sub">${s.full3W}V – ${s.full3L}D (${full3Tot} match${full3Tot > 1 ? 's' : ''})</div>
+                  </div>
+                  <div class="decider-mini">
+                    <div class="decider-mini-lbl">Perf. Super Tie-Break</div>
+                    <div class="decider-mini-val ${stbTot > 0 && stbRate >= 50 ? 'emerald-text' : 'clay-text'}">${stbTot > 0 ? stbRate + '%' : '—'}</div>
+                    <div class="decider-mini-sub">${s.stbW}V – ${s.stbL}D (${stbTot} match${stbTot > 1 ? 's' : ''})</div>
+                  </div>
+                </div>
+              ` : `<div style="font-size:12px; color:var(--muted-foreground);">Aucun match en 3e set ni Super Tie-Break disputé.</div>`}
             </div>
           </div>
 
@@ -3777,7 +3932,7 @@
                 Historique Complet des Matchs
                 <span id="prof-matches-count-pill" class="meta-pill tabular-nums">${D.matches.length}</span>
               </h3>
-              <p class="card-desc">Tous les matchs officiels disputés par ${esc(p.name)} en Ligue Simple</p>
+              <p class="card-desc">Tous les matchs officiels disputés par ${esc(p.name)} en Ligue Simple · Dates reconstituées depuis les publications du groupe</p>
             </div>
             <div class="controls-row">
               <input id="prof-m-search" type="text" class="search-sm" style="width:170px;" placeholder="Adversaire ou division…" oninput="renderProfileMatches()" />
@@ -3789,8 +3944,9 @@
                 <option value="all">Tous les matchs</option>
                 <option value="win">Victoires uniquement</option>
                 <option value="loss">Défaites uniquement</option>
+                <option value="full3">3e set complet (hors STB)</option>
                 <option value="stb">Super Tie-Breaks</option>
-                <option value="3sets">Matchs en 3 sets</option>
+                <option value="3sets">Tous décisifs (3e set + STB)</option>
               </select>
               <button type="button" class="btn btn-sm" onclick="toggleProfileMatchSort()">
                 <span id="prof-m-sort-lbl">${state.profileMatchSortDesc ? "Plus récents d'abord" : "Plus anciens d'abord"}</span>
@@ -3901,7 +4057,7 @@
         if (sortBy === 'wins') return b.w - a.w || b.n - a.n || a.opp.name.localeCompare(b.opp.name);
         if (sortBy === 'losses') return b.l - a.l || b.n - a.n || a.opp.name.localeCompare(b.opp.name);
         if (sortBy === 'winpct') return pct(b.w, b.l) - pct(a.w, a.l) || b.n - a.n;
-        if (sortBy === 'recent') return b.lastMatch.ord - a.lastMatch.ord || b.n - a.n;
+        if (sortBy === 'recent') return compareMatchesChrono(b.lastMatch, a.lastMatch) || b.n - a.n;
         if (sortBy === 'name') return a.opp.name.localeCompare(b.opp.name);
         return b.n - a.n || b.w - a.w || a.opp.name.localeCompare(b.opp.name);
       });
@@ -3961,7 +4117,7 @@
                     </td>
                     <td class="td-r tabular-nums ${wp > 50 ? 'emerald-text' : wp < 50 ? 'clay-text' : ''}" style="font-weight:750;">${wp}%</td>
                     <td style="white-space:nowrap; font-size:12px; color:var(--muted-foreground);">
-                      <span>${esc(lm.sl)}</span> ·
+                      <span>${esc(lm.sl)}${lm.dtFmt ? ` (${esc(lm.dtFmt)})` : ''}</span> ·
                       <span class="${wonLast ? 'emerald-text' : 'clay-text'}" style="font-weight:700;">${wonLast ? 'V' : 'D'}</span>
                       <span class="tabular-nums">${esc(sc)}</span>
                     </td>
@@ -3998,10 +4154,11 @@
         if (res === 'win' && !won) return false;
         if (res === 'loss' && won) return false;
         if (res === 'stb' && !m.isStb) return false;
+        if (res === 'full3' && (m.sets.length !== 3 || m.isStb)) return false;
         if (res === '3sets' && m.sets.length !== 3) return false;
         if (q) {
           const opp = PLAYER_BY_ID.get(m.p1 === p.id ? m.p2 : m.p1);
-          if (!opp.searchName.includes(q) && !normStr(m.div).includes(q) && !normStr(m.sl).includes(q)) return false;
+          if (!opp.searchName.includes(q) && !normStr(m.div).includes(q) && !normStr(m.sl).includes(q) && !(m.dtFmt && m.dtFmt.includes(q))) return false;
         }
         return true;
       });
@@ -4044,6 +4201,7 @@
 
               const flags = [];
               if (m.isStb) flags.push(`<span class="tag tag-xs homonym-badge">Super TB</span>`);
+              else if (m.sets.length === 3) flags.push(`<span class="tag tag-xs emerald-soft">3e set</span>`);
               if (m.isWo) flags.push(`<span class="tag tag-xs tag-muted">Forf.</span>`);
               else if (m.isRet) flags.push(`<span class="tag tag-xs tag-muted">Ab.</span>`);
 
@@ -4052,6 +4210,7 @@
                   <div class="match-left">
                     <span class="tabular-nums" style="font-size:12px; font-weight:700; color:var(--muted-foreground); min-width:30px;">#${num}</span>
                     <span class="tag" style="background:var(--card); border:1px solid var(--border);">${esc(m.sl)}</span>
+                    ${m.dtFmt ? `<span class="date-pill tabular-nums">${esc(m.dtFmt)}</span>` : ''}
                     <span style="font-size:12px; color:var(--muted-foreground);">${esc(m.div)} · ${esc(m.rd)}</span>
                     ${flags.join('')}
                   </div>
@@ -4314,10 +4473,15 @@
         const b = Math.max(m.p1, m.p2);
         const key = `${a}_${b}`;
         let r = pairs.get(key);
-        if (!r) { r = { p1: a, p2: b, n: 0, w1: 0, w2: 0, lastOrd: 0, lastLabel: '' }; pairs.set(key, r); }
+        if (!r) { r = { p1: a, p2: b, n: 0, w1: 0, w2: 0, lastOrd: 0, lastLabel: '', lastDateFmt: null, lastMatch: null }; pairs.set(key, r); }
         r.n++;
         if (m.w === a) r.w1++; else r.w2++;
-        if (m.ord >= r.lastOrd) { r.lastOrd = m.ord; r.lastLabel = m.sl; }
+        if (!r.lastMatch || compareMatchesChrono(m, r.lastMatch) >= 0) {
+          r.lastMatch = m;
+          r.lastOrd = m.ord;
+          r.lastLabel = m.sl;
+          r.lastDateFmt = m.dtFmt;
+        }
       }
       return [...pairs.values()].filter(r => r.n >= minMatches);
     }
@@ -4336,7 +4500,7 @@
           return p1.searchName.includes(q) || p2.searchName.includes(q);
         });
       }
-      list.sort((a, b) => b.n - a.n || Math.abs(a.w1 - a.w2) - Math.abs(b.w1 - b.w2) || b.lastOrd - a.lastOrd);
+      list.sort((a, b) => b.n - a.n || Math.abs(a.w1 - a.w2) - Math.abs(b.w1 - b.w2) || compareMatchesChrono(b.lastMatch, a.lastMatch));
 
       const grid = document.getElementById('rivalries-grid');
       if (list.length === 0) {
@@ -4374,7 +4538,7 @@
               <div class="clay-bg" style="width:${100 - pctLeft}%"></div>
             </div>
             <div style="display:flex; justify-content:space-between; font-size:12px; color:var(--muted-foreground);">
-              <span>${r.n} matchs · Dernier : ${esc(r.lastLabel)}</span>
+              <span>${r.n} matchs · Dernier : ${esc(r.lastLabel)}${r.lastDateFmt ? ` (${esc(r.lastDateFmt)})` : ''}</span>
               <span class="emerald-text" style="font-weight:650;">Voir le H2H →</span>
             </div>
           </button>`;
@@ -4392,11 +4556,12 @@
       const abandons = [];
       const evolutions = [];
       const stbKings = [];
+      const full3Kings = [];
       const bagels = [];
       const titles = [];
 
       for (const p of PLAYERS) {
-        const pm = [...(MATCHES_BY_PLAYER.get(p.id) || [])].sort((a, b) => a.ord - b.ord || a.id - b.id);
+        const pm = [...(MATCHES_BY_PLAYER.get(p.id) || [])].sort(compareMatchesChrono);
         let curW = 0, bestW = 0, bwStart = null, bwEnd = null, cwStart = null;
         let curL = 0, bestL = 0, blStart = null, blEnd = null, clStart = null;
         let retConceded = 0, woConceded = 0;
@@ -4467,6 +4632,11 @@
           stbKings.push({ player: p, w: p.stats.stbW, l: p.stats.stbL, total: stbTotal, rate: Math.round((p.stats.stbW / stbTotal) * 100) });
         }
 
+        const full3Total = p.stats.full3W + p.stats.full3L;
+        if (full3Total >= 6) {
+          full3Kings.push({ player: p, w: p.stats.full3W, l: p.stats.full3L, total: full3Total, rate: Math.round((p.stats.full3W / full3Total) * 100) });
+        }
+
         if (p.stats.bagelsW > 0) {
           bagels.push({ player: p, count: p.stats.bagelsW, m: p.stats.m });
         }
@@ -4487,6 +4657,7 @@
       abandons.sort((a, b) => b.total - a.total || b.ret - a.ret || a.m - b.m);
       evolutions.sort((a, b) => b.gain - a.gain || normDivRank(a.player.bestDivRank) - normDivRank(b.player.bestDivRank) || b.player.stats.m - a.player.stats.m);
       stbKings.sort((a, b) => b.rate - a.rate || b.w - a.w || b.total - a.total);
+      full3Kings.sort((a, b) => b.rate - a.rate || b.w - a.w || b.total - a.total);
       bagels.sort((a, b) => b.count - a.count || b.player.stats.w - a.player.stats.w);
       titles.sort((a, b) => b.count - a.count || b.etoileCount - a.etoileCount || b.player.stats.w - a.player.stats.w);
 
@@ -4499,14 +4670,14 @@
           const stbL = Math.min(m.stb[0], m.stb[1]);
           return { match: m, winner, loser, stbW, stbL, totalPts: stbW + stbL };
         })
-        .sort((a, b) => b.totalPts - a.totalPts || b.stbW - a.stbW || b.match.ord - a.match.ord);
+        .sort((a, b) => b.totalPts - a.totalPts || b.stbW - a.stbW || compareMatchesChrono(b.match, a.match));
 
       const betesNoires = getAllRivalries(4)
         .filter(r => r.w1 === 0 || r.w2 === 0)
         .map(r => {
           const dom = PLAYER_BY_ID.get(r.w1 > 0 ? r.p1 : r.p2);
           const vic = PLAYER_BY_ID.get(r.w1 > 0 ? r.p2 : r.p1);
-          return { dom, vic, n: r.n, lastLabel: r.lastLabel };
+          return { dom, vic, n: r.n, lastLabel: r.lastLabel, lastDateFmt: r.lastDateFmt };
         })
         .sort((a, b) => b.n - a.n || b.dom.stats.w - a.dom.stats.w);
 
@@ -4521,6 +4692,7 @@
         evolutions,
         craziestStbs,
         stbKings,
+        full3Kings,
         bagels,
         titles,
         betesNoires,
@@ -4635,7 +4807,7 @@
                     <span style="color:var(--muted-foreground); font-weight:500;"> bat </span>
                     <span>${esc(x.loser.name)}</span>
                   </div>
-                  <div class="ff-sub">${esc(x.match.sl)} · ${esc(x.match.div)}</div>
+                  <div class="ff-sub">${esc(x.match.sl)}${x.match.dtFmt ? ` (${esc(x.match.dtFmt)})` : ''} · ${esc(x.match.div)}</div>
                 </div>
               </div>
               <span class="tag tag-pill amber-soft tabular-nums" style="flex-shrink:0;">${x.stbW}–${x.stbL}</span>
@@ -4654,6 +4826,24 @@
                 <div class="min-w-0">
                   <div class="truncate" style="font-weight:700;">${esc(x.player.name)}</div>
                   <div class="ff-sub tabular-nums">${x.w}V–${x.l}D en STB (${x.total} disputés)</div>
+                </div>
+              </div>
+              <span class="tag tag-pill emerald-soft tabular-nums" style="flex-shrink:0;">${x.rate}%</span>
+            </button>
+          `).join('')
+        ),
+
+        // 6b. Full 3rd Set Kings
+        ffCard(
+          'Rois du 3e Set Complet',
+          'Meilleur % de réussite en 3e set joué intégralement hors STB (minimum 6 disputés)',
+          d.full3Kings.slice(0, 8).map((x, i) => `
+            <button type="button" class="ff-row ff-row-btn" onclick="openProfile(${x.player.id})">
+              <div class="ff-left">
+                ${rankBadgeHtml(i + 1)}
+                <div class="min-w-0">
+                  <div class="truncate" style="font-weight:700;">${esc(x.player.name)}</div>
+                  <div class="ff-sub tabular-nums">${x.w}V–${x.l}D en 3e set complet (${x.total} disputés)</div>
                 </div>
               </div>
               <span class="tag tag-pill emerald-soft tabular-nums" style="flex-shrink:0;">${x.rate}%</span>
@@ -4711,7 +4901,7 @@
                     <span style="color:var(--muted-foreground); font-weight:500;"> vs </span>
                     <span class="clay-text">${esc(x.vic.name)}</span>
                   </div>
-                  <div class="ff-sub">Dernier duel : ${esc(x.lastLabel)}</div>
+                  <div class="ff-sub">Dernier duel : ${esc(x.lastLabel)}${x.lastDateFmt ? ` (${esc(x.lastDateFmt)})` : ''}</div>
                 </div>
               </div>
               <span class="meta-pill tabular-nums" style="font-weight:800; color:var(--foreground); flex-shrink:0;">${x.n} – 0</span>

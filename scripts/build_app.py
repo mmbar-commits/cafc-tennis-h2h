@@ -70,8 +70,14 @@ def build_compact_json(d):
             m["sw"],
             fm,
         ]
-        if m.get("stb"):
-            row.append(m["stb"])
+        stb_val = m.get("stb") or None
+        dt_val = m.get("dt")
+        dt_compact = (dt_val[2:4] + dt_val[5:7] + dt_val[8:10]) if dt_val else None
+        if dt_compact:
+            row.append(stb_val)
+            row.append(dt_compact)
+        elif stb_val:
+            row.append(stb_val)
         c_matches.append(row)
 
     compact = {

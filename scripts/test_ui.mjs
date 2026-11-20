@@ -189,7 +189,102 @@ if (!dirOrder[0].startsWith('Annuaire Complet') || !dirOrder[1].startsWith('Gest
 }
 await screenshot('03_directory_order.png', true);
 
-// 4. Mobile 390px viewport check across ALL 7 tabs -> zero horizontal page overflow!
+// 4. Match dates + 3e set complet vs Super Tie-Break checks across H2H, Profil Joueur, Fun Facts
+const datesCheck = await evalJs(`(() => {
+  const dated = MATCHES.filter(m => !!m.dtFmt).length;
+  const full3 = MATCHES.filter(m => m.sets.length === 3 && !m.isStb).length;
+  const stbs = MATCHES.filter(m => m.isStb).length;
+  return { total: MATCHES.length, dated, full3, stbs };
+})()`);
+console.log('4a. DATES & DECIDERS DATASET CHECK:', datesCheck);
+if (datesCheck.dated < 4500 || datesCheck.full3 < 500 || datesCheck.stbs < 800) {
+  throw new Error('Dates or decider counts unexpectedly low: ' + JSON.stringify(datesCheck));
+}
+
+// H2H check: dates visible + 3e set complet vs STB in H2H & Career modes
+await evalJs(`switchTab('h2h', { track: false })`);
+await new Promise(r => setTimeout(r, 200));
+const h2hCheck = await evalJs(`(() => {
+  const datePills = document.querySelectorAll('#matches-list .date-pill').length;
+  const directText = document.getElementById('stats-panel').textContent;
+  setStatsMode('career');
+  const careerText = document.getElementById('stats-panel').textContent;
+  setStatsMode('h2h');
+  return {
+    datePills,
+    hasDirectFull3: directText.includes('3e set complet (hors STB)'),
+    hasDirectStb: directText.includes('Super Tie-Breaks'),
+    hasCareerFull3: careerText.includes('3e set complet (hors STB)'),
+    hasCareerShare: careerText.includes('Part 3e set / décisifs')
+  };
+})()`);
+console.log('4b. H2H DATES & 3RD SET VS STB CHECK:', h2hCheck);
+if (h2hCheck.datePills < 1 || !h2hCheck.hasDirectFull3 || !h2hCheck.hasDirectStb || !h2hCheck.hasCareerFull3 || !h2hCheck.hasCareerShare) {
+  throw new Error('H2H dates/decider check failed: ' + JSON.stringify(h2hCheck));
+}
+await screenshot('04_h2h_dates_deciders.png', true);
+
+// Profil Joueur check: test on Mehdi Barouti (who has both full 3rd sets and STBs)
+await evalJs(`(() => {
+  const mb = PLAYERS.find(p => p.name.includes('Mehdi Barouti'));
+  openProfile(mb.id);
+})()`);
+await new Promise(r => setTimeout(r, 200));
+const profCheck = await evalJs(`(() => {
+  const panel = document.querySelector('#profile-root .decider-panel');
+  const panelText = panel ? panel.textContent.replace(/\\s+/g, ' ').trim() : '';
+  const hasSplitBar = !!document.querySelector('#profile-root .decider-split-bar');
+  const hasPerfGrid = document.querySelectorAll('#profile-root .decider-mini').length === 2;
+  const datePills = document.querySelectorAll('#prof-matches-body .date-pill').length;
+  const sel = document.getElementById('prof-m-res');
+  sel.value = 'full3';
+  renderProfileMatches();
+  const full3CountText = document.getElementById('prof-matches-count-pill')?.textContent.trim();
+  const full3Shown = parseInt((full3CountText || '0').split('/')[0].trim(), 10);
+  const full3HasStbBadge = document.getElementById('prof-matches-body').textContent.includes('Super TB');
+  sel.value = 'all';
+  renderProfileMatches();
+  return {
+    hasPanel: !!panel,
+    hasSplitBar,
+    hasPerfGrid,
+    panelText: panelText.slice(0, 180),
+    datePills,
+    full3CountText,
+    full3Shown,
+    full3HasStbBadge
+  };
+})()`);
+console.log('4c. PROFIL JOUEUR DECIDER PANEL & DATES CHECK (Mehdi Barouti):', profCheck);
+if (!profCheck.hasPanel || !profCheck.hasSplitBar || !profCheck.hasPerfGrid || profCheck.datePills < 10 || profCheck.full3Shown < 1 || profCheck.full3HasStbBadge) {
+  throw new Error('Profil Joueur decider/date check failed: ' + JSON.stringify(profCheck));
+}
+await screenshot('05_profile_deciders_dates.png', true);
+
+// Fun Facts check: Rois du 3e Set Complet card present + dates in Craziest STBs
+await evalJs(`switchTab('funfacts', { track: false })`);
+await new Promise(r => setTimeout(r, 200));
+const ffCheck = await evalJs(`(() => {
+  const cards = [...document.querySelectorAll('#funfacts-root > .card')];
+  const titles = cards.map(c => c.querySelector('h3.card-title')?.textContent.trim());
+  const full3Card = cards.find(c => c.querySelector('h3.card-title')?.textContent.trim() === 'Rois du 3e Set Complet');
+  const full3Rows = full3Card ? full3Card.querySelectorAll('.ff-row').length : 0;
+  const text = document.getElementById('funfacts-root').textContent;
+  return {
+    cardCount: titles.length,
+    hasFull3Kings: titles.includes('Rois du 3e Set Complet'),
+    full3Rows,
+    hasStbKings: titles.includes('Rois du Super Tie-Break'),
+    hasDatePattern: /\\(\\d{2}\\/\\d{2}\\/202\\d\\)/.test(text)
+  };
+})()`);
+console.log('4d. FUN FACTS FULL3 KINGS & DATES CHECK:', ffCheck);
+if (!ffCheck.hasFull3Kings || ffCheck.full3Rows < 5 || !ffCheck.hasStbKings || !ffCheck.hasDatePattern) {
+  throw new Error('Fun Facts check failed: ' + JSON.stringify(ffCheck));
+}
+await screenshot('06_funfacts_full3.png', true);
+
+// 5. Mobile 390px viewport check across ALL 7 tabs -> zero horizontal page overflow!
 await cdp('Emulation.setDeviceMetricsOverride', { width: 390, height: 844, deviceScaleFactor: 2, mobile: true });
 await new Promise(r => setTimeout(r, 150));
 const mobileOverflows = {};
@@ -204,11 +299,11 @@ for (const t of ['home', 'h2h', 'profile', 'standings', 'rivalries', 'funfacts',
     await cdp('Emulation.setDeviceMetricsOverride', { width: 390, height: h, deviceScaleFactor: 1, mobile: true });
     await new Promise(r => setTimeout(r, 150));
     const { data } = await cdp('Page.captureScreenshot', { format: 'png' });
-    fs.writeFileSync(path.join(OUT_DIR, '04_mobile_profile.png'), Buffer.from(data, 'base64'));
+    fs.writeFileSync(path.join(OUT_DIR, '06_mobile_profile.png'), Buffer.from(data, 'base64'));
     await cdp('Emulation.setDeviceMetricsOverride', { width: 390, height: 844, deviceScaleFactor: 2, mobile: true });
   }
 }
-console.log('4. MOBILE 390px OVERFLOW CHECK:', mobileOverflows);
+console.log('5. MOBILE 390px OVERFLOW CHECK:', mobileOverflows);
 for (const [t, m] of Object.entries(mobileOverflows)) {
   if (m.scrollWidth > m.innerWidth) {
     throw new Error(`Mobile horizontal overflow on tab ${t}: scrollWidth=${m.scrollWidth} > innerWidth=${m.innerWidth}`);
